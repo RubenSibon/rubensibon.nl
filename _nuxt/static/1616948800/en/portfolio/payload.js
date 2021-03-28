@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/en/portfolio", {data:[{}],fetch:{},mutations:void 0});
