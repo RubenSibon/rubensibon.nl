@@ -7,14 +7,21 @@
       :key="article.slug"
       :to="localePath(`/blog/${article.slug}`)"
       :title="article.title"
+      class="flex flex-col gap-3"
     >
       <h2 class="text-3xl">
         {{ article.title }}
       </h2>
 
-      <p class="text-sm">
-        {{ formatDate(article.createdAt) }}
-      </p>
+      <div class="flex items-center gap-3 text-sm">
+        <div class="category">
+          {{ article.category }}
+        </div>
+
+        <div>
+          {{ formatDate(article.createdAt) }}
+        </div>
+      </div>
 
       <p>{{ article.description }}</p>
     </nuxt-link>
@@ -61,5 +68,9 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .blog {
   @apply w-full max-w-screen-md px-4 mx-auto sm:px-8;
+
+  .label {
+    @apply font-semibold;
+  }
 }
 </style>

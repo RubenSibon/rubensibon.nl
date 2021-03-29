@@ -11,7 +11,7 @@ en:
       Ruben Sibon
     </h1>
 
-    <h2 class="mt-4 mb-12 text-3xl">
+    <h2 class="mt-4 mb-12 text-2xl font-medium">
       {{ $t("software_dev") }}
     </h2>
 

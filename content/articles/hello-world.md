@@ -1,9 +1,12 @@
 ---
 title: Hello world!
-description: "This is my first blog post using Nuxt Content."
-img: https://placeimg.com/640/480/tech
-alt: Random stock photo
-author: "Ruben Sibon"
+description: "This is my first blog post using Nuxt Content. Amet occaecat elit enim minim magna est est duis magna eiusmod nulla. Non eu ipsum id et anim. Elit deserunt aliquip consequat do occaecat officia ipsum. Ad proident laboris ipsum sint."
+author: Ruben Sibon
+img:
+  src: https://placeimg.com/640/480/tech
+  alt: Random stock photo
+  bgColor: gray
+category: software-development
 ---
 
 Laborum irure proident proident do dolor ipsum labore nulla ullamco. Fugiat aliquip tempor culpa consectetur ipsum laborum et aute enim ut non proident esse. Minim laboris anim sint tempor enim pariatur esse ut consequat. Lorem ut excepteur id sint non velit adipisicing do pariatur. In culpa tempor aliqua magna excepteur id ex.

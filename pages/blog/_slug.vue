@@ -1,22 +1,30 @@
 <template>
   <article class="post">
     <header class="post-header">
-      <h1 class="mb-4">
-        {{ article.title }}
-      </h1>
+      <div class="textgroup">
+        <div class="label">
+          {{ $t(`categories.${article.category}`) }}
+        </div>
 
-      <p class="mb-2 heading h5">
-        {{ article.description }}
-      </p>
+        <h1>
+          {{ article.title }}
+        </h1>
 
-      <div class="mb-4 post-details">
-        {{ $t("posted") }} {{ formatDate(article.createdAt) }},
-        {{ article.updatedAt ? `${ $t("updated") } ${formatDate(article.updatedAt)}` : null }}
+        <p class="heading h5">
+          {{ article.description }}
+        </p>
       </div>
 
-      <figure v-if="article.img">
-        <img :src="article.img" :alt="article.alt">
-        <caption>Beeld: {{ article.alt }}</caption>
+      <figure v-if="article.img && article.img.src" :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null">
+        <img
+          :src="article.img.src"
+          :alt="article.img.alt"
+          :class="[article.img.width ? article.img.width : 'max-w-screen-lg']"
+          :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null"
+        >
+        <caption>
+          {{ article.img.alt }}
+        </caption>
       </figure>
     </header>
 
@@ -26,13 +34,20 @@
     />
 
     <footer class="post-footer">
-      <p class="post-author">
-        {{ article.author }}
-      </p>
+      <div class="textgroup">
+        <hr>
 
-      <div class="post-details">
-        {{ $t("posted") }} {{ formatDate(article.createdAt) }},
-        {{ article.updatedAt ? `${ $t("updated") } ${formatDate(article.updatedAt)}` : null }}
+        <div class="details">
+          <p class="author">
+            {{ article.author }}
+          </p>
+          <p>
+            {{ $t("post.postedOn") }} {{ formatDate(article.createdAt) }}
+          </p>
+          <p>
+            {{ article.updatedAt ? `${ $t("post.updatedOn") } ${formatDate(article.updatedAt)}` : null }}
+          </p>
+        </div>
       </div>
     </footer>
   </article>
@@ -58,45 +73,65 @@ export default defineComponent({
 
 <style lang="postcss">
 .post {
-  @apply flex flex-col items-center justify-start mx-auto w-full;
+  @apply flex flex-col items-center justify-start gap-3 mt-16 mx-auto w-full;
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    @apply mx-auto w-full max-w-screen-sm px-6 md:px-8;
+  .textgroup {
+    @apply flex flex-col gap-3 mx-auto w-full max-w-screen-sm px-6 md:px-8;
   }
 
-  figure,
-  picture,
-  img,
-  caption {
-    @apply mx-auto w-full max-w-screen-md;
-  }
+  figure {
+    @apply flex flex-col items-center justify-end relative mx-auto w-full
+      text-center
+    ;
 
-  &-header,
-  &-footer {
-    @apply w-full mb-4;
-
-    figure caption {
-      @apply text-gray-300 text-right pr-4 pb-2 text-xs;
-
-      transform: translateY(-100%);
-      text-shadow: -1px -1px 2px black;
+    img,
+    caption {
+      @apply mx-auto w-full;
     }
 
-    .post-details {
+    caption {
       @apply
-        flex items-start justify-start gap-2 max-w-screen-sm mx-auto px-6 md:px-8
-        text-sm
+        absolute rounded-full mb-3 py-1 px-3 w-max max-w-none max-h-screen
+        bg-black bg-opacity-75 text-gray-200 text-sm
       ;
     }
   }
 
+  .label {
+    @apply
+      rounded-full py-2 px-3 w-max
+      text-xs bg-gray-100 text-gray-500 font-semibold
+    ;
+  }
+
+  &-header,
+  &-footer {
+    @apply flex flex-col gap-5 w-full mb-4;
+
+    .details {
+      @apply
+        flex flex-col
+        w-max min-w-1/2
+        text-xs text-gray-500 font-semibold
+      ;
+
+      .author {
+        @apply mb-3 font-semibold text-5xl font-serif;
+      }
+    }
+  }
+
   &-body {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      @apply mx-auto w-full max-w-screen-sm px-6 md:px-8;
+    }
+
     h2 {
       @apply font-bold text-3xl;
     }
@@ -107,6 +142,15 @@ export default defineComponent({
 
     p {
       margin-bottom: 20px;
+    }
+
+    figure {
+      @apply mx-auto w-full max-w-screen-lg;
+
+      img,
+      caption {
+        @apply w-full;
+      }
     }
   }
 }

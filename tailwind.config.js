@@ -9,6 +9,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: [
+        "Fira Sans",
         "Source Sans Pro",
         "-apple-system",
         "BlinkMacSystemFont",
@@ -18,8 +19,9 @@ module.exports = {
         "Arial",
         "sans-serif",
       ],
-      serif: ["Georgia", "serif"],
-      title: ["Quicksand", "sans-serif"],
+      serif: ["Vladimir Script", "serif"],
+      title: ["Fira Sans", "Arial", "sans-serif"],
+      code: ["Fira Code", "Consolas", "Ubuntu Mono", "Cascadia Mono", "Droid Sans Mono", "Courier", "sans-serif"],
     },
     fontSize: {
       xs: ["0.75rem", { lineHeight: "1rem" }],
@@ -37,6 +39,13 @@ module.exports = {
       "9xl": ["8rem", { lineHeight: "1" }],
     },
     extend: {
+      minWidth: {
+        0: "0",
+        "1/4": "25%",
+        "1/2": "50%",
+        "3/4": "75%",
+        full: "100%",
+      },
     },
   },
   variants: {

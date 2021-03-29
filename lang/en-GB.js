@@ -1,8 +1,13 @@
 export default async (_context, _locale) => {
   return await Promise.resolve({
     languages: "Languages",
-    posted: "Posted on",
-    updated: "updated on",
+    post: {
+      postedOn: "Posted on",
+      updatedOn: "Edited on",
+    },
     profession: "Software developer",
+    categories: {
+      "software-development": "software development",
+    },
   });
 };
