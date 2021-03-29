@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen mx-auto">
+  <div class="flex flex-col items-center justify-start min-h-screen mx-auto">
     <Nuxt />
 
     <footer class="flex items-center justify-start max-w-xl gap-3 p-5 mx-auto">
@@ -19,7 +19,22 @@ import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   head () {
-    return this.$nuxtI18nHead({ addSeoAttributes: true });
+    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
+
+    return {
+      title: `Ruben Sibon: ${this.$i18n.t("profession")}`,
+      htmlAttrs: {
+        ...i18nHead.htmlAttrs,
+      },
+      meta: [
+        // @ts-ignore
+        ...i18nHead.meta,
+      ],
+      link: [
+        // @ts-ignore
+        ...i18nHead.link,
+      ],
+    };
   },
 });
 </script>
@@ -49,7 +64,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.heading {
   @apply font-title font-bold;
 
   letter-spacing: 1px;
@@ -58,12 +74,12 @@ h6 {
 
 h1,
 .h1 {
-  @apply text-6xl;
+  @apply text-4xl sm:text-6xl;
 }
 
 h2,
 .h2 {
-  @apply text-4xl;
+  @apply text-3xl sm:text-4xl;
 }
 
 h3,

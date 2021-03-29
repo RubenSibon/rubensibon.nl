@@ -25,6 +25,25 @@ import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   setup () {},
+
+  head () {
+    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
+
+    return {
+      title: "Portfolio - Ruben Sibon",
+      htmlAttrs: {
+        ...i18nHead.htmlAttrs,
+      },
+      meta: [
+        // @ts-ignore
+        ...i18nHead.meta,
+      ],
+      link: [
+        // @ts-ignore
+        ...i18nHead.link,
+      ],
+    };
+  },
 });
 </script>
 

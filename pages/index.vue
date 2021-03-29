@@ -6,7 +6,7 @@ en:
 </i18n>
 
 <template>
-  <main class="flex flex-col items-center justify-center h-full text-center">
+  <main class="home">
     <h1 class="title">
       Ruben Sibon
     </h1>
@@ -43,3 +43,9 @@ en:
     </div>
   </main>
 </template>
+
+<style lang="postcss" scoped>
+.home {
+  @apply flex flex-col items-center justify-center flex-1 h-full text-center;
+}
+</style>

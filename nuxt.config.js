@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "rubensibon.nl",
+    title: "Ruben Sibon",
     htmlAttrs: {
       lang: "en",
     },
@@ -66,13 +66,13 @@ export default {
       {
         code: "en",
         name: "English",
-        iso: "en-GB",
+        iso: "en_GB",
         file: "en-GB.js",
       },
       {
         code: "nl",
         name: "Nederlands",
-        iso: "nl-NL",
+        iso: "nl_NL",
         file: "nl-NL.js",
       },
     ],
