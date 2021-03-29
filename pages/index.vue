@@ -6,12 +6,12 @@ en:
 </i18n>
 
 <template>
-  <main class="flex flex-col items-center justify-center mx-auto min-h-screen text-center">
+  <main class="flex flex-col items-center justify-center h-full text-center">
     <h1 class="title">
       Ruben Sibon
     </h1>
 
-    <h2 class="text-3xl mt-4 mb-12">
+    <h2 class="mt-4 mb-12 text-3xl">
       {{ $t("software_dev") }}
     </h2>
 
