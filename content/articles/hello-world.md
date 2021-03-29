@@ -1,6 +1,8 @@
 ---
 title: Hello world!
 description: "This is my first blog post using Nuxt Content."
+img: https://placeimg.com/640/480/tech
+alt: Random stock photo
 author: "Ruben Sibon"
 ---
 
