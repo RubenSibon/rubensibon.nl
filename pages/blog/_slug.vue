@@ -9,7 +9,7 @@
       >
         <figure
           v-if="article.img && article.img.src"
-          :class="headerHeightClass"
+          :class="[headerHeightClass, 'gradient']"
         >
           <picture>
             <source
@@ -18,6 +18,7 @@
               :media="mediaQuery"
               :srcset="src"
             >
+
             <img
               :src="article.img.src"
               :alt="article.img.alt"
@@ -145,6 +146,15 @@ export default defineComponent({
     @apply flex flex-col gap-3 mx-auto w-full max-w-screen-sm px-6 md:px-8;
   }
 
+  .label {
+    @apply
+      rounded-full py-2 px-3 w-max
+      text-xs bg-gray-900 text-gray-100 font-semibold
+    ;
+
+    letter-spacing: 0.5px;
+  }
+
   figure {
     @apply flex flex-col items-center justify-end relative mx-auto w-full
       text-center
@@ -167,15 +177,6 @@ export default defineComponent({
   &-footer {
     @apply relative flex flex-col gap-5 w-full mb-4;
 
-    .label {
-      @apply
-        rounded-full py-2 px-3 w-max
-        text-xs bg-gray-900 text-gray-100 font-semibold
-      ;
-
-      letter-spacing: 0.5px;
-    }
-
     .category {
       @apply uppercase;
     }
@@ -186,6 +187,16 @@ export default defineComponent({
         my-2 w-max max-w-full
         font-semibold text-xs text-gray-500
       ;
+    }
+
+    .gradient {
+      &::after {
+        background: rgb(0, 0, 0);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 15%, rgba(255, 255, 255, 0) 100%);
+        content: "";
+
+        @apply block absolute bottom-0 left-0 w-full h-full;
+      }
     }
   }
 
