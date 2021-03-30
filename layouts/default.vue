@@ -123,7 +123,7 @@ blockquote {
     &::before {
       content: "“";
 
-      @apply block absolute -top-2 -left-9 w-max h-8 bg-transparent text-7xl text-gray-400 dark:text-gray-600;
+      @apply block absolute -top-2 -left-9 w-max h-8 bg-transparent text-7xl text-gray-400 dark:text-gray-600 select-none;
     }
   }
 }

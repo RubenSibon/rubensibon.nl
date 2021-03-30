@@ -66,13 +66,13 @@ export default {
       {
         code: "en",
         name: "English",
-        iso: "en_GB",
+        iso: "en-GB",
         file: "en-GB.js",
       },
       {
         code: "nl",
         name: "Nederlands",
-        iso: "nl_NL",
+        iso: "nl-NL",
         file: "nl-NL.js",
       },
     ],

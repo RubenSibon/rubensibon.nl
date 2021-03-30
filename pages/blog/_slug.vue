@@ -10,6 +10,7 @@
         <figure
           v-if="article.img && article.img.src"
           :class="[headerHeightClass, 'gradient']"
+          :label="article.img.alt"
         >
           <picture>
             <source
@@ -22,14 +23,17 @@
             <img
               :src="article.img.src"
               :alt="article.img.alt"
-              :class="`min-w-screen-full min-${headerHeightClass}`"
-              :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null"
+              :class="[
+                'min-w-screen-full',
+                `min-${headerHeightClass}`,
+                article.img.bgColor ? `bg-${article.img.bgColor}` : null,
+              ]"
             >
           </picture>
 
-          <!-- <caption>
+          <figcaption>
             {{ article.img.alt }}
-          </caption> -->
+          </figcaption>
         </figure>
       </div>
 
@@ -161,14 +165,14 @@ export default defineComponent({
     ;
 
     img,
-    caption {
+    figcaption {
       @apply mx-auto;
     }
 
-    caption {
+    figcaption {
       @apply
-        absolute rounded-full m-3 py-1 px-3 w-max max-w-none
-        bg-black bg-opacity-75 text-gray-200 text-sm
+        absolute top-0 right-0 rounded-full m-3 py-1 px-3 w-max max-w-none
+        bg-black bg-opacity-50 text-gray-200 text-xs
       ;
     }
   }
@@ -244,7 +248,7 @@ export default defineComponent({
       max-width: 100vw;
 
       pre {
-        @apply bg-gray-200 dark:bg-gray-800;
+        @apply bg-gray-50 dark:bg-gray-800;
 
         code {
           @apply dark:text-gray-100;
