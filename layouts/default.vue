@@ -113,15 +113,9 @@ p {
 }
 
 blockquote {
-  @apply relative my-12 ml-4 sm:-ml-8 font-serif text-2xl sm:text-3xl italic;
+  @apply relative my-12 ml-4 sm:ml-8 md:-ml-12 font-serif text-2xl sm:text-3xl italic;
 
   letter-spacing: 1px;
-
-  &::before {
-    content: "";
-
-    @apply absolute top-1 left-2 sm:left-6 block w-1 h-full bg-gray-200 dark:bg-gray-700 text-5xl;
-  }
 }
 
 @screen md {
@@ -129,7 +123,7 @@ blockquote {
     &::before {
       content: "“";
 
-      @apply absolute -top-2 -left-4 block w-max h-8 bg-transparent text-7xl;
+      @apply block absolute -top-2 -left-2 w-max h-8 bg-transparent text-7xl;
     }
   }
 }
@@ -150,9 +144,14 @@ a {
   text-decoration: none;
 
   &:hover,
-  &:focus,
-  &[data-focus-visible-added] {
-    @apply outline-none border-b-4 text-purple-500;
+  &:focus {
+    @apply border-b-4 text-purple-500;
+  }
+
+  &:focus {
+    @apply rounded border-transparent;
+
+    outline: 2px solid currentColor;
   }
 }
 
