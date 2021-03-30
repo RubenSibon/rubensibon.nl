@@ -160,7 +160,7 @@ export default defineComponent({
   }
 
   figure {
-    @apply flex flex-col items-center justify-end relative mx-auto w-full
+    @apply flex flex-col items-center justify-end relative mx-auto w-full max-w-full overflow-x-hidden
       text-center
     ;
 
