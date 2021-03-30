@@ -32,9 +32,7 @@
         </figure>
       </div>
 
-      <div
-        :class="`absolute top-0 left-0 flex flex-col items-end justify-end w-full h-screen-2/3 pb-6 ${headerHeightClass}`"
-      >
+      <div :class="`absolute top-0 left-0 flex flex-col items-end justify-end w-full h-screen-2/3 pb-8 ${headerHeightClass}`">
         <div class="textgroup">
           <div class="category label">
             {{ $t(`categories.${article.category}`) }}
@@ -47,7 +45,7 @@
       </div>
 
       <div class="textgroup">
-        <p class="heading h3">
+        <p class="heading h4">
           {{ article.description }}
         </p>
 
@@ -162,18 +160,18 @@ export default defineComponent({
     }
   }
 
-  .label {
-    @apply
-      rounded-full py-2 px-3 w-max
-      text-xs bg-gray-900 text-gray-100 font-semibold
-    ;
-
-    letter-spacing: 0.5px;
-  }
-
   &-header,
   &-footer {
     @apply relative flex flex-col gap-5 w-full mb-4;
+
+    .label {
+      @apply
+        rounded-full py-2 px-3 w-max
+        text-xs bg-gray-900 text-gray-100 font-semibold
+      ;
+
+      letter-spacing: 0.5px;
+    }
 
     .category {
       @apply uppercase;
@@ -181,9 +179,9 @@ export default defineComponent({
 
     .details {
       @apply
-        flex gap-3
-        my-2 w-max
-        font-semibold text-xs
+        flex flex-wrap gap-3
+        my-2 w-max max-w-full
+        font-semibold text-xs text-gray-500
       ;
     }
   }
@@ -200,10 +198,6 @@ export default defineComponent({
       @apply mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
     }
 
-    p {
-      @apply mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
-    }
-
     h2 {
       @apply mb-4 text-2xl;
     }
@@ -212,10 +206,42 @@ export default defineComponent({
       @apply mb-3 text-xl;
     }
 
+    h4 {
+      @apply mb-3 text-xl;
+    }
+
     h4,
     h5,
     h6 {
       @apply mb-2;
+    }
+
+    p {
+      @apply mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
+    }
+
+    blockquote p {
+      @apply md:p-0;
+    }
+
+    .nuxt-content-highlight {
+      @apply my-8;
+
+      max-width: 100vw;
+
+      pre {
+        @apply rounded-xl bg-blue-100 dark:bg-gray-800;
+
+        code {
+          @apply dark:text-gray-100;
+
+          text-shadow: none;
+
+          .token.operator {
+            @apply bg-transparent;
+          }
+        }
+      }
     }
 
     figure {

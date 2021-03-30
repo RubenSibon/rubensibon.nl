@@ -31,25 +31,31 @@ module.exports = {
     },
     extend: {
       height: {
-        "screen-1/8": "12vh",
+        "screen-1/8": "12.5vh",
         "screen-1/4": "25vh",
         "screen-1/3": "33.333333vh",
         "screen-1/2": "50vh",
         "screen-2/3": "66.666667vh",
+        "screen-3/4": "75vh",
+        "screen-7/8": "87.5vh",
       },
       maxHeight: {
-        "screen-1/8": "12vh",
+        "screen-1/8": "12.5vh",
         "screen-1/4": "25vh",
         "screen-1/3": "33.333333vh",
         "screen-1/2": "50vh",
         "screen-2/3": "66.666667vh",
+        "screen-3/4": "75vh",
+        "screen-7/8": "87.5vh",
       },
       minHeight: {
-        "screen-1/8": "12vh",
+        "screen-1/8": "12.5vh",
         "screen-1/4": "25vh",
         "screen-1/3": "33.333333vh",
         "screen-1/2": "50vh",
         "screen-2/3": "66.666667vh",
+        "screen-3/4": "75vh",
+        "screen-7/8": "87.5vh",
       },
       minWidth: {
         0: 0,
@@ -64,5 +70,8 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/line-clamp"),
   ],
 };

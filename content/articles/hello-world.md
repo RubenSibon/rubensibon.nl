@@ -37,7 +37,23 @@ Eiusmod et ullamco mollit qui aliqua et Lorem nulla est commodo id. Lorem pariat
 
 Do aliquip non magna veniam ut proident amet voluptate fugiat. Nisi sint velit amet in id veniam officia occaecat irure proident. Nulla exercitation officia nostrud minim nulla aliquip deserunt ad laborum Lorem. Pariatur excepteur et in voluptate amet.
 
+ > Quis sunt et laboris elit. Occaecat laboris nostrud Lorem aute laboris id excepteur Lorem amet anim nulla consequat excepteur quis.
+
 Ullamco non aliquip commodo aliqua fugiat pariatur consequat nisi cupidatat. Ut adipisicing proident tempor enim ullamco tempor. Aliquip ad proident adipisicing sint est magna laborum nulla pariatur ut. Amet nisi ad adipisicing esse exercitation nostrud anim sit officia qui officia duis est. Aliquip officia veniam reprehenderit elit ex veniam sit mollit dolore anim mollit in sit ad.
+
+```ts
+const codeblock = document.querySelector("code");
+
+function isThisACodeBlock (codeblock) {
+  if (typeof codeblock === HTMLElementCode) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const validCodeBlock = isThisACodeBlock(codeblock);
+```
 
 Nisi occaecat sint sunt ut aliquip ipsum irure anim nostrud sunt occaecat esse aliquip. Ullamco minim sint eu eiusmod Lorem nulla anim. Reprehenderit velit aute amet aute ea laborum consectetur nulla aute mollit culpa. Ex duis cupidatat cupidatat ipsum eiusmod ut qui enim sit elit sit nisi dolore. Esse excepteur velit veniam dolor proident non sit adipisicing do ad.
 

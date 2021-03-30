@@ -41,7 +41,7 @@ export default defineComponent({
 
 <style lang="postcss">
 html {
-  @apply font-sans text-base sm:text-lg;
+  @apply font-sans text-base sm:text-lg md:text-xl;
 
   box-sizing: border-box;
   word-spacing: 1px;
@@ -52,7 +52,7 @@ html {
 }
 
 body {
-  @apply dark:bg-gray-900;
+  @apply dark:bg-gray-900 text-gray-900 dark:text-gray-200;
 }
 
 *,
@@ -69,7 +69,7 @@ h4,
 h5,
 h6,
 .heading {
-  @apply font-bold text-gray-900 dark:text-white;
+  @apply font-bold text-gray-900 dark:text-gray-100;
 
   letter-spacing: 1px;
 }
@@ -91,18 +91,52 @@ h3,
 
 h4,
 .h4 {
-  @apply font-semibold;
+  @apply text-xl font-semibold;
 }
 
 h5,
-.h5,
+.h5 {
+  @apply font-medium;
+
+  letter-spacing: 0.5px;
+}
+
 h6,
 .h6 {
-  @apply font-medium;
+  @apply font-normal;
+
+  letter-spacing: 0.5px;
 }
 
 p {
   @apply text-gray-900 dark:text-white;
+}
+
+blockquote {
+  @apply relative my-12 ml-4 sm:-ml-8 font-serif text-2xl sm:text-3xl italic;
+
+  letter-spacing: 1px;
+
+  &::before {
+    content: "";
+
+    @apply absolute top-1 left-2 sm:left-6 block w-1 h-full bg-gray-200 dark:bg-gray-700 text-5xl;
+  }
+}
+
+@screen md {
+  blockquote {
+    &::before {
+      content: "“";
+
+      @apply absolute -top-2 -left-6 block w-max h-8 bg-transparent text-7xl;
+    }
+  }
+}
+
+code,
+pre {
+  @apply font-code;
 }
 
 .button--grey {
