@@ -13,9 +13,9 @@ export default async (_context, _locale) => {
       cs: "informatica",
     },
     tags: {
-      history: "geschiedenis",
       programming: "programmeren",
       c: "C",
+      history: "geschiedenis",
     },
   });
 };

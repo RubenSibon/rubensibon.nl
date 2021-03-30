@@ -140,7 +140,7 @@ pre {
 a {
   @apply relative border-b-2 border-purple-500;
 
-  transition: border 200ms ease-out, color 200ms ease-in;
+  transition: border 200ms ease-out, padding 200ms ease-out, color 200ms ease-in;
   text-decoration: none;
 
   &:hover,
@@ -149,7 +149,7 @@ a {
   }
 
   &:focus {
-    @apply rounded border-transparent;
+    @apply rounded border-transparent pt-1;
 
     outline: 2px solid currentColor;
   }

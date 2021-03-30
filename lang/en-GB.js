@@ -10,12 +10,12 @@ export default async (_context, _locale) => {
     profession: "Software developer",
     categories: {
       "software-development": "software development",
-      cs: "computer science history",
+      cs: "computer science",
     },
     tags: {
-      history: "geschiedenis",
       programming: "programming",
       c: "C",
+      history: "history",
     },
   });
 };
