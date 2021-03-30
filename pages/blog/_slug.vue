@@ -13,15 +13,15 @@
         >
           <picture>
             <source
-              v-for="[media, src] in Object.entries(article.img.srcSet)"
-              :key="media"
-              :media="`(orientation: ${media})`"
+              v-for="[mediaQuery, src] in Object.entries(article.img.srcSet)"
+              :key="mediaQuery"
+              :media="mediaQuery"
               :srcset="src"
             >
             <img
               :src="article.img.src"
               :alt="article.img.alt"
-              :class="[article.img.width ? article.img.width : 'max-w-screen-lg']"
+              :class="`min-w-screen-full min-${headerHeightClass}`"
               :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null"
             >
           </picture>
@@ -152,7 +152,7 @@ export default defineComponent({
 
     img,
     caption {
-      @apply mx-auto w-full;
+      @apply mx-auto;
     }
 
     caption {

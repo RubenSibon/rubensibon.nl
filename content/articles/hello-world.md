@@ -4,9 +4,10 @@ description: "This is my first blog post using Nuxt Content. Amet occaecat elit 
 author: Ruben Sibon
 img:
   srcSet:
-    landscape: https://placeimg.com/1024/686/tech
-    portrait: https://placeimg.com/768/686/tech
-  src: https://placeimg.com/1024/768/tech
+    "(orientation: landscape)": https://placeimg.com/1024/686/tech
+    "(orientation: portrait) and (min-aspect-ratio: 9/16)": https://placeimg.com/600/800/tech
+    "(orientation: portrait) and (max-aspect-ratio: 9/16)": https://placeimg.com/544/812/tech
+  src: https://placeimg.com/400/800/tech
   alt: Random stock photo
   headerImgHeight: 2/3
 headerBgColor: black
