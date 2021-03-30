@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "rubensibon.nl",
+    title: "Ruben Sibon",
     htmlAttrs: {
       lang: "en",
     },
@@ -38,6 +38,10 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
   ],
+
+  tailwindcss: {
+    jit: true,
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
