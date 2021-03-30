@@ -1,39 +1,52 @@
 <template>
   <article class="post">
     <header class="relative post-header">
-      <figure
-        v-if="article.img && article.img.src"
-        :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null"
+      <div
+        :class="article.headerHeightClass || 'h-screen-2/3'"
+        :style="[
+          article.headerBgColor ? { 'background-color': article.headerBgColor } : null,
+        ]"
       >
-        <picture>
-          <source
-            v-for="[media, src] in Object.entries(article.img.srcSet)"
-            :key="media"
-            :media="`(orientation: ${media})`"
-            :srcset="src"
-          >
-          <img
-            :src="article.img.src"
-            :alt="article.img.alt"
-            :class="[article.img.width ? article.img.width : 'max-w-screen-lg']"
-            :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null"
-          >
-        </picture>
-        <!-- <caption>
-          {{ article.img.alt }}
-        </caption> -->
-      </figure>
+        <figure
+          v-if="article.img && article.img.src"
+        >
+          <picture>
+            <source
+              v-for="[media, src] in Object.entries(article.img.srcSet)"
+              :key="media"
+              :media="`(orientation: ${media})`"
+              :srcset="src"
+            >
+            <img
+              :src="article.img.src"
+              :alt="article.img.alt"
+              :class="[article.img.width ? article.img.width : 'max-w-screen-lg']"
+              :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null"
+            >
+          </picture>
+
+          <!-- <caption>
+            {{ article.img.alt }}
+          </caption> -->
+        </figure>
+      </div>
+
+      <div
+        :class="`absolute top-0 flex flex-col items-end justify-end w-full pb-6 ${article.headerHeightClass || 'h-screen-2/3'}`"
+      >
+        <div class="textgroup">
+          <div class="label">
+            {{ $t(`categories.${article.category}`) }}
+          </div>
+
+          <h1 class="text-gray-100">
+            {{ article.title }}
+          </h1>
+        </div>
+      </div>
 
       <div class="textgroup">
-        <div class="label">
-          {{ $t(`categories.${article.category}`) }}
-        </div>
-
-        <h1>
-          {{ article.title }}
-        </h1>
-
-        <p class="heading h5">
+        <p class="heading h3">
           {{ article.description }}
         </p>
       </div>
@@ -91,7 +104,7 @@ export default defineComponent({
   }
 
   figure {
-    @apply flex flex-col items-center justify-end relative mx-auto w-full max-h-screen-1/2
+    @apply flex flex-col items-center justify-end relative mx-auto w-full max-h-screen-2/3
       text-center
     ;
 
@@ -117,41 +130,49 @@ export default defineComponent({
 
   &-header,
   &-footer {
-    @apply flex flex-col gap-5 w-full mb-4;
+    @apply relative flex flex-col gap-5 w-full mb-4;
 
     .details {
       @apply
         flex flex-col
         w-max min-w-1/2
-        text-xs text-gray-500 font-semibold
+        text-xs font-semibold
       ;
 
       .author {
-        @apply mb-3 font-semibold text-5xl font-serif;
+        @apply mb-3 font-semibold text-xs;
       }
     }
   }
 
   &-body {
+    @apply relative;
+
     h1,
     h2,
     h3,
     h4,
     h5,
     h6 {
-      @apply mx-auto w-full max-w-screen-sm mt-8 mb-4 px-6 md:px-8;
+      @apply mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
     }
 
     p {
-      @apply mx-auto w-full max-w-screen-sm mb-4 px-6 md:px-8;
+      @apply mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
     }
 
     h2 {
-      @apply text-3xl;
+      @apply mb-4 text-2xl;
     }
 
     h3 {
-      @apply text-xl;
+      @apply mb-3 text-xl;
+    }
+
+    h4,
+    h5,
+    h6 {
+      @apply mb-2;
     }
 
     figure {

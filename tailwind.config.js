@@ -8,20 +8,10 @@ module.exports = {
   darkMode: "media",
   theme: {
     fontFamily: {
-      sans: [
-        "Fira Sans",
-        "Source Sans Pro",
-        "-apple-system",
-        "BlinkMacSystemFont",
-        "Segoe UI",
-        "Roboto",
-        "Helvetica Neue",
-        "Arial",
-        "sans-serif",
-      ],
-      serif: ["Vladimir Script", "serif"],
-      title: ["Fira Sans", "Arial", "sans-serif"],
-      code: ["Fira Code", "Consolas", "Ubuntu Mono", "Cascadia Mono", "Droid Sans Mono", "Courier", "sans-serif"],
+      sans: ["Fira Sans", "Source Sans Pro", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
+      serif: ["Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times", "Source Serif Pro", "serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"],
+      title: ["Fira Sans", "Source Sans Pro", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
+      code: ["Fira Code", "Menlo", "Monaco", "Consolas", "Ubuntu Mono", "Liberation Mono", "Lucida Console", "Cascadia Mono", "Droid Sans Mono", "Courier", "monospace"],
     },
     fontSize: {
       xs: ["0.75rem", { lineHeight: "1rem" }],
@@ -46,8 +36,26 @@ module.exports = {
         "3/4": "75%",
         full: "100%",
       },
-      maxHeight: {
+      height: {
+        "screen-1/8": "12vh",
+        "screen-1/4": "24vh",
+        "screen-1/3": "33vh",
         "screen-1/2": "50vh",
+        "screen-2/3": "66vh",
+      },
+      minHeight: {
+        "screen-1/8": "12vh",
+        "screen-1/4": "24vh",
+        "screen-1/3": "33vh",
+        "screen-1/2": "50vh",
+        "screen-2/3": "66vh",
+      },
+      maxHeight: {
+        "screen-1/8": "12vh",
+        "screen-1/4": "24vh",
+        "screen-1/3": "33vh",
+        "screen-1/2": "50vh",
+        "screen-2/3": "66vh",
       },
     },
   },

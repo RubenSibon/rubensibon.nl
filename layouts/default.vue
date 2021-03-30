@@ -40,7 +40,6 @@ export default defineComponent({
 </script>
 
 <style lang="postcss">
-
 html {
   @apply font-sans text-base sm:text-lg;
 
@@ -84,14 +83,16 @@ h2,
 
 h3,
 .h3 {
-  @apply text-2xl;
+  @apply text-2xl font-semibold;
 }
 
 h4,
 .h4 {
-  @apply text-lg;
+  @apply font-semibold;
 }
 
+h5,
+.h5,
 h6,
 .h6 {
   @apply font-medium;
