@@ -1,6 +1,29 @@
 <template>
   <article class="post">
-    <header class="post-header">
+    <header class="relative post-header">
+      <figure
+        v-if="article.img && article.img.src"
+        :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null"
+      >
+        <picture>
+          <source
+            v-for="[media, src] in Object.entries(article.img.srcSet)"
+            :key="media"
+            :media="`(orientation: ${media})`"
+            :srcset="src"
+          >
+          <img
+            :src="article.img.src"
+            :alt="article.img.alt"
+            :class="[article.img.width ? article.img.width : 'max-w-screen-lg']"
+            :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null"
+          >
+        </picture>
+        <!-- <caption>
+          {{ article.img.alt }}
+        </caption> -->
+      </figure>
+
       <div class="textgroup">
         <div class="label">
           {{ $t(`categories.${article.category}`) }}
@@ -14,18 +37,6 @@
           {{ article.description }}
         </p>
       </div>
-
-      <figure v-if="article.img && article.img.src" :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null">
-        <img
-          :src="article.img.src"
-          :alt="article.img.alt"
-          :class="[article.img.width ? article.img.width : 'max-w-screen-lg']"
-          :style="article.img.bgColor ? `background-color: ${article.img.bgColor}` : null"
-        >
-        <caption>
-          {{ article.img.alt }}
-        </caption>
-      </figure>
     </header>
 
     <nuxt-content
@@ -73,14 +84,14 @@ export default defineComponent({
 
 <style lang="postcss">
 .post {
-  @apply flex flex-col items-center justify-start gap-3 mt-16 mx-auto w-full;
+  @apply flex flex-col items-center justify-start gap-3 mx-auto w-full;
 
   .textgroup {
     @apply flex flex-col gap-3 mx-auto w-full max-w-screen-sm px-6 md:px-8;
   }
 
   figure {
-    @apply flex flex-col items-center justify-end relative mx-auto w-full
+    @apply flex flex-col items-center justify-end relative mx-auto w-full max-h-screen-1/2
       text-center
     ;
 
@@ -91,7 +102,7 @@ export default defineComponent({
 
     caption {
       @apply
-        absolute rounded-full mb-3 py-1 px-3 w-max max-w-none max-h-screen
+        absolute rounded-full m-3 py-1 px-3 w-max max-w-none
         bg-black bg-opacity-75 text-gray-200 text-sm
       ;
     }
@@ -127,21 +138,20 @@ export default defineComponent({
     h3,
     h4,
     h5,
-    h6,
+    h6 {
+      @apply mx-auto w-full max-w-screen-sm mt-8 mb-4 px-6 md:px-8;
+    }
+
     p {
-      @apply mx-auto w-full max-w-screen-sm px-6 md:px-8;
+      @apply mx-auto w-full max-w-screen-sm mb-4 px-6 md:px-8;
     }
 
     h2 {
-      @apply font-bold text-3xl;
+      @apply text-3xl;
     }
 
     h3 {
-      @apply font-bold text-xl;
-    }
-
-    p {
-      margin-bottom: 20px;
+      @apply text-xl;
     }
 
     figure {

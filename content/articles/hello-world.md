@@ -3,15 +3,20 @@ title: Hello world!
 description: "This is my first blog post using Nuxt Content. Amet occaecat elit enim minim magna est est duis magna eiusmod nulla. Non eu ipsum id et anim. Elit deserunt aliquip consequat do occaecat officia ipsum. Ad proident laboris ipsum sint."
 author: Ruben Sibon
 img:
-  src: https://placeimg.com/640/480/tech
+  srcSet:
+    landscape: https://placeimg.com/1024/384/tech
+    portrait: https://placeimg.com/768/512/tech
+  src: https://placeimg.com/1024/384/tech
   alt: Random stock photo
-  bgColor: gray
+  bgColor: black
 category: software-development
 ---
 
 Laborum irure proident proident do dolor ipsum labore nulla ullamco. Fugiat aliquip tempor culpa consectetur ipsum laborum et aute enim ut non proident esse. Minim laboris anim sint tempor enim pariatur esse ut consequat. Lorem ut excepteur id sint non velit adipisicing do pariatur. In culpa tempor aliqua magna excepteur id ex.
 
 Veniam sit ipsum deserunt aliqua non. Ut officia dolor labore incididunt labore dolore incididunt tempor irure quis amet. Esse ex cupidatat Lorem qui veniam nulla dolore occaecat magna. Sint magna reprehenderit nulla irure id quis mollit enim sint dolore. Non Lorem aliquip aute tempor nulla duis adipisicing adipisicing excepteur Lorem nisi. Laboris tempor nisi laboris esse. Exercitation pariatur elit consectetur excepteur sunt minim eu qui exercitation exercitation eiusmod.
+
+## Ex nisi consequat fugiat amet anim eu reprehenderit
 
 Et laborum laboris ullamco ea duis esse adipisicing Lorem nisi. Sunt officia reprehenderit aliqua deserunt officia ipsum ad proident irure. Quis ullamco non nostrud dolor occaecat eiusmod. Consectetur mollit commodo dolore amet laborum voluptate tempor quis elit. Tempor dolor irure ex ad nulla proident et reprehenderit. Id veniam duis eu commodo mollit Lorem minim qui pariatur est ut.
 
