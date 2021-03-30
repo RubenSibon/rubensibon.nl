@@ -113,7 +113,7 @@ p {
 }
 
 blockquote {
-  @apply relative my-12 ml-4 sm:ml-8 md:-ml-12 font-serif text-2xl sm:text-3xl italic;
+  @apply relative my-12 ml-4 sm:ml-8 font-serif text-2xl sm:text-3xl italic;
 
   letter-spacing: 1px;
 }
@@ -123,7 +123,7 @@ blockquote {
     &::before {
       content: "“";
 
-      @apply block absolute -top-2 -left-2 w-max h-8 bg-transparent text-7xl;
+      @apply block absolute -top-2 -left-9 w-max h-8 bg-transparent text-7xl text-gray-400 dark:text-gray-600;
     }
   }
 }
