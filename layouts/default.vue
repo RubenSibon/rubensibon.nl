@@ -129,14 +129,31 @@ blockquote {
     &::before {
       content: "“";
 
-      @apply absolute -top-2 -left-6 block w-max h-8 bg-transparent text-7xl;
+      @apply absolute -top-2 -left-4 block w-max h-8 bg-transparent text-7xl;
     }
   }
+}
+
+pre {
+  @apply rounded-xl bg-gray-200 dark:bg-gray-800;
 }
 
 code,
 pre {
   @apply font-code;
+}
+
+a {
+  @apply relative border-b-2 border-purple-500;
+
+  transition: border 200ms ease-out, color 200ms ease-in;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &[data-focus-visible-added] {
+    @apply outline-none border-b-4 text-purple-500;
+  }
 }
 
 .button--grey {

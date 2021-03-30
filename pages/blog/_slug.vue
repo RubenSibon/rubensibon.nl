@@ -89,8 +89,11 @@ export default defineComponent({
 
   computed: {
     headerHeightClass () {
+      // @ts-ignore
       return `h-screen-${this.article && this.article.img && this.article.img.headerImgHeight
+        // @ts-ignore
         ? this.article.img.headerImgHeight
+        // @ts-ignore
         : this.article.headerHeight || "2/3"}`;
     },
   },
@@ -230,7 +233,7 @@ export default defineComponent({
       max-width: 100vw;
 
       pre {
-        @apply rounded-xl bg-blue-100 dark:bg-gray-800;
+        @apply bg-gray-200 dark:bg-gray-800;
 
         code {
           @apply dark:text-gray-100;

@@ -102,17 +102,4 @@
       local("Fira Code Bold"),
       url("~assets/fonts/FiraCode/static/FiraCode-Bold.ttf") format("truetype");
   }
-
-  a {
-    @apply border-b-2 border-purple-700;
-
-    transition: border 500ms;
-    text-decoration: none;
-  }
-
-  a:hover,
-  a:focus:not(:focus-visible),
-  a[data-focus-visible-added] {
-    @apply outline-none border-purple-700 text-purple-50;
-  }
 }
