@@ -1,5 +1,5 @@
 ---
-title: Hello world!
+title: ߵHello, worldߴ
 description: "This is my first blog post using Nuxt Content. Amet occaecat elit enim minim magna est est duis magna eiusmod nulla. Non eu ipsum id et anim. Elit deserunt aliquip consequat do occaecat officia ipsum. Ad proident laboris ipsum sint."
 author: Ruben Sibon
 img:
@@ -8,8 +8,11 @@ img:
     portrait: https://placeimg.com/768/686/tech
   src: https://placeimg.com/1024/768/tech
   alt: Random stock photo
+  headerImgHeight: 2/3
 headerBgColor: black
-category: software-development
+# headerHeight: 2/3
+category: cs
+tags: history, programming, c
 ---
 
 Laborum irure proident proident do dolor ipsum labore nulla ullamco. Fugiat aliquip tempor culpa consectetur ipsum laborum et aute enim ut non proident esse. Minim laboris anim sint tempor enim pariatur esse ut consequat. Lorem ut excepteur id sint non velit adipisicing do pariatur. In culpa tempor aliqua magna excepteur id ex.

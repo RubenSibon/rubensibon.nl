@@ -51,6 +51,10 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  @apply dark:bg-gray-900;
+}
+
 *,
 *::before,
 *::after {
@@ -65,10 +69,9 @@ h4,
 h5,
 h6,
 .heading {
-  @apply font-title font-bold;
+  @apply font-bold text-gray-900 dark:text-white;
 
   letter-spacing: 1px;
-  color: #35495e;
 }
 
 h1,
@@ -96,6 +99,10 @@ h5,
 h6,
 .h6 {
   @apply font-medium;
+}
+
+p {
+  @apply text-gray-900 dark:text-white;
 }
 
 .button--grey {

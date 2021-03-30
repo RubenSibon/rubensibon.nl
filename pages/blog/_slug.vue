@@ -2,13 +2,14 @@
   <article class="post">
     <header class="relative post-header">
       <div
-        :class="article.headerHeightClass || 'h-screen-2/3'"
-        :style="[
-          article.headerBgColor ? { 'background-color': article.headerBgColor } : null,
-        ]"
+        :class="headerHeightClass"
+        :style="{
+          'background-color': article.headerBgColor ? article.headerBgColor : 'black'
+        }"
       >
         <figure
           v-if="article.img && article.img.src"
+          :class="headerHeightClass"
         >
           <picture>
             <source
@@ -32,14 +33,14 @@
       </div>
 
       <div
-        :class="`absolute top-0 flex flex-col items-end justify-end w-full pb-6 ${article.headerHeightClass || 'h-screen-2/3'}`"
+        :class="`absolute top-0 left-0 flex flex-col items-end justify-end w-full h-screen-2/3 pb-6 ${headerHeightClass}`"
       >
         <div class="textgroup">
-          <div class="label">
+          <div class="category label">
             {{ $t(`categories.${article.category}`) }}
           </div>
 
-          <h1 class="text-gray-100">
+          <h1 class="text-gray-50">
             {{ article.title }}
           </h1>
         </div>
@@ -49,6 +50,18 @@
         <p class="heading h3">
           {{ article.description }}
         </p>
+
+        <div class="details">
+          <div class="author">
+            {{ article.author }}
+          </div>
+          <div>
+            {{ $t("post.posted") }}: {{ formatDate(article.createdAt) }}
+          </div>
+          <div>
+            {{ article.updatedAt ? `${ $t("post.updated") }: ${formatDate(article.updatedAt)}` : null }}
+          </div>
+        </div>
       </div>
     </header>
 
@@ -60,18 +73,6 @@
     <footer class="post-footer">
       <div class="textgroup">
         <hr>
-
-        <div class="details">
-          <p class="author">
-            {{ article.author }}
-          </p>
-          <p>
-            {{ $t("post.postedOn") }} {{ formatDate(article.createdAt) }}
-          </p>
-          <p>
-            {{ article.updatedAt ? `${ $t("post.updatedOn") } ${formatDate(article.updatedAt)}` : null }}
-          </p>
-        </div>
       </div>
     </footer>
   </article>
@@ -79,6 +80,7 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
+import { DateTime, Interval } from "luxon";
 
 export default defineComponent({
   async asyncData ({ $content, params }) {
@@ -87,9 +89,48 @@ export default defineComponent({
     return { article };
   },
 
+  computed: {
+    headerHeightClass () {
+      return `h-screen-${this.article && this.article.img && this.article.img.headerImgHeight
+        ? this.article.img.headerImgHeight
+        : this.article.headerHeight || "2/3"}`;
+    },
+  },
+
   methods: {
-    formatDate (date: Date) {
-      return new Date(date).toLocaleDateString(this.$i18n.locale, { year: "numeric", month: "long", day: "numeric" });
+    formatDate (date: string) {
+      const dateTime = DateTime.fromISO(date);
+      const now = DateTime.now();
+
+      const parseParams: {
+        year?: "numeric";
+        month?: "long";
+        day?: "numeric";
+      } = {};
+
+      if (dateTime.day === now.day) {
+        const hoursDuration = Math.ceil(Interval.fromDateTimes(dateTime, now).length("hours"));
+        const hoursAgo = isNaN(hoursDuration) ? 1 : hoursDuration;
+
+        return `${hoursAgo} ${this.$i18n.tc("post.hoursAgo", hoursAgo)}`;
+      } else {
+        parseParams.day = "numeric";
+      }
+
+      if (dateTime.daysInYear < now.daysInYear && dateTime.daysInYear >= now.daysInYear - 7) {
+        const daysDuration = Math.round(Interval.fromDateTimes(dateTime, now).length("days"));
+        const daysAgo = isNaN(daysDuration) ? 1 : daysDuration;
+
+        return `${daysAgo} ${this.$i18n.tc("post.daysAgo", daysAgo)}`;
+      } else {
+        parseParams.month = "long";
+      }
+
+      if (dateTime.year !== now.year) {
+        parseParams.year = "numeric";
+      }
+
+      return dateTime.setLocale(this.$i18n.locale).toLocaleString(parseParams);
     },
   },
 });
@@ -104,7 +145,7 @@ export default defineComponent({
   }
 
   figure {
-    @apply flex flex-col items-center justify-end relative mx-auto w-full max-h-screen-2/3
+    @apply flex flex-col items-center justify-end relative mx-auto w-full
       text-center
     ;
 
@@ -124,24 +165,26 @@ export default defineComponent({
   .label {
     @apply
       rounded-full py-2 px-3 w-max
-      text-xs bg-gray-100 text-gray-500 font-semibold
+      text-xs bg-gray-900 text-gray-100 font-semibold
     ;
+
+    letter-spacing: 0.5px;
   }
 
   &-header,
   &-footer {
     @apply relative flex flex-col gap-5 w-full mb-4;
 
+    .category {
+      @apply uppercase;
+    }
+
     .details {
       @apply
-        flex flex-col
-        w-max min-w-1/2
-        text-xs font-semibold
+        flex gap-3
+        my-2 w-max
+        font-semibold text-xs
       ;
-
-      .author {
-        @apply mb-3 font-semibold text-xs;
-      }
     }
   }
 

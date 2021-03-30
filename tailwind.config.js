@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   purge: {
     content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
@@ -8,10 +10,9 @@ module.exports = {
   darkMode: "media",
   theme: {
     fontFamily: {
-      sans: ["Fira Sans", "Source Sans Pro", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
-      serif: ["Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times", "Source Serif Pro", "serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"],
-      title: ["Fira Sans", "Source Sans Pro", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
-      code: ["Fira Code", "Menlo", "Monaco", "Consolas", "Ubuntu Mono", "Liberation Mono", "Lucida Console", "Cascadia Mono", "Droid Sans Mono", "Courier", "monospace"],
+      sans: ["Fira Sans", ...defaultTheme.fontFamily.sans],
+      serif: [...defaultTheme.fontFamily.serif],
+      code: ["Fira Code", ...defaultTheme.fontFamily.mono],
     },
     fontSize: {
       xs: ["0.75rem", { lineHeight: "1rem" }],
@@ -29,33 +30,33 @@ module.exports = {
       "9xl": ["8rem", { lineHeight: "1" }],
     },
     extend: {
+      height: {
+        "screen-1/8": "12vh",
+        "screen-1/4": "25vh",
+        "screen-1/3": "33.333333vh",
+        "screen-1/2": "50vh",
+        "screen-2/3": "66.666667vh",
+      },
+      maxHeight: {
+        "screen-1/8": "12vh",
+        "screen-1/4": "25vh",
+        "screen-1/3": "33.333333vh",
+        "screen-1/2": "50vh",
+        "screen-2/3": "66.666667vh",
+      },
+      minHeight: {
+        "screen-1/8": "12vh",
+        "screen-1/4": "25vh",
+        "screen-1/3": "33.333333vh",
+        "screen-1/2": "50vh",
+        "screen-2/3": "66.666667vh",
+      },
       minWidth: {
-        0: "0",
+        0: 0,
         "1/4": "25%",
         "1/2": "50%",
         "3/4": "75%",
         full: "100%",
-      },
-      height: {
-        "screen-1/8": "12vh",
-        "screen-1/4": "24vh",
-        "screen-1/3": "33vh",
-        "screen-1/2": "50vh",
-        "screen-2/3": "66vh",
-      },
-      minHeight: {
-        "screen-1/8": "12vh",
-        "screen-1/4": "24vh",
-        "screen-1/3": "33vh",
-        "screen-1/2": "50vh",
-        "screen-2/3": "66vh",
-      },
-      maxHeight: {
-        "screen-1/8": "12vh",
-        "screen-1/4": "24vh",
-        "screen-1/3": "33vh",
-        "screen-1/2": "50vh",
-        "screen-2/3": "66vh",
       },
     },
   },
