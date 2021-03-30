@@ -1,3 +1,118 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Fira Sans";
+    font-weight: 400;
+    src:
+      local("FiraSans Regular"),
+      url("~assets/fonts/FiraSans/FiraSans-Regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Sans";
+    font-weight: 400;
+    font-style: italic;
+    src:
+      local("FiraSans Italic"),
+      url("~assets/fonts/FiraSans/FiraSans-Italic.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Sans";
+    font-weight: 500;
+    src:
+      local("FiraSans Medium"),
+      url("~assets/fonts/FiraSans/FiraSans-Medium.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Sans";
+    font-weight: 500;
+    font-style: italic;
+    src:
+      local("FiraSans Medium Italic"),
+      url("~assets/fonts/FiraSans/FiraSans-MediumItalic.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Sans";
+    font-weight: 600;
+    src:
+      local("FiraSans SemiBold"),
+      url("~assets/fonts/FiraSans/FiraSans-SemiBold.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Sans";
+    font-weight: 600;
+    font-style: italic;
+    src:
+      local("FiraSans SemiBold Italic"),
+      url("~assets/fonts/FiraSans/FiraSans-SemiBoldItalic.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Sans";
+    font-weight: 700;
+    src:
+      local("FiraSans Bold"),
+      url("~assets/fonts/FiraSans/FiraSans-Bold.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Sans";
+    font-weight: 700;
+    font-style: italic;
+    src:
+      local("FiraSans Bold Italic"),
+      url("~assets/fonts/FiraSans/FiraSans-BoldItalic.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Code";
+    font-weight: 400;
+    src:
+      local("Fira Code"),
+      url("~assets/fonts/FiraCode/static/FiraCode-Regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Code";
+    font-weight: 500;
+    src:
+      local("Fira Code Medium"),
+      url("~assets/fonts/FiraCode/static/FiraCode-Medium.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Code";
+    font-weight: 600;
+    src:
+      local("Fira Code SemiBold"),
+      url("~assets/fonts/FiraCode/static/FiraCode-SemiBold.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Fira Code";
+    font-weight: 700;
+    src:
+      local("Fira Code Bold"),
+      url("~assets/fonts/FiraCode/static/FiraCode-Bold.ttf") format("truetype");
+  }
+
+  a {
+    @apply border-b-2 border-purple-700;
+
+    transition: border 500ms;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus:not(:focus-visible),
+  a[data-focus-visible-added] {
+    @apply outline-none border-purple-700 text-purple-50;
+  }
+}
