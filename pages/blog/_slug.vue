@@ -1,16 +1,11 @@
 <template>
   <article class="post">
     <header class="relative post-header">
-      <div
-        :class="headerHeightClass"
-        :style="{
-          'background-color': article.headerBgColor ? article.headerBgColor : 'black'
-        }"
-      >
+      <div :class="['headerbg', headerHeightClass]">
         <figure
           v-if="article.img && article.img.src"
           ref="postHeaderFigure"
-          :class="[headerHeightClass, 'gradient']"
+          :class="[headerHeightClass, 'max-w-screen-xl', 'gradient']"
           :label="article.img.alt"
         >
           <picture>
@@ -38,20 +33,20 @@
         </figure>
       </div>
 
-      <div :class="`absolute top-0 left-0 flex flex-col items-end justify-end w-full h-screen-2/3 pb-8 ${headerHeightClass}`">
+      <div :class="`headertext ${headerHeightClass}`">
         <div class="textgroup">
           <div class="category label">
             {{ $t(`categories.${article.category}`) }}
           </div>
 
-          <h1 class="text-gray-50">
+          <h1>
             {{ article.title }}
           </h1>
         </div>
       </div>
 
       <div class="textgroup">
-        <p class="heading h4">
+        <p class="text-xl font-semibold text-gray-700 heading dark:text-gray-300">
           {{ article.description }}
         </p>
 
@@ -161,7 +156,7 @@ export default defineComponent({
   }
 
   figure {
-    @apply flex flex-col items-center justify-end relative mx-auto w-full max-w-full overflow-x-hidden
+    @apply flex flex-col items-center justify-end relative mx-auto w-full max-w-screen-2xl overflow-x-hidden
       text-center
     ;
 
@@ -178,9 +173,25 @@ export default defineComponent({
     }
   }
 
-  &-header,
-  &-footer {
+  &-header {
     @apply relative flex flex-col gap-5 w-full mb-4;
+
+    .headertext {
+      @apply
+        absolute top-0 left-0
+        flex flex-col items-end justify-end
+        pb-8 w-full h-screen-2/3
+        text-gray-950 dark:text-gray-50
+      ;
+    }
+
+    .headerbg {
+      @apply bg-gray-50 dark:bg-gray-950;
+    }
+
+    .textgroup {
+      @apply sm:px-0;
+    }
 
     .category {
       @apply uppercase;
@@ -190,14 +201,14 @@ export default defineComponent({
       @apply
         flex flex-wrap gap-3
         my-2 w-max max-w-full
-        font-semibold text-xs text-gray-700 dark:text-gray-400
+        font-semibold text-xs text-gray-700 dark:text-gray-300
       ;
     }
 
     .gradient {
       &::after {
-        background: rgb(0, 0, 0);
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 15%, rgba(255, 255, 255, 0) 100%);
+        background: var(--bg-color);
+        background: linear-gradient(to top, var(--bg-color) 10%, rgba(255, 255, 255, 0) 100%);
         content: "";
 
         @apply block absolute bottom-0 left-0 w-full h-full;
@@ -226,7 +237,7 @@ export default defineComponent({
     }
 
     h4 {
-      @apply mb-3 text-xl;
+      @apply mb-3 text-lg;
     }
 
     h4,
@@ -237,6 +248,12 @@ export default defineComponent({
 
     p {
       @apply mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
+
+      &:first-child::first-letter {
+        @supports (initial-letter: 3) {
+          initial-letter: 3;
+        }
+      }
     }
 
     blockquote p {

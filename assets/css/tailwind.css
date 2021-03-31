@@ -24,26 +24,7 @@
 
   @font-face {
     font-family: "Fira Sans";
-    font-weight: 500;
-    font-display: swap;
-    src:
-      local("Fira Sans Medium"),
-      url("~assets/fonts/FiraSans/FiraSans-Medium.ttf") format("truetype");
-  }
-
-  @font-face {
-    font-family: "Fira Sans";
-    font-weight: 500;
-    font-style: italic;
-    font-display: swap;
-    src:
-      local("Fira Sans Medium Italic"),
-      url("~assets/fonts/FiraSans/FiraSans-MediumItalic.ttf") format("truetype");
-  }
-
-  @font-face {
-    font-family: "Fira Sans";
-    font-weight: 600;
+    font-weight: 550;
     font-display: swap;
     src:
       local("Fira Sans SemiBold"),
@@ -52,7 +33,7 @@
 
   @font-face {
     font-family: "Fira Sans";
-    font-weight: 600;
+    font-weight: 550;
     font-style: italic;
     font-display: swap;
     src:
@@ -86,24 +67,6 @@
     src:
       local("Fira Code"),
       url("~assets/fonts/FiraCode/static/FiraCode-Regular.ttf") format("truetype");
-  }
-
-  @font-face {
-    font-family: "Fira Code";
-    font-weight: 500;
-    font-display: swap;
-    src:
-      local("Fira Code Medium"),
-      url("~assets/fonts/FiraCode/static/FiraCode-Medium.ttf") format("truetype");
-  }
-
-  @font-face {
-    font-family: "Fira Code";
-    font-weight: 600;
-    font-display: swap;
-    src:
-      local("Fira Code SemiBold"),
-      url("~assets/fonts/FiraCode/static/FiraCode-SemiBold.ttf") format("truetype");
   }
 
   @font-face {

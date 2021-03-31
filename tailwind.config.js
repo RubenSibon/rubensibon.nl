@@ -6,6 +6,7 @@ module.exports = {
     options: {
       keyframes: true,
     },
+    safelist: [],
   },
   darkMode: "media",
   theme: {
@@ -32,9 +33,11 @@ module.exports = {
     extend: {
       colors: {
         gray: {
-          ...defaultTheme.colors.gray,
           950: "#010810",
         },
+      },
+      fontWeight: {
+        semibold: "550",
       },
       height: {
         "screen-1/8": "12.5vh",
@@ -63,6 +66,18 @@ module.exports = {
         "screen-3/4": "75vh",
         "screen-7/8": "87.5vh",
       },
+      maxWidth: {
+        0: 0,
+        "1/4": "25%",
+        "1/2": "50%",
+        "3/4": "75%",
+        full: "100%",
+        "screen-1/4": "25vh",
+        "screen-1/2": "50vh",
+        "screen-3/4": "75vh",
+        "screen-full": "100vw",
+        "screen-2xl": "1920px",
+      },
       minWidth: {
         0: 0,
         "1/4": "25%",
@@ -73,6 +88,9 @@ module.exports = {
         "screen-1/2": "50vh",
         "screen-3/4": "75vh",
         "screen-full": "100vw",
+      },
+      screens: {
+        dark: { raw: "(prefers-color-scheme: dark)" },
       },
       width: {
         0: 0,

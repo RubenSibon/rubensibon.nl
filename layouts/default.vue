@@ -53,6 +53,12 @@ html {
 
 body {
   @apply bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-100;
+
+  --bg-color: theme("colors.gray.50");
+
+  @screen dark {
+    --bg-color: theme("colors.gray.950");
+  }
 }
 
 *,
@@ -96,7 +102,7 @@ h4,
 
 h5,
 .h5 {
-  @apply font-medium;
+  @apply font-semibold;
 
   letter-spacing: 0.5px;
 }
