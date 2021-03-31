@@ -1,0 +1,21 @@
+<template>
+  <details class="collapsible">
+    <summary class="h5">
+      <slot name="summary" />
+    </summary>
+
+    <slot name="content" />
+  </details>
+</template>
+
+<style lang="postcss" scoped>
+.collapsible {
+  @apply rounded py-4 bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300;
+
+  transition: background 500ms ease-out, color 500ms ease-in;
+
+  summary {
+    @apply text-md;
+  }
+}
+</style>

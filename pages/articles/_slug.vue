@@ -75,24 +75,26 @@
     </header>
 
     <TextGroup class="textgroup">
-      <details v-if="article.showToc" class="px-4 mb-4 toc">
-        <summary class="text-md h5">
+      <Collapsible v-if="article.showToc" class="px-4 mb-8 collapsible-toc">
+        <template #summary>
           {{ $t("post.toc") }}
-        </summary>
+        </template>
 
-        <nav class="toc-nav">
-          <ul class="toc-list">
-            <li v-for="link of article.toc" :key="link.id" class="toc-list-item">
-              <NuxtLink
-                :to="`#${link.id}`"
-                :class="['toc-link', { 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }]"
-              >
-                {{ link.text }}
-              </NuxtLink>
-            </li>
-          </ul>
-        </nav>
-      </details>
+        <template #content>
+          <nav class="toc">
+            <ul class="toc-list">
+              <li v-for="link of article.toc" :key="link.id" class="toc-list-item">
+                <NuxtLink
+                  :to="`#${link.id}`"
+                  :class="['toc-link', { 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }]"
+                >
+                  {{ link.text }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </nav>
+        </template>
+      </Collapsible>
     </TextGroup>
 
     <nuxt-content
@@ -131,10 +133,11 @@ import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   components: {
-    Label: () => import("~/components/global/Label.vue"),
-    TextGroup: () => import("~/components/global/TextGroup.vue"),
+    Collapsible: () => import("~/components/global/Collapsible.vue"),
     Details: () => import("~/components/global/Details.vue"),
+    Label: () => import("~/components/global/Label.vue"),
     PostDate: () => import("~/components/global/PostDate.vue"),
+    TextGroup: () => import("~/components/global/TextGroup.vue"),
   },
 
   async asyncData ({ $content, params }) {
@@ -150,31 +153,25 @@ export default defineComponent({
   @apply flex flex-col items-center justify-start gap-3 mx-auto w-full;
 
   .toc {
-    @apply rounded mb-8 py-4 bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300;
+    @apply mt-2;
+  }
 
-    transition: background 500ms ease-out, color 500ms ease-in;
+  .toc-list {
+    @apply ml-6;
+  }
 
-    .toc-nav {
-      @apply mt-2;
-    }
+  a:link,
+  a:hover,
+  a:focus {
+    @apply border-none text-gray-700 dark:text-gray-300;
+  }
 
-    .toc-list {
-      @apply ml-6;
-    }
+  &:hover,
+  &:focus-within {
+    @apply bg-gray-200 dark:bg-gray-800;
 
-    a:link,
-    a:hover,
-    a:focus {
-      @apply border-none text-gray-700 dark:text-gray-300;
-    }
-
-    &:hover,
-    &:focus-within {
-      @apply bg-gray-200 dark:bg-gray-800;
-
-      & summary {
-        @apply cursor-pointer outline-none;
-      }
+    & summary {
+      @apply cursor-pointer outline-none;
     }
   }
 
