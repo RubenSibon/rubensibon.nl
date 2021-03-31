@@ -17,5 +17,14 @@
   summary {
     @apply text-md;
   }
+
+  &:hover,
+  &:focus-within {
+    @apply bg-gray-200 dark:bg-gray-800;
+
+    & summary {
+      @apply cursor-pointer outline-none;
+    }
+  }
 }
 </style>

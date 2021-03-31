@@ -81,18 +81,7 @@
         </template>
 
         <template #content>
-          <nav class="toc">
-            <ul class="toc-list">
-              <li v-for="link of article.toc" :key="link.id" class="toc-list-item">
-                <NuxtLink
-                  :to="`#${link.id}`"
-                  :class="['toc-link', { 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }]"
-                >
-                  {{ link.text }}
-                </NuxtLink>
-              </li>
-            </ul>
-          </nav>
+          <ToC :items="article.toc" class="mt-4" />
         </template>
       </Collapsible>
     </TextGroup>
@@ -138,6 +127,7 @@ export default defineComponent({
     Label: () => import("~/components/global/Label.vue"),
     PostDate: () => import("~/components/global/PostDate.vue"),
     TextGroup: () => import("~/components/global/TextGroup.vue"),
+    ToC: () => import("~/components/global/ToC.vue"),
   },
 
   async asyncData ({ $content, params }) {
@@ -151,29 +141,6 @@ export default defineComponent({
 <style lang="postcss">
 .post {
   @apply flex flex-col items-center justify-start gap-3 mx-auto w-full;
-
-  .toc {
-    @apply mt-2;
-  }
-
-  .toc-list {
-    @apply ml-6;
-  }
-
-  a:link,
-  a:hover,
-  a:focus {
-    @apply border-none text-gray-700 dark:text-gray-300;
-  }
-
-  &:hover,
-  &:focus-within {
-    @apply bg-gray-200 dark:bg-gray-800;
-
-    & summary {
-      @apply cursor-pointer outline-none;
-    }
-  }
 
   figure {
     @apply flex flex-col items-center justify-end relative mx-auto w-full overflow-x-hidden
