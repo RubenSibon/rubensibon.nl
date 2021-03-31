@@ -17,13 +17,13 @@
         <div class="max-w-screen-sm post-header-front min-h-screen-1/4">
           <TextGroup :no-padding-x="['sm']">
             <div class="flex gap-2">
-              <Label
+              <TagLabel
                 v-if="article.tags && article.tags[0]"
                 :invert="true"
                 class="mb-2"
               >
                 {{ $t(`tags.${article.tags[0]}`) }}
-              </Label>
+              </TagLabel>
             </div>
 
             <h1>
@@ -92,9 +92,9 @@
         </PostDetails>
 
         <div class="flex flex-wrap justify-center gap-2 mt-2">
-          <Label v-for="tag of article.tags" :key="tag">
+          <TagLabel v-for="tag of article.tags" :key="tag">
             {{ $t(`tags.${tag}`) }}
-          </Label>
+          </TagLabel>
         </div>
       </TextGroup>
     </footer>
@@ -108,7 +108,7 @@ export default defineComponent({
   components: {
     ArticleLead: () => import("~/components/global/ArticleLead.vue"),
     Collapsible: () => import("~/components/global/Collapsible.vue"),
-    Label: () => import("~/components/global/Label.vue"),
+    TagLabel: () => import("~/components/global/TagLabel.vue"),
     PostDate: () => import("~/components/global/PostDate.vue"),
     PostDetails: () => import("~/components/global/PostDetails.vue"),
     TextGroup: () => import("~/components/global/TextGroup.vue"),

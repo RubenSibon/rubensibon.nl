@@ -21,7 +21,7 @@ export default defineComponent({
 .label {
   @apply rounded-full py-1 px-2 w-max
     font-semibold text-xs bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900
-    select-none;
+    select-none lowercase;
 
   height: max-content;
   letter-spacing: 0.5px;
