@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div class="textgroup">
+      <div class="mb-8 textgroup">
         <p class="text-xl font-semibold text-gray-700 heading dark:text-gray-300">
           {{ article.description }}
         </p>
@@ -207,8 +207,8 @@ export default defineComponent({
 
     .gradient {
       &::after {
-        background: var(--bg-color);
-        background: linear-gradient(to top, var(--bg-color) 10%, rgba(255, 255, 255, 0) 100%);
+        background: var(--bg-color, #f8fafc);
+        background: linear-gradient(to top, var(--bg-color, #010810) 10%, rgba(255, 255, 255, 0) 100%);
         content: "";
 
         @apply block absolute bottom-0 left-0 w-full h-full;
@@ -225,7 +225,20 @@ export default defineComponent({
     h4,
     h5,
     h6 {
-      @apply mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
+      @apply relative mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
+
+      a:link,
+      a:hover,
+      a:focus {
+        @apply border-none text-gray-500;
+      }
+
+      &:hover,
+      &:focus {
+        .icon.icon-link {
+          @apply opacity-50 visible;
+        }
+      }
     }
 
     h2 {
@@ -258,6 +271,16 @@ export default defineComponent({
 
     blockquote p {
       @apply md:p-0;
+    }
+
+    .icon.icon-link {
+      @apply
+        block absolute top-0 -left-5 w-4 h-full
+        bg-no-repeat bg-center text-gray-500
+        opacity-0 invisible
+      ;
+
+      background-image: url("https://raw.githubusercontent.com/sschoger/heroicons-ui/master/svg/icon-hashtag.svg");
     }
 
     .nuxt-content-highlight {
