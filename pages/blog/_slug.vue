@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div class="mb-8 textgroup">
+      <div class="textgroup">
         <p class="text-xl font-semibold text-gray-700 heading dark:text-gray-300">
           {{ article.description }}
         </p>
@@ -63,6 +63,25 @@
         </div>
       </div>
     </header>
+
+    <details v-if="article.showToc" class="mb-4 toc textgroup">
+      <summary class="text-md h5">
+        {{ $t("post.toc") }}
+      </summary>
+
+      <nav class="toc-nav">
+        <ul class="toc-list">
+          <li v-for="link of article.toc" :key="link.id" class="toc-list-item">
+            <NuxtLink
+              :to="`#${link.id}`"
+              :class="['toc-link', { 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }]"
+            >
+              {{ link.text }}
+            </NuxtLink>
+          </li>
+        </ul>
+      </nav>
+    </details>
 
     <nuxt-content
       :document="article"
@@ -150,9 +169,34 @@ export default defineComponent({
     @apply
       rounded-full py-2 px-3 w-max
       text-xs bg-gray-950 text-gray-100 font-semibold
+      select-none
     ;
 
     letter-spacing: 0.5px;
+  }
+
+  .toc {
+    @apply rounded py-4 bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300;
+
+    .toc-nav {
+      @apply mt-2;
+    }
+
+    .toc-list {
+      @apply ml-6;
+    }
+
+    a:link,
+    a:hover,
+    a:focus {
+      @apply border-none text-gray-700 dark:text-gray-300;
+    }
+
+    & summary {
+      &:hover {
+        @apply cursor-pointer;
+      }
+    }
   }
 
   figure {

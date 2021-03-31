@@ -11,17 +11,18 @@ img:
   alt: Random stock photo
   headerImgHeight: 2/3
 # headerHeight: 1/3
+showToc: true
 category: cs
 tags: history, programming, c
 ---
 
 Laborum irure proident proident do dolor ipsum labore nulla ullamco. Fugiat aliquip tempor culpa consectetur ipsum laborum et aute enim ut non proident esse. Minim laboris anim sint tempor enim pariatur esse ut consequat. Lorem ut excepteur id sint non velit adipisicing do pariatur. In culpa tempor aliqua magna excepteur id ex.
 
-## Ex nisi consequat fugiat amet anim eu reprehenderit (H2)
+## The first Hello, world
 
 Veniam sit ipsum deserunt aliqua non. Ut officia dolor labore incididunt labore dolore incididunt tempor irure quis amet. Esse ex cupidatat Lorem qui veniam nulla [dolore occaecat magna](https://www.rubensibon.nl/). Sint magna reprehenderit nulla irure id quis mollit enim sint dolore. Non Lorem aliquip aute tempor nulla duis adipisicing adipisicing excepteur Lorem nisi. Laboris tempor nisi laboris esse. Exercitation pariatur elit consectetur excepteur sunt minim eu qui exercitation exercitation eiusmod.
 
-### Aute irure et eiusmod sit quis (H3)
+### How practices are born
 
 Et laborum laboris ullamco ea duis esse adipisicing Lorem nisi. Sunt officia reprehenderit aliqua deserunt officia ipsum ad proident irure. Quis ullamco non nostrud dolor occaecat eiusmod. Consectetur mollit commodo dolore amet laborum voluptate tempor quis elit. Tempor dolor irure ex ad nulla proident et reprehenderit. Id veniam duis eu commodo mollit Lorem minim qui pariatur est ut.
 
@@ -43,6 +44,10 @@ Do aliquip non magna veniam ut proident amet voluptate fugiat. Nisi sint velit a
 
 Ullamco non aliquip commodo aliqua fugiat pariatur consequat nisi cupidatat. Ut adipisicing proident tempor enim ullamco tempor. Aliquip ad proident adipisicing sint est magna laborum nulla pariatur ut. Amet nisi ad adipisicing esse exercitation nostrud anim sit officia qui officia duis est. Aliquip officia veniam reprehenderit elit ex veniam sit mollit dolore anim mollit in sit ad.
 
+## Modern times
+
+Anim ex nostrud labore quis cillum quis dolore labore do veniam exercitation incididunt. Ad mollit commodo minim mollit veniam sint. Ut ex qui anim dolore aliqua do reprehenderit labore in nulla id voluptate irure tempor. Aliqua pariatur cupidatat nulla qui officia nostrud adipisicing aute consectetur id exercitation velit commodo. Dolore non ea quis culpa enim non ex ullamco ullamco.
+
 ```ts
 const codeblock = document.querySelector("code");
 
@@ -58,6 +63,8 @@ const validCodeBlock = isThisACodeBlock(codeblock);
 ```
 
 Nisi occaecat sint sunt ut aliquip ipsum irure anim nostrud sunt occaecat esse aliquip. Ullamco minim sint eu eiusmod Lorem nulla anim. Reprehenderit velit aute amet aute ea laborum consectetur nulla aute mollit culpa. Ex duis cupidatat cupidatat ipsum eiusmod ut qui enim sit elit sit nisi dolore. Esse excepteur velit veniam dolor proident non sit adipisicing do ad.
+
+### New ways of doing things
 
 Sint non ipsum non cillum esse occaecat laboris duis ex laboris exercitation sint. Ut enim laboris proident ad cupidatat. Aliqua proident velit occaecat cupidatat enim Lorem magna sint dolor labore. Incididunt cillum eu Lorem proident amet. Reprehenderit excepteur tempor enim nostrud cupidatat non culpa veniam incididunt elit aute dolore dolor do. In laborum eu duis aute adipisicing reprehenderit qui ad. In labore cillum laboris ut voluptate pariatur.
 

@@ -6,6 +6,7 @@ export default async (_context, _locale) => {
       daysAgo: "dag geleden | dagen geleden",
       posted: "Geplaatst",
       updated: "Aangepast",
+      toc: "Inhoudsopgave",
     },
     profession: "Softwareontwikkelaar",
     categories: {

@@ -6,6 +6,7 @@ export default async (_context, _locale) => {
       daysAgo: "day ago | days ago",
       posted: "Posted",
       updated: "Edited",
+      toc: "Table of Contents",
     },
     profession: "Software developer",
     categories: {
