@@ -31,9 +31,11 @@
             {{ article.img.alt }}
           </figcaption>
         </figure>
+
+        <div v-else :class="[headerHeightClass, 'min-h-screen-1/3', 'max-w-screen-xl']" />
       </div>
 
-      <div :class="`headertext ${headerHeightClass}`">
+      <div :class="`headertext ${headerHeightClass} min-h-screen-1/3'`">
         <div class="textgroup">
           <div class="flex gap-2">
             <div v-if="article.tags && article.tags[0]" class="label">
@@ -116,7 +118,7 @@ export default defineComponent({
         // @ts-ignore
         ? this.article.img.headerImgHeight
         // @ts-ignore
-        : this.article.headerHeight || "2/3"}`;
+        : "1/3"}`;
     },
   },
 
@@ -231,7 +233,7 @@ export default defineComponent({
       @apply
         absolute top-0 left-0
         flex flex-col items-end justify-end
-        pb-8 w-full h-screen-2/3
+        pb-8 w-full
         text-gray-950 dark:text-gray-50
       ;
     }

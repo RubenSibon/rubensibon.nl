@@ -10,7 +10,6 @@ img:
   src: https://placeimg.com/400/800/tech
   alt: Random stock photo
   headerImgHeight: 2/3
-# headerHeight: 1/3
 showToc: true
 tags: [cs, history, programming, c]
 ---
