@@ -37,7 +37,11 @@
         <div class="post-header-front min-h-screen-1/4">
           <TextGroup class="textgroup sm:px-0">
             <div class="flex gap-2">
-              <Label v-if="article.tags && article.tags[0]" :invert="true">
+              <Label
+                v-if="article.tags && article.tags[0]"
+                :invert="true"
+                class="mb-2"
+              >
                 {{ $t(`tags.${article.tags[0]}`) }}
               </Label>
             </div>
@@ -50,11 +54,11 @@
       </div>
 
       <TextGroup class="textgroup sm:px-0">
-        <p class="heading description">
+        <ArticleLead>
           {{ article.description }}
-        </p>
+        </ArticleLead>
 
-        <Details>
+        <PostDetails>
           <div>
             {{ article.author }}
           </div>
@@ -70,12 +74,12 @@
               {{ $t("post.updated") }}:
             </template>
           </PostDate>
-        </Details>
+        </PostDetails>
       </TextGroup>
     </header>
 
     <TextGroup class="textgroup">
-      <Collapsible v-if="article.showToc" class="px-4 mb-8 collapsible-toc">
+      <Collapsible v-if="article.showToc" class="px-4 mb-8">
         <template #summary>
           {{ $t("post.toc") }}
         </template>
@@ -92,10 +96,10 @@
     />
 
     <footer class="post-footer">
-      <TextGroup class="flex flex-wrap items-center text-center flex-column textgroup">
+      <TextGroup class="flex flex-col flex-wrap items-center text-center textgroup">
         <hr class="w-3/4 mx-auto border-dashed">
 
-        <Details class="items-center justify-center">
+        <PostDetails class="items-center justify-center">
           <div>
             {{ article.author }}
           </div>
@@ -105,7 +109,7 @@
               {{ $t("post.posted") }}:
             </template>
           </PostDate>
-        </Details>
+        </PostDetails>
 
         <div class="flex flex-wrap justify-center gap-2 mt-2">
           <Label v-for="tag of article.tags" :key="tag">
@@ -122,9 +126,10 @@ import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   components: {
+    ArticleLead: () => import("~/components/global/ArticleLead.vue"),
     Collapsible: () => import("~/components/global/Collapsible.vue"),
-    Details: () => import("~/components/global/Details.vue"),
     Label: () => import("~/components/global/Label.vue"),
+    PostDetails: () => import("~/components/global/PostDetails.vue"),
     PostDate: () => import("~/components/global/PostDate.vue"),
     TextGroup: () => import("~/components/global/TextGroup.vue"),
     ToC: () => import("~/components/global/ToC.vue"),
@@ -177,14 +182,6 @@ export default defineComponent({
         pb-8 w-full h-full
         text-gray-950 dark:text-gray-50
       ;
-    }
-
-    .label {
-      @apply mb-2;
-    }
-
-    .description {
-      @apply text-lg font-semibold text-gray-700 sm:text-xl dark:text-gray-300;
     }
 
     .gradient {
