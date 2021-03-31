@@ -38,9 +38,9 @@
         <div :class="`post-header-front min-h-screen-1/4'`">
           <div class="textgroup">
             <div class="flex gap-2">
-              <div v-if="article.tags && article.tags[0]" class="label">
+              <Label v-if="article.tags && article.tags[0]" :invert="true">
                 {{ $t(`tags.${article.tags[0]}`) }}
-              </div>
+              </Label>
             </div>
 
             <h1>
@@ -109,9 +109,9 @@
         </div>
 
         <div class="flex flex-wrap justify-center gap-2 mt-2">
-          <div v-for="tag of article.tags" :key="tag" class="label">
+          <Label v-for="tag of article.tags" :key="tag">
             {{ $t(`tags.${tag}`) }}
-          </div>
+          </Label>
         </div>
       </div>
     </footer>
@@ -123,6 +123,10 @@ import { defineComponent } from "@vue/composition-api";
 import { DateTime, Interval } from "luxon";
 
 export default defineComponent({
+  components: {
+    Label: () => import("@/components/global/label/label.vue"),
+  },
+
   async asyncData ({ $content, params }) {
     const article = await $content("articles", params.slug).fetch();
 
@@ -174,15 +178,6 @@ export default defineComponent({
 
   .textgroup {
     @apply flex flex-col gap-3 mx-auto w-full max-w-screen-sm px-6 md:px-8;
-  }
-
-  .label {
-    @apply rounded-full py-1 px-2 w-max
-      font-semibold text-xs bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900
-      select-none;
-
-    height: max-content;
-    letter-spacing: 0.5px;
   }
 
   .toc {
@@ -264,7 +259,7 @@ export default defineComponent({
     }
 
     .label {
-      @apply mb-2 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+      @apply mb-2;
     }
 
     .description {
