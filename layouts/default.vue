@@ -52,7 +52,15 @@ html {
 }
 
 body {
-  @apply dark:bg-gray-900 text-gray-900 dark:text-gray-200;
+  @apply bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-100;
+
+  --bg-color: theme("colors.gray.50");
+
+  @screen dark {
+    --bg-color: theme("colors.gray.950");
+  }
+
+  transition: background 250ms ease-out;
 }
 
 *,
@@ -69,9 +77,19 @@ h4,
 h5,
 h6,
 .heading {
-  @apply font-bold text-gray-900 dark:text-gray-100;
+  @apply font-bold;
 
   letter-spacing: 1px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  transition: color 250ms ease-in;
 }
 
 h1,
@@ -96,7 +114,7 @@ h4,
 
 h5,
 .h5 {
-  @apply font-medium;
+  @apply font-semibold;
 
   letter-spacing: 0.5px;
 }
@@ -106,10 +124,6 @@ h6,
   @apply font-normal;
 
   letter-spacing: 0.5px;
-}
-
-p {
-  @apply text-gray-900 dark:text-white;
 }
 
 blockquote {
@@ -135,21 +149,23 @@ pre {
 code,
 pre {
   @apply font-code;
+
+  transition: background 500ms ease-in, color 500ms ease-in;
 }
 
 a {
   @apply relative border-b-2 border-purple-500;
 
-  transition: border 200ms ease-out, padding 200ms ease-out, color 200ms ease-in;
+  transition: border 250ms ease-in, color 250ms ease-in;
   text-decoration: none;
 
   &:hover,
   &:focus {
-    @apply border-b-4 text-purple-500;
+    @apply border-dotted text-purple-500;
   }
 
   &:focus {
-    @apply rounded border-transparent pt-1;
+    @apply rounded border-transparent;
 
     outline: 2px solid currentColor;
   }

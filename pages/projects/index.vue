@@ -1,12 +1,12 @@
 <template>
-  <main class="portfolio">
-    <header class="portfolio-header">
+  <main class="projects">
+    <header class="projects-header">
       <div class="mr-2 bg-gray-700 border-solid h-11 w-11" />
 
-      <h1>Portfolio</h1>
+      <h1>Projects</h1>
     </header>
 
-    <div class="portfolio-grid">
+    <div class="projects-grid">
       <figure v-for="n of 24" :key="n">
         <img src="https://placeimg.com/640/480/tech" alt="Stock photo">
         <caption>
@@ -30,7 +30,7 @@ export default defineComponent({
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: "Portfolio - Ruben Sibon",
+      title: "Projects by Ruben Sibon",
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
@@ -48,7 +48,7 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.portfolio {
+.projects {
   @apply mx-auto max-w-screen-2xl;
 
   &-header {

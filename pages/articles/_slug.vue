@@ -1,15 +1,11 @@
 <template>
   <article class="post">
     <header class="relative post-header">
-      <div
-        :class="headerHeightClass"
-        :style="{
-          'background-color': article.headerBgColor ? article.headerBgColor : 'black'
-        }"
-      >
+      <div :class="['headerbg', headerHeightClass]">
         <figure
           v-if="article.img && article.img.src"
-          :class="[headerHeightClass, 'gradient']"
+          ref="postHeaderFigure"
+          :class="[headerHeightClass, 'max-w-screen-xl', 'gradient']"
           :label="article.img.alt"
         >
           <picture>
@@ -35,22 +31,26 @@
             {{ article.img.alt }}
           </figcaption>
         </figure>
+
+        <div v-else :class="[headerHeightClass, 'min-h-screen-1/3', 'max-w-screen-xl']" />
       </div>
 
-      <div :class="`absolute top-0 left-0 flex flex-col items-end justify-end w-full h-screen-2/3 pb-8 ${headerHeightClass}`">
+      <div :class="`headertext ${headerHeightClass} min-h-screen-1/3'`">
         <div class="textgroup">
-          <div class="category label">
-            {{ $t(`categories.${article.category}`) }}
+          <div class="flex gap-2">
+            <div v-if="article.tags && article.tags[0]" class="label">
+              {{ $t(`tags.${article.tags[0]}`) }}
+            </div>
           </div>
 
-          <h1 class="text-gray-50">
+          <h1>
             {{ article.title }}
           </h1>
         </div>
       </div>
 
       <div class="textgroup">
-        <p class="heading h4">
+        <p class="heading description">
           {{ article.description }}
         </p>
 
@@ -67,6 +67,25 @@
         </div>
       </div>
     </header>
+
+    <details v-if="article.showToc" class="mb-4 toc textgroup">
+      <summary class="text-md h5">
+        {{ $t("post.toc") }}
+      </summary>
+
+      <nav class="toc-nav">
+        <ul class="toc-list">
+          <li v-for="link of article.toc" :key="link.id" class="toc-list-item">
+            <NuxtLink
+              :to="`#${link.id}`"
+              :class="['toc-link', { 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }]"
+            >
+              {{ link.text }}
+            </NuxtLink>
+          </li>
+        </ul>
+      </nav>
+    </details>
 
     <nuxt-content
       :document="article"
@@ -99,7 +118,7 @@ export default defineComponent({
         // @ts-ignore
         ? this.article.img.headerImgHeight
         // @ts-ignore
-        : this.article.headerHeight || "2/3"}`;
+        : "1/3"}`;
     },
   },
 
@@ -152,15 +171,45 @@ export default defineComponent({
 
   .label {
     @apply
-      rounded-full py-2 px-3 w-max
-      text-xs bg-gray-900 text-gray-100 font-semibold
+      rounded-full mb-2 py-1 px-2 w-max
+      font-semibold text-xs bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100
+      select-none
     ;
 
     letter-spacing: 0.5px;
   }
 
+  .toc {
+    @apply rounded mb-8 py-4 bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300;
+
+    transition: background 500ms ease-out, color 500ms ease-in;
+
+    .toc-nav {
+      @apply mt-2;
+    }
+
+    .toc-list {
+      @apply ml-6;
+    }
+
+    a:link,
+    a:hover,
+    a:focus {
+      @apply border-none text-gray-700 dark:text-gray-300;
+    }
+
+    &:hover,
+    &:focus-within {
+      @apply bg-gray-200 dark:bg-gray-800;
+
+      & summary {
+        @apply cursor-pointer outline-none;
+      }
+    }
+  }
+
   figure {
-    @apply flex flex-col items-center justify-end relative mx-auto w-full max-w-full overflow-x-hidden
+    @apply flex flex-col items-center justify-end relative mx-auto w-full max-w-screen-2xl overflow-x-hidden
       text-center
     ;
 
@@ -177,26 +226,42 @@ export default defineComponent({
     }
   }
 
-  &-header,
-  &-footer {
-    @apply relative flex flex-col gap-5 w-full mb-4;
+  &-header {
+    @apply relative flex flex-col gap-5 w-full mb-8;
 
-    .category {
-      @apply uppercase;
+    .headertext {
+      @apply
+        absolute top-0 left-0
+        flex flex-col items-end justify-end
+        pb-8 w-full
+        text-gray-950 dark:text-gray-50
+      ;
+    }
+
+    .headerbg {
+      @apply bg-gray-50 dark:bg-gray-950;
+    }
+
+    .textgroup {
+      @apply sm:px-0;
+    }
+
+    .description {
+      @apply text-lg font-semibold text-gray-700 sm:text-xl dark:text-gray-300;
     }
 
     .details {
       @apply
         flex flex-wrap gap-3
         my-2 w-max max-w-full
-        font-semibold text-xs text-gray-500
+        font-semibold text-xs text-gray-700 dark:text-gray-300
       ;
     }
 
     .gradient {
       &::after {
-        background: rgb(0, 0, 0);
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 15%, rgba(255, 255, 255, 0) 100%);
+        background: var(--bg-color, #f8fafc);
+        background: linear-gradient(to top, var(--bg-color, #010810) 10%, rgba(255, 255, 255, 0) 50%);
         content: "";
 
         @apply block absolute bottom-0 left-0 w-full h-full;
@@ -213,7 +278,30 @@ export default defineComponent({
     h4,
     h5,
     h6 {
-      @apply mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
+      @apply relative mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
+
+      .icon.icon-link {
+        @apply
+          block absolute top-0 -left-5 w-4 h-full
+          bg-no-repeat bg-center text-gray-500
+          opacity-0 invisible
+        ;
+
+        background-image: url("https://raw.githubusercontent.com/sschoger/heroicons-ui/master/svg/icon-hashtag.svg");
+      }
+
+      a:link,
+      a:hover,
+      a:focus {
+        @apply border-none text-gray-500;
+      }
+
+      &:hover,
+      &:focus {
+        .icon.icon-link {
+          @apply opacity-50 visible;
+        }
+      }
     }
 
     h2 {
@@ -225,7 +313,7 @@ export default defineComponent({
     }
 
     h4 {
-      @apply mb-3 text-xl;
+      @apply mb-3 text-lg;
     }
 
     h4,
@@ -236,22 +324,37 @@ export default defineComponent({
 
     p {
       @apply mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
+
+      &:first-child::first-letter {
+        @supports (initial-letter: 3) {
+          initial-letter: 3;
+        }
+      }
     }
 
     blockquote p {
       @apply md:p-0;
     }
 
+    figure {
+      @apply mx-auto w-full max-w-screen-lg;
+
+      img,
+      figcaption {
+        @apply w-full;
+      }
+    }
+
     .nuxt-content-highlight {
-      @apply my-8;
+      @apply relative my-8;
 
       max-width: 100vw;
 
       pre {
-        @apply bg-gray-50 dark:bg-gray-800;
+        @apply bg-gray-100 dark:bg-gray-900;
 
         code {
-          @apply dark:text-gray-100;
+          @apply dark:text-gray-50;
 
           text-shadow: none;
 
@@ -260,14 +363,13 @@ export default defineComponent({
           }
         }
       }
-    }
 
-    figure {
-      @apply mx-auto w-full max-w-screen-lg;
+      .filename {
+        @apply absolute right-0 text-gray-500 font-light z-10 mr-3 mt-2 text-sm;
 
-      img,
-      caption {
-        @apply w-full;
+        & ~ pre {
+          @apply pt-10;
+        }
       }
     }
   }

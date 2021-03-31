@@ -6,6 +6,7 @@ module.exports = {
     options: {
       keyframes: true,
     },
+    safelist: [],
   },
   darkMode: "media",
   theme: {
@@ -18,6 +19,7 @@ module.exports = {
       xs: ["0.75rem", { lineHeight: "1rem" }],
       sm: ["0.875rem", { lineHeight: "1.25rem" }],
       base: ["5vmin", { lineHeight: "1.5rem" }],
+      md: ["1rem", { lineHeight: "1.5rem" }],
       lg: ["1.125rem", { lineHeight: "1.75rem" }],
       xl: ["1.25rem", { lineHeight: "1.75rem" }],
       "2xl": ["1.5rem", { lineHeight: "2rem" }],
@@ -30,6 +32,14 @@ module.exports = {
       "9xl": ["8rem", { lineHeight: "1" }],
     },
     extend: {
+      colors: {
+        gray: {
+          950: "#010810",
+        },
+      },
+      fontWeight: {
+        semibold: "550",
+      },
       height: {
         "screen-1/8": "12.5vh",
         "screen-1/4": "25vh",
@@ -57,6 +67,18 @@ module.exports = {
         "screen-3/4": "75vh",
         "screen-7/8": "87.5vh",
       },
+      maxWidth: {
+        0: 0,
+        "1/4": "25%",
+        "1/2": "50%",
+        "3/4": "75%",
+        full: "100%",
+        "screen-1/4": "25vh",
+        "screen-1/2": "50vh",
+        "screen-3/4": "75vh",
+        "screen-full": "100vw",
+        "screen-2xl": "1920px",
+      },
       minWidth: {
         0: 0,
         "1/4": "25%",
@@ -67,6 +89,9 @@ module.exports = {
         "screen-1/2": "50vh",
         "screen-3/4": "75vh",
         "screen-full": "100vw",
+      },
+      screens: {
+        dark: { raw: "(prefers-color-scheme: dark)" },
       },
       width: {
         0: 0,
