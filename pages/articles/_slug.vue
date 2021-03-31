@@ -1,11 +1,11 @@
 <template>
   <article class="post">
     <header class="post-header">
-      <div :class="['post-header-background', headerHeightClass]">
+      <div :class="['post-header-background']">
         <figure
           v-if="article.img && article.img.src"
           ref="postHeaderFigure"
-          class="gradient"
+          class="overflow-hidden gradient max-h-screen-2/3"
           :label="article.img.alt"
         >
           <picture>
@@ -20,8 +20,8 @@
               :src="article.img.src"
               :alt="article.img.alt"
               :class="[
-                headerHeightClass,
-                'min-w-screen-full',
+                'min-h-screen-2/3',
+                'w-screen',
                 article.img.bgColor ? `bg-${article.img.bgColor}` : null,
               ]"
             >
@@ -33,9 +33,9 @@
         </figure>
 
         <!-- Below div ensures that the positioned header has height when there is no header image. -->
-        <div v-else :class="[headerHeightClass, 'min-h-screen-1/4']" />
+        <div v-else :class="['min-h-screen-1/4']" />
 
-        <div :class="`post-header-front ${headerHeightClass} min-h-screen-1/4'`">
+        <div :class="`post-header-front min-h-screen-1/4'`">
           <div class="textgroup">
             <div class="flex gap-2">
               <div v-if="article.tags && article.tags[0]" class="label">
@@ -112,31 +112,6 @@ export default defineComponent({
     const article = await $content("articles", params.slug).fetch();
 
     return { article };
-  },
-
-  computed: {
-    headerHeightClass () {
-      // @ts-ignore
-      if (this.article && this.article.img && this.article.img.headerImgHeight) {
-        // @ts-ignore
-        switch (this.article.img.headerImgHeight) {
-          case "1/4":
-            return "h-screen-1/4";
-          case "1/3":
-            return "h-screen-1/3";
-          case "1/2":
-            return "h-screen-1/2";
-          case "2/3":
-            return "h-screen-2/3";
-          case "3/4":
-            return "h-screen-3/4";
-          default:
-            return "h-screen-2/3";
-        }
-      } else {
-        return "h-screen-1/4";
-      }
-    },
   },
 
   methods: {
@@ -226,7 +201,7 @@ export default defineComponent({
   }
 
   figure {
-    @apply flex flex-col items-center justify-end relative mx-auto w-full max-w-screen-2xl overflow-x-hidden
+    @apply flex flex-col items-center justify-end relative mx-auto w-full overflow-x-hidden
       text-center
     ;
 
