@@ -96,8 +96,23 @@
     />
 
     <footer class="post-footer">
-      <div class="textgroup">
-        <hr>
+      <div class="flex flex-wrap items-center text-center flex-column textgroup">
+        <hr class="w-3/4 mx-auto border-dashed">
+
+        <div class="items-center justify-center details">
+          <div class="author">
+            {{ article.author }}
+          </div>
+          <div>
+            {{ $t("post.posted") }}: {{ formatDate(article.createdAt) }}
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2 mt-2">
+          <div v-for="tag of article.tags" :key="tag" class="label">
+            {{ $t(`tags.${tag}`) }}
+          </div>
+        </div>
       </div>
     </footer>
   </article>
@@ -162,12 +177,11 @@ export default defineComponent({
   }
 
   .label {
-    @apply
-      rounded-full mb-2 py-1 px-2 w-max
-      font-semibold text-xs bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100
-      select-none
-    ;
+    @apply rounded-full py-1 px-2 w-max
+      font-semibold text-xs bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900
+      select-none;
 
+    height: max-content;
     letter-spacing: 0.5px;
   }
 
@@ -218,9 +232,20 @@ export default defineComponent({
     }
   }
 
-  &-header {
+  &-header,
+  &-footer {
     @apply relative flex flex-col gap-5 w-full mb-8;
 
+    .details {
+      @apply
+        flex flex-wrap gap-3
+        my-2 w-max max-w-full
+        font-semibold text-xs text-gray-700 dark:text-gray-300
+      ;
+    }
+  }
+
+  &-header {
     .post-header-background {
       @apply relative bg-gray-50 dark:bg-gray-950;
     }
@@ -238,16 +263,12 @@ export default defineComponent({
       @apply sm:px-0;
     }
 
-    .description {
-      @apply text-lg font-semibold text-gray-700 sm:text-xl dark:text-gray-300;
+    .label {
+      @apply mb-2 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
     }
 
-    .details {
-      @apply
-        flex flex-wrap gap-3
-        my-2 w-max max-w-full
-        font-semibold text-xs text-gray-700 dark:text-gray-300
-      ;
+    .description {
+      @apply text-lg font-semibold text-gray-700 sm:text-xl dark:text-gray-300;
     }
 
     .gradient {
@@ -262,7 +283,7 @@ export default defineComponent({
   }
 
   &-body {
-    @apply relative;
+    @apply relative mb-8;
 
     h1,
     h2,
