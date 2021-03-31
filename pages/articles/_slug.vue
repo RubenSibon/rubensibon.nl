@@ -34,8 +34,8 @@
         <!-- Below div ensures that the positioned header has height when there is no header image. -->
         <div v-else :class="['min-h-screen-1/4']" />
 
-        <div class="post-header-front min-h-screen-1/4">
-          <TextGroup class="textgroup sm:px-0">
+        <div class="max-w-screen-sm post-header-front min-h-screen-1/4">
+          <TextGroup :no-padding-x="['sm']">
             <div class="flex gap-2">
               <Label
                 v-if="article.tags && article.tags[0]"
@@ -53,7 +53,7 @@
         </div>
       </div>
 
-      <TextGroup class="textgroup sm:px-0">
+      <TextGroup :no-padding-x="['sm']" class="max-w-screen-sm mx-auto">
         <ArticleLead>
           {{ article.description }}
         </ArticleLead>
@@ -78,7 +78,7 @@
       </TextGroup>
     </header>
 
-    <TextGroup class="textgroup">
+    <TextGroup>
       <Collapsible v-if="article.showToc" class="px-4 mb-8">
         <template #summary>
           {{ $t("post.toc") }}
@@ -96,7 +96,7 @@
     />
 
     <footer class="post-footer">
-      <TextGroup class="flex flex-col flex-wrap items-center text-center textgroup">
+      <TextGroup class="flex flex-col flex-wrap items-center text-center">
         <hr class="w-3/4 mx-auto border-dashed">
 
         <PostDetails class="items-center justify-center">
@@ -172,13 +172,13 @@ export default defineComponent({
 
   &-header {
     .post-header-background {
-      @apply relative bg-gray-50 dark:bg-gray-950;
+      @apply relative flex justify-center bg-gray-50 dark:bg-gray-950;
     }
 
     .post-header-front {
       @apply
         absolute top-0 left-auto
-        flex flex-col items-end justify-end
+        flex flex-col items-start justify-end
         pb-8 w-full h-full
         text-gray-950 dark:text-gray-50
       ;

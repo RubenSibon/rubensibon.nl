@@ -14,12 +14,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent, PropType } from "@vue/composition-api";
+
+interface Link {
+  id: string;
+  depth: number;
+  text: string;
+};
 
 export default defineComponent({
   props: {
     items: {
-      type: Array,
+      type: Array as PropType<Link[]>,
       default: () => [],
     },
   },
