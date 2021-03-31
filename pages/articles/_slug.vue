@@ -2,34 +2,14 @@
   <article class="post">
     <header class="post-header">
       <div :class="['post-header-background']">
-        <figure
+        <HeaderImage
           v-if="article.img && article.img.src"
-          class="gradient"
-          :label="article.img.alt"
-        >
-          <picture>
-            <source
-              v-for="[mediaQuery, src] in Object.entries(article.img.srcSet)"
-              :key="mediaQuery"
-              :media="mediaQuery"
-              :srcset="src"
-            >
-
-            <img
-              :src="article.img.src"
-              :alt="article.img.alt"
-              :class="[
-                'min-h-screen-2/3',
-                'w-screen',
-                article.img.bgColor ? `bg-${article.img.bgColor}` : null,
-              ]"
-            >
-          </picture>
-
-          <figcaption>
-            {{ article.img.alt }}
-          </figcaption>
-        </figure>
+          :alt="article.img.alt"
+          :src-set="Object.entries(article.img.srcSet)"
+          :src="article.img.src"
+          :bg-color="article.image && article.image.bgColor ? article.image.bgColor : null"
+          :gradient="true"
+        />
 
         <!-- Below div ensures that the positioned header has height when there is no header image. -->
         <div v-else :class="['min-h-screen-1/4']" />
@@ -129,8 +109,8 @@ export default defineComponent({
     ArticleLead: () => import("~/components/global/ArticleLead.vue"),
     Collapsible: () => import("~/components/global/Collapsible.vue"),
     Label: () => import("~/components/global/Label.vue"),
-    PostDetails: () => import("~/components/global/PostDetails.vue"),
     PostDate: () => import("~/components/global/PostDate.vue"),
+    PostDetails: () => import("~/components/global/PostDetails.vue"),
     TextGroup: () => import("~/components/global/TextGroup.vue"),
     ToC: () => import("~/components/global/ToC.vue"),
   },
@@ -147,24 +127,6 @@ export default defineComponent({
 .post {
   @apply flex flex-col items-center justify-start gap-3 mx-auto w-full;
 
-  figure {
-    @apply flex flex-col items-center justify-end relative mx-auto w-full overflow-x-hidden
-      text-center
-    ;
-
-    img,
-    figcaption {
-      @apply mx-auto;
-    }
-
-    figcaption {
-      @apply
-        absolute top-0 right-0 rounded-full m-3 py-1 px-3 w-max max-w-none
-        bg-black bg-opacity-50 text-gray-200 text-xs
-      ;
-    }
-  }
-
   &-header,
   &-footer {
     @apply relative flex flex-col gap-5 w-full mb-8;
@@ -176,22 +138,11 @@ export default defineComponent({
     }
 
     .post-header-front {
-      @apply
-        absolute top-0 left-auto
+      @apply absolute top-0 left-auto
         flex flex-col items-start justify-end
         pb-8 w-full h-full
         text-gray-950 dark:text-gray-50
       ;
-    }
-
-    .gradient {
-      &::after {
-        background: var(--bg-color, #f8fafc);
-        background: linear-gradient(to top, var(--bg-color, #010810) 10%, rgba(255, 255, 255, 0) 50%);
-        content: "";
-
-        @apply block absolute bottom-0 left-0 w-full h-full;
-      }
     }
   }
 
@@ -207,8 +158,7 @@ export default defineComponent({
       @apply relative mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
 
       .icon.icon-link {
-        @apply
-          block absolute top-0 -left-5 w-4 h-full
+        @apply block absolute top-0 -left-5 w-4 h-full
           bg-no-repeat bg-center text-gray-500
           opacity-0 invisible
         ;
