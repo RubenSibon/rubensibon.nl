@@ -6,6 +6,7 @@ module.exports = {
     options: {
       keyframes: true,
     },
+    safelist: [],
   },
   darkMode: "media",
   theme: {
