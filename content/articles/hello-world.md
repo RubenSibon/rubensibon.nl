@@ -7,7 +7,7 @@ img:
     "(orientation: landscape)": https://placeimg.com/1024/686/tech
     "(orientation: portrait) and (min-aspect-ratio: 9/16)": https://placeimg.com/600/800/tech
     "(orientation: portrait) and (max-aspect-ratio: 9/16)": https://placeimg.com/544/812/tech
-  src: https://placeimg.com/400/800/tech
+  src: https://placeimg.com/800/800/tech
   alt: Random stock photo
   headerImgHeight: 2/3
 showToc: true
@@ -31,6 +31,8 @@ Et laborum laboris ullamco ea duis esse adipisicing Lorem nisi. Sunt officia rep
 Enim exercitation quis id irure ullamco officia Lorem id id ea adipisicing sit eu. Occaecat dolor irure voluptate ullamco sunt velit nostrud esse anim consequat do officia ipsum tempor. Nisi do aliqua nulla reprehenderit eiusmod commodo. Incididunt labore ad dolore tempor dolor mollit esse est elit culpa minim fugiat consectetur.
 
 Dolor irure magna officia non cillum exercitation velit proident. Est officia minim veniam ad exercitation. Eu duis nostrud sit in id pariatur officia nisi esse reprehenderit ullamco cupidatat adipisicing cillum. Deserunt ex culpa ipsum veniam. Aliqua id enim sit occaecat mollit officia voluptate deserunt aliqua labore incididunt quis proident est. Mollit laborum Lorem sint exercitation consequat ex magna ea fugiat.
+
+![Alt text](https://placeimg.com/1024/686/tech "A title")
 
 Laboris esse non labore id voluptate laboris anim eu et. Duis eu mollit ex qui esse cupidatat. Pariatur quis ex consequat pariatur esse reprehenderit Lorem. Do est adipisicing ut anim esse voluptate. Ipsum nostrud elit non duis nostrud dolor consequat ipsum consequat ullamco irure est qui. Eu magna Lorem eiusmod nostrud dolor proident nisi ex. Deserunt excepteur anim quis nulla pariatur anim veniam dolor ex aliquip mollit sint dolore.
 
