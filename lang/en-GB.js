@@ -7,13 +7,13 @@ export default async (_context, _locale) => {
       posted: "Posted",
       updated: "Edited",
       toc: "Table of Contents",
+      category: "Category",
+      tags: "Tags",
     },
     profession: "Software developer",
-    categories: {
+    tags: {
       "software-development": "software development",
       cs: "computer science",
-    },
-    tags: {
       programming: "programming",
       c: "C",
       history: "history",

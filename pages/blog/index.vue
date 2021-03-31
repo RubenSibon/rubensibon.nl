@@ -9,21 +9,27 @@
       :title="article.title"
       class="flex flex-col gap-3"
     >
-      <h2 class="text-3xl">
+      <h2 class="text-2xl">
         {{ article.title }}
       </h2>
 
       <div class="flex items-center gap-3 text-sm">
-        <div class="category">
-          {{ article.category }}
+        <div class="font-semibold">
+          {{ formatDate(article.createdAt) }}
         </div>
 
-        <div>
-          {{ formatDate(article.createdAt) }}
+        <div v-if="article.tags" class="font-semibold">
+          {{ $t(`tags.${article.tags[0]}`) }}
         </div>
       </div>
 
-      <p>{{ article.description }}</p>
+      <div class="text-sm">
+        <p>{{ article.description }}</p>
+      </div>
+
+      <div v-if="article.tags" class="flex gap-1 text-xs">
+        <span class="font-semibold">{{ $t("post.tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tags.${tag}`) }}</span>
+      </div>
     </nuxt-link>
   </main>
 </template>
@@ -68,9 +74,5 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .blog {
   @apply w-full max-w-screen-md px-4 mx-auto sm:px-8;
-
-  .label {
-    @apply font-semibold;
-  }
 }
 </style>

@@ -35,8 +35,10 @@
 
       <div :class="`headertext ${headerHeightClass}`">
         <div class="textgroup">
-          <div class="category label">
-            {{ $t(`categories.${article.category}`) }}
+          <div class="flex gap-2">
+            <div v-if="article.tags && article.tags[0]" class="label">
+              {{ $t(`tags.${article.tags[0]}`) }}
+            </div>
           </div>
 
           <h1>
@@ -46,7 +48,7 @@
       </div>
 
       <div class="textgroup">
-        <p class="text-xl font-semibold text-gray-700 heading dark:text-gray-300">
+        <p class="heading description">
           {{ article.description }}
         </p>
 
@@ -167,8 +169,8 @@ export default defineComponent({
 
   .label {
     @apply
-      rounded-full py-2 px-3 w-max
-      text-xs bg-gray-950 text-gray-100 font-semibold
+      rounded-full mb-2 py-1 px-2 w-max
+      font-semibold text-xs bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100
       select-none
     ;
 
@@ -176,7 +178,9 @@ export default defineComponent({
   }
 
   .toc {
-    @apply rounded py-4 bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300;
+    @apply rounded mb-8 py-4 bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300;
+
+    transition: background 500ms ease-out, color 500ms ease-in;
 
     .toc-nav {
       @apply mt-2;
@@ -192,9 +196,12 @@ export default defineComponent({
       @apply border-none text-gray-700 dark:text-gray-300;
     }
 
-    & summary {
-      &:hover {
-        @apply cursor-pointer;
+    &:hover,
+    &:focus-within {
+      @apply bg-gray-200 dark:bg-gray-800;
+
+      & summary {
+        @apply cursor-pointer outline-none;
       }
     }
   }
@@ -218,7 +225,7 @@ export default defineComponent({
   }
 
   &-header {
-    @apply relative flex flex-col gap-5 w-full mb-4;
+    @apply relative flex flex-col gap-5 w-full mb-8;
 
     .headertext {
       @apply
@@ -237,8 +244,8 @@ export default defineComponent({
       @apply sm:px-0;
     }
 
-    .category {
-      @apply uppercase;
+    .description {
+      @apply text-lg font-semibold text-gray-700 sm:text-xl dark:text-gray-300;
     }
 
     .details {
@@ -252,7 +259,7 @@ export default defineComponent({
     .gradient {
       &::after {
         background: var(--bg-color, #f8fafc);
-        background: linear-gradient(to top, var(--bg-color, #010810) 10%, rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(to top, var(--bg-color, #010810) 10%, rgba(255, 255, 255, 0) 50%);
         content: "";
 
         @apply block absolute bottom-0 left-0 w-full h-full;
@@ -270,6 +277,16 @@ export default defineComponent({
     h5,
     h6 {
       @apply relative mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
+
+      .icon.icon-link {
+        @apply
+          block absolute top-0 -left-5 w-4 h-full
+          bg-no-repeat bg-center text-gray-500
+          opacity-0 invisible
+        ;
+
+        background-image: url("https://raw.githubusercontent.com/sschoger/heroicons-ui/master/svg/icon-hashtag.svg");
+      }
 
       a:link,
       a:hover,
@@ -317,18 +334,17 @@ export default defineComponent({
       @apply md:p-0;
     }
 
-    .icon.icon-link {
-      @apply
-        block absolute top-0 -left-5 w-4 h-full
-        bg-no-repeat bg-center text-gray-500
-        opacity-0 invisible
-      ;
+    figure {
+      @apply mx-auto w-full max-w-screen-lg;
 
-      background-image: url("https://raw.githubusercontent.com/sschoger/heroicons-ui/master/svg/icon-hashtag.svg");
+      img,
+      figcaption {
+        @apply w-full;
+      }
     }
 
     .nuxt-content-highlight {
-      @apply my-8;
+      @apply relative my-8;
 
       max-width: 100vw;
 
@@ -345,14 +361,13 @@ export default defineComponent({
           }
         }
       }
-    }
 
-    figure {
-      @apply mx-auto w-full max-w-screen-lg;
+      .filename {
+        @apply absolute right-0 text-gray-500 font-light z-10 mr-3 mt-2 text-sm;
 
-      img,
-      caption {
-        @apply w-full;
+        & ~ pre {
+          @apply pt-10;
+        }
       }
     }
   }

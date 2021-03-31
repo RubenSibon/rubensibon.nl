@@ -7,13 +7,13 @@ export default async (_context, _locale) => {
       posted: "Geplaatst",
       updated: "Aangepast",
       toc: "Inhoudsopgave",
+      category: "Categorie",
+      tags: "Labels",
     },
     profession: "Softwareontwikkelaar",
-    categories: {
+    tags: {
       "software-development": "softwareontwikkeling",
       cs: "informatica",
-    },
-    tags: {
       programming: "programmeren",
       c: "C",
       history: "geschiedenis",
