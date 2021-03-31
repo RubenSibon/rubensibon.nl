@@ -52,7 +52,7 @@ html {
 }
 
 body {
-  @apply dark:bg-gray-900 text-gray-900 dark:text-gray-200;
+  @apply bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-100;
 }
 
 *,
@@ -69,7 +69,7 @@ h4,
 h5,
 h6,
 .heading {
-  @apply font-bold text-gray-900 dark:text-gray-100;
+  @apply font-bold;
 
   letter-spacing: 1px;
 }
@@ -106,10 +106,6 @@ h6,
   @apply font-normal;
 
   letter-spacing: 0.5px;
-}
-
-p {
-  @apply text-gray-900 dark:text-white;
 }
 
 blockquote {

@@ -6,8 +6,9 @@
   @font-face {
     font-family: "Fira Sans";
     font-weight: 400;
+    font-display: swap;
     src:
-      local("FiraSans Regular"),
+      local("Fira Sans"),
       url("~assets/fonts/FiraSans/FiraSans-Regular.ttf") format("truetype");
   }
 
@@ -15,16 +16,18 @@
     font-family: "Fira Sans";
     font-weight: 400;
     font-style: italic;
+    font-display: swap;
     src:
-      local("FiraSans Italic"),
+      local("Fira Sans Italic"),
       url("~assets/fonts/FiraSans/FiraSans-Italic.ttf") format("truetype");
   }
 
   @font-face {
     font-family: "Fira Sans";
     font-weight: 500;
+    font-display: swap;
     src:
-      local("FiraSans Medium"),
+      local("Fira Sans Medium"),
       url("~assets/fonts/FiraSans/FiraSans-Medium.ttf") format("truetype");
   }
 
@@ -32,16 +35,18 @@
     font-family: "Fira Sans";
     font-weight: 500;
     font-style: italic;
+    font-display: swap;
     src:
-      local("FiraSans Medium Italic"),
+      local("Fira Sans Medium Italic"),
       url("~assets/fonts/FiraSans/FiraSans-MediumItalic.ttf") format("truetype");
   }
 
   @font-face {
     font-family: "Fira Sans";
     font-weight: 600;
+    font-display: swap;
     src:
-      local("FiraSans SemiBold"),
+      local("Fira Sans SemiBold"),
       url("~assets/fonts/FiraSans/FiraSans-SemiBold.ttf") format("truetype");
   }
 
@@ -49,16 +54,18 @@
     font-family: "Fira Sans";
     font-weight: 600;
     font-style: italic;
+    font-display: swap;
     src:
-      local("FiraSans SemiBold Italic"),
+      local("Fira Sans SemiBold Italic"),
       url("~assets/fonts/FiraSans/FiraSans-SemiBoldItalic.ttf") format("truetype");
   }
 
   @font-face {
     font-family: "Fira Sans";
     font-weight: 700;
+    font-display: swap;
     src:
-      local("FiraSans Bold"),
+      local("Fira Sans Bold"),
       url("~assets/fonts/FiraSans/FiraSans-Bold.ttf") format("truetype");
   }
 
@@ -66,14 +73,16 @@
     font-family: "Fira Sans";
     font-weight: 700;
     font-style: italic;
+    font-display: swap;
     src:
-      local("FiraSans Bold Italic"),
+      local("Fira Sans Bold Italic"),
       url("~assets/fonts/FiraSans/FiraSans-BoldItalic.ttf") format("truetype");
   }
 
   @font-face {
     font-family: "Fira Code";
     font-weight: 400;
+    font-display: swap;
     src:
       local("Fira Code"),
       url("~assets/fonts/FiraCode/static/FiraCode-Regular.ttf") format("truetype");
@@ -82,6 +91,7 @@
   @font-face {
     font-family: "Fira Code";
     font-weight: 500;
+    font-display: swap;
     src:
       local("Fira Code Medium"),
       url("~assets/fonts/FiraCode/static/FiraCode-Medium.ttf") format("truetype");
@@ -90,6 +100,7 @@
   @font-face {
     font-family: "Fira Code";
     font-weight: 600;
+    font-display: swap;
     src:
       local("Fira Code SemiBold"),
       url("~assets/fonts/FiraCode/static/FiraCode-SemiBold.ttf") format("truetype");
@@ -98,6 +109,7 @@
   @font-face {
     font-family: "Fira Code";
     font-weight: 700;
+    font-display: swap;
     src:
       local("Fira Code Bold"),
       url("~assets/fonts/FiraCode/static/FiraCode-Bold.ttf") format("truetype");

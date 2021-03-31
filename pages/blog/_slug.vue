@@ -9,6 +9,7 @@
       >
         <figure
           v-if="article.img && article.img.src"
+          ref="postHeaderFigure"
           :class="[headerHeightClass, 'gradient']"
           :label="article.img.alt"
         >
@@ -153,7 +154,7 @@ export default defineComponent({
   .label {
     @apply
       rounded-full py-2 px-3 w-max
-      text-xs bg-gray-900 text-gray-100 font-semibold
+      text-xs bg-gray-950 text-gray-100 font-semibold
     ;
 
     letter-spacing: 0.5px;
@@ -189,7 +190,7 @@ export default defineComponent({
       @apply
         flex flex-wrap gap-3
         my-2 w-max max-w-full
-        font-semibold text-xs text-gray-500
+        font-semibold text-xs text-gray-700 dark:text-gray-400
       ;
     }
 
@@ -248,10 +249,10 @@ export default defineComponent({
       max-width: 100vw;
 
       pre {
-        @apply bg-gray-50 dark:bg-gray-800;
+        @apply bg-gray-100 dark:bg-gray-900;
 
         code {
-          @apply dark:text-gray-100;
+          @apply dark:text-gray-50;
 
           text-shadow: none;
 

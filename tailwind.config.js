@@ -30,6 +30,12 @@ module.exports = {
       "9xl": ["8rem", { lineHeight: "1" }],
     },
     extend: {
+      colors: {
+        gray: {
+          ...defaultTheme.colors.gray,
+          950: "#010810",
+        },
+      },
       height: {
         "screen-1/8": "12.5vh",
         "screen-1/4": "25vh",
