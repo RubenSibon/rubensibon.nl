@@ -54,17 +54,23 @@
           {{ article.description }}
         </p>
 
-        <div class="details">
-          <div class="author">
+        <Details>
+          <div>
             {{ article.author }}
           </div>
-          <div>
-            {{ $t("post.posted") }}: {{ formatDate(article.createdAt) }}
-          </div>
-          <div>
-            {{ article.updatedAt ? `${ $t("post.updated") }: ${formatDate(article.updatedAt)}` : null }}
-          </div>
-        </div>
+
+          <PostDate :iso-date="article.createdAt">
+            <template #label>
+              {{ $t("post.posted") }}:
+            </template>
+          </PostDate>
+
+          <PostDate v-if="article.updatedAt" :iso-date="article.updatedAt">
+            <template #label>
+              {{ $t("post.updated") }}:
+            </template>
+          </PostDate>
+        </Details>
       </TextGroup>
     </header>
 
@@ -98,14 +104,17 @@
       <TextGroup class="flex flex-wrap items-center text-center flex-column textgroup">
         <hr class="w-3/4 mx-auto border-dashed">
 
-        <div class="items-center justify-center details">
-          <div class="author">
+        <Details class="items-center justify-center">
+          <div>
             {{ article.author }}
           </div>
-          <div>
-            {{ $t("post.posted") }}: {{ formatDate(article.createdAt) }}
-          </div>
-        </div>
+
+          <PostDate :iso-date="article.createdAt">
+            <template #label>
+              {{ $t("post.posted") }}:
+            </template>
+          </PostDate>
+        </Details>
 
         <div class="flex flex-wrap justify-center gap-2 mt-2">
           <Label v-for="tag of article.tags" :key="tag">
@@ -119,55 +128,19 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
-import { DateTime, Interval } from "luxon";
 
 export default defineComponent({
   components: {
-    Label: () => import("~/components/global/label.vue"),
-    TextGroup: () => import("~/components/global/textgroup.vue"),
+    Label: () => import("~/components/global/Label.vue"),
+    TextGroup: () => import("~/components/global/TextGroup.vue"),
+    Details: () => import("~/components/global/Details.vue"),
+    PostDate: () => import("~/components/global/PostDate.vue"),
   },
 
   async asyncData ({ $content, params }) {
     const article = await $content("articles", params.slug).fetch();
 
     return { article };
-  },
-
-  methods: {
-    formatDate (date: string) {
-      const dateTime = DateTime.fromISO(date);
-      const now = DateTime.now();
-
-      const parseParams: {
-        year?: "numeric";
-        month?: "long";
-        day?: "numeric";
-      } = {};
-
-      if (dateTime.day === now.day) {
-        const hoursDuration = Math.ceil(Interval.fromDateTimes(dateTime, now).length("hours"));
-        const hoursAgo = isNaN(hoursDuration) ? 1 : hoursDuration;
-
-        return `${hoursAgo} ${this.$i18n.tc("post.hoursAgo", hoursAgo)}`;
-      } else {
-        parseParams.day = "numeric";
-      }
-
-      if (dateTime.daysInYear < now.daysInYear && dateTime.daysInYear >= now.daysInYear - 7) {
-        const daysDuration = Math.round(Interval.fromDateTimes(dateTime, now).length("days"));
-        const daysAgo = isNaN(daysDuration) ? 1 : daysDuration;
-
-        return `${daysAgo} ${this.$i18n.tc("post.daysAgo", daysAgo)}`;
-      } else {
-        parseParams.month = "long";
-      }
-
-      if (dateTime.year !== now.year) {
-        parseParams.year = "numeric";
-      }
-
-      return dateTime.setLocale(this.$i18n.locale).toLocaleString(parseParams);
-    },
   },
 });
 </script>
@@ -226,14 +199,6 @@ export default defineComponent({
   &-header,
   &-footer {
     @apply relative flex flex-col gap-5 w-full mb-8;
-
-    .details {
-      @apply
-        flex flex-wrap gap-3
-        my-2 w-max max-w-full
-        font-semibold text-xs text-gray-700 dark:text-gray-300
-      ;
-    }
   }
 
   &-header {
