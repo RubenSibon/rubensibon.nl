@@ -1,7 +1,7 @@
 <template>
   <article class="post">
     <header class="relative post-header">
-      <div :class="['headerbg', headerHeightClass]">
+      <div :class="['post-header-background', headerHeightClass]">
         <figure
           v-if="article.img && article.img.src"
           ref="postHeaderFigure"
@@ -35,7 +35,7 @@
         <div v-else :class="[headerHeightClass, 'min-h-screen-1/3', 'max-w-screen-xl']" />
       </div>
 
-      <div :class="`headertext ${headerHeightClass} min-h-screen-1/3'`">
+      <div :class="`post-header-front ${headerHeightClass} min-h-screen-1/3'`">
         <div class="textgroup">
           <div class="flex gap-2">
             <div v-if="article.tags && article.tags[0]" class="label">
@@ -229,7 +229,7 @@ export default defineComponent({
   &-header {
     @apply relative flex flex-col gap-5 w-full mb-8;
 
-    .headertext {
+    .post-header-front {
       @apply
         absolute top-0 left-0
         flex flex-col items-end justify-end
@@ -238,7 +238,7 @@ export default defineComponent({
       ;
     }
 
-    .headerbg {
+    .post-header-background {
       @apply bg-gray-50 dark:bg-gray-950;
     }
 
