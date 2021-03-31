@@ -249,7 +249,7 @@ export default defineComponent({
     }
 
     p {
-      @apply mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
+      @apply relative mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
 
       &:first-child::first-letter {
         @supports (initial-letter: 3) {
@@ -262,12 +262,13 @@ export default defineComponent({
       @apply md:p-0;
     }
 
-    figure {
-      @apply mx-auto w-full max-w-screen-lg;
+    p img {
+      @apply relative -left-6 sm:-left-8 my-12 max-w-screen-lg;
 
-      img,
-      figcaption {
-        @apply w-full;
+      width: calc(100% + 3rem);
+
+      @screen sm {
+        width: calc(100% + 4rem);
       }
     }
 
