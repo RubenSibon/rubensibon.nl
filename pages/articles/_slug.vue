@@ -1,11 +1,11 @@
 <template>
   <article class="post">
-    <header class="relative post-header">
+    <header class="post-header">
       <div :class="['post-header-background', headerHeightClass]">
         <figure
           v-if="article.img && article.img.src"
           ref="postHeaderFigure"
-          :class="[headerHeightClass, 'max-w-screen-xl', 'gradient']"
+          class="gradient"
           :label="article.img.alt"
         >
           <picture>
@@ -20,8 +20,8 @@
               :src="article.img.src"
               :alt="article.img.alt"
               :class="[
+                headerHeightClass,
                 'min-w-screen-full',
-                `min-${headerHeightClass}`,
                 article.img.bgColor ? `bg-${article.img.bgColor}` : null,
               ]"
             >
@@ -32,20 +32,21 @@
           </figcaption>
         </figure>
 
-        <div v-else :class="[headerHeightClass, 'min-h-screen-1/3', 'max-w-screen-xl']" />
-      </div>
+        <!-- Below div ensures that the positioned header has height when there is no header image. -->
+        <div v-else :class="[headerHeightClass, 'min-h-screen-1/4']" />
 
-      <div :class="`post-header-front ${headerHeightClass} min-h-screen-1/3'`">
-        <div class="textgroup">
-          <div class="flex gap-2">
-            <div v-if="article.tags && article.tags[0]" class="label">
-              {{ $t(`tags.${article.tags[0]}`) }}
+        <div :class="`post-header-front ${headerHeightClass} min-h-screen-1/4'`">
+          <div class="textgroup">
+            <div class="flex gap-2">
+              <div v-if="article.tags && article.tags[0]" class="label">
+                {{ $t(`tags.${article.tags[0]}`) }}
+              </div>
             </div>
-          </div>
 
-          <h1>
-            {{ article.title }}
-          </h1>
+            <h1>
+              {{ article.title }}
+            </h1>
+          </div>
         </div>
       </div>
 
@@ -68,24 +69,26 @@
       </div>
     </header>
 
-    <details v-if="article.showToc" class="mb-4 toc textgroup">
-      <summary class="text-md h5">
-        {{ $t("post.toc") }}
-      </summary>
+    <div class="textgroup">
+      <details v-if="article.showToc" class="px-4 mb-4 toc">
+        <summary class="text-md h5">
+          {{ $t("post.toc") }}
+        </summary>
 
-      <nav class="toc-nav">
-        <ul class="toc-list">
-          <li v-for="link of article.toc" :key="link.id" class="toc-list-item">
-            <NuxtLink
-              :to="`#${link.id}`"
-              :class="['toc-link', { 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }]"
-            >
-              {{ link.text }}
-            </NuxtLink>
-          </li>
-        </ul>
-      </nav>
-    </details>
+        <nav class="toc-nav">
+          <ul class="toc-list">
+            <li v-for="link of article.toc" :key="link.id" class="toc-list-item">
+              <NuxtLink
+                :to="`#${link.id}`"
+                :class="['toc-link', { 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }]"
+              >
+                {{ link.text }}
+              </NuxtLink>
+            </li>
+          </ul>
+        </nav>
+      </details>
+    </div>
 
     <nuxt-content
       :document="article"
@@ -114,11 +117,25 @@ export default defineComponent({
   computed: {
     headerHeightClass () {
       // @ts-ignore
-      return `h-screen-${this.article && this.article.img && this.article.img.headerImgHeight
+      if (this.article && this.article.img && this.article.img.headerImgHeight) {
         // @ts-ignore
-        ? this.article.img.headerImgHeight
-        // @ts-ignore
-        : "1/3"}`;
+        switch (this.article.img.headerImgHeight) {
+          case "1/4":
+            return "h-screen-1/4";
+          case "1/3":
+            return "h-screen-1/3";
+          case "1/2":
+            return "h-screen-1/2";
+          case "2/3":
+            return "h-screen-2/3";
+          case "3/4":
+            return "h-screen-3/4";
+          default:
+            return "h-screen-2/3";
+        }
+      } else {
+        return "h-screen-1/4";
+      }
     },
   },
 
@@ -229,17 +246,17 @@ export default defineComponent({
   &-header {
     @apply relative flex flex-col gap-5 w-full mb-8;
 
-    .post-header-front {
-      @apply
-        absolute top-0 left-0
-        flex flex-col items-end justify-end
-        pb-8 w-full
-        text-gray-950 dark:text-gray-50
-      ;
+    .post-header-background {
+      @apply relative bg-gray-50 dark:bg-gray-950;
     }
 
-    .post-header-background {
-      @apply bg-gray-50 dark:bg-gray-950;
+    .post-header-front {
+      @apply
+        absolute top-0 left-auto
+        flex flex-col items-end justify-end
+        pb-8 w-full h-full
+        text-gray-950 dark:text-gray-50
+      ;
     }
 
     .textgroup {

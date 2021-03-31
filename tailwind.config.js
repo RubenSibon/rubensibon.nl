@@ -6,7 +6,6 @@ module.exports = {
     options: {
       keyframes: true,
     },
-    safelist: [],
   },
   darkMode: "media",
   theme: {
@@ -41,31 +40,25 @@ module.exports = {
         semibold: "550",
       },
       height: {
-        "screen-1/8": "12.5vh",
         "screen-1/4": "25vh",
         "screen-1/3": "33.333333vh",
         "screen-1/2": "50vh",
         "screen-2/3": "66.666667vh",
         "screen-3/4": "75vh",
-        "screen-7/8": "87.5vh",
       },
       maxHeight: {
-        "screen-1/8": "12.5vh",
         "screen-1/4": "25vh",
         "screen-1/3": "33.333333vh",
         "screen-1/2": "50vh",
         "screen-2/3": "66.666667vh",
         "screen-3/4": "75vh",
-        "screen-7/8": "87.5vh",
       },
       minHeight: {
-        "screen-1/8": "12.5vh",
         "screen-1/4": "25vh",
         "screen-1/3": "33.333333vh",
         "screen-1/2": "50vh",
         "screen-2/3": "66.666667vh",
         "screen-3/4": "75vh",
-        "screen-7/8": "87.5vh",
       },
       maxWidth: {
         0: 0,
