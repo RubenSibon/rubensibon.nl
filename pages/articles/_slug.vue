@@ -4,8 +4,7 @@
       <div :class="['post-header-background']">
         <figure
           v-if="article.img && article.img.src"
-          ref="postHeaderFigure"
-          class="overflow-hidden gradient max-h-screen-2/3"
+          class="gradient"
           :label="article.img.alt"
         >
           <picture>
@@ -35,8 +34,8 @@
         <!-- Below div ensures that the positioned header has height when there is no header image. -->
         <div v-else :class="['min-h-screen-1/4']" />
 
-        <div :class="`post-header-front min-h-screen-1/4'`">
-          <div class="textgroup">
+        <div class="post-header-front min-h-screen-1/4">
+          <TextGroup class="textgroup sm:px-0">
             <div class="flex gap-2">
               <Label v-if="article.tags && article.tags[0]" :invert="true">
                 {{ $t(`tags.${article.tags[0]}`) }}
@@ -46,11 +45,11 @@
             <h1>
               {{ article.title }}
             </h1>
-          </div>
+          </TextGroup>
         </div>
       </div>
 
-      <div class="textgroup">
+      <TextGroup class="textgroup sm:px-0">
         <p class="heading description">
           {{ article.description }}
         </p>
@@ -66,10 +65,10 @@
             {{ article.updatedAt ? `${ $t("post.updated") }: ${formatDate(article.updatedAt)}` : null }}
           </div>
         </div>
-      </div>
+      </TextGroup>
     </header>
 
-    <div class="textgroup">
+    <TextGroup class="textgroup">
       <details v-if="article.showToc" class="px-4 mb-4 toc">
         <summary class="text-md h5">
           {{ $t("post.toc") }}
@@ -88,7 +87,7 @@
           </ul>
         </nav>
       </details>
-    </div>
+    </TextGroup>
 
     <nuxt-content
       :document="article"
@@ -96,7 +95,7 @@
     />
 
     <footer class="post-footer">
-      <div class="flex flex-wrap items-center text-center flex-column textgroup">
+      <TextGroup class="flex flex-wrap items-center text-center flex-column textgroup">
         <hr class="w-3/4 mx-auto border-dashed">
 
         <div class="items-center justify-center details">
@@ -113,7 +112,7 @@
             {{ $t(`tags.${tag}`) }}
           </Label>
         </div>
-      </div>
+      </TextGroup>
     </footer>
   </article>
 </template>
@@ -124,7 +123,8 @@ import { DateTime, Interval } from "luxon";
 
 export default defineComponent({
   components: {
-    Label: () => import("@/components/global/label/label.vue"),
+    Label: () => import("~/components/global/label.vue"),
+    TextGroup: () => import("~/components/global/textgroup.vue"),
   },
 
   async asyncData ({ $content, params }) {
@@ -175,10 +175,6 @@ export default defineComponent({
 <style lang="postcss">
 .post {
   @apply flex flex-col items-center justify-start gap-3 mx-auto w-full;
-
-  .textgroup {
-    @apply flex flex-col gap-3 mx-auto w-full max-w-screen-sm px-6 md:px-8;
-  }
 
   .toc {
     @apply rounded mb-8 py-4 bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300;
@@ -252,10 +248,6 @@ export default defineComponent({
         pb-8 w-full h-full
         text-gray-950 dark:text-gray-50
       ;
-    }
-
-    .textgroup {
-      @apply sm:px-0;
     }
 
     .label {
