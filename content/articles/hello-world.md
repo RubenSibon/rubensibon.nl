@@ -1,6 +1,6 @@
 ---
 title: ߵHello, worldߴ
-description: "This is my first blog post using Nuxt Content. Amet occaecat elit enim minim magna est est duis magna eiusmod nulla. Non eu ipsum id et anim. Elit deserunt aliquip consequat do occaecat officia ipsum. Ad proident laboris ipsum sint."
+description: "This is my first article using Nuxt Content. Amet occaecat elit enim minim magna est est duis magna eiusmod nulla. Non eu ipsum id et anim. Elit deserunt aliquip consequat do occaecat officia ipsum. Ad proident laboris ipsum sint."
 author: Ruben Sibon
 img:
   srcSet:

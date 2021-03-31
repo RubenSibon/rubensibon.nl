@@ -1,11 +1,11 @@
 <template>
-  <main class="blog">
-    <h1>Blog</h1>
+  <main class="articles">
+    <h1>Articles</h1>
 
     <nuxt-link
       v-for="article in articles"
       :key="article.slug"
-      :to="localePath(`/blog/${article.slug}`)"
+      :to="localePath(`/articles/${article.slug}`)"
       :title="article.title"
       class="flex flex-col gap-3"
     >
@@ -48,7 +48,7 @@ export default defineComponent({
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: "Blog - Ruben Sibon",
+      title: "Articles by Ruben Sibon",
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
@@ -72,7 +72,7 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.blog {
+.articles {
   @apply w-full max-w-screen-md px-4 mx-auto sm:px-8;
 }
 </style>
