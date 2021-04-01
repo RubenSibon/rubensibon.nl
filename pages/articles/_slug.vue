@@ -120,6 +120,27 @@ export default defineComponent({
 
     return { article };
   },
+
+  head () {
+    return {
+      // @ts-ignore
+      title: `${this.article.title} | Ruben Sibon`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          // @ts-ignore
+          content: this.article.description,
+        },
+        {
+          hid: "keywords",
+          name: "keywords",
+          // @ts-ignore
+          content: this.article.tags,
+        },
+      ],
+    };
+  },
 });
 </script>
 

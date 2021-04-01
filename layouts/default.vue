@@ -22,13 +22,23 @@ export default defineComponent({
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: `Ruben Sibon: ${this.$i18n.t("profession")}`,
+      title: `Ruben Sibon: ${this.$t("about.profession")}`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
       meta: [
         // @ts-ignore
         ...i18nHead.meta,
+        {
+          hid: "description",
+          name: "description",
+          content: this.$t("description"),
+        },
+        {
+          hid: "keywords",
+          name: "keywords",
+          content: `${this.$t("tags.software-development")},${this.$t("tags.programming")},${this.$t("tags.javascript")},${this.$t("tags.typescript")},${this.$t("tags.vuejs")},${this.$t("tags.nuxtjs")},${this.$t("tags.react")},${this.$t("tags.react-native")},${this.$t("tags.python")},${this.$t("tags.linux")},${this.$t("tags.foss")},${this.$t("tags.open-source")}`,
+        },
       ],
       link: [
         // @ts-ignore
