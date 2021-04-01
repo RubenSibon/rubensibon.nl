@@ -78,7 +78,7 @@ export default defineComponent({
   &.gradient {
     &::after {
       background: var(--bg-color, #f8fafc);
-      background: linear-gradient(to top, var(--bg-color, #010810) 10%, rgba(255, 255, 255, 0) 50%);
+      background: linear-gradient(to top, var(--bg-color, #010810) 0%, rgba(255, 255, 255, 0) 33.33333%);
       content: "";
 
       @apply block absolute bottom-0 left-0 w-full h-full;

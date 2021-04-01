@@ -43,6 +43,8 @@
             {{ article.author }}
           </div>
 
+          <PostReadingTime :text="JSON.stringify(article)" />
+
           <PostDate :iso-date="article.createdAt">
             <template #label>
               {{ $t("post.posted") }}:
@@ -106,13 +108,11 @@ import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   components: {
-    ArticleLead: () => import("~/components/global/ArticleLead.vue"),
-    Collapsible: () => import("~/components/global/Collapsible.vue"),
-    TagLabel: () => import("~/components/global/TagLabel.vue"),
-    PostDate: () => import("~/components/global/PostDate.vue"),
-    PostDetails: () => import("~/components/global/PostDetails.vue"),
-    TextGroup: () => import("~/components/global/TextGroup.vue"),
-    ToC: () => import("~/components/global/ToC.vue"),
+    ArticleLead: () => import("~/components/ArticleLead.vue"),
+    HeaderImage: () => import("~/components/HeaderImage.vue"),
+    PostDate: () => import("~/components/PostDate.vue"),
+    PostDetails: () => import("~/components/PostDetails.vue"),
+    PostReadingTime: () => import("~/components/PostReadingTime.vue"),
   },
 
   async asyncData ({ $content, params }) {
@@ -146,9 +146,7 @@ export default defineComponent({
     }
   }
 
-  &-body {
-    @apply relative mb-8;
-
+  &-body.nuxt-content {
     h1,
     h2,
     h3,
@@ -213,7 +211,7 @@ export default defineComponent({
     }
 
     p img {
-      @apply relative -left-6 sm:-left-8 my-12 max-w-screen-lg;
+      @apply relative -left-6 sm:-left-8 rounded my-12 max-w-screen-lg;
 
       width: calc(100% + 3rem);
 

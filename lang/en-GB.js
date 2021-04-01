@@ -9,6 +9,8 @@ export default async (_context, _locale) => {
       toc: "Table of Contents",
       category: "Category",
       tags: "Tags",
+      words: "words",
+      minutesRead: "min. read",
     },
     profession: "Software developer",
     tags: {
