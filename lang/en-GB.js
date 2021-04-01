@@ -1,6 +1,9 @@
 export default async (_context, _locale) => {
   return await Promise.resolve({
     languages: "Languages",
+    about: {
+      profession: "Software developer",
+    },
     post: {
       hoursAgo: "hour ago | hours ago",
       daysAgo: "day ago | days ago",
@@ -9,10 +12,7 @@ export default async (_context, _locale) => {
       toc: "Table of Contents",
       category: "Category",
       tags: "Tags",
-      words: "words",
-      minutesRead: "min. read",
     },
-    profession: "Software developer",
     tags: {
       "software-development": "software development",
       cs: "computer science",

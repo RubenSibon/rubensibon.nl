@@ -9,10 +9,7 @@ export default async (_context, _locale) => {
       toc: "Inhoudsopgave",
       category: "Categorie",
       tags: "Labels",
-      words: "woorden",
-      minutesRead: "minuten leestijd | minuut leestijd | minuten leestijd",
     },
-    profession: "Softwareontwikkelaar",
     tags: {
       "software-development": "softwareontwikkeling",
       cs: "informatica",

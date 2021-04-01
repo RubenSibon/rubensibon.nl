@@ -1,6 +1,15 @@
+<i18n lang="yaml">
+en:
+  words: "words"
+  minutesRead: "min. read"
+nl:
+  words: "woorden"
+  minutesRead: "minuten leestijd | minuut leestijd | minuten leestijd"
+</i18n>
+
 <template>
-  <div class="post-reading-time" :title="`${readingStats.minutes} ${$tc('post.minutesRead', readingStats.minutes)}, ${$t('post.words')}: ~${readingStats.words}`">
-    {{ readingStats.minutes }} {{ $tc("post.minutesRead", readingStats.minutes) }}
+  <div class="post-reading-time" :title="`${readingStats.minutes} ${$tc('minutesRead', readingStats.minutes)}, ${$t('words')}: ~${readingStats.words}`">
+    {{ readingStats.minutes }} {{ $tc("minutesRead", readingStats.minutes) }}
   </div>
 </template>
 
@@ -34,3 +43,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="postcss" scoped>
+.post-reading-time {
+  &:hover {
+    @apply cursor-help;
+  }
+}
+</style>
