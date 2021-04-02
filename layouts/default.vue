@@ -52,15 +52,14 @@ html {
 }
 
 body {
-  @apply bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-100;
+  @apply transition-colors duration-[250] ease-out
+    bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-100;
 
   --bg-color: theme("colors.gray.50");
 
   @screen dark {
     --bg-color: theme("colors.gray.950");
   }
-
-  transition: background 250ms ease-out;
 }
 
 *,
@@ -87,7 +86,7 @@ h4,
 h5,
 h6,
 p {
-  transition: color 250ms ease-in;
+  @apply transition-colors duration-[250] ease-in;
 }
 
 h1,
@@ -149,10 +148,9 @@ pre[class*=language-] {
 }
 
 a {
-  @apply relative border-b-2 border-purple-500;
+  @apply relative border-b-2 border-purple-500 no-underline;
 
   transition: border 250ms ease-in, color 250ms ease-in;
-  text-decoration: none;
 
   &:hover,
   &:focus {

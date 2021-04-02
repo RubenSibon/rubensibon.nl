@@ -67,9 +67,9 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .headerimage {
-  @apply flex flex-col items-center justify-end relative mx-auto w-full overflow-x-hidden
-    text-center
-  ;
+  @apply flex flex-col items-center justify-end relative mx-auto w-full
+    overflow-x-hidden
+    text-center;
 
   img,
   figcaption {
@@ -77,12 +77,10 @@ export default defineComponent({
   }
 
   figcaption {
-    @apply
-      flex items-center gap-2
+    @apply flex items-center gap-2
       rounded-full absolute top-0 right-0
       m-3 py-1 px-3 w-max max-w-none
-      bg-black bg-opacity-50 text-gray-200 text-xs
-    ;
+      bg-black bg-opacity-50 text-gray-200 text-xs;
 
     font-size: 0.675rem;
 

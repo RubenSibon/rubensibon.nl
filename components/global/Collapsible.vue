@@ -10,7 +10,8 @@
 
 <style lang="postcss" scoped>
 .collapsible {
-  @apply rounded p-4 bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300;
+  @apply rounded p-4
+    bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300;
 
   transition: background 500ms ease-out, color 500ms ease-in;
 
