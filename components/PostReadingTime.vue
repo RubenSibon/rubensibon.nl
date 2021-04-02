@@ -1,14 +1,21 @@
 <i18n lang="yaml">
 en:
-  words: "words"
+  words: "Words"
   minutes: "min. read"
+  about: "About"
+  reading_time: ""
 nl:
-  words: "woorden"
+  words: "Woorden"
   minutes: "minuten | minuut | minuten"
+  about: "Ongeveer"
+  reading_time: "leestijd"
 </i18n>
 
 <template>
-  <div class="post-reading-time" :title="`${readingStats.minutes} ${$tc('minutes', readingStats.minutes)}, ${$t('words')}: ~${words}`">
+  <div
+    class="post-reading-time"
+    :title="`${$t('about')} ${readingStats.minutes} ${$tc('minutes', readingStats.minutes)} ${$t('reading_time')}; \n${$t('words')}: ${$t('about').toLowerCase()} ${words}.`"
+  >
     <SvgClock /> {{ readingStats.minutes }} {{ $tc("minutes", readingStats.minutes) }}
   </div>
 </template>

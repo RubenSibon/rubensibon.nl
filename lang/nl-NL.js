@@ -5,16 +5,7 @@ export default async (_context, _locale) => {
     about: {
       profession: "Softwareontwikkelaar",
     },
-    post: {
-      hoursAgo: "uur geleden | uren geleden",
-      daysAgo: "dag geleden | dagen geleden",
-      posted: "Geplaatst",
-      updated: "Aangepast",
-      toc: "Inhoudsopgave",
-      category: "Categorie",
-      tags: "Labels",
-    },
-    tags: {
+    tagList: {
       "software-development": "softwareontwikkeling",
       programming: "programmeren",
       cs: "informatica",

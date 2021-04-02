@@ -5,16 +5,7 @@ export default async (_context, _locale) => {
     about: {
       profession: "Software developer",
     },
-    post: {
-      hoursAgo: "hour ago | hours ago",
-      daysAgo: "day ago | days ago",
-      posted: "Posted",
-      updated: "Edited",
-      toc: "Table of Contents",
-      category: "Category",
-      tags: "Tags",
-    },
-    tags: {
+    tagList: {
       "software-development": "software development",
       cs: "computer science",
       programming: "programming",

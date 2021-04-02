@@ -1,8 +1,17 @@
-<template>
-  <div class="post-date" :title="`${label}: ${formattedDate}`">
-    <SvgCalendar />
+<i18n lang="yaml">
+en:
+  hours_ago: "hour ago | hours ago"
+  days_ago: "day ago | days ago"
+nl:
+  hours_ago: "uur geleden | uren geleden"
+  days_ago: "dag geleden | dagen geleden"
+</i18n>
 
-    <span>
+<template>
+  <div class="post-date" :title="`${label ? `${label}: ` : ''}${formattedDate}`">
+    <SvgCalendar v-if="showIcon" />
+
+    <span :class="{ 'sr-only': !showLabel }">
       {{ label }}
     </span>
 
@@ -30,6 +39,14 @@ export default defineComponent({
       type: String,
       default: "",
     },
+    showLabel: {
+      type: Boolean,
+      default: true,
+    },
+    showIcon: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   computed: {
@@ -47,7 +64,7 @@ export default defineComponent({
         const hoursDuration = Math.ceil(Interval.fromDateTimes(dateTime, now).length("hours"));
         const hoursAgo = isNaN(hoursDuration) ? 1 : hoursDuration;
 
-        return `${hoursAgo} ${this.$i18n.tc("post.hoursAgo", hoursAgo)}`;
+        return `${hoursAgo} ${this.$i18n.tc("hours_ago", hoursAgo)}`;
       } else {
         parseParams.day = "numeric";
       }
@@ -56,7 +73,7 @@ export default defineComponent({
         const daysDuration = Math.round(Interval.fromDateTimes(dateTime, now).length("days"));
         const daysAgo = isNaN(daysDuration) ? 1 : daysDuration;
 
-        return `${daysAgo} ${this.$i18n.tc("post.daysAgo", daysAgo)}`;
+        return `${daysAgo} ${this.$i18n.tc("days_ago", daysAgo)}`;
       } else {
         parseParams.month = "long";
       }

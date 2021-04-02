@@ -1,3 +1,18 @@
+<i18n lang="yaml">
+en:
+  posted: "Posted"
+  updated: "Edited"
+  toc: "Table of Contents"
+  category: "Category"
+  tags: "Tags"
+nl:
+  posted: "Geplaatst"
+  updated: "Aangepast"
+  toc: "Inhoudsopgave"
+  category: "Categorie"
+  tags: "Labels"
+</i18n>
+
 <template>
   <article class="post">
     <header class="post-header">
@@ -20,7 +35,7 @@
               v-if="article.tags && article.tags[0]"
               :invert="true"
             >
-              {{ $t(`tags.${article.tags[0]}`) }}
+              {{ $t(`tagList.${article.tags[0]}`) }}
             </TagLabel>
 
             <h1>
@@ -42,9 +57,17 @@
 
           <PostReadingTime :text="JSON.stringify(article)" />
 
-          <PostDate :iso-date="article.createdAt" :label="`${$t('post.posted')}:`" />
+          <PostDate
+            :iso-date="article.createdAt"
+            :label="`${$t('posted')}:`"
+            :show-label="false"
+          />
 
-          <PostDate v-if="article.updatedAt" :iso-date="article.updatedAt" :label="`${$t('post.updated')}:`" />
+          <PostDate
+            v-if="article.updatedAt"
+            :iso-date="article.updatedAt"
+            :label="`${$t('updated')}:`"
+          />
         </PostDetails>
       </TextGroup>
     </header>
@@ -52,7 +75,7 @@
     <TextGroup>
       <Collapsible v-if="article.showToc" class="px-4 mb-8">
         <template #summary>
-          {{ $t("post.toc") }}
+          {{ $t("toc") }}
         </template>
 
         <template #content>
@@ -75,16 +98,17 @@
             {{ article.author }}
           </div>
 
-          <PostDate :iso-date="article.createdAt">
-            <template #label>
-              {{ $t("post.posted") }}:
-            </template>
-          </PostDate>
+          <PostDate
+            :iso-date="article.createdAt"
+            :label="`${$t('posted')}:`"
+            :show-label="false"
+            :show-icon="false"
+          />
         </PostDetails>
 
         <div class="flex flex-wrap justify-center gap-2 mt-2">
           <TagLabel v-for="tag of article.tags" :key="tag">
-            {{ $t(`tags.${tag}`) }}
+            {{ $t(`tagList.${tag}`) }}
           </TagLabel>
         </div>
       </TextGroup>
