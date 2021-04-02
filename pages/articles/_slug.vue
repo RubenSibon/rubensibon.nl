@@ -30,7 +30,7 @@ nl:
         <div v-else :class="['min-h-screen-1/4']" />
 
         <div class="max-w-screen-sm post-header-front min-h-screen-1/4">
-          <TextGroup :no-padding-x="['sm']">
+          <TextGroup :no-padding-x-for-gt="['sm']">
             <TagLabel
               v-if="article.tags && article.tags[0]"
               :invert="true"
@@ -45,7 +45,7 @@ nl:
         </div>
       </div>
 
-      <TextGroup :no-padding-x="['sm']" class="max-w-screen-sm mx-auto">
+      <TextGroup :no-padding-x-for-gt="['sm']" class="max-w-screen-sm mx-auto">
         <ArticleLead>
           {{ article.description }}
         </ArticleLead>

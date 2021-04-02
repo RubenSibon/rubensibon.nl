@@ -23,7 +23,7 @@
     </picture>
 
     <figcaption>
-      <SvgCameraIcon /> {{ alt }}
+      <SvgPictureIcon /> {{ alt }}
     </figcaption>
   </figure>
 </template>
@@ -33,7 +33,7 @@ import { defineComponent, PropType } from "@vue/composition-api";
 
 export default defineComponent({
   components: {
-    SvgCameraIcon: () => import("~/assets/icons/camera.svg?inline"),
+    SvgPictureIcon: () => import("~/assets/icons/picture.svg?inline"),
   },
 
   props: {
@@ -74,12 +74,16 @@ export default defineComponent({
 
   figcaption {
     @apply
-      rounded-full absolute top-0 right-0 flex items-center gap-2 m-3 py-1 px-3 w-max max-w-none
+      flex items-center gap-2
+      rounded-full absolute top-0 right-0
+      m-3 py-1 px-3 w-max max-w-none
       bg-black bg-opacity-50 text-gray-200 text-xs
     ;
 
+    font-size: 0.675rem;
+
     svg {
-      @apply w-auto h-full;
+      @apply w-4 h-4;
 
       fill: currentColor;
     }
