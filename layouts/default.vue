@@ -19,9 +19,11 @@ import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   head () {
+    // @ts-ignore
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
+      // @ts-ignore
       title: `Ruben Sibon: ${this.$t("about.profession")}`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
@@ -32,11 +34,13 @@ export default defineComponent({
         {
           hid: "description",
           name: "description",
+          // @ts-ignore
           content: this.$t("description"),
         },
         {
           hid: "keywords",
           name: "keywords",
+          // @ts-ignore
           content: `${this.$t("tagList.software_dev")},${this.$t("tagList.programming")},${this.$t("tagList.javascript")},${this.$t("tagList.typescript")},${this.$t("tagList.vuejs")},${this.$t("tagList.nuxtjs")},${this.$t("tagList.react")},${this.$t("tagList.react_native")},${this.$t("tagList.python")},${this.$t("tagList.linux")},${this.$t("tagList.foss")},${this.$t("tagList.open_source")}`,
         },
       ],
@@ -87,9 +91,7 @@ h4,
 h5,
 h6,
 .heading {
-  @apply font-bold;
-
-  letter-spacing: 1px;
+  @apply font-bold tracking-wider;
 }
 
 h1,
@@ -137,9 +139,8 @@ h6,
 }
 
 blockquote {
-  @apply relative my-12 ml-4 sm:ml-8 font-serif text-2xl sm:text-3xl italic;
-
-  letter-spacing: 1px;
+  @apply relative my-12 ml-4 sm:ml-8
+    font-serif text-2xl sm:text-3xl italic tracking-wider;
 }
 
 @screen md {
@@ -147,7 +148,8 @@ blockquote {
     &::before {
       content: "“";
 
-      @apply block absolute -top-2 -left-9 w-max h-8 bg-transparent text-7xl text-gray-400 dark:text-gray-600 select-none;
+      @apply block absolute -top-2 -left-9 w-max h-8
+        bg-transparent text-7xl text-gray-400 dark:text-gray-600 select-none;
     }
   }
 }

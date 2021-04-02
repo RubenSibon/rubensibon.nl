@@ -18,7 +18,7 @@ nl:
     <header class="post-header">
       <div class="post-header-wrapper">
         <HeaderImage
-          v-if="article.img && article.img.src"
+          lazy-v-if="article.img && article.img.src"
           :alt="article.img.alt"
           :src-set="Object.entries(article.img.srcSet)"
           :src="article.img.src"
@@ -27,7 +27,7 @@ nl:
         />
 
         <!-- Below div ensures that the positioned header has height when there is no header image. -->
-        <div v-else :class="['min-h-screen-1/4']" />
+        <div lazy-v-else :class="['min-h-screen-1/4']" />
 
         <div class="max-w-screen-sm post-header-content min-h-screen-1/4">
           <TextGroup :no-padding-x-for-gt="['sm']">
@@ -119,16 +119,7 @@ nl:
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
-  components: {
-    ArticleLead: () => import("~/components/ArticleLead.vue"),
-    HeaderImage: () => import("~/components/HeaderImage.vue"),
-    PostDate: () => import("~/components/PostDate.vue"),
-    PostDetails: () => import("~/components/PostDetails.vue"),
-    PostReadingTime: () => import("~/components/PostReadingTime.vue"),
-    TextGroup: () => import("~/components/TextGroup.vue"),
-  },
-
-  async asyncData ({ $content, params }) {
+  async asyncData ({ $content, params }: any) {
     const article = await $content("articles", params.slug).fetch();
 
     return { article };
