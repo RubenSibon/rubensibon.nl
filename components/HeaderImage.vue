@@ -23,7 +23,7 @@
     </picture>
 
     <figcaption>
-      {{ alt }}
+      <SvgCameraIcon /> {{ alt }}
     </figcaption>
   </figure>
 </template>
@@ -32,6 +32,10 @@
 import { defineComponent, PropType } from "@vue/composition-api";
 
 export default defineComponent({
+  components: {
+    SvgCameraIcon: () => import("~/assets/icons/camera.svg?inline"),
+  },
+
   props: {
     alt: {
       type: String,
@@ -70,9 +74,15 @@ export default defineComponent({
 
   figcaption {
     @apply
-      absolute top-0 right-0 rounded-full m-3 py-1 px-3 w-max max-w-none
+      rounded-full absolute top-0 right-0 flex items-center gap-2 m-3 py-1 px-3 w-max max-w-none
       bg-black bg-opacity-50 text-gray-200 text-xs
     ;
+
+    svg {
+      @apply w-auto h-full;
+
+      fill: currentColor;
+    }
   }
 
   &.gradient {

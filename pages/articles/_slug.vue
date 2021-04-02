@@ -16,15 +16,12 @@
 
         <div class="max-w-screen-sm post-header-front min-h-screen-1/4">
           <TextGroup :no-padding-x="['sm']">
-            <div class="flex gap-2">
-              <TagLabel
-                v-if="article.tags && article.tags[0]"
-                :invert="true"
-                class="mb-2"
-              >
-                {{ $t(`tags.${article.tags[0]}`) }}
-              </TagLabel>
-            </div>
+            <TagLabel
+              v-if="article.tags && article.tags[0]"
+              :invert="true"
+            >
+              {{ $t(`tags.${article.tags[0]}`) }}
+            </TagLabel>
 
             <h1>
               {{ article.title }}

@@ -38,6 +38,8 @@ export default {
     "@nuxtjs/stylelint-module",
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
+    // https://github.com/nuxt-community/svg-module/
+    "@nuxtjs/svg",
   ],
 
   tailwindcss: {
