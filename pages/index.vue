@@ -11,7 +11,7 @@ en:
       Ruben Sibon
     </h1>
 
-    <h2 class="mt-4 mb-12 text-2xl font-semibold">
+    <h2 class="subtitle">
       {{ $t("software_dev") }}
     </h2>
 
@@ -47,5 +47,13 @@ en:
 <style lang="postcss" scoped>
 .home {
   @apply flex flex-col items-center justify-center flex-1 h-full text-center;
+
+  .title {
+    @apply mb-4;
+  }
+
+  .subtitle {
+    @apply mb-12 text-2xl font-semibold;
+  }
 }
 </style>

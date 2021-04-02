@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen mx-auto">
+  <div class="page">
     <Nuxt />
   </div>
 </template>
@@ -186,5 +186,11 @@ a {
   border-color: #1b518b;
   box-shadow: 0 0 0.5rem 0 #1b518b;
   color: #1b518b;
+}
+</style>
+
+<style lang="postcss" scoped>
+.page {
+  @apply h-screen min-h-screen mx-auto;
 }
 </style>
