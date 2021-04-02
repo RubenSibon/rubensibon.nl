@@ -4,12 +4,11 @@ description: "This is my first article using Nuxt Content. Amet occaecat elit en
 author: Ruben Sibon
 img:
   srcSet:
-    "(orientation: landscape)": https://placeimg.com/1024/686/tech
-    "(orientation: portrait) and (min-aspect-ratio: 9/16)": https://placeimg.com/600/800/tech
-    "(orientation: portrait) and (max-aspect-ratio: 9/16)": https://placeimg.com/544/812/tech
-  src: https://placeimg.com/800/800/tech
+    "(orientation: landscape)": https://placeimg.com/1920/720/tech
+    "(orientation: portrait) and (min-aspect-ratio: 9/16)": https://placeimg.com/1600/1400/tech
+    "(orientation: portrait) and (max-aspect-ratio: 9/16)": https://placeimg.com/1024/1600/tech
+  src: https://placeimg.com/2100/900/tech
   alt: Random stock photo
-  headerImgHeight: 2/3
 showToc: true
 tags: [cs, history, programming, c]
 ---

@@ -1,94 +1,88 @@
+<i18n lang="yaml">
+en:
+  posted: "Posted"
+  updated: "Edited"
+  toc: "Table of Contents"
+  category: "Category"
+  tags: "Tags"
+nl:
+  posted: "Geplaatst"
+  updated: "Aangepast"
+  toc: "Inhoudsopgave"
+  category: "Categorie"
+  tags: "Labels"
+</i18n>
+
 <template>
   <article class="post">
     <header class="post-header">
-      <div :class="['post-header-background', headerHeightClass]">
-        <figure
+      <div class="post-header-wrapper">
+        <HeaderImage
           v-if="article.img && article.img.src"
-          ref="postHeaderFigure"
-          class="gradient"
-          :label="article.img.alt"
-        >
-          <picture>
-            <source
-              v-for="[mediaQuery, src] in Object.entries(article.img.srcSet)"
-              :key="mediaQuery"
-              :media="mediaQuery"
-              :srcset="src"
-            >
-
-            <img
-              :src="article.img.src"
-              :alt="article.img.alt"
-              :class="[
-                headerHeightClass,
-                'min-w-screen-full',
-                article.img.bgColor ? `bg-${article.img.bgColor}` : null,
-              ]"
-            >
-          </picture>
-
-          <figcaption>
-            {{ article.img.alt }}
-          </figcaption>
-        </figure>
+          :alt="article.img.alt"
+          :src-set="Object.entries(article.img.srcSet)"
+          :src="article.img.src"
+          :bg-color="article.image && article.image.bgColor ? article.image.bgColor : null"
+          :gradient="true"
+        />
 
         <!-- Below div ensures that the positioned header has height when there is no header image. -->
-        <div v-else :class="[headerHeightClass, 'min-h-screen-1/4']" />
+        <div v-else :class="['min-h-screen-1/4']" />
 
-        <div :class="`post-header-front ${headerHeightClass} min-h-screen-1/4'`">
-          <div class="textgroup">
-            <div class="flex gap-2">
-              <div v-if="article.tags && article.tags[0]" class="label">
-                {{ $t(`tags.${article.tags[0]}`) }}
-              </div>
-            </div>
+        <div class="max-w-screen-sm post-header-content min-h-screen-1/4">
+          <TextGroup :no-padding-x-for-gt="['sm']">
+            <TagLabel
+              v-if="article.tags && article.tags[0]"
+              :invert="true"
+            >
+              {{ $t(`tagList.${article.tags[0]}`) }}
+            </TagLabel>
 
             <h1>
               {{ article.title }}
             </h1>
-          </div>
+          </TextGroup>
         </div>
       </div>
 
-      <div class="textgroup">
-        <p class="heading description">
+      <TextGroup :no-padding-x-for-gt="['sm']" class="max-w-screen-sm mx-auto">
+        <ArticleLead>
           {{ article.description }}
-        </p>
+        </ArticleLead>
 
-        <div class="details">
-          <div class="author">
+        <PostDetails>
+          <div>
             {{ article.author }}
           </div>
-          <div>
-            {{ $t("post.posted") }}: {{ formatDate(article.createdAt) }}
-          </div>
-          <div>
-            {{ article.updatedAt ? `${ $t("post.updated") }: ${formatDate(article.updatedAt)}` : null }}
-          </div>
-        </div>
-      </div>
+
+          <PostReadingTime :text="JSON.stringify(article)" />
+
+          <PostDate
+            :iso-date="article.createdAt"
+            :label="`${$t('posted')}:`"
+            :show-label="false"
+          />
+
+          <PostDate
+            v-if="article.updatedAt"
+            :iso-date="article.updatedAt"
+            :label="`${$t('updated')}:`"
+          />
+        </PostDetails>
+      </TextGroup>
     </header>
 
-    <div class="textgroup">
-      <details v-if="article.showToc" class="px-4 mb-4 toc">
-        <summary class="text-md h5">
-          {{ $t("post.toc") }}
-        </summary>
+    <TextGroup>
+      <Collapsible v-if="article.showToc" class="px-4 mb-8">
+        <template #summary>
+          {{ $t("toc") }}
+        </template>
 
-        <nav class="toc-nav">
-          <ul class="toc-list">
-            <li v-for="link of article.toc" :key="link.id" class="toc-list-item">
-              <NuxtLink
-                :to="`#${link.id}`"
-                :class="['toc-link', { 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }]"
-              >
-                {{ link.text }}
-              </NuxtLink>
-            </li>
-          </ul>
-        </nav>
-      </details>
-    </div>
+        <template #content>
+          <ToC :items="article.toc" class="mt-4" />
+        </template>
+      </Collapsible>
+    </TextGroup>
 
     <nuxt-content
       :document="article"
@@ -96,84 +90,69 @@
     />
 
     <footer class="post-footer">
-      <div class="textgroup">
-        <hr>
-      </div>
+      <TextGroup class="flex flex-col flex-wrap items-center text-center">
+        <hr class="w-3/4 mx-auto border-dashed">
+
+        <PostDetails class="items-center justify-center">
+          <div>
+            {{ article.author }}
+          </div>
+
+          <PostDate
+            :iso-date="article.createdAt"
+            :label="`${$t('posted')}:`"
+            :show-label="false"
+            :show-icon="false"
+          />
+        </PostDetails>
+
+        <div class="flex flex-wrap justify-center gap-2 mt-2">
+          <TagLabel v-for="tag of article.tags" :key="tag">
+            {{ $t(`tagList.${tag}`) }}
+          </TagLabel>
+        </div>
+      </TextGroup>
     </footer>
   </article>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
-import { DateTime, Interval } from "luxon";
 
 export default defineComponent({
+  components: {
+    ArticleLead: () => import("~/components/ArticleLead.vue"),
+    HeaderImage: () => import("~/components/HeaderImage.vue"),
+    PostDate: () => import("~/components/PostDate.vue"),
+    PostDetails: () => import("~/components/PostDetails.vue"),
+    PostReadingTime: () => import("~/components/PostReadingTime.vue"),
+  },
+
   async asyncData ({ $content, params }) {
     const article = await $content("articles", params.slug).fetch();
 
     return { article };
   },
 
-  computed: {
-    headerHeightClass () {
+  head () {
+    return {
       // @ts-ignore
-      if (this.article && this.article.img && this.article.img.headerImgHeight) {
-        // @ts-ignore
-        switch (this.article.img.headerImgHeight) {
-          case "1/4":
-            return "h-screen-1/4";
-          case "1/3":
-            return "h-screen-1/3";
-          case "1/2":
-            return "h-screen-1/2";
-          case "2/3":
-            return "h-screen-2/3";
-          case "3/4":
-            return "h-screen-3/4";
-          default:
-            return "h-screen-2/3";
-        }
-      } else {
-        return "h-screen-1/4";
-      }
-    },
-  },
-
-  methods: {
-    formatDate (date: string) {
-      const dateTime = DateTime.fromISO(date);
-      const now = DateTime.now();
-
-      const parseParams: {
-        year?: "numeric";
-        month?: "long";
-        day?: "numeric";
-      } = {};
-
-      if (dateTime.day === now.day) {
-        const hoursDuration = Math.ceil(Interval.fromDateTimes(dateTime, now).length("hours"));
-        const hoursAgo = isNaN(hoursDuration) ? 1 : hoursDuration;
-
-        return `${hoursAgo} ${this.$i18n.tc("post.hoursAgo", hoursAgo)}`;
-      } else {
-        parseParams.day = "numeric";
-      }
-
-      if (dateTime.daysInYear < now.daysInYear && dateTime.daysInYear >= now.daysInYear - 7) {
-        const daysDuration = Math.round(Interval.fromDateTimes(dateTime, now).length("days"));
-        const daysAgo = isNaN(daysDuration) ? 1 : daysDuration;
-
-        return `${daysAgo} ${this.$i18n.tc("post.daysAgo", daysAgo)}`;
-      } else {
-        parseParams.month = "long";
-      }
-
-      if (dateTime.year !== now.year) {
-        parseParams.year = "numeric";
-      }
-
-      return dateTime.setLocale(this.$i18n.locale).toLocaleString(parseParams);
-    },
+      title: `${this.article.title} | Ruben Sibon`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          // @ts-ignore
+          content: this.article.description,
+        },
+        {
+          hid: "keywords",
+          name: "keywords",
+          // @ts-ignore
+          content: this.article.tags,
+        },
+      ],
+    };
   },
 });
 </script>
@@ -182,113 +161,26 @@ export default defineComponent({
 .post {
   @apply flex flex-col items-center justify-start gap-3 mx-auto w-full;
 
-  .textgroup {
-    @apply flex flex-col gap-3 mx-auto w-full max-w-screen-sm px-6 md:px-8;
-  }
-
-  .label {
-    @apply
-      rounded-full mb-2 py-1 px-2 w-max
-      font-semibold text-xs bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100
-      select-none
-    ;
-
-    letter-spacing: 0.5px;
-  }
-
-  .toc {
-    @apply rounded mb-8 py-4 bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300;
-
-    transition: background 500ms ease-out, color 500ms ease-in;
-
-    .toc-nav {
-      @apply mt-2;
-    }
-
-    .toc-list {
-      @apply ml-6;
-    }
-
-    a:link,
-    a:hover,
-    a:focus {
-      @apply border-none text-gray-700 dark:text-gray-300;
-    }
-
-    &:hover,
-    &:focus-within {
-      @apply bg-gray-200 dark:bg-gray-800;
-
-      & summary {
-        @apply cursor-pointer outline-none;
-      }
-    }
-  }
-
-  figure {
-    @apply flex flex-col items-center justify-end relative mx-auto w-full max-w-screen-2xl overflow-x-hidden
-      text-center
-    ;
-
-    img,
-    figcaption {
-      @apply mx-auto;
-    }
-
-    figcaption {
-      @apply
-        absolute top-0 right-0 rounded-full m-3 py-1 px-3 w-max max-w-none
-        bg-black bg-opacity-50 text-gray-200 text-xs
-      ;
-    }
+  &-header,
+  &-footer {
+    @apply relative flex flex-col gap-5 w-full mb-8;
   }
 
   &-header {
-    @apply relative flex flex-col gap-5 w-full mb-8;
-
-    .post-header-background {
-      @apply relative bg-gray-50 dark:bg-gray-950;
+    .post-header-wrapper {
+      @apply relative flex justify-center bg-gray-50 dark:bg-gray-950;
     }
 
-    .post-header-front {
-      @apply
-        absolute top-0 left-auto
-        flex flex-col items-end justify-end
+    .post-header-content {
+      @apply absolute top-0 left-auto
+        flex flex-col items-start justify-end
         pb-8 w-full h-full
         text-gray-950 dark:text-gray-50
       ;
     }
-
-    .textgroup {
-      @apply sm:px-0;
-    }
-
-    .description {
-      @apply text-lg font-semibold text-gray-700 sm:text-xl dark:text-gray-300;
-    }
-
-    .details {
-      @apply
-        flex flex-wrap gap-3
-        my-2 w-max max-w-full
-        font-semibold text-xs text-gray-700 dark:text-gray-300
-      ;
-    }
-
-    .gradient {
-      &::after {
-        background: var(--bg-color, #f8fafc);
-        background: linear-gradient(to top, var(--bg-color, #010810) 10%, rgba(255, 255, 255, 0) 50%);
-        content: "";
-
-        @apply block absolute bottom-0 left-0 w-full h-full;
-      }
-    }
   }
 
-  &-body {
-    @apply relative;
-
+  &-body.nuxt-content {
     h1,
     h2,
     h3,
@@ -298,13 +190,12 @@ export default defineComponent({
       @apply relative mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
 
       .icon.icon-link {
-        @apply
-          block absolute top-0 -left-5 w-4 h-full
+        @apply block absolute top-0 -left-5 w-4 h-full
           bg-no-repeat bg-center text-gray-500
           opacity-0 invisible
         ;
 
-        background-image: url("https://raw.githubusercontent.com/sschoger/heroicons-ui/master/svg/icon-hashtag.svg");
+        background-image: url("~/assets/icons/link.svg");
       }
 
       a:link,
@@ -316,7 +207,7 @@ export default defineComponent({
       &:hover,
       &:focus {
         .icon.icon-link {
-          @apply opacity-50 visible;
+          @apply opacity-100 visible;
         }
       }
     }
@@ -340,7 +231,7 @@ export default defineComponent({
     }
 
     p {
-      @apply mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
+      @apply relative mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
 
       &:first-child::first-letter {
         @supports (initial-letter: 3) {
@@ -353,12 +244,13 @@ export default defineComponent({
       @apply md:p-0;
     }
 
-    figure {
-      @apply mx-auto w-full max-w-screen-lg;
+    p img {
+      @apply relative -left-6 sm:-left-8 rounded my-12 max-w-screen-lg;
 
-      img,
-      figcaption {
-        @apply w-full;
+      width: calc(100% + 3rem);
+
+      @screen sm {
+        width: calc(100% + 4rem);
       }
     }
 
@@ -371,7 +263,7 @@ export default defineComponent({
         @apply bg-gray-100 dark:bg-gray-900;
 
         code {
-          @apply dark:text-gray-50;
+          @apply text-gray-950 dark:text-gray-50;
 
           text-shadow: none;
 
@@ -382,7 +274,9 @@ export default defineComponent({
       }
 
       .filename {
-        @apply absolute right-0 text-gray-500 font-light z-10 mr-3 mt-2 text-sm;
+        @apply absolute right-0 text-gray-600 dark:text-gray-400 font-light z-10 mr-3 mt-2 text-sm;
+
+        letter-spacing: 1px;
 
         & ~ pre {
           @apply pt-10;

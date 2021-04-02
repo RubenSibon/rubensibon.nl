@@ -1,22 +1,27 @@
 export default async (_context, _locale) => {
   return await Promise.resolve({
     languages: "Languages",
-    post: {
-      hoursAgo: "hour ago | hours ago",
-      daysAgo: "day ago | days ago",
-      posted: "Posted",
-      updated: "Edited",
-      toc: "Table of Contents",
-      category: "Category",
-      tags: "Tags",
+    description: "Personal website of Ruben Sibon, a software developer from Amsterdam, The Netherlands.",
+    about: {
+      profession: "Software developer",
     },
-    profession: "Software developer",
-    tags: {
-      "software-development": "software development",
-      cs: "computer science",
+    tags: "Tags",
+    tagList: {
+      software_dev: "software development",
       programming: "programming",
-      c: "C",
+      cs: "computer science",
+      linux: "GNU/Linux",
+      foss: "Free & Open Source Software",
+      open_source: "Open Source",
       history: "history",
+      javascript: "JavaScript",
+      typescript: "TypeScript",
+      vuejs: "Vue.js",
+      nuxtjs: "Nuxt.js",
+      react: "React",
+      react_native: "React Native",
+      python: "Python",
+      c: "C",
     },
   });
 };

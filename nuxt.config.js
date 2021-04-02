@@ -11,7 +11,8 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
+      { hid: "description", name: "description", content: "Personal website of Ruben Sibon, a software developer from Amsterdam, The Netherlands." },
+      { name: "color-scheme", content: "dark light" },
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
@@ -37,6 +38,8 @@ export default {
     "@nuxtjs/stylelint-module",
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
+    // https://github.com/nuxt-community/svg-module/
+    "@nuxtjs/svg",
   ],
 
   tailwindcss: {
@@ -62,6 +65,10 @@ export default {
   // i18n configuration: https://i18n.nuxtjs.org/options-reference
   i18n: {
     vueI18nLoader: true,
+    vueI18n: {
+      fallbackRoot: true,
+      silentFallbackWarn: true,
+    },
     locales: [
       {
         code: "en",
