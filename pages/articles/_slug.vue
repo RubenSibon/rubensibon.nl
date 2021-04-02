@@ -179,7 +179,7 @@ export default defineComponent({
           opacity-0 invisible
         ;
 
-        background-image: url("https://raw.githubusercontent.com/sschoger/heroicons-ui/master/svg/icon-hashtag.svg");
+        background-image: url("~/assets/icons/link.svg");
       }
 
       a:link,
@@ -191,7 +191,7 @@ export default defineComponent({
       &:hover,
       &:focus {
         .icon.icon-link {
-          @apply opacity-50 visible;
+          @apply opacity-100 visible;
         }
       }
     }
