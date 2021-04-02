@@ -148,42 +148,16 @@ pre[class*=language-] {
 }
 
 a {
-  @apply relative border-b-2 border-purple-500 no-underline;
+  @apply relative border-b-2 border-purple-500
+    transition duration-[250] ease-in
+    hover:border-dotted hover:text-purple-500
+    focus:outline-none
+    focus-visible:rounded focus-visible:border-transparent focus-visible:border-dotted focus-visible:text-purple-500
+    no-underline;
 
-  transition: border 250ms ease-in, color 250ms ease-in;
-
-  &:hover,
-  &:focus {
-    @apply border-dotted text-purple-500;
+  &:focus-visible {
+    outline: 2px dotted currentColor;
   }
-
-  &:focus {
-    @apply rounded border-transparent;
-
-    outline: 2px solid currentColor;
-  }
-}
-
-.button--grey {
-  display: inline-block;
-  margin-left: 15px;
-  border: 1px solid #35495e;
-  border-radius: 4px;
-  padding: 10px 30px;
-  text-decoration: none;
-  color: #35495e;
-}
-
-.button--grey:hover {
-  box-shadow: 0 0 0.5rem 0 #1b518b;
-  background-color: #1b518b;
-  color: #fff;
-}
-
-.button--grey:focus {
-  border-color: #1b518b;
-  box-shadow: 0 0 0.5rem 0 #1b518b;
-  color: #1b518b;
 }
 </style>
 

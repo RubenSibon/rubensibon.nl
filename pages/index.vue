@@ -16,31 +16,46 @@ en:
     </h2>
 
     <div class="links">
-      <a
+      <Button
+        tag="a"
         href="https://github.com/RubenSibon"
         target="_blank"
         rel="noopener noreferrer"
-        class="button--grey"
       >
         GitHub
-      </a>
-      <a
+      </Button>
+
+      <Button
+        tag="a"
+        href="https://stackoverflow.com/story/rubensibon"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        StackOverflow
+      </Button>
+
+      <Button
+        tag="a"
         href="https://www.linkedin.com/in/rubensibon"
         target="_blank"
         rel="noopener noreferrer"
-        class="button--grey"
       >
         LinkedIn
-      </a>
-      <a
+      </Button>
+
+      <Button
+        tag="a"
         href="https://twitter.com/RubenSibon"
         target="_blank"
         rel="noopener noreferrer"
-        class="button--grey"
       >
         Twitter
-      </a>
+      </Button>
     </div>
+
+    <Button>
+      Just a button
+    </Button>
   </main>
 </template>
 
