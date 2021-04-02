@@ -16,7 +16,7 @@ nl:
 <template>
   <article class="post">
     <header class="post-header">
-      <div :class="['post-header-background']">
+      <div class="post-header-wrapper">
         <HeaderImage
           v-if="article.img && article.img.src"
           :alt="article.img.alt"
@@ -29,7 +29,7 @@ nl:
         <!-- Below div ensures that the positioned header has height when there is no header image. -->
         <div v-else :class="['min-h-screen-1/4']" />
 
-        <div class="max-w-screen-sm post-header-front min-h-screen-1/4">
+        <div class="max-w-screen-sm post-header-content min-h-screen-1/4">
           <TextGroup :no-padding-x-for-gt="['sm']">
             <TagLabel
               v-if="article.tags && article.tags[0]"
@@ -167,11 +167,11 @@ export default defineComponent({
   }
 
   &-header {
-    .post-header-background {
+    .post-header-wrapper {
       @apply relative flex justify-center bg-gray-50 dark:bg-gray-950;
     }
 
-    .post-header-front {
+    .post-header-content {
       @apply absolute top-0 left-auto
         flex flex-col items-start justify-end
         pb-8 w-full h-full
@@ -263,7 +263,7 @@ export default defineComponent({
         @apply bg-gray-100 dark:bg-gray-900;
 
         code {
-          @apply dark:text-gray-50;
+          @apply text-gray-950 dark:text-gray-50;
 
           text-shadow: none;
 
@@ -274,7 +274,9 @@ export default defineComponent({
       }
 
       .filename {
-        @apply absolute right-0 text-gray-500 font-light z-10 mr-3 mt-2 text-sm;
+        @apply absolute right-0 text-gray-600 dark:text-gray-400 font-light z-10 mr-3 mt-2 text-sm;
+
+        letter-spacing: 1px;
 
         & ~ pre {
           @apply pt-10;
