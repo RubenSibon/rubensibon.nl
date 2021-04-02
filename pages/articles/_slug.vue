@@ -42,17 +42,9 @@
 
           <PostReadingTime :text="JSON.stringify(article)" />
 
-          <PostDate :iso-date="article.createdAt">
-            <template #label>
-              {{ $t("post.posted") }}:
-            </template>
-          </PostDate>
+          <PostDate :iso-date="article.createdAt" :label="`${$t('post.posted')}:`" />
 
-          <PostDate v-if="article.updatedAt" :iso-date="article.updatedAt">
-            <template #label>
-              {{ $t("post.updated") }}:
-            </template>
-          </PostDate>
+          <PostDate v-if="article.updatedAt" :iso-date="article.updatedAt" :label="`${$t('post.updated')}:`" />
         </PostDetails>
       </TextGroup>
     </header>

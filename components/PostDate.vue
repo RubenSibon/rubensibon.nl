@@ -1,7 +1,9 @@
 <template>
-  <div class="post-date">
+  <div class="post-date" :title="`${label}: ${formattedDate}`">
+    <SvgCalendar />
+
     <span>
-      <slot name="label" />
+      {{ label }}
     </span>
 
     <span>
@@ -15,10 +17,18 @@ import { defineComponent } from "@vue/composition-api";
 import { DateTime, Interval } from "luxon";
 
 export default defineComponent({
+  components: {
+    SvgCalendar: () => import("~/assets/icons/calendar.svg?inline"),
+  },
+
   props: {
     isoDate: {
       type: String,
-      default: null,
+      default: new Date().toISOString(),
+    },
+    label: {
+      type: String,
+      default: "",
     },
   },
 
@@ -60,3 +70,15 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="postcss" scoped>
+.post-date {
+  @apply flex items-center gap-1;
+
+  svg {
+    @apply w-4 h-4;
+
+    fill: currentColor;
+  }
+}
+</style>

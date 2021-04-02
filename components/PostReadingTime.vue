@@ -1,15 +1,15 @@
 <i18n lang="yaml">
 en:
   words: "words"
-  minutesRead: "min. read"
+  minutes: "min. read"
 nl:
   words: "woorden"
-  minutesRead: "minuten leestijd | minuut leestijd | minuten leestijd"
+  minutes: "minuten | minuut | minuten"
 </i18n>
 
 <template>
-  <div class="post-reading-time" :title="`${readingStats.minutes} ${$tc('minutesRead', readingStats.minutes)}, ${$t('words')}: ~${readingStats.words}`">
-    {{ readingStats.minutes }} {{ $tc("minutesRead", readingStats.minutes) }}
+  <div class="post-reading-time" :title="`${readingStats.minutes} ${$tc('minutes', readingStats.minutes)}, ${$t('words')}: ~${words}`">
+    <SvgClock /> {{ readingStats.minutes }} {{ $tc("minutes", readingStats.minutes) }}
   </div>
 </template>
 
@@ -25,6 +25,10 @@ interface ReadingStats {
 };
 
 export default defineComponent({
+  components: {
+    SvgClock: () => import("~/assets/icons/clock.svg?inline"),
+  },
+
   props: {
     text: {
       type: String,
@@ -40,12 +44,32 @@ export default defineComponent({
 
       return stats;
     },
+
+    words (): number {
+      if (!this.readingStats || !this.readingStats.words) {
+        return 0;
+      }
+
+      if (this.readingStats.words > 9) {
+        return Math.round(this.readingStats.words / 10) * 10;
+      } else {
+        return this.readingStats.words;
+      }
+    },
   },
 });
 </script>
 
 <style lang="postcss" scoped>
 .post-reading-time {
+  @apply flex items-center gap-1;
+
+  svg {
+    @apply w-4 h-4;
+
+    fill: currentColor;
+  }
+
   &:hover {
     @apply cursor-help;
   }
