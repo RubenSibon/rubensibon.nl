@@ -157,7 +157,8 @@ pre {
 }
 
 code,
-pre {
+pre,
+pre[class*=language-] {
   @apply font-code;
 
   transition: background 500ms ease-in, color 500ms ease-in;

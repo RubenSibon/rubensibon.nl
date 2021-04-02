@@ -84,10 +84,9 @@ nl:
       </Collapsible>
     </TextGroup>
 
-    <nuxt-content
-      :document="article"
-      class="post-body"
-    />
+    <main class="max-w-screen-sm post-body">
+      <nuxt-content :document="article" />
+    </main>
 
     <footer class="post-footer">
       <TextGroup class="flex flex-col flex-wrap items-center text-center">
@@ -126,6 +125,7 @@ export default defineComponent({
     PostDate: () => import("~/components/PostDate.vue"),
     PostDetails: () => import("~/components/PostDetails.vue"),
     PostReadingTime: () => import("~/components/PostReadingTime.vue"),
+    TextGroup: () => import("~/components/TextGroup.vue"),
   },
 
   async asyncData ({ $content, params }) {
@@ -180,7 +180,7 @@ export default defineComponent({
     }
   }
 
-  &-body.nuxt-content {
+  &-body .nuxt-content-container {
     h1,
     h2,
     h3,
