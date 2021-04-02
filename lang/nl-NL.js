@@ -5,6 +5,7 @@ export default async (_context, _locale) => {
     about: {
       profession: "Softwareontwikkelaar",
     },
+    tags: "Labels",
     tagList: {
       software_dev: "softwareontwikkeling",
       programming: "programmeren",
