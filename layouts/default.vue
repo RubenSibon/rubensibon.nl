@@ -1,16 +1,6 @@
 <template>
-  <div class="min-h-screen mx-auto">
+  <div class="h-screen mx-auto">
     <Nuxt />
-
-    <footer class="flex items-center justify-start max-w-xl gap-3 p-5 mx-auto">
-      <span>{{ $t("languages") }}:</span>
-      <nuxt-link :to="switchLocalePath('en')">
-        English
-      </nuxt-link>
-      <nuxt-link :to="switchLocalePath('nl')">
-        Nederlands
-      </nuxt-link>
-    </footer>
   </div>
 </template>
 
