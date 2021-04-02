@@ -65,6 +65,10 @@ export default {
   // i18n configuration: https://i18n.nuxtjs.org/options-reference
   i18n: {
     vueI18nLoader: true,
+    vueI18n: {
+      fallbackRoot: true,
+      silentFallbackWarn: true,
+    },
     locales: [
       {
         code: "en",
