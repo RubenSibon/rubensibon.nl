@@ -23,7 +23,7 @@
     </picture>
 
     <figcaption>
-      <SvgPictureIcon v-if="showIcon" aria-hidden="true" /> {{ alt }}
+      <SvgIconPicture v-if="showIcon" aria-hidden="true" /> {{ alt }}
     </figcaption>
   </figure>
 </template>
@@ -33,7 +33,7 @@ import { defineComponent, PropType } from "@vue/composition-api";
 
 export default defineComponent({
   components: {
-    SvgPictureIcon: () => import("~/assets/icons/picture.svg?inline"),
+    SvgIconPicture: () => import("~/assets/icons/picture.svg?inline"),
   },
 
   props: {

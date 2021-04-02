@@ -1,6 +1,6 @@
 <template>
   <div :class="['label', { invert: invert }]">
-    <SvgTagIcon v-if="showIcon" aria-hidden="true" /> <slot />
+    <SvgIconTag v-if="showIcon" aria-hidden="true" /> <slot />
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   components: {
-    SvgTagIcon: () => import("~/assets/icons/tag.svg?inline"),
+    SvgIconTag: () => import("~/assets/icons/tag.svg?inline"),
   },
 
   props: {

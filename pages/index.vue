@@ -21,7 +21,12 @@ en:
         href="https://github.com/RubenSibon"
         target="_blank"
         rel="noopener noreferrer"
+        class="github"
       >
+        <template #before>
+          <SvgIconGithub />
+        </template>
+
         GitHub
       </Button>
 
@@ -30,7 +35,12 @@ en:
         href="https://stackoverflow.com/story/rubensibon"
         target="_blank"
         rel="noopener noreferrer"
+        class="stack-overflow"
       >
+        <template #before>
+          <SvgIconSO />
+        </template>
+
         StackOverflow
       </Button>
 
@@ -39,7 +49,12 @@ en:
         href="https://www.linkedin.com/in/rubensibon"
         target="_blank"
         rel="noopener noreferrer"
+        class="linkedin"
       >
+        <template #before>
+          <SvgIconLinkedIn />
+        </template>
+
         LinkedIn
       </Button>
 
@@ -48,16 +63,30 @@ en:
         href="https://twitter.com/RubenSibon"
         target="_blank"
         rel="noopener noreferrer"
+        class="twitter"
       >
+        <template #before>
+          <SvgIconTwitter />
+        </template>
+
         Twitter
       </Button>
     </div>
-
-    <Button>
-      Just a button
-    </Button>
   </main>
 </template>
+
+<script lang="ts">
+import { defineComponent } from "@vue/composition-api";
+
+export default defineComponent({
+  components: {
+    SvgIconGithub: () => import("~/assets/icons/github.svg?inline"),
+    SvgIconSO: () => import("~/assets/icons/stackoverflow.svg?inline"),
+    SvgIconLinkedIn: () => import("~/assets/icons/linkedin.svg?inline"),
+    SvgIconTwitter: () => import("~/assets/icons/twitter.svg?inline"),
+  },
+});
+</script>
 
 <style lang="postcss" scoped>
 .home {
@@ -69,6 +98,10 @@ en:
 
   .subtitle {
     @apply mb-12 text-2xl font-semibold;
+  }
+
+  .links {
+    @apply flex items-center justify-center gap-3 flex-wrap px-4;
   }
 }
 </style>

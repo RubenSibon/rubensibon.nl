@@ -28,13 +28,17 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .button {
-  @apply inline-block rounded-full border-2 border-current py-1 px-4
+  @apply inline-flex items-center justify-around gap-2 rounded-full border-2 border-current py-1 px-4
     transition duration-500 ease-in-out
     bg-transparent text-purple-500 no-underline
     hover:shadow-sm hover:border-solid hover:border-purple-500 dark:hover:border-current hover:bg-purple-500 hover:text-white
     focus:outline-none
     focus-visible:shadow-sm focus-visible:border-solid focus-visible:border-purple-500 dark:focus-visible:border-current focus-visible:bg-purple-500 focus-visible:text-white
   ;
+
+  svg {
+    @apply fill-current;
+  }
 
   &a {
     @apply active:border-current active:bg-transparent active:text-purple-500;

@@ -9,7 +9,7 @@ nl:
 
 <template>
   <div class="post-date" :title="`${label ? `${label}: ` : ''}${formattedDate}`">
-    <SvgCalendar v-if="showIcon" aria-hidden="true" />
+    <SvgIconCalendar v-if="showIcon" aria-hidden="true" />
 
     <span :class="`${ !showLabel ? 'sr-only' : '' }`">
       {{ label }}
@@ -27,7 +27,7 @@ import { DateTime, Interval } from "luxon";
 
 export default defineComponent({
   components: {
-    SvgCalendar: () => import("~/assets/icons/calendar.svg?inline"),
+    SvgIconCalendar: () => import("~/assets/icons/calendar.svg?inline"),
   },
 
   props: {

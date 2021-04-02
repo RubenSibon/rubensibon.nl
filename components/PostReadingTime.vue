@@ -16,7 +16,7 @@ nl:
     class="post-reading-time"
     :title="`${$t('about')} ${readingStats.minutes} ${$tc('minutes', readingStats.minutes)} ${$t('reading_time')} (~${words} ${$t('words')})`"
   >
-    <SvgClock v-if="showIcon" aria-hidden="true" />
+    <SvgIconClock v-if="showIcon" aria-hidden="true" />
     {{ readingStats.minutes }} {{ $tc("minutes", readingStats.minutes) }}
     <span :class="`${ !showLabel ? 'sr-only' : '' }`">{{ $t('reading_time') }}</span>
   </div>
@@ -35,7 +35,7 @@ interface ReadingStats {
 
 export default defineComponent({
   components: {
-    SvgClock: () => import("~/assets/icons/clock.svg?inline"),
+    SvgIconClock: () => import("~/assets/icons/clock.svg?inline"),
   },
 
   props: {
