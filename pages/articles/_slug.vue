@@ -27,7 +27,7 @@ nl:
         />
 
         <div class="post-header-content">
-          <TextGroup :no-padding-x-for-gt="['sm']">
+          <TextGroup class="px-6 sm:px-0">
             <TagLabel
               v-if="article.tags && article.tags[0]"
               :invert="true"
@@ -42,7 +42,7 @@ nl:
         </div>
       </div>
 
-      <TextGroup :no-padding-x-for-gt="['sm']" class="max-w-screen-sm mx-auto">
+      <TextGroup class="max-w-screen-sm px-6 mx-auto sm:px-0">
         <ArticleLead>
           {{ article.description }}
         </ArticleLead>
@@ -69,7 +69,7 @@ nl:
       </TextGroup>
     </header>
 
-    <TextGroup>
+    <TextGroup class="px-6">
       <Collapsible v-if="article.showToc" class="px-4 mb-8">
         <template #summary>
           {{ $t("toc") }}
