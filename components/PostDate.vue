@@ -11,7 +11,7 @@ nl:
   <div class="post-date" :title="`${label ? `${label}: ` : ''}${formattedDate}`">
     <SvgCalendar v-if="showIcon" aria-hidden="true" />
 
-    <span :class="{ 'sr-only': !showLabel }">
+    <span :class="`${ !showLabel ? 'sr-only' : '' }`">
       {{ label }}
     </span>
 
@@ -93,9 +93,7 @@ export default defineComponent({
   @apply flex items-center gap-1;
 
   svg {
-    @apply w-4 h-4;
-
-    fill: currentColor;
+    @apply w-4 h-4 fill-current;
   }
 }
 </style>

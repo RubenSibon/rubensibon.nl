@@ -87,9 +87,7 @@ export default defineComponent({
     font-size: 0.675rem;
 
     svg {
-      @apply w-4 h-4;
-
-      fill: currentColor;
+      @apply w-4 h-4 fill-current;
     }
   }
 

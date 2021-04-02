@@ -1,22 +1,24 @@
 <i18n lang="yaml">
 en:
-  words: "Words"
+  words: "words"
   minutes: "min. read"
   about: "About"
-  reading_time: ""
+  reading_time: " "
 nl:
-  words: "Woorden"
+  words: "woorden"
   minutes: "minuten | minuut | minuten"
-  about: "Ongeveer"
+  about: "Circa"
   reading_time: "leestijd"
 </i18n>
 
 <template>
   <div
     class="post-reading-time"
-    :title="`${$t('about')} ${readingStats.minutes} ${$tc('minutes', readingStats.minutes)} ${$t('reading_time')}; \n${$t('words')}: ${$t('about').toLowerCase()} ${words}.`"
+    :title="`${$t('about')} ${readingStats.minutes} ${$tc('minutes', readingStats.minutes)} ${$t('reading_time')} (~${words} ${$t('words')})`"
   >
-    <SvgClock v-if="showIcon" aria-hidden="true" /> {{ readingStats.minutes }} {{ $tc("minutes", readingStats.minutes) }}
+    <SvgClock v-if="showIcon" aria-hidden="true" />
+    {{ readingStats.minutes }} {{ $tc("minutes", readingStats.minutes) }}
+    <span :class="`${ !showLabel ? 'sr-only' : '' }`">{{ $t('reading_time') }}</span>
   </div>
 </template>
 
@@ -40,6 +42,10 @@ export default defineComponent({
     text: {
       type: String,
       default: "",
+    },
+    showLabel: {
+      type: Boolean,
+      default: false,
     },
     showIcon: {
       type: Boolean,
@@ -76,9 +82,7 @@ export default defineComponent({
   @apply flex items-center gap-1;
 
   svg {
-    @apply w-4 h-4;
-
-    fill: currentColor;
+    @apply w-4 h-4 fill-current;
   }
 
   &:hover {

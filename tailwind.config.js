@@ -39,6 +39,10 @@ module.exports = {
       fontWeight: {
         semibold: "550",
       },
+      height: {
+        min: "min-content",
+        max: "max-content",
+      },
       minHeight: {
         "screen-1/4": "25vh",
         "screen-1/3": "33.333333vh",
