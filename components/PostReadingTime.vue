@@ -16,7 +16,7 @@ nl:
     class="post-reading-time"
     :title="`${$t('about')} ${readingStats.minutes} ${$tc('minutes', readingStats.minutes)} ${$t('reading_time')}; \n${$t('words')}: ${$t('about').toLowerCase()} ${words}.`"
   >
-    <SvgClock /> {{ readingStats.minutes }} {{ $tc("minutes", readingStats.minutes) }}
+    <SvgClock v-if="showIcon" aria-hidden="true" /> {{ readingStats.minutes }} {{ $tc("minutes", readingStats.minutes) }}
   </div>
 </template>
 
@@ -40,6 +40,10 @@ export default defineComponent({
     text: {
       type: String,
       default: "",
+    },
+    showIcon: {
+      type: Boolean,
+      default: true,
     },
   },
 

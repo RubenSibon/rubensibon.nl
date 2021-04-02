@@ -23,7 +23,7 @@
     </picture>
 
     <figcaption>
-      <SvgPictureIcon /> {{ alt }}
+      <SvgPictureIcon v-if="showIcon" aria-hidden="true" /> {{ alt }}
     </figcaption>
   </figure>
 </template>
@@ -56,6 +56,10 @@ export default defineComponent({
     gradient: {
       type: Boolean,
       default: false,
+    },
+    showIcon: {
+      type: Boolean,
+      default: true,
     },
   },
 });

@@ -1,6 +1,6 @@
 <template>
   <div :class="['label', { invert: invert }]">
-    <SvgTagIcon /> <slot />
+    <SvgTagIcon v-if="showIcon" aria-hidden="true" /> <slot />
   </div>
 </template>
 
@@ -16,6 +16,10 @@ export default defineComponent({
     invert: {
       type: Boolean,
       default: false,
+    },
+    showIcon: {
+      type: Boolean,
+      default: true,
     },
   },
 });

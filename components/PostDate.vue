@@ -9,7 +9,7 @@ nl:
 
 <template>
   <div class="post-date" :title="`${label ? `${label}: ` : ''}${formattedDate}`">
-    <SvgCalendar v-if="showIcon" />
+    <SvgCalendar v-if="showIcon" aria-hidden="true" />
 
     <span :class="{ 'sr-only': !showLabel }">
       {{ label }}
