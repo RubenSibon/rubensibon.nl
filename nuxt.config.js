@@ -13,9 +13,12 @@ export default {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "description", name: "description", content: "Personal website of Ruben Sibon, a software developer from Amsterdam, The Netherlands." },
       { name: "color-scheme", content: "dark light" },
+      { name: "msapplication-TileColor", content: "#ffffff" },
+      { name: "msapplication-TileImage", content: "/little-penguin-144.png" },
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "apple-touch-icon-precomposed", href: "/little-penguin-152.png" },
     ],
   },
 
@@ -85,7 +88,7 @@ export default {
     ],
     lazy: true,
     langDir: "lang/",
-    defaultLocale: "nl",
+    defaultLocale: "en",
     strategy: "prefix_and_default",
     seo: false,
   },
