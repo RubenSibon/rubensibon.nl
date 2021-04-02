@@ -2,11 +2,10 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   purge: {
-    content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+    content: ["./**/index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
     options: {
       keyframes: true,
     },
-    safelist: [],
   },
   darkMode: "media",
   theme: {
@@ -39,6 +38,10 @@ module.exports = {
       },
       fontWeight: {
         semibold: "550",
+      },
+      height: {
+        min: "min-content",
+        max: "max-content",
       },
       minHeight: {
         "screen-1/4": "25vh",

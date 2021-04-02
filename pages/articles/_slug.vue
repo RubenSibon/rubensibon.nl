@@ -17,7 +17,7 @@ nl:
   <article class="post">
     <header class="post-header">
       <div class="post-header-wrapper">
-        <HeaderImage
+        <LazyHeaderImage
           v-if="article.img && article.img.src"
           :alt="article.img.alt"
           :src-set="Object.entries(article.img.srcSet)"
@@ -26,10 +26,7 @@ nl:
           :gradient="true"
         />
 
-        <!-- Below div ensures that the positioned header has height when there is no header image. -->
-        <div v-else :class="['min-h-screen-1/4']" />
-
-        <div class="max-w-screen-sm post-header-content min-h-screen-1/4">
+        <div class="post-header-content">
           <TextGroup :no-padding-x-for-gt="['sm']">
             <TagLabel
               v-if="article.tags && article.tags[0]"
@@ -84,28 +81,15 @@ nl:
       </Collapsible>
     </TextGroup>
 
-    <main class="max-w-screen-sm post-body">
+    <main class="post-body">
       <nuxt-content :document="article" />
     </main>
 
     <footer class="post-footer">
       <TextGroup class="flex flex-col flex-wrap items-center text-center">
-        <hr class="w-3/4 mx-auto border-dashed">
+        <hr class="w-3/4 mx-auto mb-1">
 
-        <PostDetails class="items-center justify-center">
-          <div>
-            {{ article.author }}
-          </div>
-
-          <PostDate
-            :iso-date="article.createdAt"
-            :label="`${$t('posted')}:`"
-            :show-label="false"
-            :show-icon="false"
-          />
-        </PostDetails>
-
-        <div class="flex flex-wrap justify-center gap-2 mt-2">
+        <div class="flex flex-wrap justify-center gap-2 mt-2 mb-8">
           <TagLabel v-for="tag of article.tags" :key="tag">
             {{ $t(`tagList.${tag}`) }}
           </TagLabel>
@@ -119,16 +103,7 @@ nl:
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
-  components: {
-    ArticleLead: () => import("~/components/ArticleLead.vue"),
-    HeaderImage: () => import("~/components/HeaderImage.vue"),
-    PostDate: () => import("~/components/PostDate.vue"),
-    PostDetails: () => import("~/components/PostDetails.vue"),
-    PostReadingTime: () => import("~/components/PostReadingTime.vue"),
-    TextGroup: () => import("~/components/TextGroup.vue"),
-  },
-
-  async asyncData ({ $content, params }) {
+  async asyncData ({ $content, params }: any) {
     const article = await $content("articles", params.slug).fetch();
 
     return { article };
@@ -168,118 +143,121 @@ export default defineComponent({
 
   &-header {
     .post-header-wrapper {
-      @apply relative flex justify-center bg-gray-50 dark:bg-gray-950;
+      @apply relative flex justify-center min-h-screen-1/4 bg-gray-50 dark:bg-gray-950;
     }
 
     .post-header-content {
       @apply absolute top-0 left-auto
         flex flex-col items-start justify-end
-        pb-8 w-full h-full
+        pb-8 max-w-screen-sm w-full min-h-screen-1/4 h-full
         text-gray-950 dark:text-gray-50
       ;
     }
   }
 
-  &-body .nuxt-content-container {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      @apply relative mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
+  &-body {
+    @apply max-w-screen-sm mb-8;
 
-      .icon.icon-link {
-        @apply block absolute top-0 -left-5 w-4 h-full
-          bg-no-repeat bg-center text-gray-500
-          opacity-0 invisible
-        ;
+    .nuxt-content-container {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        @apply relative mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
 
-        background-image: url("~/assets/icons/link.svg");
-      }
-
-      a:link,
-      a:hover,
-      a:focus {
-        @apply border-none text-gray-500;
-      }
-
-      &:hover,
-      &:focus {
         .icon.icon-link {
-          @apply opacity-100 visible;
+          @apply block absolute top-0 -left-5 w-4 h-full
+            bg-no-repeat bg-center text-gray-500
+            opacity-0 invisible
+          ;
+
+          background-image: url("~/assets/icons/link.svg");
         }
-      }
-    }
 
-    h2 {
-      @apply mb-4 text-2xl;
-    }
-
-    h3 {
-      @apply mb-3 text-xl;
-    }
-
-    h4 {
-      @apply mb-3 text-lg;
-    }
-
-    h4,
-    h5,
-    h6 {
-      @apply mb-2;
-    }
-
-    p {
-      @apply relative mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
-
-      &:first-child::first-letter {
-        @supports (initial-letter: 3) {
-          initial-letter: 3;
+        a:link,
+        a:hover,
+        a:focus {
+          @apply border-none text-gray-500;
         }
-      }
-    }
 
-    blockquote p {
-      @apply md:p-0;
-    }
-
-    p img {
-      @apply relative -left-6 sm:-left-8 rounded my-12 max-w-screen-lg;
-
-      width: calc(100% + 3rem);
-
-      @screen sm {
-        width: calc(100% + 4rem);
-      }
-    }
-
-    .nuxt-content-highlight {
-      @apply relative my-8;
-
-      max-width: 100vw;
-
-      pre {
-        @apply bg-gray-100 dark:bg-gray-900;
-
-        code {
-          @apply text-gray-950 dark:text-gray-50;
-
-          text-shadow: none;
-
-          .token.operator {
-            @apply bg-transparent;
+        &:hover,
+        &:focus {
+          .icon.icon-link {
+            @apply opacity-100 visible;
           }
         }
       }
 
-      .filename {
-        @apply absolute right-0 text-gray-600 dark:text-gray-400 font-light z-10 mr-3 mt-2 text-sm;
+      h2 {
+        @apply mb-4 text-2xl;
+      }
 
-        letter-spacing: 1px;
+      h3 {
+        @apply mb-3 text-xl;
+      }
 
-        & ~ pre {
-          @apply pt-10;
+      h4 {
+        @apply mb-3 text-lg;
+      }
+
+      h4,
+      h5,
+      h6 {
+        @apply mb-2;
+      }
+
+      p {
+        @apply relative mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
+
+        &:first-child::first-letter {
+          @supports (initial-letter: 3) {
+            initial-letter: 3;
+          }
+        }
+      }
+
+      blockquote p {
+        @apply md:p-0;
+      }
+
+      p img {
+        @apply relative -left-6 sm:-left-8 rounded my-12 max-w-screen-lg;
+
+        width: calc(100% + 3rem);
+
+        @screen sm {
+          width: calc(100% + 4rem);
+        }
+      }
+
+      .nuxt-content-highlight {
+        @apply relative my-8;
+
+        max-width: 100vw;
+
+        pre {
+          @apply bg-gray-100 dark:bg-gray-900;
+
+          code {
+            @apply text-gray-950 dark:text-gray-50;
+
+            text-shadow: none;
+
+            .token.operator {
+              @apply bg-transparent;
+            }
+          }
+        }
+
+        .filename {
+          @apply absolute right-0 z-10 mt-2 mr-3
+            font-light text-gray-600 dark:text-gray-400 text-sm tracking-widest;
+
+          & ~ pre {
+            @apply pt-10;
+          }
         }
       }
     }

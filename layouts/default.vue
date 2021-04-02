@@ -1,16 +1,6 @@
 <template>
-  <div class="flex flex-col items-center justify-start min-h-screen mx-auto">
+  <div class="h-screen mx-auto">
     <Nuxt />
-
-    <footer class="flex items-center justify-start max-w-xl gap-3 p-5 mx-auto">
-      <span>{{ $t("languages") }}:</span>
-      <nuxt-link :to="switchLocalePath('en')">
-        English
-      </nuxt-link>
-      <nuxt-link :to="switchLocalePath('nl')">
-        Nederlands
-      </nuxt-link>
-    </footer>
   </div>
 </template>
 
@@ -87,9 +77,7 @@ h4,
 h5,
 h6,
 .heading {
-  @apply font-bold;
-
-  letter-spacing: 1px;
+  @apply font-bold tracking-wide;
 }
 
 h1,
@@ -124,22 +112,17 @@ h4,
 
 h5,
 .h5 {
-  @apply font-semibold;
-
-  letter-spacing: 0.5px;
+  @apply font-semibold tracking-wide;
 }
 
 h6,
 .h6 {
-  @apply font-normal;
-
-  letter-spacing: 0.5px;
+  @apply font-normal tracking-wide;
 }
 
 blockquote {
-  @apply relative my-12 ml-4 sm:ml-8 font-serif text-2xl sm:text-3xl italic;
-
-  letter-spacing: 1px;
+  @apply relative my-12 ml-4 sm:ml-8
+    font-serif text-2xl sm:text-3xl italic tracking-wide;
 }
 
 @screen md {
@@ -147,7 +130,8 @@ blockquote {
     &::before {
       content: "“";
 
-      @apply block absolute -top-2 -left-9 w-max h-8 bg-transparent text-7xl text-gray-400 dark:text-gray-600 select-none;
+      @apply block absolute -top-2 -left-9 w-max h-8
+        bg-transparent text-7xl text-gray-400 dark:text-gray-600 select-none;
     }
   }
 }
