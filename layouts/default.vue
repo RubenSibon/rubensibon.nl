@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-start min-h-screen mx-auto">
+  <div class="min-h-screen mx-auto">
     <Nuxt />
 
     <footer class="flex items-center justify-start max-w-xl gap-3 p-5 mx-auto">
@@ -19,11 +19,9 @@ import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   head () {
-    // @ts-ignore
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      // @ts-ignore
       title: `Ruben Sibon: ${this.$t("about.profession")}`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
@@ -34,13 +32,11 @@ export default defineComponent({
         {
           hid: "description",
           name: "description",
-          // @ts-ignore
           content: this.$t("description"),
         },
         {
           hid: "keywords",
           name: "keywords",
-          // @ts-ignore
           content: `${this.$t("tagList.software_dev")},${this.$t("tagList.programming")},${this.$t("tagList.javascript")},${this.$t("tagList.typescript")},${this.$t("tagList.vuejs")},${this.$t("tagList.nuxtjs")},${this.$t("tagList.react")},${this.$t("tagList.react_native")},${this.$t("tagList.python")},${this.$t("tagList.linux")},${this.$t("tagList.foss")},${this.$t("tagList.open_source")}`,
         },
       ],
@@ -91,7 +87,7 @@ h4,
 h5,
 h6,
 .heading {
-  @apply font-bold tracking-wider;
+  @apply font-bold tracking-wide;
 }
 
 h1,
@@ -126,21 +122,17 @@ h4,
 
 h5,
 .h5 {
-  @apply font-semibold;
-
-  letter-spacing: 0.5px;
+  @apply font-semibold tracking-wide;
 }
 
 h6,
 .h6 {
-  @apply font-normal;
-
-  letter-spacing: 0.5px;
+  @apply font-normal tracking-wide;
 }
 
 blockquote {
   @apply relative my-12 ml-4 sm:ml-8
-    font-serif text-2xl sm:text-3xl italic tracking-wider;
+    font-serif text-2xl sm:text-3xl italic tracking-wide;
 }
 
 @screen md {

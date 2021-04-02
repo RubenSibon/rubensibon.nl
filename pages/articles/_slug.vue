@@ -84,26 +84,13 @@ nl:
       </Collapsible>
     </TextGroup>
 
-    <main class="max-w-screen-sm post-body">
+    <main class="max-w-screen-sm mb-8 post-body">
       <nuxt-content :document="article" />
     </main>
 
     <footer class="post-footer">
       <TextGroup class="flex flex-col flex-wrap items-center text-center">
-        <hr class="w-3/4 mx-auto border-dashed">
-
-        <PostDetails class="items-center justify-center">
-          <div>
-            {{ article.author }}
-          </div>
-
-          <PostDate
-            :iso-date="article.createdAt"
-            :label="`${$t('posted')}:`"
-            :show-label="false"
-            :show-icon="false"
-          />
-        </PostDetails>
+        <hr class="w-3/4 mx-auto mb-1">
 
         <div class="flex flex-wrap justify-center gap-2 mt-2">
           <TagLabel v-for="tag of article.tags" :key="tag">
@@ -265,9 +252,8 @@ export default defineComponent({
       }
 
       .filename {
-        @apply absolute right-0 text-gray-600 dark:text-gray-400 font-light z-10 mr-3 mt-2 text-sm;
-
-        letter-spacing: 1px;
+        @apply absolute right-0 z-10 mt-2 mr-3
+          font-light text-gray-600 dark:text-gray-400 text-sm tracking-widest;
 
         & ~ pre {
           @apply pt-10;
