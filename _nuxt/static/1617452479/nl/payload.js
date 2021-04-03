@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/nl", {data:[{locale:"nl"}],fetch:{},mutations:void 0});
