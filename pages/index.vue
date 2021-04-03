@@ -7,7 +7,7 @@ en:
 
 <template>
   <main class="🏡">
-    <div class="😼">
+    <div class="🧔">
       <h1 class="title">
         {{ content.title }}
       </h1>
@@ -29,7 +29,7 @@ en:
           class="github"
         >
           <template #before>
-            <SvgIconGithub />
+            <SvgIconGithub aria-hidden />
           </template>
 
           GitHub
@@ -43,7 +43,7 @@ en:
           class="stack-overflow"
         >
           <template #before>
-            <SvgIconSO />
+            <SvgIconSO aria-hidden />
           </template>
 
           StackOverflow
@@ -57,7 +57,7 @@ en:
           class="linkedin"
         >
           <template #before>
-            <SvgIconLinkedIn />
+            <SvgIconLinkedIn aria-hidden />
           </template>
 
           LinkedIn
@@ -71,7 +71,7 @@ en:
           class="twitter"
         >
           <template #before>
-            <SvgIconTwitter />
+            <SvgIconTwitter aria-hidden />
           </template>
 
           Twitter
@@ -80,13 +80,15 @@ en:
     </div>
 
     <nav class="nav">
-      <nuxt-link to="projects" class="link horizontal h2">
-        <SvgIconChevronLeft />
+      <nuxt-link to="projects" class="link horizontal">
+        <SvgIconChevronLeft aria-hidden />
+        <span class="sr-only">⬅&nbsp;</span>
         Projects
       </nuxt-link>
-      <nuxt-link to="articles" class="link horizontal h2">
+      <nuxt-link to="articles" class="link horizontal">
         Articles
-        <SvgIconChevronRight />
+        <SvgIconChevronRight aria-hidden />
+        <span class="sr-only">&nbsp;➡</span>
       </nuxt-link>
     </nav>
   </main>
@@ -127,38 +129,51 @@ export default defineComponent({
 .🏡 {
   @apply flex flex-col items-center justify-between h-full text-center;
 
-  .😼 {
-    @apply flex flex-col items-center justify-center flex-grow max-w-screen-md;
+  .🧔 {
+    @apply flex flex-col items-center justify-center flex-grow pt-8 px-4 md:px-8 max-w-screen-md lg:max-w-screen-lg;
 
     .title {
       @apply mb-4;
     }
 
     .subtitle {
-      @apply mb-8 text-2xl font-semibold;
+      @apply mb-4 sm:mb-8 text-2xl font-semibold;
     }
 
     .description {
-      @apply mb-8;
+      @apply mb-8 max-w-screen-sm md:max-w-screen-md;
     }
 
     .buttons-social {
-      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 px-4 w-full md:w-auto;
+      @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 px-4 w-full md:w-auto;
     }
   }
 
   .nav {
-    @apply flex flex-col sm:flex-row flex-shrink items-center justify-around my-16 w-full;
+    @apply flex flex-wrap flex-shrink justify-evenly mb-16 py-8 px-4 md:px-8 w-full sm:text-3xl md:text-4xl;
+
+    &:first-child {
+      @apply justify-self-start;
+    }
+
+    &:last-child {
+      @apply justify-self-end;
+    }
 
     .link {
       @apply flex items-center;
 
       svg {
-        @apply w-12 h-12 fill-current;
+        @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
       }
 
       &.vertical {
         @apply flex flex-col;
+      }
+
+      &:link,
+      &:visited {
+        @apply border-none;
       }
     }
   }
