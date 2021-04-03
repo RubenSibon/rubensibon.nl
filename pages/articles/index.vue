@@ -1,5 +1,9 @@
 <template>
-  <main class="articles">
+  <main
+    ref="main"
+    v-pan="onPan"
+    class="articles"
+  >
     <h1>{{ $t("Articles") }}</h1>
 
     <nuxt-link
@@ -66,6 +70,16 @@ export default defineComponent({
   methods: {
     formatDate (date: Date) {
       return new Date(date).toLocaleDateString("en", { year: "numeric", month: "long", day: "numeric" });
+    },
+
+    onPan (event: any) {
+      const vpWidth = window.innerWidth;
+
+      if (Math.abs(event.deltaX) > vpWidth * 0.5) {
+        if (event.deltaX > 0) {
+          this.$router.push(this.localePath("/"));
+        }
+      }
     },
   },
 });

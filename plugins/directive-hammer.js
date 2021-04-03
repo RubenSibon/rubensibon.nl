@@ -19,27 +19,27 @@ Vue.directive("pan", {
 /*
  * Swiping
  */
-Vue.directive("swipe", {
-  bind (el, binding) {
-    if (typeof binding.value === "function") {
-      const mc = new Hammer(el);
+// Vue.directive("swipe", {
+//   bind (el, binding) {
+//     if (typeof binding.value === "function") {
+//       const mc = new Hammer(el);
 
-      mc.get("swipe").set({ direction: Hammer.DIRECTION_HORIZONTAL });
+//       mc.get("swipe").set({ direction: Hammer.DIRECTION_HORIZONTAL });
 
-      mc.on("swipe", binding.value);
-    }
-  },
-});
+//       mc.on("swipe", binding.value);
+//     }
+//   },
+// });
 
 /*
  * Tapping
  */
-Vue.directive("tap", {
-  bind (el, binding) {
-    if (typeof binding.value === "function") {
-      const mc = new Hammer(el);
+// Vue.directive("tap", {
+//   bind (el, binding) {
+//     if (typeof binding.value === "function") {
+//       const mc = new Hammer(el);
 
-      mc.on("tap", binding.value);
-    }
-  },
-});
+//       mc.on("tap", binding.value);
+//     }
+//   },
+// });

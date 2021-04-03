@@ -6,7 +6,11 @@ en:
 </i18n>
 
 <template>
-  <main class="🏡">
+  <main
+    ref="main"
+    v-pan="onPan"
+    class="🏡"
+  >
     <section class="screen screen-1">
       <div class="🧔">
         <h1 class="title">
@@ -38,11 +42,11 @@ en:
         </div>
 
         <div class="vertical">
-          <span class="link">
+          <a href="" :alt="$t('More')" class="link">
             {{ $t("More") }}
             <SvgIconChevronDown aria-hidden />
             <span class="sr-only">⬇</span>
-          </span>
+          </a>
         </div>
       </nav>
     </section>
@@ -112,7 +116,21 @@ en:
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
+import { TweenMax, Elastic } from "gsap";
+
 import CONTENT from "./index.json";
+
+interface Data {
+  content: {
+    title: string;
+    subTitle: string;
+    description: {
+      en: string;
+      nl: string;
+    };
+  };
+  currentOffset: number;
+};
 
 export default defineComponent({
   components: {
@@ -133,10 +151,62 @@ export default defineComponent({
     };
   },
 
-  data () {
+  data (): Data {
     return {
       content: CONTENT,
+      currentOffset: 0,
     };
+  },
+
+  computed: {
+    overflowRatio () {
+      return (this.$refs.main as HTMLElement).scrollWidth / (this.$refs.main as HTMLElement).offsetWidth;
+    },
+  },
+
+  methods: {
+    onPan (event: any) {
+      const vpWidth = window.innerWidth;
+      const dragOffset = 100 * event.deltaX / window.innerWidth;
+      const transform = this.currentOffset + dragOffset;
+
+      (this.$refs.main as HTMLElement).style.setProperty("--x", transform.toString());
+
+      if (event.isFinal) {
+        this.currentOffset = transform;
+
+        const maxScroll = 100 - this.overflowRatio * 100;
+        let finalOffset = this.currentOffset;
+
+        if (this.currentOffset <= maxScroll) {
+          finalOffset = maxScroll;
+        } else if (this.currentOffset >= 0) {
+          finalOffset = 0;
+        }
+
+        // Bounce back animation
+        TweenMax.fromTo(
+          (this.$refs.main as HTMLElement),
+          0.4,
+          { "--x": this.currentOffset },
+          {
+            "--x": finalOffset,
+            ease: Elastic.easeOut.config(1, 0.8),
+            onComplete: () => {
+              this.currentOffset = finalOffset;
+            },
+          },
+        );
+
+        if (Math.abs(event.deltaX) > vpWidth * 0.4) {
+          if (event.deltaX > 0) {
+            this.$router.push(this.localePath("/projects"));
+          } else {
+            this.$router.push(this.localePath("/articles"));
+          }
+        }
+      }
+    },
   },
 });
 </script>
@@ -147,6 +217,10 @@ export default defineComponent({
 
   .screen {
     @apply flex flex-col items-center justify-evenly h-screen min-h-screen;
+
+    &-1 {
+      transform: translateX(calc(var(--x, 0) * 1%));
+    }
   }
 
   .🧔 {
@@ -189,14 +263,15 @@ export default defineComponent({
     }
 
     .link {
-      @apply flex items-center;
+      @apply flex items-center border-none;
 
       svg {
         @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
       }
 
       &:link,
-      &:visited {
+      &:visited,
+      &:active {
         @apply border-none;
       }
     }

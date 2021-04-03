@@ -1,5 +1,9 @@
 <template>
-  <main class="projects">
+  <main
+    ref="main"
+    v-pan="onPan"
+    class="projects"
+  >
     <header class="projects-header">
       <h1>{{ $t("Projects") }}</h1>
     </header>
@@ -41,6 +45,18 @@ export default defineComponent({
         ...i18nHead.link,
       ],
     };
+  },
+
+  methods: {
+    onPan (event: any) {
+      const vpWidth = window.innerWidth;
+
+      if (Math.abs(event.deltaX) > vpWidth * 0.75) {
+        if (event.deltaX < 0) {
+          this.$router.push(this.localePath("/"));
+        }
+      }
+    },
   },
 });
 </script>
