@@ -1,8 +1,9 @@
 <template>
-  <main
-    ref="main"
-    v-pan="onPan"
+  <MainScreen
     class="projects"
+    :adjacent="{
+      right: '/',
+    }"
   >
     <header class="projects-header">
       <h1>{{ $t("Projects") }}</h1>
@@ -19,7 +20,7 @@
         </caption>
       </figure>
     </div>
-  </main>
+  </MainScreen>
 </template>
 
 <script lang="ts">

@@ -1,8 +1,9 @@
 <template>
-  <main
-    ref="main"
-    v-pan="onPan"
+  <MainScreen
     class="articles"
+    :adjacent="{
+      left: '/',
+    }"
   >
     <h1>{{ $t("Articles") }}</h1>
 
@@ -35,7 +36,7 @@
         <span class="font-semibold">{{ $t("tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
       </div>
     </nuxt-link>
-  </main>
+  </MainScreen>
 </template>
 
 <script lang="ts">

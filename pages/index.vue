@@ -6,10 +6,12 @@ en:
 </i18n>
 
 <template>
-  <main
-    ref="main"
-    v-pan="onPan"
+  <MainScreen
     class="🏡"
+    :adjacent="{
+      left: '/projects',
+      right: '/articles',
+    }"
   >
     <section class="screen screen-1">
       <div class="🧔">
@@ -110,13 +112,11 @@ en:
         </Button>
       </div>
     </section>
-  </main>
+  </MainScreen>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
-
-import { TweenMax, Elastic } from "gsap";
 
 import CONTENT from "./index.json";
 
@@ -129,7 +129,6 @@ interface Data {
       nl: string;
     };
   };
-  currentOffset: number;
 };
 
 export default defineComponent({
@@ -154,59 +153,7 @@ export default defineComponent({
   data (): Data {
     return {
       content: CONTENT,
-      currentOffset: 0,
     };
-  },
-
-  computed: {
-    overflowRatio () {
-      return (this.$refs.main as HTMLElement).scrollWidth / (this.$refs.main as HTMLElement).offsetWidth;
-    },
-  },
-
-  methods: {
-    onPan (event: any) {
-      const vpWidth = window.innerWidth;
-      const dragOffset = 100 * event.deltaX / window.innerWidth;
-      const transform = this.currentOffset + dragOffset;
-
-      (this.$refs.main as HTMLElement).style.setProperty("--x", transform.toString());
-
-      if (event.isFinal) {
-        this.currentOffset = transform;
-
-        const maxScroll = 100 - this.overflowRatio * 100;
-        let finalOffset = this.currentOffset;
-
-        if (this.currentOffset <= maxScroll) {
-          finalOffset = maxScroll;
-        } else if (this.currentOffset >= 0) {
-          finalOffset = 0;
-        }
-
-        // Bounce back animation
-        TweenMax.fromTo(
-          (this.$refs.main as HTMLElement),
-          0.4,
-          { "--x": this.currentOffset },
-          {
-            "--x": finalOffset,
-            ease: Elastic.easeOut.config(1, 0.8),
-            onComplete: () => {
-              this.currentOffset = finalOffset;
-            },
-          },
-        );
-
-        if (Math.abs(event.deltaX) > vpWidth * 0.4) {
-          if (event.deltaX > 0) {
-            this.$router.push(this.localePath("/projects"));
-          } else {
-            this.$router.push(this.localePath("/articles"));
-          }
-        }
-      }
-    },
   },
 });
 </script>
@@ -217,10 +164,6 @@ export default defineComponent({
 
   .screen {
     @apply flex flex-col items-center justify-evenly h-screen min-h-screen;
-
-    &-1 {
-      transform: translateX(calc(var(--x, 0) * 1%));
-    }
   }
 
   .🧔 {
@@ -255,7 +198,7 @@ export default defineComponent({
     }
 
     .vertical {
-      @apply flex flex-col items-center mt-8;
+      @apply flex flex-col items-center mt-4;
 
       .link {
         @apply flex-col;
