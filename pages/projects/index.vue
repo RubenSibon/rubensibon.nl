@@ -1,7 +1,7 @@
 <template>
   <main class="projects">
     <header class="projects-header">
-      <h1>Projects</h1>
+      <h1>{{ $t("Projects") }}</h1>
     </header>
 
     <div class="projects-grid">

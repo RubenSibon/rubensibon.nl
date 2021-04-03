@@ -7,19 +7,47 @@ en:
 
 <template>
   <main class="🏡">
-    <div class="🧔">
-      <h1 class="title">
-        {{ content.title }}
-      </h1>
+    <section class="screen screen-1">
+      <div class="🧔">
+        <h1 class="title">
+          {{ content.title }}
+        </h1>
 
-      <h2 class="subtitle">
-        {{ $t(content.subTitle) }}
-      </h2>
+        <h2 class="subtitle">
+          {{ $t(content.subTitle) }}
+        </h2>
 
-      <p class="description">
-        {{ content.description[locale || "en_GB"] }}
-      </p>
+        <p class="description">
+          {{ content.description[locale || "en_GB"] }}
+        </p>
+      </div>
 
+      <nav class="nav">
+        <div class="horizontal">
+          <nuxt-link :to="localePath('projects')" class="link">
+            <SvgIconChevronLeft aria-hidden />
+            <span class="sr-only">⬅&nbsp;</span>
+            {{ $t("Projects") }}
+          </nuxt-link>
+
+          <nuxt-link :to="localePath('articles')" class="link">
+            {{ $t("Articles") }}
+            <SvgIconChevronRight aria-hidden />
+            <span class="sr-only">&nbsp;➡</span>
+          </nuxt-link>
+        </div>
+
+        <div class="vertical">
+          <span class="link">
+            {{ $t("More") }}
+            <SvgIconChevronDown aria-hidden />
+            <span class="sr-only">⬇</span>
+          </span>
+        </div>
+      </nav>
+    </section>
+
+    <section class="screen screen-2">
       <div class="buttons-social">
         <Button
           tag="a"
@@ -77,20 +105,7 @@ en:
           Twitter
         </Button>
       </div>
-    </div>
-
-    <nav class="nav">
-      <nuxt-link to="projects" class="link horizontal">
-        <SvgIconChevronLeft aria-hidden />
-        <span class="sr-only">⬅&nbsp;</span>
-        Projects
-      </nuxt-link>
-      <nuxt-link to="articles" class="link horizontal">
-        Articles
-        <SvgIconChevronRight aria-hidden />
-        <span class="sr-only">&nbsp;➡</span>
-      </nuxt-link>
-    </nav>
+    </section>
   </main>
 </template>
 
@@ -105,8 +120,9 @@ export default defineComponent({
     SvgIconSO: () => import("~/assets/icons/stackoverflow.svg?inline"),
     SvgIconLinkedIn: () => import("~/assets/icons/linkedin.svg?inline"),
     SvgIconTwitter: () => import("~/assets/icons/twitter.svg?inline"),
-    SvgIconChevronLeft: () => import("~/assets/icons/chevron-left.svg?inline"),
     SvgIconChevronRight: () => import("~/assets/icons/chevron-right.svg?inline"),
+    SvgIconChevronDown: () => import("~/assets/icons/chevron-down.svg?inline"),
+    SvgIconChevronLeft: () => import("~/assets/icons/chevron-left.svg?inline"),
   },
 
   asyncData ({ i18n }) {
@@ -127,10 +143,14 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .🏡 {
-  @apply flex flex-col items-center justify-between h-full text-center;
+  @apply flex flex-col items-center justify-evenly mx-auto px-4 md:px-8 max-w-screen-md lg:max-w-screen-lg text-center;
+
+  .screen {
+    @apply flex flex-col items-center justify-evenly h-screen min-h-screen;
+  }
 
   .🧔 {
-    @apply flex flex-col items-center justify-center flex-grow pt-8 px-4 md:px-8 max-w-screen-md lg:max-w-screen-lg;
+    @apply flex flex-col items-center justify-center;
 
     .title {
       @apply mb-4;
@@ -141,23 +161,31 @@ export default defineComponent({
     }
 
     .description {
-      @apply mb-8 max-w-screen-sm md:max-w-screen-md;
-    }
-
-    .buttons-social {
-      @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 px-4 w-full md:w-auto;
+      @apply mb-4 max-w-screen-sm md:max-w-screen-md;
     }
   }
 
   .nav {
-    @apply flex flex-wrap flex-shrink justify-evenly mb-16 py-8 px-4 md:px-8 w-full sm:text-3xl md:text-4xl;
+    @apply flex flex-col justify-evenly pb-4 md:px-8 w-full sm:text-3xl md:text-4xl;
 
-    &:first-child {
-      @apply justify-self-start;
+    .horizontal {
+      @apply flex flex-wrap justify-between;
+
+      &:first-child {
+        @apply justify-self-start;
+      }
+
+      &:last-child {
+        @apply justify-self-end;
+      }
     }
 
-    &:last-child {
-      @apply justify-self-end;
+    .vertical {
+      @apply flex flex-col items-center mt-8;
+
+      .link {
+        @apply flex-col;
+      }
     }
 
     .link {
@@ -167,15 +195,15 @@ export default defineComponent({
         @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
       }
 
-      &.vertical {
-        @apply flex flex-col;
-      }
-
       &:link,
       &:visited {
         @apply border-none;
       }
     }
+  }
+
+  .buttons-social {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 px-4 w-full md:w-auto;
   }
 }
 </style>

@@ -1,13 +1,13 @@
 export default async (_context, _locale) => {
   return await Promise.resolve({
     languages: "Languages",
-    projects: "Projects",
-    articles: "Articles",
+    Projects: "Projects",
+    Articles: "Articles",
+    About: "About",
+    More: "More",
     by: "by",
     description: "Personal website of Ruben Sibon, a software developer from Amsterdam, The Netherlands.",
-    about: {
-      profession: "Software developer",
-    },
+    profession: "Software developer",
     tags: "Tags",
     tagList: {
       software_dev: "software development",

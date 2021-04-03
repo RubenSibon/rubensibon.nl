@@ -1,6 +1,6 @@
 <template>
   <main class="articles">
-    <h1>Articles</h1>
+    <h1>{{ $t("Articles") }}</h1>
 
     <nuxt-link
       v-for="article in articles"
