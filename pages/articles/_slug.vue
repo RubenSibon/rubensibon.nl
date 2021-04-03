@@ -233,9 +233,7 @@ export default defineComponent({
       }
 
       .nuxt-content-highlight {
-        @apply relative my-8;
-
-        max-width: 100vw;
+        @apply relative my-8 max-w-screen;
 
         pre {
           @apply bg-gray-100 dark:bg-gray-900;

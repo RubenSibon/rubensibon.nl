@@ -6,71 +6,73 @@ en:
 </i18n>
 
 <template>
-  <main class="home">
-    <h1 class="title">
-      Ruben Sibon
-    </h1>
+  <main class="🏡">
+    <div class="😼">
+      <h1 class="title">
+        Ruben Sibon
+      </h1>
 
-    <h2 class="subtitle">
-      {{ $t("software_dev") }}
-    </h2>
+      <h2 class="subtitle">
+        {{ $t("software_dev") }}
+      </h2>
 
-    <div class="links">
-      <Button
-        tag="a"
-        href="https://github.com/RubenSibon"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="github"
-      >
-        <template #before>
-          <SvgIconGithub />
-        </template>
+      <div class="links">
+        <Button
+          tag="a"
+          href="https://github.com/RubenSibon"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="github"
+        >
+          <template #before>
+            <SvgIconGithub />
+          </template>
 
-        GitHub
-      </Button>
+          GitHub
+        </Button>
 
-      <Button
-        tag="a"
-        href="https://stackoverflow.com/story/rubensibon"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="stack-overflow"
-      >
-        <template #before>
-          <SvgIconSO />
-        </template>
+        <Button
+          tag="a"
+          href="https://stackoverflow.com/story/rubensibon"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="stack-overflow"
+        >
+          <template #before>
+            <SvgIconSO />
+          </template>
 
-        StackOverflow
-      </Button>
+          StackOverflow
+        </Button>
 
-      <Button
-        tag="a"
-        href="https://www.linkedin.com/in/rubensibon"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="linkedin"
-      >
-        <template #before>
-          <SvgIconLinkedIn />
-        </template>
+        <Button
+          tag="a"
+          href="https://www.linkedin.com/in/rubensibon"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="linkedin"
+        >
+          <template #before>
+            <SvgIconLinkedIn />
+          </template>
 
-        LinkedIn
-      </Button>
+          LinkedIn
+        </Button>
 
-      <Button
-        tag="a"
-        href="https://twitter.com/RubenSibon"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="twitter"
-      >
-        <template #before>
-          <SvgIconTwitter />
-        </template>
+        <Button
+          tag="a"
+          href="https://twitter.com/RubenSibon"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="twitter"
+        >
+          <template #before>
+            <SvgIconTwitter />
+          </template>
 
-        Twitter
-      </Button>
+          Twitter
+        </Button>
+      </div>
     </div>
   </main>
 </template>
@@ -89,19 +91,23 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.home {
+.🏡 {
   @apply flex flex-col items-center justify-center flex-1 h-full text-center;
 
-  .title {
-    @apply mb-4;
-  }
+  .😼 {
+    @apply max-w-screen-lg;
 
-  .subtitle {
-    @apply mb-12 text-2xl font-semibold;
-  }
+    .title {
+      @apply mb-4;
+    }
 
-  .links {
-    @apply flex items-center justify-center gap-3 flex-wrap px-4;
+    .subtitle {
+      @apply mb-12 text-2xl font-semibold;
+    }
+
+    .links {
+      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 px-4;
+    }
   }
 }
 </style>
