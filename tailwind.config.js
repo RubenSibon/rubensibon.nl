@@ -36,6 +36,9 @@ module.exports = {
           950: "#010810",
         },
       },
+      transitionDuration: {
+        250: "250ms",
+      },
       fontWeight: {
         semibold: "550",
       },

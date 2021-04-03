@@ -7,13 +7,13 @@
       :key="article.slug"
       :to="localePath(`/articles/${article.slug}`)"
       :title="article.title"
-      class="flex flex-col gap-3"
+      class="article"
     >
-      <h2 class="text-2xl">
+      <h2 class="article-head">
         {{ article.title }}
       </h2>
 
-      <div class="flex items-center gap-3 text-sm">
+      <div class="article-body">
         <div class="font-semibold">
           {{ formatDate(article.createdAt) }}
         </div>
@@ -48,7 +48,7 @@ export default defineComponent({
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: "Articles by Ruben Sibon",
+      title: `${this.$t("articles")} ${this.$t("by")} Ruben Sibon`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
@@ -74,5 +74,17 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .articles {
   @apply w-full max-w-screen-md px-4 mx-auto sm:px-8;
+
+  .article {
+    @apply flex flex-col gap-3;
+
+    &-head {
+      @apply text-2xl;
+    }
+
+    &-body {
+      @apply flex items-center gap-3 text-sm;
+    }
+  }
 }
 </style>

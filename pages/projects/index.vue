@@ -1,8 +1,6 @@
 <template>
   <main class="projects">
     <header class="projects-header">
-      <div class="mr-2 bg-gray-700 border-solid h-11 w-11" />
-
       <h1>Projects</h1>
     </header>
 
@@ -30,7 +28,7 @@ export default defineComponent({
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: "Projects by Ruben Sibon",
+      title: `${this.$t("projects")} ${this.$t("by")} Ruben Sibon`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
@@ -56,10 +54,7 @@ export default defineComponent({
   }
 
   &-grid {
-    @apply
-      grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5
-      p-5
-    ;
+    @apply grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5;
   }
 
   caption {

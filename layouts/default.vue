@@ -52,7 +52,7 @@ html {
 }
 
 body {
-  @apply transition-colors duration-[250] ease-out
+  @apply transition-colors duration-250 ease-out
     bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-100;
 
   --bg-color: theme("colors.gray.50");
@@ -86,7 +86,7 @@ h4,
 h5,
 h6,
 p {
-  @apply transition-colors duration-[250] ease-in;
+  @apply transition-colors duration-250 ease-in;
 }
 
 h1,
@@ -149,7 +149,7 @@ pre[class*=language-] {
 
 a {
   @apply relative border-b-2 border-purple-500
-    transition duration-[250] ease-in
+    transition duration-250 ease-in
     hover:border-dotted hover:text-purple-500
     focus:outline-none
     focus-visible:rounded focus-visible:border-transparent focus-visible:border-dotted focus-visible:text-purple-500
@@ -163,28 +163,42 @@ a {
 a:link,
 a:visited,
 button {
+  &.github,
+  &.stack-overflow,
+  &.linkedin,
+  &.twitter {
+    @apply border-current
+      hover:border-current hover:text-white
+      focus-visible:border-current focus-visible:text-white
+    ;
+  }
+
   &.github {
-    @apply border-current text-[#171515] dark:text-white
+    @apply text-[#171515] dark:text-white
       hover:border-white hover:text-[#171515] hover:bg-[#171515] dark:hover:bg-white
-      focus-visible:border-white focus-visible:text-[#171515] focus-visible:bg-[#171515] dark:focus-visible:bg-white;
+      focus-visible:border-white focus-visible:text-[#171515] focus-visible:bg-[#171515] dark:focus-visible:bg-white
+    ;
   }
 
   &.stack-overflow {
-    @apply border-current text-[#f58025]
-      hover:border-current hover:text-white hover:bg-[#f58025]
-      focus-visible:border-current focus-visible:text-white focus-visible:bg-[#f58025];
+    @apply text-[#f58025]
+      hover:bg-[#f58025]
+      focus-visible:bg-[#f58025]
+    ;
   }
 
   &.linkedin {
-    @apply border-current text-[#0077b5]
-      hover:border-current hover:text-white hover:bg-[#0077b5]
-      focus-visible:border-current focus-visible:text-white focus-visible:bg-[#0077b5];
+    @apply text-[#0077b5]
+      hover:bg-[#0077b5]
+      focus-visible:bg-[#0077b5]
+    ;
   }
 
   &.twitter {
-    @apply border-current text-[#55acee]
-      hover:border-current hover:text-white hover:bg-[#55acee]
-      focus-visible:border-current focus-visible:text-white focus-visible:bg-[#55acee];
+    @apply text-[#55acee]
+      hover:bg-[#55acee]
+      focus-visible:bg-[#55acee]
+    ;
   }
 }
 </style>

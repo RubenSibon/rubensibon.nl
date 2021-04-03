@@ -27,7 +27,7 @@ nl:
         />
 
         <div class="post-header-content">
-          <TextGroup class="px-6 sm:px-0">
+          <TextGroup class="post-header-textgroup">
             <TagLabel
               v-if="article.tags && article.tags[0]"
               :invert="true"
@@ -42,7 +42,7 @@ nl:
         </div>
       </div>
 
-      <TextGroup class="max-w-screen-sm px-6 mx-auto sm:px-0">
+      <TextGroup class="max-w-screen-sm mx-auto post-header-textgroup">
         <ArticleLead>
           {{ article.description }}
         </ArticleLead>
@@ -112,7 +112,7 @@ export default defineComponent({
   head () {
     return {
       // @ts-ignore
-      title: `${this.article.title} | Ruben Sibon`,
+      title: `${this.article.title} ${this.$t("by")} Ruben Sibon`,
       meta: [
         {
           hid: "description",
@@ -142,16 +142,20 @@ export default defineComponent({
   }
 
   &-header {
-    .post-header-wrapper {
+    &-wrapper {
       @apply relative flex justify-center min-h-screen-1/4 bg-gray-50 dark:bg-gray-950;
     }
 
-    .post-header-content {
+    &-content {
       @apply absolute top-0 left-auto
         flex flex-col items-start justify-end
         pb-8 max-w-screen-sm w-full min-h-screen-1/4 h-full
         text-gray-950 dark:text-gray-50
       ;
+    }
+
+    &-textgroup {
+      @apply px-6 sm:px-0;
     }
   }
 
