@@ -1,20 +1,24 @@
 <i18n lang="yaml">
 nl:
-  software_dev: "Softwareontwikkelaar"
+  Software Developer: "Softwareontwikkelaar"
 en:
-  software_dev: "Software Developer"
+  Software Developer: "Software Developer"
 </i18n>
 
 <template>
   <main class="🏡">
     <div class="😼">
       <h1 class="title">
-        Ruben Sibon
+        {{ content.title }}
       </h1>
 
       <h2 class="subtitle">
-        {{ $t("software_dev") }}
+        {{ $t(content.subTitle) }}
       </h2>
+
+      <p class="description">
+        {{ content.description[locale || "en_GB"] }}
+      </p>
 
       <div class="buttons-social">
         <Button
@@ -91,6 +95,8 @@ en:
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
+import CONTENT from "./index.json";
+
 export default defineComponent({
   components: {
     SvgIconGithub: () => import("~/assets/icons/github.svg?inline"),
@@ -100,6 +106,20 @@ export default defineComponent({
     SvgIconChevronLeft: () => import("~/assets/icons/chevron-left.svg?inline"),
     SvgIconChevronRight: () => import("~/assets/icons/chevron-right.svg?inline"),
   },
+
+  asyncData ({ i18n }) {
+    const locale = i18n.locale;
+
+    return {
+      locale,
+    };
+  },
+
+  data () {
+    return {
+      content: CONTENT,
+    };
+  },
 });
 </script>
 
@@ -108,14 +128,18 @@ export default defineComponent({
   @apply flex flex-col items-center justify-between h-full text-center;
 
   .😼 {
-    @apply flex flex-col items-center justify-center flex-grow max-w-screen-lg;
+    @apply flex flex-col items-center justify-center flex-grow max-w-screen-md;
 
     .title {
       @apply mb-4;
     }
 
     .subtitle {
-      @apply mb-12 text-2xl font-semibold;
+      @apply mb-8 text-2xl font-semibold;
+    }
+
+    .description {
+      @apply mb-8;
     }
 
     .buttons-social {
