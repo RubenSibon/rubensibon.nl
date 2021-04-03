@@ -1,20 +1,41 @@
+import { meta } from "./meta";
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Ruben Sibon",
     htmlAttrs: {
       lang: "en",
+      dir: "ltr",
     },
+
+    title: meta.title,
+
     meta: [
       { charset: "utf-8" },
+
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "Personal website of Ruben Sibon, a software developer from Amsterdam, The Netherlands." },
+
+      { hid: "description", name: "description", content: meta.description },
+
       { name: "color-scheme", content: "dark light" },
+
       { name: "msapplication-TileColor", content: "#ffffff" },
       { name: "msapplication-TileImage", content: "/little-penguin-144.png" },
+
+      { property: "og:title", content: meta.title },
+      { property: "og:description", content: meta.description },
+      { property: "og:type", content: "website" },
+
+      { property: "og:url", content: "https://www.rubensibon.nl/" },
+      { property: "og:image", content: "https://www.rubensibon.nl/img/sitebanner.jpg" },
+
+      { name: "twitter:title", content: meta.title },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@RubenSibon" },
+      { name: "twitter:creator", content: "@RubenSibon" },
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
@@ -28,6 +49,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: "~/plugins/directive-hammer", ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
