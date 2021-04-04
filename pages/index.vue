@@ -17,8 +17,8 @@ en:
   <SlideScreen
     class="🏡"
     :adjacent="{
-      left: '/projects',
-      right: '/articles',
+      left: 'projects',
+      right: 'articles',
     }"
   >
     <section id="screen1" class="screen">
@@ -50,7 +50,7 @@ en:
 
       <nav class="nav">
         <div class="horizontal">
-          <nuxt-link :to="localePath('/projects')" class="link">
+          <nuxt-link :to="localePath('projects')" class="link">
             <SvgIconChevronLeft aria-hidden="true" />
 
             <span class="sr-only">⬅&nbsp;</span>

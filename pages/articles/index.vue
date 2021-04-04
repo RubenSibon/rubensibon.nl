@@ -3,7 +3,7 @@
     class="articles"
     :adjacent="{
       left: '/',
-      right: `${articles.length ? `/articles/${articles[0].slug}` : ''}`,
+      right: `${articles.length ? `articles/${articles[0].slug}` : ''}`,
     }"
   >
     <h1 class="articles-header">
@@ -14,7 +14,7 @@
       <nuxt-link
         v-for="article in articles"
         :key="article.slug"
-        :to="localePath(`/articles/${article.slug}`)"
+        :to="localePath(`articles/${article.slug}`)"
         :title="article.title"
         class="📰"
       >
