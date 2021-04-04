@@ -189,9 +189,7 @@ export default defineComponent({
   }
 
   &-body {
-    @apply max-w-screen-sm mb-8 overflow-x-hidden;
-
-    max-width: 100vw;
+    @apply max-w-screen-sm mb-8 md:overflow-x-hidden;
 
     .nuxt-content-container {
       h1,
