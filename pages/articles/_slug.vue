@@ -182,7 +182,9 @@ export default defineComponent({
   }
 
   &-body {
-    @apply max-w-screen-sm mb-8;
+    @apply max-w-screen-sm mb-8 overflow-x-hidden;
+
+    max-width: 100vw;
 
     .nuxt-content-container {
       h1,
@@ -252,6 +254,7 @@ export default defineComponent({
         @apply relative -left-6 sm:-left-8 rounded my-12 max-w-screen-lg;
 
         width: calc(100% + 3rem);
+        max-width: 100vw;
 
         @screen sm {
           width: calc(100% + 4rem);
@@ -263,6 +266,8 @@ export default defineComponent({
 
         pre {
           @apply bg-gray-100 dark:bg-gray-900;
+
+          max-width: 100vw;
 
           code {
             @apply text-gray-950 dark:text-gray-50;

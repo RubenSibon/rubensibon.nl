@@ -3,8 +3,8 @@ nl:
   Software Developer: "Softwareontwikkelaar"
   Follow me: "Volg mij"
   Get in touch: "Start een gesprek"
-  if it pleases you: "als het u pleziert"
-  but really, only if you want to: "maar echt, alleen als u dat wilt"
+  if it pleases you: "als het je pleziert"
+  but really, only if you want to: "maar echt, alleen als je dat wilt"
 en:
   Software Developer: "Software Developer"
   Follow me: "Follow me"
@@ -50,7 +50,7 @@ en:
 
       <nav class="nav">
         <div class="horizontal">
-          <nuxt-link :to="localePath('projects')" class="link">
+          <nuxt-link :to="localePath('/projects')" class="link">
             <SvgIconChevronLeft aria-hidden="true" />
 
             <span class="sr-only">⬅&nbsp;</span>
@@ -85,7 +85,7 @@ en:
     </section>
 
     <section id="screen2" class="screen">
-      <div class="w-full">
+      <div class="w-full mb-8">
         <h2>
           {{ $t('Follow me') }}
         </h2>
@@ -167,7 +167,7 @@ en:
         </div>
       </div>
 
-      <div class="w-full">
+      <div class="w-full mb-8">
         <h2>
           {{ $t('Get in touch') }}
         </h2>
@@ -231,9 +231,9 @@ export default defineComponent({
   @apply flex flex-col items-center justify-evenly mx-auto px-4 md:px-8  text-center;
 
   .screen {
-    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen h-screen;
+    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen;
 
-    height: var(--vp-height);
+    min-height: var(--vp-height);
   }
 
   .🧔 {
@@ -286,7 +286,7 @@ export default defineComponent({
     }
 
     .vertical {
-      @apply flex flex-col items-center mt-4;
+      @apply flex flex-col items-center my-4;
 
       .link {
         @apply flex-col cursor-pointer px-4;

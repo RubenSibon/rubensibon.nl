@@ -3,7 +3,6 @@
     class="articles"
     :adjacent="{
       left: '/',
-      right: `${articles.length ? `articles/${articles[0].slug}` : ''}`,
     }"
   >
     <h1 class="articles-header">
@@ -14,7 +13,7 @@
       <nuxt-link
         v-for="article in articles"
         :key="article.slug"
-        :to="localePath(`articles/${article.slug}`)"
+        :to="localePath(`/articles/${article.slug}`)"
         :title="article.title"
         class="📰"
       >
@@ -92,9 +91,9 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .articles {
-  @apply w-full max-w-screen-2xl mx-auto p-5 h-screen;
+  @apply w-full max-w-screen-2xl mx-auto p-5;
 
-  height: var(--vp-height);
+  min-height: var(--vp-height);
 
   &-header {
     @apply mb-5;

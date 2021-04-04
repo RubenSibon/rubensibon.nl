@@ -60,13 +60,9 @@ export default defineComponent({
   },
 
   methods: {
-    onPan (event: any) {
-      if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
-        return;
-      }
-
+    onPan ({ deltaX, deltaY, isFinal }: any) {
       const maxDragWidth = window.innerWidth <= 640 ? window.innerWidth : 640;
-      const dragOffset = 100 * event.deltaX / window.innerWidth;
+      const dragOffset = 100 * deltaX / window.innerWidth;
       const transform = this.currentOffset + dragOffset;
 
       let finalOffset = this.currentOffset;
@@ -89,9 +85,14 @@ export default defineComponent({
         );
       };
 
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        bounceBack();
+        return;
+      }
+
       (this.$refs.slideScreen as HTMLElement).style.setProperty("--x", transform.toString());
 
-      if (event.isFinal) {
+      if (isFinal) {
         this.currentOffset = transform;
 
         const maxScroll = 100 - this.overflowRatio * 100;
@@ -102,13 +103,13 @@ export default defineComponent({
           finalOffset = 0;
         }
 
-        if (Math.abs(event.deltaX) > maxDragWidth * this.dragFactor) {
-          if (this.adjacent.left && event.deltaX > 0) {
-            return this.$router.push(this.localePath(this.adjacent.left));
+        if (Math.abs(deltaX) > maxDragWidth * this.dragFactor) {
+          if (this.adjacent.left && deltaX > 50) {
+            this.$router.push(this.localePath(this.adjacent.left));
           }
 
-          if (this.adjacent.right && event.deltaX < 0) {
-            return this.$router.push(this.localePath(this.adjacent.right));
+          if (this.adjacent.right && deltaX < -50) {
+            this.$router.push(this.localePath(this.adjacent.right));
           }
         }
 
