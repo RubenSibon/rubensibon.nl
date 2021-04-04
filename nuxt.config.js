@@ -98,16 +98,16 @@ export default {
     },
     locales: [
       {
-        code: "en",
-        name: "English",
-        iso: "en-GB",
-        file: "en-GB",
-      },
-      {
         code: "nl",
         name: "Nederlands",
         iso: "nl-NL",
         file: "nl-NL",
+      },
+      {
+        code: "en",
+        name: "English",
+        iso: "en-GB",
+        file: "en-GB.js",
       },
     ],
     lazy: true,
