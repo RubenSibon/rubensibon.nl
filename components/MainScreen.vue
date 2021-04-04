@@ -1,8 +1,8 @@
 <template>
   <main
-    ref="main"
+    ref="mainScreen"
     v-pan="onPan"
-    class="main"
+    class="main-screen"
   >
     <slot />
   </main>
@@ -35,6 +35,11 @@ export default defineComponent({
         left: null,
       },
     },
+    dragFactor: {
+      type: Number,
+      default: 0.4,
+      validator: (val: number) => val > 0 && val <= 1,
+    },
   },
 
   data (): Data {
@@ -45,7 +50,7 @@ export default defineComponent({
 
   computed: {
     overflowRatio (): number {
-      return (this.$refs.main as HTMLElement).scrollWidth / (this.$refs.main as HTMLElement).offsetWidth;
+      return (this.$refs.mainScreen as HTMLElement).scrollWidth / (this.$refs.mainScreen as HTMLElement).offsetWidth;
     },
   },
 
@@ -56,7 +61,7 @@ export default defineComponent({
       const transform = this.currentOffset + dragOffset;
 
       if (Math.abs(deltaX) > 50) {
-        (this.$refs.main as HTMLElement).style.setProperty("--x", transform.toString());
+        (this.$refs.mainScreen as HTMLElement).style.setProperty("--x", transform.toString());
       } else {
         return;
       }
@@ -75,7 +80,7 @@ export default defineComponent({
 
         // Bounce back animation
         TweenMax.fromTo(
-          (this.$refs.main as HTMLElement),
+          (this.$refs.mainScreen as HTMLElement),
           0.4,
           { "--x": this.currentOffset },
           {
@@ -87,7 +92,7 @@ export default defineComponent({
           },
         );
 
-        if (Math.abs(deltaX) > vpWidth * 0.4) {
+        if (Math.abs(deltaX) > vpWidth * this.dragFactor) {
           if (this.adjacent.left && deltaX > 0) {
             this.$router.push(this.localePath(this.adjacent.left));
           }
@@ -103,7 +108,9 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.main {
+.main-screen {
+  @apply select-none;
+
   transform: translateX(calc(var(--x, 0) * 1%));
   scroll-behavior: smooth;
 }

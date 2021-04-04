@@ -1,8 +1,16 @@
 <i18n lang="yaml">
 nl:
   Software Developer: "Softwareontwikkelaar"
+  Follow me: "Volg mij"
+  Get in touch: "Start een gesprek"
+  if it pleases you: "als het u pleziert"
+  but really, only if you want to: "maar echt, alleen als u dat wilt"
 en:
   Software Developer: "Software Developer"
+  Follow me: "Follow me"
+  Get in touch: "Get in touch"
+  if it pleases you: "if it pleases you"
+  but really, only if you want to: "but really, only if you want to"
 </i18n>
 
 <template>
@@ -13,7 +21,7 @@ en:
       right: '/articles',
     }"
   >
-    <section class="screen screen-1">
+    <section id="screen1" class="screen">
       <div class="🧔">
         <figure class="picture">
           <picture>
@@ -22,9 +30,9 @@ en:
             <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
           </picture>
 
-          <figcaption class="sr-only">
+          <!-- <figcaption>
             A photo of this website's author.
-          </figcaption>
+          </figcaption> -->
         </figure>
 
         <h1 class="title">
@@ -70,63 +78,99 @@ en:
       </nav>
     </section>
 
-    <section id="screen2" class="screen screen-2">
-      <div class="buttons-social">
-        <Button
-          tag="a"
-          href="https://github.com/RubenSibon"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="github"
-        >
-          <template #before>
-            <SvgIconGithub aria-hidden />
-          </template>
+    <section id="screen2" class="screen">
+      <div class="w-full">
+        <h2>
+          {{ $t('Follow me') }}
+        </h2>
 
-          GitHub
-        </Button>
+        <p class="mb-4">
+          ({{ $t("if it pleases you") }})
+        </p>
 
-        <Button
-          tag="a"
-          href="https://stackoverflow.com/story/rubensibon"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="stack-overflow"
-        >
-          <template #before>
-            <SvgIconSO aria-hidden />
-          </template>
+        <div class="buttons-social">
+          <Button
+            tag="a"
+            href="https://github.com/RubenSibon"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="github"
+          >
+            <template #before>
+              <SvgIconGithub aria-hidden />
+            </template>
 
-          StackOverflow
-        </Button>
+            GitHub
+          </Button>
 
-        <Button
-          tag="a"
-          href="https://www.linkedin.com/in/rubensibon"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="linkedin"
-        >
-          <template #before>
-            <SvgIconLinkedIn aria-hidden />
-          </template>
+          <Button
+            tag="a"
+            href="https://stackoverflow.com/story/rubensibon"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="stack-overflow"
+          >
+            <template #before>
+              <SvgIconSO aria-hidden />
+            </template>
 
-          LinkedIn
-        </Button>
+            StackOverflow
+          </Button>
 
-        <Button
-          tag="a"
-          href="https://twitter.com/RubenSibon"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="twitter"
-        >
-          <template #before>
-            <SvgIconTwitter aria-hidden />
-          </template>
+          <Button
+            tag="a"
+            href="https://codepen.io/RubenSibon"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="github"
+          >
+            <template #before>
+              <SvgIconCodePen aria-hidden />
+            </template>
 
-          Twitter
-        </Button>
+            CodePen
+          </Button>
+
+          <Button
+            tag="a"
+            href="https://www.linkedin.com/in/rubensibon"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="linkedin"
+          >
+            <template #before>
+              <SvgIconLinkedIn aria-hidden />
+            </template>
+
+            LinkedIn
+          </Button>
+
+          <Button
+            tag="a"
+            href="https://twitter.com/RubenSibon"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="twitter"
+          >
+            <template #before>
+              <SvgIconTwitter aria-hidden />
+            </template>
+
+            Twitter
+          </Button>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <h2>
+          {{ $t('Get in touch') }}
+        </h2>
+
+        <p class="mb-4">
+          ({{ $t("but really, only if you want to") }})
+        </p>
+
+        <p>Sorry, the contact form is a<br><i>Work in Progress</i><br>¯\_(ツ)_/¯</p>
       </div>
     </section>
   </MainScreen>
@@ -152,6 +196,7 @@ export default defineComponent({
   components: {
     SvgIconGithub: () => import("~/assets/icons/github.svg?inline"),
     SvgIconSO: () => import("~/assets/icons/stackoverflow.svg?inline"),
+    SvgIconCodePen: () => import("~/assets/icons/codepen.svg?inline"),
     SvgIconLinkedIn: () => import("~/assets/icons/linkedin.svg?inline"),
     SvgIconTwitter: () => import("~/assets/icons/twitter.svg?inline"),
     SvgIconChevronRight: () => import("~/assets/icons/chevron-right.svg?inline"),
@@ -180,7 +225,9 @@ export default defineComponent({
   @apply flex flex-col items-center justify-evenly mx-auto px-4 md:px-8  text-center;
 
   .screen {
-    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen h-screen min-h-screen;
+    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen h-screen;
+
+    height: var(--vp-height);
   }
 
   .🧔 {
@@ -242,7 +289,7 @@ export default defineComponent({
   }
 
   .buttons-social {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 px-4 w-full sm:w-auto;
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 px-4 w-full sm:w-auto;
   }
 }
 </style>

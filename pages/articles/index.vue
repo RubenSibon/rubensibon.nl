@@ -6,20 +6,22 @@
       right: `/articles/${articles[0].slug}`,
     }"
   >
-    <h1>{{ $t("Articles") }}</h1>
+    <h1 class="articles-header">
+      {{ $t("Articles") }}
+    </h1>
 
     <nuxt-link
       v-for="article in articles"
       :key="article.slug"
       :to="localePath(`/articles/${article.slug}`)"
       :title="article.title"
-      class="article"
+      class="📰"
     >
-      <h2 class="article-head">
+      <h2 class="📰-title">
         {{ article.title }}
       </h2>
 
-      <div class="article-body">
+      <div class="📰-list">
         <div class="font-semibold">
           {{ formatDate(article.createdAt) }}
         </div>
@@ -89,16 +91,22 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .articles {
-  @apply w-full max-w-screen-md px-4 mx-auto sm:px-8;
+  @apply w-full max-w-screen-2xl mx-auto p-5 h-screen;
 
-  .article {
+  height: var(--vp-height);
+
+  &-header {
+    @apply mb-5;
+  }
+
+  .📰 {
     @apply flex flex-col gap-3;
 
-    &-head {
+    &-title {
       @apply text-2xl;
     }
 
-    &-body {
+    &-list {
       @apply flex items-center gap-3 text-sm;
     }
   }

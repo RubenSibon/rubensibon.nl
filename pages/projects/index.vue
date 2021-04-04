@@ -9,15 +9,21 @@
       <h1>{{ $t("Projects") }}</h1>
     </header>
 
-    <div class="projects-grid">
-      <figure v-for="n of 24" :key="n">
+    <div class="projects-list">
+      <figure
+        v-for="n of 12"
+        :key="n"
+        class="👷‍♂️"
+      >
         <img src="https://placeimg.com/640/480/tech" alt="Stock photo">
-        <caption>
+
+        <figcaption>
           <h2 class="h3">
-            Project Secret
+            Een project
           </h2>
+
           <p>Korte beschrijving van het project.</p>
-        </caption>
+        </figcaption>
       </figure>
     </div>
   </MainScreen>
@@ -64,18 +70,22 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .projects {
-  @apply mx-auto max-w-screen-2xl;
+  @apply mx-auto w-full max-w-screen-2xl p-5 h-screen;
+
+  height: var(--vp-height);
 
   &-header {
-    @apply flex items-center justify-start p-5;
+    @apply flex items-center justify-start mb-5;
   }
 
-  &-grid {
-    @apply grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-5;
+  &-list {
+    @apply grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5;
   }
 
-  caption {
-    @apply py-5 w-full text-left;
+  .👷‍♂️ {
+    figcaption {
+      @apply py-5 w-full text-left;
+    }
   }
 }
 </style>

@@ -14,95 +14,89 @@ nl:
 </i18n>
 
 <template>
-  <MainScreen
-    :adjacent="{
-      left: '/articles',
-    }"
-  >
-    <article class="post">
-      <header class="post-header">
-        <div class="post-header-wrapper">
-          <LazyHeaderImage
-            v-if="article.img && article.img.src"
-            :alt="article.img.alt"
-            :src-set="Object.entries(article.img.srcSet)"
-            :src="article.img.src"
-            :bg-color="article.image && article.image.bgColor ? article.image.bgColor : null"
-            :gradient="true"
+  <article class="post">
+    <header class="post-header">
+      <div class="post-header-wrapper">
+        <LazyHeaderImage
+          v-if="article.img && article.img.src"
+          :alt="article.img.alt"
+          :src-set="Object.entries(article.img.srcSet)"
+          :src="article.img.src"
+          :bg-color="article.image && article.image.bgColor ? article.image.bgColor : null"
+          :gradient="true"
+        />
+
+        <div class="post-header-content">
+          <TextGroup class="post-header-textgroup">
+            <TagLabel
+              v-if="article.tags && article.tags[0]"
+              :invert="true"
+            >
+              {{ $t(`tagList.${article.tags[0]}`) }}
+            </TagLabel>
+
+            <h1>
+              {{ article.title }}
+            </h1>
+          </TextGroup>
+        </div>
+      </div>
+
+      <TextGroup class="max-w-screen-sm mx-auto post-header-textgroup">
+        <ArticleLead>
+          {{ article.description }}
+        </ArticleLead>
+
+        <PostDetails>
+          <div>
+            {{ article.author }}
+          </div>
+
+          <PostReadingTime :text="JSON.stringify(article)" />
+
+          <PostDate
+            :iso-date="article.createdAt"
+            :label="`${$t('posted')}:`"
+            :show-label="false"
           />
 
-          <div class="post-header-content">
-            <TextGroup class="post-header-textgroup">
-              <TagLabel
-                v-if="article.tags && article.tags[0]"
-                :invert="true"
-              >
-                {{ $t(`tagList.${article.tags[0]}`) }}
-              </TagLabel>
-
-              <h1>
-                {{ article.title }}
-              </h1>
-            </TextGroup>
-          </div>
-        </div>
-
-        <TextGroup class="max-w-screen-sm mx-auto post-header-textgroup">
-          <ArticleLead>
-            {{ article.description }}
-          </ArticleLead>
-
-          <PostDetails>
-            <div>
-              {{ article.author }}
-            </div>
-
-            <PostReadingTime :text="JSON.stringify(article)" />
-
-            <PostDate
-              :iso-date="article.createdAt"
-              :label="`${$t('posted')}:`"
-              :show-label="false"
-            />
-
-            <PostDate
-              v-if="article.updatedAt"
-              :iso-date="article.updatedAt"
-              :label="`${$t('updated')}:`"
-            />
-          </PostDetails>
-        </TextGroup>
-      </header>
-
-      <TextGroup class="px-6">
-        <Collapsible v-if="article.showToc" class="px-4 mb-8">
-          <template #summary>
-            {{ $t("toc") }}
-          </template>
-
-          <template #content>
-            <ToC :items="article.toc" class="mt-4" />
-          </template>
-        </Collapsible>
+          <PostDate
+            v-if="article.updatedAt"
+            :iso-date="article.updatedAt"
+            :label="`${$t('updated')}:`"
+          />
+        </PostDetails>
       </TextGroup>
+    </header>
 
-      <main class="post-body">
-        <nuxt-content :document="article" />
-      </main>
+    <TextGroup class="px-6">
+      <Collapsible v-if="article.showToc" class="px-4 mb-8">
+        <template #summary>
+          {{ $t("toc") }}
+        </template>
 
-      <footer class="post-footer">
-        <TextGroup class="flex flex-col flex-wrap items-center text-center">
-          <hr class="w-3/4 mx-auto mb-1">
+        <template #content>
+          <ToC :items="article.toc" class="mt-4" />
+        </template>
+      </Collapsible>
+    </TextGroup>
 
-          <div class="flex flex-wrap justify-center gap-2 mt-2 mb-8">
-            <TagLabel v-for="tag of article.tags" :key="tag">
-              {{ $t(`tagList.${tag}`) }}
-            </TagLabel>
-          </div>
-        </TextGroup>
-      </footer>
-    </article>
-  </MainScreen>
+    <main class="post-body">
+      <nuxt-content :document="article" />
+    </main>
+
+    <footer class="post-footer">
+      <TextGroup class="flex flex-col flex-wrap items-center text-center">
+        <hr class="w-3/4 mx-auto mb-1">
+
+        <div class="flex flex-wrap justify-center gap-2 mt-2 mb-8">
+          <TagLabel v-for="tag of article.tags" :key="tag">
+            {{ $t(`tagList.${tag}`) }}
+          </TagLabel>
+        </div>
+      </TextGroup>
+    </footer>
+  </article>
 </template>
 
 <script lang="ts">

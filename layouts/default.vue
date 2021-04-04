@@ -62,6 +62,10 @@ export default defineComponent({
       });
     },
   },
+
+  beforeMount () {
+    document.body.style.setProperty("--vp-height", `${window.innerHeight}px`);
+  },
 });
 </script>
 
@@ -199,10 +203,11 @@ button {
     ;
   }
 
-  &.github {
+  &.github,
+  &.codepen {
     @apply text-[#171515] dark:text-white
-      hover:border-white hover:text-white hover:bg-[#171515] dark:hover:bg-white
-      focus-visible:border-white focus-visible:text-white focus-visible:bg-[#171515] dark:focus-visible:bg-white
+      hover:border-white hover:text-white dark:hover:text-[#171515] hover:bg-[#171515] dark:hover:bg-white
+      focus-visible:border-white focus-visible:text-white dark:focus-visible:text-[#171515] focus-visible:bg-[#171515] dark:focus-visible:bg-white
     ;
   }
 
@@ -232,5 +237,7 @@ button {
 <style lang="postcss" scoped>
 .page {
   @apply h-screen min-h-screen mx-auto;
+
+  height: var(--vp-height);
 }
 </style>
