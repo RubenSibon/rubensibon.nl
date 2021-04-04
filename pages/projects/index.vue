@@ -1,5 +1,5 @@
 <template>
-  <MainScreen
+  <SlideScreen
     class="projects"
     :adjacent="{
       right: '/',
@@ -26,7 +26,7 @@
         </figcaption>
       </figure>
     </div>
-  </MainScreen>
+  </SlideScreen>
 </template>
 
 <script lang="ts">

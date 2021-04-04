@@ -1,55 +1,66 @@
 <template>
-  <MainScreen
+  <SlideScreen
     class="articles"
     :adjacent="{
       left: '/',
-      right: `/articles/${articles[0].slug}`,
+      right: `${articles.length ? `/articles/${articles[0].slug}` : ''}`,
     }"
   >
     <h1 class="articles-header">
       {{ $t("Articles") }}
     </h1>
 
-    <nuxt-link
-      v-for="article in articles"
-      :key="article.slug"
-      :to="localePath(`/articles/${article.slug}`)"
-      :title="article.title"
-      class="📰"
-    >
-      <h2 class="📰-title">
-        {{ article.title }}
-      </h2>
+    <template v-if="articles.length">
+      <nuxt-link
+        v-for="article in articles"
+        :key="article.slug"
+        :to="localePath(`/articles/${article.slug}`)"
+        :title="article.title"
+        class="📰"
+      >
+        <h2 class="📰-title">
+          {{ article.title }}
+        </h2>
 
-      <div class="📰-list">
-        <div class="font-semibold">
-          {{ formatDate(article.createdAt) }}
+        <div class="📰-list">
+          <div class="font-semibold">
+            {{ formatDate(article.createdAt) }}
+          </div>
+
+          <div v-if="article.tags" class="font-semibold">
+            {{ $t(`tagList.${article.tags[0]}`) }}
+          </div>
         </div>
 
-        <div v-if="article.tags" class="font-semibold">
-          {{ $t(`tagList.${article.tags[0]}`) }}
+        <div class="text-sm">
+          <p>{{ article.description }}</p>
         </div>
-      </div>
 
-      <div class="text-sm">
-        <p>{{ article.description }}</p>
-      </div>
-
-      <div v-if="article.tags" class="flex gap-1 text-xs">
-        <span class="font-semibold">{{ $t("Tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
-      </div>
-    </nuxt-link>
-  </MainScreen>
+        <div v-if="article.tags" class="flex gap-1 text-xs">
+          <span class="font-semibold">{{ $t("Tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
+        </div>
+      </nuxt-link>
+    </template>
+    <template v-else>
+      Loading articles...
+    </template>
+  </SlideScreen>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
-  async asyncData ({ $content }) {
-    const articles = await $content("articles").fetch();
+  data () {
+    return {
+      articles: [],
+    };
+  },
 
-    return { articles };
+  // @ts-ignore
+  async fetch () {
+    // @ts-ignore
+    this.articles = await this.$content("articles").fetch();
   },
 
   head () {
@@ -74,16 +85,6 @@ export default defineComponent({
   methods: {
     formatDate (date: Date) {
       return new Date(date).toLocaleDateString("en", { year: "numeric", month: "long", day: "numeric" });
-    },
-
-    onPan (event: any) {
-      const vpWidth = window.innerWidth;
-
-      if (Math.abs(event.deltaX) > vpWidth * 0.5) {
-        if (event.deltaX > 0) {
-          this.$router.push(this.localePath("/"));
-        }
-      }
     },
   },
 });
