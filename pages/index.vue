@@ -51,7 +51,7 @@ en:
       <nav class="nav">
         <div class="horizontal">
           <nuxt-link :to="localePath('/projects')" class="link">
-            <SvgIconChevronLeft aria-hidden />
+            <SvgIconChevronLeft aria-hidden="true" />
 
             <span class="sr-only">⬅&nbsp;</span>
 
@@ -61,7 +61,7 @@ en:
           <nuxt-link :to="localePath('/articles')" class="link">
             {{ $t("Articles") }}
 
-            <SvgIconChevronRight aria-hidden />
+            <SvgIconChevronRight aria-hidden="true" />
 
             <span class="sr-only">&nbsp;➡</span>
           </nuxt-link>
@@ -76,7 +76,7 @@ en:
           >
             {{ $t("More") }}
 
-            <SvgIconChevronDown aria-hidden />
+            <SvgIconChevronDown aria-hidden="true" />
 
             <span class="sr-only">⬇</span>
           </a>
@@ -103,7 +103,7 @@ en:
             class="github"
           >
             <template #before>
-              <SvgIconGithub aria-hidden />
+              <SvgIconGithub aria-hidden="true" />
             </template>
 
             GitHub
@@ -117,7 +117,7 @@ en:
             class="stack-overflow"
           >
             <template #before>
-              <SvgIconSO aria-hidden />
+              <SvgIconSO aria-hidden="true" />
             </template>
 
             StackOverflow
@@ -131,7 +131,7 @@ en:
             class="github"
           >
             <template #before>
-              <SvgIconCodePen aria-hidden />
+              <SvgIconCodePen aria-hidden="true" />
             </template>
 
             CodePen
@@ -145,7 +145,7 @@ en:
             class="linkedin"
           >
             <template #before>
-              <SvgIconLinkedIn aria-hidden />
+              <SvgIconLinkedIn aria-hidden="true" />
             </template>
 
             LinkedIn
@@ -159,7 +159,7 @@ en:
             class="twitter"
           >
             <template #before>
-              <SvgIconTwitter aria-hidden />
+              <SvgIconTwitter aria-hidden="true" />
             </template>
 
             Twitter
@@ -259,30 +259,6 @@ export default defineComponent({
   .nav {
     @apply flex flex-col justify-evenly pb-4 md:px-8 w-full sm:text-3xl md:text-4xl;
 
-    .horizontal {
-      @apply flex flex-wrap justify-between;
-
-      a:first-child {
-        @apply ml-4 md:ml-8;
-      }
-
-      a:last-child {
-        @apply mr-4 md:mr-8;
-      }
-
-      .link {
-        @apply py-2;
-      }
-    }
-
-    .vertical {
-      @apply flex flex-col items-center mt-4;
-
-      .link {
-        @apply flex-col cursor-pointer px-4;
-      }
-    }
-
     .link {
       @apply flex items-center border-none;
 
@@ -294,6 +270,26 @@ export default defineComponent({
       &:visited,
       &:active {
         @apply border-none;
+      }
+    }
+
+    .horizontal {
+      @apply flex flex-wrap justify-between;
+
+      .link:first-child {
+        @apply ml-4 md:ml-8 py-2;
+      }
+
+      .link:last-child {
+        @apply mr-4 md:mr-8 py-2;
+      }
+    }
+
+    .vertical {
+      @apply flex flex-col items-center mt-4;
+
+      .link {
+        @apply flex-col cursor-pointer px-4;
       }
     }
   }
