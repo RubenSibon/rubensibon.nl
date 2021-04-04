@@ -1,3 +1,18 @@
+<i18n lang="yaml">
+nl:
+  Software Developer: "Softwareontwikkelaar"
+  Follow me: "Volg mij"
+  Get in touch: "Start een gesprek"
+  if it pleases you: "als het je pleziert"
+  but really, only if you want to: "maar echt, alleen als je dat wilt"
+en:
+  Software Developer: "Software Developer"
+  Follow me: "Follow me"
+  Get in touch: "Get in touch"
+  if it pleases you: "if it pleases you"
+  but really, only if you want to: "but really, only if you want to"
+</i18n>
+
 <template>
   <SlideScreen
     class="🏡"

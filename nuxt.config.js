@@ -101,7 +101,7 @@ export default {
         code: "nl",
         name: "Nederlands",
         iso: "nl-NL",
-        file: "nl-NL.js",
+        file: "nl-NL",
       },
       {
         code: "en",
@@ -113,7 +113,7 @@ export default {
     lazy: true,
     langDir: "lang/",
     defaultLocale: "en",
-    strategy: "prefix_and_default",
+    strategy: "prefix",
     seo: false,
   },
 
