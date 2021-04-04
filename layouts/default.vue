@@ -12,7 +12,7 @@ export default defineComponent({
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: `Ruben Sibon: ${this.$t("about.profession")}`,
+      title: `Ruben Sibon: ${this.$t("profession")}`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
@@ -175,8 +175,8 @@ button {
 
   &.github {
     @apply text-[#171515] dark:text-white
-      hover:border-white hover:text-[#171515] hover:bg-[#171515] dark:hover:bg-white
-      focus-visible:border-white focus-visible:text-[#171515] focus-visible:bg-[#171515] dark:focus-visible:bg-white
+      hover:border-white hover:text-white hover:bg-[#171515] dark:hover:bg-white
+      focus-visible:border-white focus-visible:text-white focus-visible:bg-[#171515] dark:focus-visible:bg-white
     ;
   }
 

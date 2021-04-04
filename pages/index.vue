@@ -44,7 +44,12 @@ en:
         </div>
 
         <div class="vertical">
-          <a href="" :alt="$t('More')" class="link">
+          <a
+            v-scroll-to="'#screen2'"
+            tabindex="0"
+            :alt="$t('More')"
+            class="link"
+          >
             {{ $t("More") }}
             <SvgIconChevronDown aria-hidden />
             <span class="sr-only">⬇</span>
@@ -53,7 +58,7 @@ en:
       </nav>
     </section>
 
-    <section class="screen screen-2">
+    <section id="screen2" class="screen screen-2">
       <div class="buttons-social">
         <Button
           tag="a"
@@ -201,7 +206,7 @@ export default defineComponent({
       @apply flex flex-col items-center mt-4;
 
       .link {
-        @apply flex-col;
+        @apply flex-col cursor-pointer;
       }
     }
 

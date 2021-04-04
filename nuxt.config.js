@@ -79,6 +79,8 @@ export default {
     "@nuxt/content",
     // https://i18n.nuxtjs.org/
     "nuxt-i18n",
+    // https://vue-scrollto.netlify.app/
+    "vue-scrollto/nuxt",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

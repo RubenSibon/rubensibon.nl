@@ -50,18 +50,18 @@ export default defineComponent({
   },
 
   methods: {
-    onPan (event: any) {
+    onPan ({ deltaX, isFinal }: any) {
       const vpWidth = window.innerWidth;
-      const dragOffset = 100 * event.deltaX / window.innerWidth;
+      const dragOffset = 100 * deltaX / window.innerWidth;
       const transform = this.currentOffset + dragOffset;
 
-      if (Math.abs(event.deltaX) > 50) {
+      if (Math.abs(deltaX) > 50) {
         (this.$refs.main as HTMLElement).style.setProperty("--x", transform.toString());
       } else {
         return;
       }
 
-      if (event.isFinal) {
+      if (isFinal) {
         this.currentOffset = transform;
 
         const maxScroll = 100 - this.overflowRatio * 100;
@@ -87,12 +87,12 @@ export default defineComponent({
           },
         );
 
-        if (Math.abs(event.deltaX) > vpWidth * 0.4) {
-          if (this.adjacent.left && event.deltaX > 0) {
+        if (Math.abs(deltaX) > vpWidth * 0.4) {
+          if (this.adjacent.left && deltaX > 0) {
             this.$router.push(this.localePath(this.adjacent.left));
           }
 
-          if (this.adjacent.right && event.deltaX < 0) {
+          if (this.adjacent.right && deltaX < 0) {
             this.$router.push(this.localePath(this.adjacent.right));
           }
         }
@@ -105,5 +105,6 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .main {
   transform: translateX(calc(var(--x, 0) * 1%));
+  scroll-behavior: smooth;
 }
 </style>

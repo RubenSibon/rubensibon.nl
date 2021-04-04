@@ -9,7 +9,7 @@ Vue.directive("pan", {
     if (typeof binding.value === "function") {
       const mc = new Hammer(el);
 
-      mc.get("pan").set({ direction: Hammer.DIRECTION_ALL });
+      mc.get("pan").set({ direction: Hammer.DIRECTION_HORIZONTAL });
 
       mc.on("pan", binding.value);
     }
