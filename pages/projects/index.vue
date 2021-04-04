@@ -70,9 +70,9 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .projects {
-  @apply mx-auto w-full max-w-screen-2xl p-5 h-screen;
+  @apply mx-auto w-full max-w-screen-2xl p-5;
 
-  height: var(--vp-height);
+  min-height: var(--vp-height);
 
   &-header {
     @apply flex items-center justify-start mb-5;
