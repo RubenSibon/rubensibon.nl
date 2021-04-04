@@ -28,7 +28,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .button {
-  @apply inline-flex items-center justify-around gap-2 rounded-full border-2 border-current py-1 px-4
+  @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-current py-1 px-4
     transition duration-500 ease-in-out
     bg-transparent text-purple-500 no-underline
     hover:shadow-sm hover:border-solid hover:border-purple-500 dark:hover:border-current hover:bg-purple-500 hover:text-white

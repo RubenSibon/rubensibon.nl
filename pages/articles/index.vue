@@ -1,19 +1,27 @@
 <template>
-  <main class="articles">
-    <h1>Articles</h1>
+  <MainScreen
+    class="articles"
+    :adjacent="{
+      left: '/',
+      right: `/articles/${articles[0].slug}`,
+    }"
+  >
+    <h1 class="articles-header">
+      {{ $t("Articles") }}
+    </h1>
 
     <nuxt-link
       v-for="article in articles"
       :key="article.slug"
       :to="localePath(`/articles/${article.slug}`)"
       :title="article.title"
-      class="flex flex-col gap-3"
+      class="📰"
     >
-      <h2 class="text-2xl">
+      <h2 class="📰-title">
         {{ article.title }}
       </h2>
 
-      <div class="flex items-center gap-3 text-sm">
+      <div class="📰-list">
         <div class="font-semibold">
           {{ formatDate(article.createdAt) }}
         </div>
@@ -28,10 +36,10 @@
       </div>
 
       <div v-if="article.tags" class="flex gap-1 text-xs">
-        <span class="font-semibold">{{ $t("tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
+        <span class="font-semibold">{{ $t("Tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
       </div>
     </nuxt-link>
-  </main>
+  </MainScreen>
 </template>
 
 <script lang="ts">
@@ -48,7 +56,7 @@ export default defineComponent({
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: "Articles by Ruben Sibon",
+      title: `${this.$t("Articles")} ${this.$t("by")} Ruben Sibon`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
@@ -67,12 +75,40 @@ export default defineComponent({
     formatDate (date: Date) {
       return new Date(date).toLocaleDateString("en", { year: "numeric", month: "long", day: "numeric" });
     },
+
+    onPan (event: any) {
+      const vpWidth = window.innerWidth;
+
+      if (Math.abs(event.deltaX) > vpWidth * 0.5) {
+        if (event.deltaX > 0) {
+          this.$router.push(this.localePath("/"));
+        }
+      }
+    },
   },
 });
 </script>
 
 <style lang="postcss" scoped>
 .articles {
-  @apply w-full max-w-screen-md px-4 mx-auto sm:px-8;
+  @apply w-full max-w-screen-2xl mx-auto p-5 h-screen;
+
+  height: var(--vp-height);
+
+  &-header {
+    @apply mb-5;
+  }
+
+  .📰 {
+    @apply flex flex-col gap-3;
+
+    &-title {
+      @apply text-2xl;
+    }
+
+    &-list {
+      @apply flex items-center gap-3 text-sm;
+    }
+  }
 }
 </style>

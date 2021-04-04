@@ -2,7 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   purge: {
-    content: ["./**/index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+    content: ["./src/**/*.{vue,js,ts,jsx,tsx}"],
     options: {
       keyframes: true,
     },
@@ -36,6 +36,9 @@ module.exports = {
           950: "#010810",
         },
       },
+      transitionDuration: {
+        250: "250ms",
+      },
       fontWeight: {
         semibold: "550",
       },
@@ -51,6 +54,7 @@ module.exports = {
         "screen-3/4": "75vh",
       },
       maxWidth: {
+        screen: "100vw",
         "screen-2xl": "1920px",
       },
       screens: {

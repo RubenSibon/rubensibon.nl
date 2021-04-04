@@ -27,7 +27,7 @@ nl:
         />
 
         <div class="post-header-content">
-          <TextGroup class="px-6 sm:px-0">
+          <TextGroup class="post-header-textgroup">
             <TagLabel
               v-if="article.tags && article.tags[0]"
               :invert="true"
@@ -42,7 +42,7 @@ nl:
         </div>
       </div>
 
-      <TextGroup class="max-w-screen-sm px-6 mx-auto sm:px-0">
+      <TextGroup class="max-w-screen-sm mx-auto post-header-textgroup">
         <ArticleLead>
           {{ article.description }}
         </ArticleLead>
@@ -102,29 +102,51 @@ nl:
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
+interface Article {
+  author: string;
+  body: {
+    children: any[];
+    type: "root";
+  };
+  createdAt: string;
+  description: string;
+  dir: string;
+  extension: ".md" | ".txt";
+  img: {
+    alt: string;
+    src: string;
+    srcSet: any;
+  }
+  path: string;
+  showToc: boolean;
+  slug: string;
+  tags: string[];
+  title: string;
+  toc: any[]
+  updatedAt: string;
+};
+
 export default defineComponent({
-  async asyncData ({ $content, params }: any) {
+  async asyncData ({ $content, params }) {
     const article = await $content("articles", params.slug).fetch();
 
     return { article };
   },
 
+  // @ts-ignore "head()" complains because of casting `as Article` I think...
   head () {
     return {
-      // @ts-ignore
-      title: `${this.article.title} | Ruben Sibon`,
+      title: `${(this.article as Article).title} ${this.$t("by")} Ruben Sibon`,
       meta: [
         {
           hid: "description",
           name: "description",
-          // @ts-ignore
-          content: this.article.description,
+          content: (this.article as Article).description,
         },
         {
           hid: "keywords",
           name: "keywords",
-          // @ts-ignore
-          content: this.article.tags,
+          content: (this.article as Article).tags,
         },
       ],
     };
@@ -142,16 +164,20 @@ export default defineComponent({
   }
 
   &-header {
-    .post-header-wrapper {
+    &-wrapper {
       @apply relative flex justify-center min-h-screen-1/4 bg-gray-50 dark:bg-gray-950;
     }
 
-    .post-header-content {
+    &-content {
       @apply absolute top-0 left-auto
         flex flex-col items-start justify-end
         pb-8 max-w-screen-sm w-full min-h-screen-1/4 h-full
         text-gray-950 dark:text-gray-50
       ;
+    }
+
+    &-textgroup {
+      @apply px-6 sm:px-0;
     }
   }
 
@@ -233,9 +259,7 @@ export default defineComponent({
       }
 
       .nuxt-content-highlight {
-        @apply relative my-8;
-
-        max-width: 100vw;
+        @apply relative my-8 max-w-screen;
 
         pre {
           @apply bg-gray-100 dark:bg-gray-900;

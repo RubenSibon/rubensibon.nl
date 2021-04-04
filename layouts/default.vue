@@ -7,12 +7,30 @@
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
+const tagList = [
+  "software_dev",
+  "programming",
+  "cs",
+  "linux",
+  "foss",
+  "open_source",
+  "history",
+  "javascript",
+  "typescript",
+  "vuejs",
+  "nuxtjs",
+  "react",
+  "react_native",
+  "python",
+  "c",
+];
+
 export default defineComponent({
   head () {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: `Ruben Sibon: ${this.$t("about.profession")}`,
+      title: `Ruben Sibon: ${this.$t("_profession")}`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
@@ -22,12 +40,12 @@ export default defineComponent({
         {
           hid: "description",
           name: "description",
-          content: this.$t("description"),
+          content: this.$t("_description"),
         },
         {
           hid: "keywords",
           name: "keywords",
-          content: `${this.$t("tagList.software_dev")},${this.$t("tagList.programming")},${this.$t("tagList.javascript")},${this.$t("tagList.typescript")},${this.$t("tagList.vuejs")},${this.$t("tagList.nuxtjs")},${this.$t("tagList.react")},${this.$t("tagList.react_native")},${this.$t("tagList.python")},${this.$t("tagList.linux")},${this.$t("tagList.foss")},${this.$t("tagList.open_source")}`,
+          content: this.translatedTagList,
         },
       ],
       link: [
@@ -35,6 +53,18 @@ export default defineComponent({
         ...i18nHead.link,
       ],
     };
+  },
+
+  computed: {
+    translatedTagList () {
+      return tagList.map((t) => {
+        return this.$t(`tagList.${t}`);
+      });
+    },
+  },
+
+  beforeMount () {
+    document.body.style.setProperty("--vp-height", `${window.innerHeight}px`);
   },
 });
 </script>
@@ -52,7 +82,7 @@ html {
 }
 
 body {
-  @apply transition-colors duration-[250] ease-out
+  @apply transition-colors duration-250 ease-out
     bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-100;
 
   --bg-color: theme("colors.gray.50");
@@ -86,7 +116,7 @@ h4,
 h5,
 h6,
 p {
-  @apply transition-colors duration-[250] ease-in;
+  @apply transition-colors duration-250 ease-in;
 }
 
 h1,
@@ -149,7 +179,7 @@ pre[class*=language-] {
 
 a {
   @apply relative border-b-2 border-purple-500
-    transition duration-[250] ease-in
+    transition duration-250 ease-in
     hover:border-dotted hover:text-purple-500
     focus:outline-none
     focus-visible:rounded focus-visible:border-transparent focus-visible:border-dotted focus-visible:text-purple-500
@@ -163,28 +193,43 @@ a {
 a:link,
 a:visited,
 button {
-  &.github {
-    @apply border-current text-[#171515] dark:text-white
-      hover:border-white hover:text-[#171515] hover:bg-[#171515] dark:hover:bg-white
-      focus-visible:border-white focus-visible:text-[#171515] focus-visible:bg-[#171515] dark:focus-visible:bg-white;
+  &.github,
+  &.stack-overflow,
+  &.linkedin,
+  &.twitter {
+    @apply border-current
+      hover:border-current hover:text-white
+      focus-visible:border-current focus-visible:text-white
+    ;
+  }
+
+  &.github,
+  &.codepen {
+    @apply text-[#171515] dark:text-white
+      hover:border-white hover:text-white dark:hover:text-[#171515] hover:bg-[#171515] dark:hover:bg-white
+      focus-visible:border-white focus-visible:text-white dark:focus-visible:text-[#171515] focus-visible:bg-[#171515] dark:focus-visible:bg-white
+    ;
   }
 
   &.stack-overflow {
-    @apply border-current text-[#f58025]
-      hover:border-current hover:text-white hover:bg-[#f58025]
-      focus-visible:border-current focus-visible:text-white focus-visible:bg-[#f58025];
+    @apply text-[#f58025]
+      hover:bg-[#f58025]
+      focus-visible:bg-[#f58025]
+    ;
   }
 
   &.linkedin {
-    @apply border-current text-[#0077b5]
-      hover:border-current hover:text-white hover:bg-[#0077b5]
-      focus-visible:border-current focus-visible:text-white focus-visible:bg-[#0077b5];
+    @apply text-[#0077b5]
+      hover:bg-[#0077b5]
+      focus-visible:bg-[#0077b5]
+    ;
   }
 
   &.twitter {
-    @apply border-current text-[#55acee]
-      hover:border-current hover:text-white hover:bg-[#55acee]
-      focus-visible:border-current focus-visible:text-white focus-visible:bg-[#55acee];
+    @apply text-[#55acee]
+      hover:bg-[#55acee]
+      focus-visible:bg-[#55acee]
+    ;
   }
 }
 </style>
@@ -192,5 +237,7 @@ button {
 <style lang="postcss" scoped>
 .page {
   @apply h-screen min-h-screen mx-auto;
+
+  height: var(--vp-height);
 }
 </style>
