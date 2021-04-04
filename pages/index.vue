@@ -177,14 +177,14 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .🏡 {
-  @apply flex flex-col items-center justify-evenly mx-auto px-4 md:px-8 max-w-screen-md lg:max-w-screen-lg text-center;
+  @apply flex flex-col items-center justify-evenly mx-auto px-4 md:px-8  text-center;
 
   .screen {
-    @apply flex flex-col items-center justify-evenly h-screen min-h-screen;
+    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen h-screen min-h-screen;
   }
 
   .🧔 {
-    @apply flex flex-col items-center justify-center;
+    @apply flex flex-col items-center justify-center mx-4 md:mx-8;
 
     .picture {
       @apply rounded-full mb-4 w-36 h-36 overflow-hidden;
@@ -199,7 +199,7 @@ export default defineComponent({
     }
 
     .description {
-      @apply mb-4 max-w-screen-sm md:max-w-screen-md;
+      @apply max-w-screen-sm md:max-w-screen-md;
     }
   }
 
@@ -209,12 +209,12 @@ export default defineComponent({
     .horizontal {
       @apply flex flex-wrap justify-between;
 
-      &:first-child {
-        @apply justify-self-start;
+      a:first-child {
+        @apply ml-4 md:ml-8;
       }
 
-      &:last-child {
-        @apply justify-self-end;
+      a:last-child {
+        @apply mr-4 md:mr-8;
       }
     }
 
@@ -242,7 +242,7 @@ export default defineComponent({
   }
 
   .buttons-social {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 px-4 w-full md:w-auto;
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 px-4 w-full sm:w-auto;
   }
 }
 </style>
