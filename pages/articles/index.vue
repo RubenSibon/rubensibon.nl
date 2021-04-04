@@ -34,7 +34,7 @@
       </div>
 
       <div v-if="article.tags" class="flex gap-1 text-xs">
-        <span class="font-semibold">{{ $t("tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
+        <span class="font-semibold">{{ $t("Tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
       </div>
     </nuxt-link>
   </MainScreen>

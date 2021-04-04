@@ -15,6 +15,18 @@ en:
   >
     <section class="screen screen-1">
       <div class="🧔">
+        <figure class="picture">
+          <picture>
+            <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
+
+            <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
+          </picture>
+
+          <figcaption class="sr-only">
+            A photo of this website's author.
+          </figcaption>
+        </figure>
+
         <h1 class="title">
           {{ content.title }}
         </h1>
@@ -173,6 +185,10 @@ export default defineComponent({
 
   .🧔 {
     @apply flex flex-col items-center justify-center;
+
+    .picture {
+      @apply rounded-full mb-4 w-36 h-36 overflow-hidden;
+    }
 
     .title {
       @apply mb-4;

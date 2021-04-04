@@ -139,7 +139,7 @@ export default defineComponent({
     return { article };
   },
 
-  // @ts-ignore
+  // @ts-ignore "head()" complains because of casting `as Article` I think...
   head () {
     return {
       title: `${(this.article as Article).title} ${this.$t("by")} Ruben Sibon`,
