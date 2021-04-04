@@ -1,24 +1,9 @@
-<i18n lang="yaml">
-nl:
-  Software Developer: "Softwareontwikkelaar"
-  Follow me: "Volg mij"
-  Get in touch: "Start een gesprek"
-  if it pleases you: "als het je pleziert"
-  but really, only if you want to: "maar echt, alleen als je dat wilt"
-en:
-  Software Developer: "Software Developer"
-  Follow me: "Follow me"
-  Get in touch: "Get in touch"
-  if it pleases you: "if it pleases you"
-  but really, only if you want to: "but really, only if you want to"
-</i18n>
-
 <template>
   <SlideScreen
     class="🏡"
     :adjacent="{
-      left: 'projects',
-      right: 'articles',
+      left: '/projects',
+      right: '/articles',
     }"
   >
     <section id="screen1" class="screen">
@@ -41,7 +26,7 @@ en:
           </h2>
 
           <p class="description">
-            {{ content.description[locale || "en_GB"] }}
+            {{ content.description[locale || "en"] }}
           </p>
         </template>
       </div>
@@ -49,7 +34,9 @@ en:
       <nav class="nav">
         <div class="horizontal">
           <nuxt-link :to="localePath('/projects')" class="link">
-            <SvgIconChevronLeft aria-hidden="true" />
+            <span>
+              <SvgIconChevronLeft aria-hidden="true" />
+            </span>
 
             <span class="sr-only">⬅&nbsp;</span>
 
@@ -59,7 +46,9 @@ en:
           <nuxt-link :to="localePath('/articles')" class="link">
             {{ $t("Articles") }}
 
-            <SvgIconChevronRight aria-hidden="true" />
+            <span>
+              <SvgIconChevronRight aria-hidden="true" />
+            </span>
 
             <span class="sr-only">&nbsp;➡</span>
           </nuxt-link>
@@ -69,12 +58,14 @@ en:
           <a
             v-scroll-to="'#screen2'"
             tabindex="0"
-            :alt="$t('More')"
+            :title="$t('More')"
             class="link"
           >
             {{ $t("More") }}
 
-            <SvgIconChevronDown aria-hidden="true" />
+            <span>
+              <SvgIconChevronDown aria-hidden="true" />
+            </span>
 
             <span class="sr-only">⬇</span>
           </a>
@@ -101,10 +92,14 @@ en:
             class="github"
           >
             <template #before>
-              <SvgIconGithub aria-hidden="true" />
+              <span>
+                <SvgIconGithub aria-hidden="true" />
+              </span>
             </template>
 
-            GitHub
+            <span>
+              GitHub
+            </span>
           </Button>
 
           <Button
@@ -115,10 +110,14 @@ en:
             class="stack-overflow"
           >
             <template #before>
-              <SvgIconSO aria-hidden="true" />
+              <span>
+                <SvgIconSO aria-hidden="true" />
+              </span>
             </template>
 
-            StackOverflow
+            <span>
+              StackOverflow
+            </span>
           </Button>
 
           <Button
@@ -129,10 +128,14 @@ en:
             class="github"
           >
             <template #before>
-              <SvgIconCodePen aria-hidden="true" />
+              <span>
+                <SvgIconCodePen aria-hidden="true" />
+              </span>
             </template>
 
-            CodePen
+            <span>
+              CodePen
+            </span>
           </Button>
 
           <Button
@@ -143,10 +146,14 @@ en:
             class="linkedin"
           >
             <template #before>
-              <SvgIconLinkedIn aria-hidden="true" />
+              <span>
+                <SvgIconLinkedIn aria-hidden="true" />
+              </span>
             </template>
 
-            LinkedIn
+            <span>
+              LinkedIn
+            </span>
           </Button>
 
           <Button
@@ -157,10 +164,14 @@ en:
             class="twitter"
           >
             <template #before>
-              <SvgIconTwitter aria-hidden="true" />
+              <span>
+                <SvgIconTwitter aria-hidden="true" />
+              </span>
             </template>
 
-            Twitter
+            <span>
+              Twitter
+            </span>
           </Button>
         </div>
       </div>

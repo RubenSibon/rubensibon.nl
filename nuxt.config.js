@@ -98,22 +98,22 @@ export default {
     },
     locales: [
       {
-        code: "en",
-        name: "English",
-        iso: "en-GB",
-        file: "en-GB",
-      },
-      {
         code: "nl",
         name: "Nederlands",
         iso: "nl-NL",
-        file: "nl-NL",
+        file: "nl-NL.js",
+      },
+      {
+        code: "en",
+        name: "English",
+        iso: "en-GB",
+        file: "en-GB.js",
       },
     ],
     lazy: true,
     langDir: "lang/",
     defaultLocale: "en",
-    strategy: "prefix",
+    strategy: "prefix_and_default",
     seo: false,
   },
 

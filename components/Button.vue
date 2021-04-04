@@ -5,9 +5,7 @@
   >
     <slot name="before" />
 
-    <span>
-      <slot />
-    </span>
+    <slot />
 
     <slot name="after" />
   </component>

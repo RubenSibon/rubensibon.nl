@@ -50,13 +50,6 @@
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
-  nuxtI18n: {
-    paths: {
-      en: "/articles",
-      nl: "/artikelen",
-    },
-  },
-
   data () {
     return {
       articles: [],
