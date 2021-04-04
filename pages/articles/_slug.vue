@@ -127,6 +127,13 @@ interface Article {
 };
 
 export default defineComponent({
+  nuxtI18n: {
+    paths: {
+      en: "/articles/:slug",
+      nl: "/artikelen/:slug",
+    },
+  },
+
   async asyncData ({ $content, params }) {
     const article = await $content("articles", params.slug).fetch();
 
