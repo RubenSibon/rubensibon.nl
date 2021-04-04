@@ -236,8 +236,8 @@ button {
 
 <style lang="postcss" scoped>
 .page {
-  @apply h-screen min-h-screen mx-auto;
+  @apply w-full max-w-screen h-full mx-auto overflow-x-hidden;
 
-  height: var(--vp-height);
+  min-height: var(--vp-height);
 }
 </style>

@@ -14,7 +14,7 @@ en:
 </i18n>
 
 <template>
-  <MainScreen
+  <SlideScreen
     class="🏡"
     :adjacent="{
       left: '/projects',
@@ -50,15 +50,19 @@ en:
 
       <nav class="nav">
         <div class="horizontal">
-          <nuxt-link :to="localePath('projects')" class="link">
+          <nuxt-link :to="localePath('/projects')" class="link">
             <SvgIconChevronLeft aria-hidden />
+
             <span class="sr-only">⬅&nbsp;</span>
+
             {{ $t("Projects") }}
           </nuxt-link>
 
-          <nuxt-link :to="localePath('articles')" class="link">
+          <nuxt-link :to="localePath('/articles')" class="link">
             {{ $t("Articles") }}
+
             <SvgIconChevronRight aria-hidden />
+
             <span class="sr-only">&nbsp;➡</span>
           </nuxt-link>
         </div>
@@ -71,7 +75,9 @@ en:
             class="link"
           >
             {{ $t("More") }}
+
             <SvgIconChevronDown aria-hidden />
+
             <span class="sr-only">⬇</span>
           </a>
         </div>
@@ -173,7 +179,7 @@ en:
         <p>Sorry, the contact form is a<br><i>Work in Progress</i><br>¯\_(ツ)_/¯</p>
       </div>
     </section>
-  </MainScreen>
+  </SlideScreen>
 </template>
 
 <script lang="ts">
@@ -263,13 +269,17 @@ export default defineComponent({
       a:last-child {
         @apply mr-4 md:mr-8;
       }
+
+      .link {
+        @apply py-2;
+      }
     }
 
     .vertical {
       @apply flex flex-col items-center mt-4;
 
       .link {
-        @apply flex-col cursor-pointer;
+        @apply flex-col cursor-pointer px-4;
       }
     }
 
