@@ -7,12 +7,30 @@
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
+const tagList = [
+  "software_dev",
+  "programming",
+  "cs",
+  "linux",
+  "foss",
+  "open_source",
+  "history",
+  "javascript",
+  "typescript",
+  "vuejs",
+  "nuxtjs",
+  "react",
+  "react_native",
+  "python",
+  "c",
+];
+
 export default defineComponent({
   head () {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: `Ruben Sibon: ${this.$t("profession")}`,
+      title: `Ruben Sibon: ${this.$t("_profession")}`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
@@ -22,12 +40,12 @@ export default defineComponent({
         {
           hid: "description",
           name: "description",
-          content: this.$t("description"),
+          content: this.$t("_description"),
         },
         {
           hid: "keywords",
           name: "keywords",
-          content: `${this.$t("tagList.software_dev")},${this.$t("tagList.programming")},${this.$t("tagList.javascript")},${this.$t("tagList.typescript")},${this.$t("tagList.vuejs")},${this.$t("tagList.nuxtjs")},${this.$t("tagList.react")},${this.$t("tagList.react_native")},${this.$t("tagList.python")},${this.$t("tagList.linux")},${this.$t("tagList.foss")},${this.$t("tagList.open_source")}`,
+          content: this.translatedTagList,
         },
       ],
       link: [
@@ -35,6 +53,14 @@ export default defineComponent({
         ...i18nHead.link,
       ],
     };
+  },
+
+  computed: {
+    translatedTagList () {
+      return tagList.map((t) => {
+        return this.$t(`tagList.${t}`);
+      });
+    },
   },
 });
 </script>

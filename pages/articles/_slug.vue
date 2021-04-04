@@ -14,117 +14,145 @@ nl:
 </i18n>
 
 <template>
-  <article class="post">
-    <header class="post-header">
-      <div class="post-header-wrapper">
-        <LazyHeaderImage
-          v-if="article.img && article.img.src"
-          :alt="article.img.alt"
-          :src-set="Object.entries(article.img.srcSet)"
-          :src="article.img.src"
-          :bg-color="article.image && article.image.bgColor ? article.image.bgColor : null"
-          :gradient="true"
-        />
+  <MainScreen
+    :adjacent="{
+      left: '/articles',
+    }"
+  >
+    <article class="post">
+      <header class="post-header">
+        <div class="post-header-wrapper">
+          <LazyHeaderImage
+            v-if="article.img && article.img.src"
+            :alt="article.img.alt"
+            :src-set="Object.entries(article.img.srcSet)"
+            :src="article.img.src"
+            :bg-color="article.image && article.image.bgColor ? article.image.bgColor : null"
+            :gradient="true"
+          />
 
-        <div class="post-header-content">
-          <TextGroup class="post-header-textgroup">
-            <TagLabel
-              v-if="article.tags && article.tags[0]"
-              :invert="true"
-            >
-              {{ $t(`tagList.${article.tags[0]}`) }}
-            </TagLabel>
+          <div class="post-header-content">
+            <TextGroup class="post-header-textgroup">
+              <TagLabel
+                v-if="article.tags && article.tags[0]"
+                :invert="true"
+              >
+                {{ $t(`tagList.${article.tags[0]}`) }}
+              </TagLabel>
 
-            <h1>
-              {{ article.title }}
-            </h1>
-          </TextGroup>
-        </div>
-      </div>
-
-      <TextGroup class="max-w-screen-sm mx-auto post-header-textgroup">
-        <ArticleLead>
-          {{ article.description }}
-        </ArticleLead>
-
-        <PostDetails>
-          <div>
-            {{ article.author }}
+              <h1>
+                {{ article.title }}
+              </h1>
+            </TextGroup>
           </div>
-
-          <PostReadingTime :text="JSON.stringify(article)" />
-
-          <PostDate
-            :iso-date="article.createdAt"
-            :label="`${$t('posted')}:`"
-            :show-label="false"
-          />
-
-          <PostDate
-            v-if="article.updatedAt"
-            :iso-date="article.updatedAt"
-            :label="`${$t('updated')}:`"
-          />
-        </PostDetails>
-      </TextGroup>
-    </header>
-
-    <TextGroup class="px-6">
-      <Collapsible v-if="article.showToc" class="px-4 mb-8">
-        <template #summary>
-          {{ $t("toc") }}
-        </template>
-
-        <template #content>
-          <ToC :items="article.toc" class="mt-4" />
-        </template>
-      </Collapsible>
-    </TextGroup>
-
-    <main class="post-body">
-      <nuxt-content :document="article" />
-    </main>
-
-    <footer class="post-footer">
-      <TextGroup class="flex flex-col flex-wrap items-center text-center">
-        <hr class="w-3/4 mx-auto mb-1">
-
-        <div class="flex flex-wrap justify-center gap-2 mt-2 mb-8">
-          <TagLabel v-for="tag of article.tags" :key="tag">
-            {{ $t(`tagList.${tag}`) }}
-          </TagLabel>
         </div>
+
+        <TextGroup class="max-w-screen-sm mx-auto post-header-textgroup">
+          <ArticleLead>
+            {{ article.description }}
+          </ArticleLead>
+
+          <PostDetails>
+            <div>
+              {{ article.author }}
+            </div>
+
+            <PostReadingTime :text="JSON.stringify(article)" />
+
+            <PostDate
+              :iso-date="article.createdAt"
+              :label="`${$t('posted')}:`"
+              :show-label="false"
+            />
+
+            <PostDate
+              v-if="article.updatedAt"
+              :iso-date="article.updatedAt"
+              :label="`${$t('updated')}:`"
+            />
+          </PostDetails>
+        </TextGroup>
+      </header>
+
+      <TextGroup class="px-6">
+        <Collapsible v-if="article.showToc" class="px-4 mb-8">
+          <template #summary>
+            {{ $t("toc") }}
+          </template>
+
+          <template #content>
+            <ToC :items="article.toc" class="mt-4" />
+          </template>
+        </Collapsible>
       </TextGroup>
-    </footer>
-  </article>
+
+      <main class="post-body">
+        <nuxt-content :document="article" />
+      </main>
+
+      <footer class="post-footer">
+        <TextGroup class="flex flex-col flex-wrap items-center text-center">
+          <hr class="w-3/4 mx-auto mb-1">
+
+          <div class="flex flex-wrap justify-center gap-2 mt-2 mb-8">
+            <TagLabel v-for="tag of article.tags" :key="tag">
+              {{ $t(`tagList.${tag}`) }}
+            </TagLabel>
+          </div>
+        </TextGroup>
+      </footer>
+    </article>
+  </MainScreen>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
+interface Article {
+  author: string;
+  body: {
+    children: any[];
+    type: "root";
+  };
+  createdAt: string;
+  description: string;
+  dir: string;
+  extension: ".md" | ".txt";
+  img: {
+    alt: string;
+    src: string;
+    srcSet: any;
+  }
+  path: string;
+  showToc: boolean;
+  slug: string;
+  tags: string[];
+  title: string;
+  toc: any[]
+  updatedAt: string;
+};
+
 export default defineComponent({
-  async asyncData ({ $content, params }: any) {
+  async asyncData ({ $content, params }) {
     const article = await $content("articles", params.slug).fetch();
 
     return { article };
   },
 
+  // @ts-ignore
   head () {
     return {
-      // @ts-ignore
-      title: `${this.article.title} ${this.$t("by")} Ruben Sibon`,
+      title: `${(this.article as Article).title} ${this.$t("by")} Ruben Sibon`,
       meta: [
         {
           hid: "description",
           name: "description",
-          // @ts-ignore
-          content: this.article.description,
+          content: (this.article as Article).description,
         },
         {
           hid: "keywords",
           name: "keywords",
-          // @ts-ignore
-          content: this.article.tags,
+          content: (this.article as Article).tags,
         },
       ],
     };

@@ -3,6 +3,7 @@
     class="articles"
     :adjacent="{
       left: '/',
+      right: `/articles/${articles[0].slug}`,
     }"
   >
     <h1>{{ $t("Articles") }}</h1>
@@ -53,7 +54,7 @@ export default defineComponent({
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: `${this.$t("articles")} ${this.$t("by")} Ruben Sibon`,
+      title: `${this.$t("Articles")} ${this.$t("by")} Ruben Sibon`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },

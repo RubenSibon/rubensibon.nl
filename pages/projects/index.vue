@@ -33,7 +33,7 @@ export default defineComponent({
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
-      title: `${this.$t("projects")} ${this.$t("by")} Ruben Sibon`,
+      title: `${this.$t("Projects")} ${this.$t("by")} Ruben Sibon`,
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },
