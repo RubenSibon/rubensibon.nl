@@ -29,23 +29,21 @@ en:
 
             <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
           </picture>
-
-          <!-- <figcaption>
-            A photo of this website's author.
-          </figcaption> -->
         </figure>
 
-        <h1 class="title">
-          {{ content.title }}
-        </h1>
+        <template v-if="content">
+          <h1 class="title">
+            {{ content.title }}
+          </h1>
 
-        <h2 class="subtitle">
-          {{ $t(content.subTitle) }}
-        </h2>
+          <h2 class="subtitle">
+            {{ $t(content.subTitle) }}
+          </h2>
 
-        <p class="description">
-          {{ content.description[locale || "en_GB"] }}
-        </p>
+          <p class="description">
+            {{ content.description[locale || "en_GB"] }}
+          </p>
+        </template>
       </div>
 
       <nav class="nav">
@@ -295,7 +293,15 @@ export default defineComponent({
   }
 
   .buttons-social {
-    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 px-4 w-full sm:w-auto;
+    @apply grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3 px-4 w-full mx-auto sm:w-auto max-w-screen-md;
+
+    a {
+      @apply sm:col-span-2 md:col-span-6;
+
+      &:last-child:not(:nth-child(even)) {
+        @apply sm:col-start-2 sm:col-end-4 md:col-start-4 md:col-end-10;
+      }
+    }
   }
 }
 </style>

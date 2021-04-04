@@ -33,7 +33,12 @@
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
-  setup () {},
+  nuxtI18n: {
+    paths: {
+      en: "/projects",
+      nl: "/projecten",
+    },
+  },
 
   head () {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
