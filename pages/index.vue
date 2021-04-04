@@ -58,7 +58,7 @@ en:
             {{ $t("Projects") }}
           </nuxt-link>
 
-          <nuxt-link :to="localePath('articles')" class="link">
+          <nuxt-link :to="localePath('/articles')" class="link">
             {{ $t("Articles") }}
 
             <SvgIconChevronRight aria-hidden="true" />
