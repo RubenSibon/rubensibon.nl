@@ -259,7 +259,7 @@ export default defineComponent({
   .screen {
     @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen h-full;
 
-    min-height: var(--vp-height);
+    min-height: var(--vp-height, 100vh);
   }
 
   .🧔 {

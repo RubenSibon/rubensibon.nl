@@ -100,7 +100,7 @@ export default defineComponent({
 .articles {
   @apply w-full max-w-screen-2xl mx-auto p-5;
 
-  min-height: var(--vp-height);
+  min-height: var(--vp-height, 100vh);
 
   &-header {
     @apply mb-5;
