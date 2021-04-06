@@ -17,7 +17,7 @@ nl:
   <article class="post">
     <header class="post-header">
       <div class="post-header-wrapper">
-        <LazyHeaderImage
+        <HeaderImage
           v-if="article.img && article.img.src"
           :alt="article.img.alt"
           :src-set="Object.entries(article.img.srcSet)"
@@ -189,9 +189,9 @@ export default defineComponent({
   }
 
   &-body {
-    @apply max-w-screen-sm mb-8 md:overflow-x-hidden;
+    @apply mb-8 max-w-screen-sm;
 
-    .nuxt-content-container {
+    .nuxt-content {
       h1,
       h2,
       h3,
