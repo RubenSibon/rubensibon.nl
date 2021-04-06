@@ -6,6 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
+import throttle from "lodash/throttle";
 
 const tagList = [
   "software_dev",
@@ -64,7 +65,13 @@ export default defineComponent({
   },
 
   beforeMount () {
-    document.body.style.setProperty("--vp-height", `${window.innerHeight}px`);
+    function setVpHeightCSS () {
+      document.body.style.setProperty("--vp-height", `${window.innerHeight}px`);
+    }
+
+    window.addEventListener("resize", throttle(setVpHeightCSS, 500));
+
+    setVpHeightCSS();
   },
 });
 </script>

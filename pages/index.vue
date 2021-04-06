@@ -14,13 +14,14 @@ en:
 </i18n>
 
 <template>
-  <SlideScreen
+  <!-- <SlideScreen
     class="🏡"
     :adjacent="{
       left: '/projects',
       right: '/articles',
     }"
-  >
+  > -->
+  <div class="🏡">
     <section id="screen1" class="screen">
       <div class="🧔">
         <figure class="picture">
@@ -203,7 +204,8 @@ en:
         <p>Sorry, the contact form is a<br><i>Work in Progress</i><br>¯\_(ツ)_/¯</p>
       </div>
     </section>
-  </SlideScreen>
+  </div>
+  <!-- </SlideScreen> -->
 </template>
 
 <script lang="ts">
@@ -255,7 +257,7 @@ export default defineComponent({
   @apply flex flex-col items-center justify-evenly mx-auto px-4 md:px-8  text-center;
 
   .screen {
-    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen;
+    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen h-full;
 
     min-height: var(--vp-height);
   }
@@ -299,6 +301,9 @@ export default defineComponent({
 
     .horizontal {
       @apply flex flex-wrap justify-between;
+
+      /* Temporarily hide horizontal navs */
+      display: none;
 
       .link:first-child {
         @apply ml-4 md:ml-8 py-2;
