@@ -49,6 +49,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    "node_modules/focus-visible/dist/focus-visible.js",
     { src: "~/plugins/directive-hammer", ssr: false },
   ],
 

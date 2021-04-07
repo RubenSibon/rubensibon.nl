@@ -23,7 +23,7 @@ en:
   > -->
   <div class="🏡">
     <section id="screen1" class="screen">
-      <div class="🧔">
+      <div class="me">
         <figure class="picture">
           <picture>
             <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
@@ -262,8 +262,10 @@ export default defineComponent({
     min-height: var(--vp-height, 100vh);
   }
 
-  .🧔 {
+  .me {
     @apply flex flex-col items-center justify-center mx-4 md:mx-8;
+
+    flex: 1 1 auto;
 
     .picture {
       @apply rounded-full mb-4 w-36 h-36 overflow-hidden;
@@ -283,7 +285,9 @@ export default defineComponent({
   }
 
   .nav {
-    @apply flex flex-col justify-evenly pb-4 md:px-8 w-full sm:text-3xl md:text-4xl;
+    @apply flex flex-col justify-evenly pb-4 md:px-8 w-full h-full sm:text-3xl md:text-4xl;
+
+    flex: 0 1 auto;
 
     .link {
       @apply flex items-center border-none;

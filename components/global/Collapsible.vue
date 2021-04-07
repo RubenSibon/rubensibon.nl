@@ -12,8 +12,10 @@
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
-  beforeMount () {
-    this.$el.removeAttribute("open");
+  mounted () {
+    if (this.$el) {
+      this.$el.removeAttribute("open");
+    }
   },
 });
 </script>
