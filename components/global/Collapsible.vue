@@ -1,5 +1,5 @@
 <template>
-  <details class="collapsible">
+  <details class="collapsible" open>
     <summary class="h5">
       <slot name="summary" />
     </summary>
@@ -7,6 +7,16 @@
     <slot name="content" />
   </details>
 </template>
+
+<script lang="ts">
+import { defineComponent } from "@vue/composition-api";
+
+export default defineComponent({
+  beforeMount () {
+    this.$el.removeAttribute("open");
+  },
+});
+</script>
 
 <style lang="postcss" scoped>
 .collapsible {
