@@ -77,7 +77,7 @@ export default defineComponent({
 .projects {
   @apply mx-auto w-full max-w-screen-2xl p-5;
 
-  min-height: var(--vp-height);
+  min-height: var(--vp-height, 100vh);
 
   &-header {
     @apply flex items-center justify-start mb-5;

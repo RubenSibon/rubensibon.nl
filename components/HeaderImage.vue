@@ -67,8 +67,8 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .headerimage {
-  @apply flex flex-col items-center justify-end relative mx-auto w-full
-    overflow-x-hidden
+  @apply flex flex-col items-center justify-end
+    relative mx-auto w-full overflow-x-hidden
     text-center;
 
   img,
@@ -78,8 +78,8 @@ export default defineComponent({
 
   figcaption {
     @apply flex items-center gap-2
-      rounded-full absolute top-0 right-0
-      m-3 py-1 px-3 w-max max-w-none
+      absolute top-0 right-0
+      rounded-full m-3 py-1 px-3 w-max max-w-none
       bg-black bg-opacity-50 text-gray-200 text-xs;
 
     font-size: 0.675rem;
@@ -91,11 +91,11 @@ export default defineComponent({
 
   &.gradient {
     &::after {
-      background: var(--bg-color, #f8fafc);
-      background: linear-gradient(to top, var(--bg-color, #010810) 0%, rgba(255, 255, 255, 0) 33.33333%);
-      content: "";
-
       @apply block absolute bottom-0 left-0 w-full h-full;
+
+      background: var(--color-back, theme("colors.gray.950"));
+      background: linear-gradient(to top, var(--color-back, theme("colors.gray.950")) 0%, rgba(255, 255, 255, 0) 33.33333%);
+      content: "";
     }
   }
 }

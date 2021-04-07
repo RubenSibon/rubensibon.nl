@@ -92,10 +92,12 @@ body {
   @apply transition-colors duration-250 ease-out
     bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-gray-100;
 
-  --bg-color: theme("colors.gray.50");
+  --color-back: theme("colors.gray.50");
+  --color-front: theme("colors.gray.950");
 
   @screen dark {
-    --bg-color: theme("colors.gray.950");
+    --color-back: theme("colors.gray.950");
+    --color-front: theme("colors.gray.50");
   }
 }
 
@@ -245,6 +247,6 @@ button {
 .page {
   @apply w-full max-w-screen h-full mx-auto overflow-x-hidden;
 
-  min-height: var(--vp-height);
+  min-height: var(--vp-height, 100vh);
 }
 </style>
