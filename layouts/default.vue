@@ -201,6 +201,8 @@ a:link,
 a:visited,
 button {
   &.github,
+  &.gitlab,
+  &.codepen,
   &.stack-overflow,
   &.linkedin,
   &.twitter {
@@ -215,6 +217,13 @@ button {
     @apply text-[#171515] dark:text-white
       hover:border-white hover:text-white dark:hover:text-[#171515] hover:bg-[#171515] dark:hover:bg-white
       focus-visible:border-white focus-visible:text-white dark:focus-visible:text-[#171515] focus-visible:bg-[#171515] dark:focus-visible:bg-white
+    ;
+  }
+
+  &.gitlab {
+    @apply text-[#e2432a]
+      hover:bg-[#e2432a]
+      focus-visible:bg-[#e2432a]
     ;
   }
 
