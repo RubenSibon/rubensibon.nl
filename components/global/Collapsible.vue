@@ -12,10 +12,15 @@
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
+<<<<<<< HEAD
   mounted () {
     if (this.$el) {
       this.$el.removeAttribute("open");
     }
+=======
+  beforeMount () {
+    this.$el.removeAttribute("open");
+>>>>>>> fix: make details el open by default before JS
   },
 });
 </script>
