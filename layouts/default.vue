@@ -27,6 +27,7 @@ const tagList = [
 ];
 
 export default defineComponent({
+  // @ts-ignore
   head () {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 

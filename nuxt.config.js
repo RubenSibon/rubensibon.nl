@@ -82,6 +82,11 @@ export default {
     "nuxt-i18n",
     // https://vue-scrollto.netlify.app/
     "vue-scrollto/nuxt",
+    // https://github.com/dword-design/nuxt-modernizr
+    ["nuxt-modernizr", {
+      "feature-detects": ["css/cssgrid", "elem/details"],
+      options: ["setClasses"],
+    }],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

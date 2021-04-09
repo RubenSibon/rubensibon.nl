@@ -69,8 +69,9 @@ nl:
       </TextGroup>
     </header>
 
-    <TextGroup class="px-6">
-      <Collapsible v-if="article.showToc" class="px-4 mb-8">
+    <TextGroup v-if="article.showToc" class="px-6">
+      <ToC :items="article.toc" class="hidden" />
+      <Collapsible class="px-4 mb-8">
         <template #summary>
           {{ $t("toc") }}
         </template>
@@ -224,15 +225,15 @@ export default defineComponent({
       }
 
       h2 {
-        @apply mb-4 text-2xl;
+        @apply mb-4;
       }
 
       h3 {
-        @apply mb-3 text-xl;
+        @apply mb-3;
       }
 
       h4 {
-        @apply mb-3 text-lg;
+        @apply mb-3;
       }
 
       h4,
