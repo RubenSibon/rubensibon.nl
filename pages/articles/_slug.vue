@@ -173,14 +173,14 @@ export default defineComponent({
   &-header {
     &-wrapper {
       @apply relative flex justify-center min-h-screen-1/4 bg-gray-50 dark:bg-gray-950;
-    }
 
-    &-content {
-      @apply absolute top-0 left-auto
-        flex flex-col items-start justify-end
-        pb-8 max-w-screen-sm w-full min-h-screen-1/4 h-full
-        text-gray-950 dark:text-gray-50
-      ;
+      .post-header-content {
+        @apply absolute top-0 left-0
+          flex flex-col items-start justify-end
+          pb-8 w-full min-h-screen-1/4 h-full
+          text-gray-950 dark:text-gray-50
+        ;
+      }
     }
 
     &-textgroup {

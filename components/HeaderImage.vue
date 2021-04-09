@@ -93,8 +93,8 @@ export default defineComponent({
     &::after {
       @apply block absolute bottom-0 left-0 w-full h-full;
 
-      background: var(--color-back, theme("colors.gray.950"));
-      background: linear-gradient(to top, var(--color-back, theme("colors.gray.950")) 0%, rgba(255, 255, 255, 0) 33.33333%);
+      background: var(--color-back, theme("colors.gray.50"));
+      background: linear-gradient(to top, var(--color-back, theme("colors.gray.50")) 0%, rgba(255, 255, 255, 0) 33.33333%);
       content: "";
     }
   }
