@@ -33,8 +33,8 @@ export default defineComponent({
     };
   },
 
-  mounted () {
-    if (window.Modernizr.details) {
+  beforeMounted () {
+    if (process.client && window.Modernizr.details) {
       this.tag = "details";
     }
   },
