@@ -59,13 +59,6 @@
 
 
 /*!
- * reading-time
- * Copyright (c) Nicolas Gryman <ngryman@gmail.com>
- * MIT Licensed
- */
-
-
-/*!
  * CSSPlugin 3.6.1
  * https://greensock.com
  *
@@ -84,3 +77,10 @@
  * Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
 */
+
+
+/*!
+ * reading-time
+ * Copyright (c) Nicolas Gryman <ngryman@gmail.com>
+ * MIT Licensed
+ */
