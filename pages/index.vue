@@ -105,7 +105,7 @@ en:
             href="https://github.com/RubenSibon"
             target="_blank"
             rel="noopener noreferrer"
-            class="github"
+            variant="github"
           >
             <template #before>
               <span>
@@ -123,7 +123,7 @@ en:
             href="https://stackoverflow.com/story/rubensibon"
             target="_blank"
             rel="noopener noreferrer"
-            class="stack-overflow"
+            variant="stack-overflow"
           >
             <template #before>
               <span>
@@ -141,7 +141,7 @@ en:
             href="https://codepen.io/RubenSibon"
             target="_blank"
             rel="noopener noreferrer"
-            class="github"
+            variant="codepen"
           >
             <template #before>
               <span>
@@ -159,7 +159,7 @@ en:
             href="https://www.linkedin.com/in/rubensibon"
             target="_blank"
             rel="noopener noreferrer"
-            class="linkedin"
+            variant="linkedin"
           >
             <template #before>
               <span>
@@ -177,7 +177,7 @@ en:
             href="https://twitter.com/RubenSibon"
             target="_blank"
             rel="noopener noreferrer"
-            class="twitter"
+            variant="twitter"
           >
             <template #before>
               <span>
