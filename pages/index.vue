@@ -120,19 +120,19 @@ en:
 
           <Button
             tag="a"
-            href="https://stackoverflow.com/story/rubensibon"
+            href="https://gitlab.com/RubenSibon"
             target="_blank"
             rel="noopener noreferrer"
-            variant="stack-overflow"
+            variant="gitlab"
           >
             <template #before>
               <span>
-                <SvgIconSO aria-hidden="true" />
+                <SvgIconGitlab aria-hidden="true" />
               </span>
             </template>
 
             <span>
-              StackOverflow
+              GitLab
             </span>
           </Button>
 
@@ -151,6 +151,24 @@ en:
 
             <span>
               CodePen
+            </span>
+          </Button>
+
+          <Button
+            tag="a"
+            href="https://stackoverflow.com/story/rubensibon"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="stack-overflow"
+          >
+            <template #before>
+              <span>
+                <SvgIconSO aria-hidden="true" />
+              </span>
+            </template>
+
+            <span>
+              StackOverflow
             </span>
           </Button>
 
@@ -227,6 +245,7 @@ interface Data {
 export default defineComponent({
   components: {
     SvgIconGithub: () => import("~/assets/icons/github.svg?inline"),
+    SvgIconGitlab: () => import("~/assets/icons/gitlab.svg?inline"),
     SvgIconSO: () => import("~/assets/icons/stackoverflow.svg?inline"),
     SvgIconCodePen: () => import("~/assets/icons/codepen.svg?inline"),
     SvgIconLinkedIn: () => import("~/assets/icons/linkedin.svg?inline"),
