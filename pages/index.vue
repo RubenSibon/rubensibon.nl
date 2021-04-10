@@ -34,19 +34,20 @@ en:
           </picture>
         </figure>
 
-        <template v-if="content">
-          <h1 class="title">
-            {{ content.title }}
-          </h1>
+        <h1 class="title">
+          Ruben Sibon
+        </h1>
 
-          <h2 class="subtitle">
-            {{ $t(content.subTitle) }}
-          </h2>
+        <h2 class="subtitle">
+          {{ $t("Software Developer") }}
+        </h2>
 
-          <p class="description">
-            {{ content.description[locale || "en"] }}
-          </p>
-        </template>
+        <p v-if="locale === 'nl'" class="description">
+          👋 Hoi! Ik ben Ruben, een web- and appontwikkelaar uit Amsterdam. Ik programmeer vooral in JavaScript, met name de frameworks Vue.js en React.
+        </p>
+        <p v-else class="description">
+          👋 Hi! I'm Ruben, a web and app developer from Amsterdam, The Netherlands. I mostly work with JavaScript, particularly Vue.js and React.
+        </p>
       </div>
 
       <nav class="nav">
@@ -250,19 +251,6 @@ en:
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
-import CONTENT from "./index.json";
-
-interface Data {
-  content: {
-    title: string;
-    subTitle: string;
-    description: {
-      en: string;
-      nl: string;
-    };
-  };
-};
-
 export default defineComponent({
   components: {
     SvgIconGithub: () => import("~/assets/icons/github.svg?inline"),
@@ -281,12 +269,6 @@ export default defineComponent({
 
     return {
       locale,
-    };
-  },
-
-  data (): Data {
-    return {
-      content: CONTENT,
     };
   },
 });
