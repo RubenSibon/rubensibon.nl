@@ -329,8 +329,7 @@ export default defineComponent({
       @apply flex flex-wrap justify-between;
 
       /* Temporarily hide horizontal navs */
-
-      /* display: none; */
+      display: none;
 
       .link:first-child {
         @apply ml-4 md:ml-8 py-2;
