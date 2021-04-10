@@ -29,6 +29,9 @@ const tagList = [
 export default defineComponent({
   // @ts-ignore
   head () {
+    // @ts-ignore // fix: avoid Internet Explorer error
+    if (process.client && window.MSInputMethodContext && document.documentMode) { return; }
+
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true });
 
     return {
@@ -37,7 +40,6 @@ export default defineComponent({
         ...i18nHead.htmlAttrs,
       },
       meta: [
-        // @ts-ignore
         ...i18nHead.meta,
         {
           hid: "description",
@@ -51,7 +53,6 @@ export default defineComponent({
         },
       ],
       link: [
-        // @ts-ignore
         ...i18nHead.link,
       ],
     };
@@ -160,12 +161,10 @@ h6,
 }
 
 blockquote {
-  @apply relative my-12 ml-4 sm:ml-8
+  @apply relative my-12 ml-4 sm:ml-8 md:ml-0
     font-serif text-2xl sm:text-3xl italic tracking-wide;
-}
 
-@screen md {
-  blockquote {
+  @screen md {
     &::before {
       content: "“";
 
@@ -240,6 +239,33 @@ button {
       hover:bg-[#55acee]
       focus-visible:bg-[#55acee]
     ;
+  }
+}
+
+/* Fixes for Internet Explorer 11 */
+.ie-gap-horizontal {
+  & > * {
+    margin-right: 0.75rem;
+  }
+
+  &-sm > * {
+    margin-right: 0.25rem;
+  }
+
+  &-xs > * {
+    margin-right: 0.125rem;
+  }
+
+  & > *,
+  &-sm > *,
+  &-xs > * {
+    @supports (gap: 1rem) {
+      margin-right: 0;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
   }
 }
 </style>

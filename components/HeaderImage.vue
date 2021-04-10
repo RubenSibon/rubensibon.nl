@@ -22,7 +22,7 @@
       >
     </picture>
 
-    <figcaption>
+    <figcaption class="ie-gap-horizontal-sm">
       <SvgIconPicture v-if="showIcon" aria-hidden="true" /> {{ alt }}
     </figcaption>
   </figure>

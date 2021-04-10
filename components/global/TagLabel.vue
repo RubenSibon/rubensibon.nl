@@ -1,5 +1,5 @@
 <template>
-  <div :class="['label', { invert: invert }]">
+  <div :class="['label', { invert: invert }, 'ie-gap-horizontal-sm']">
     <SvgIconTag v-if="showIcon" aria-hidden="true" /> <slot />
   </div>
 </template>
@@ -27,12 +27,12 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .label {
-  @apply flex items-center rounded-full py-1 px-2 w-max h-max
+  @apply flex items-center gap-1 rounded-full py-1 px-2 w-max h-max
     font-semibold text-xs bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900 lowercase tracking-wide
     select-none;
 
   svg {
-    @apply mr-1 w-4 h-4 fill-current;
+    @apply w-4 h-4 fill-current;
   }
 
   &.invert {

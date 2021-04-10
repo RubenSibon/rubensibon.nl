@@ -41,6 +41,9 @@ export default {
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "apple-touch-icon-precomposed", href: "/little-penguin-152.png" },
     ],
+    script: [
+      { src: "/js/ie11-custom-props.js" },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

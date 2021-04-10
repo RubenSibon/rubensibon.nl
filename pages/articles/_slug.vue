@@ -47,7 +47,7 @@ nl:
           {{ article.description }}
         </ArticleLead>
 
-        <PostDetails>
+        <PostDetails class="ie-gap-horizontal">
           <div>
             {{ article.author }}
           </div>
@@ -90,7 +90,7 @@ nl:
       <TextGroup class="flex flex-col flex-wrap items-center text-center">
         <hr class="w-3/4 mx-auto mb-1">
 
-        <div class="flex flex-wrap justify-center gap-2 mt-2 mb-8">
+        <div class="flex flex-wrap justify-center gap-2 mt-2 mb-8 ie-gap-horizontal-sm">
           <TagLabel v-for="tag of article.tags" :key="tag">
             {{ $t(`tagList.${tag}`) }}
           </TagLabel>
@@ -141,7 +141,7 @@ export default defineComponent({
     return { article };
   },
 
-  // @ts-ignore "head()" complains because of casting `as Article` I think...
+  // @ts-ignore
   head () {
     return {
       title: `${(this.article as Article).title} ${this.$t("by")} Ruben Sibon`,
