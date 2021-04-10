@@ -27,7 +27,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .label {
-  @apply flex items-center gap-1 rounded-full py-1 px-2 w-max h-max
+  @apply flex items-center gap-1 rounded-full py-1 pr-3 pl-2 w-max h-max
     font-semibold text-xs bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900 lowercase tracking-wide
     select-none;
 

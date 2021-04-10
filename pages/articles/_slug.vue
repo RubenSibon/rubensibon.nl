@@ -15,8 +15,8 @@ nl:
 
 <template>
   <article class="post">
-    <header class="post-header">
-      <div class="post-header-wrapper">
+    <header>
+      <div class="header-wrapper">
         <HeaderImage
           v-if="article.img && article.img.src"
           :alt="article.img.alt"
@@ -26,14 +26,16 @@ nl:
           :gradient="true"
         />
 
-        <div class="post-header-content">
-          <TextGroup class="post-header-textgroup">
-            <TagLabel
-              v-if="article.tags && article.tags[0]"
-              :invert="true"
-            >
-              {{ $t(`tagList.${article.tags[0]}`) }}
-            </TagLabel>
+        <div class="content">
+          <TextGroup>
+            <div class="flex">
+              <TagLabel
+                v-if="article.tags && article.tags[0]"
+                :invert="true"
+              >
+                {{ $t(`tagList.${article.tags[0]}`) }}
+              </TagLabel>
+            </div>
 
             <h1>
               {{ article.title }}
@@ -42,7 +44,7 @@ nl:
         </div>
       </div>
 
-      <TextGroup class="max-w-screen-sm mx-auto post-header-textgroup">
+      <TextGroup>
         <ArticleLead>
           {{ article.description }}
         </ArticleLead>
@@ -69,9 +71,9 @@ nl:
       </TextGroup>
     </header>
 
-    <TextGroup v-if="article.showToc" class="px-6">
+    <TextGroup v-if="article.showToc" class="px-6 mb-8">
       <ToC :items="article.toc" class="hidden" />
-      <Collapsible class="px-4 mb-8">
+      <Collapsible>
         <template #summary>
           {{ $t("toc") }}
         </template>
@@ -82,15 +84,15 @@ nl:
       </Collapsible>
     </TextGroup>
 
-    <main class="post-body">
+    <main>
       <nuxt-content :document="article" />
     </main>
 
-    <footer class="post-footer">
-      <TextGroup class="flex flex-col flex-wrap items-center text-center">
+    <footer>
+      <TextGroup>
         <hr class="w-3/4 mx-auto mb-1">
 
-        <div class="flex flex-wrap justify-center gap-2 mt-2 mb-8 ie-gap-horizontal-sm">
+        <div class="taglist ie-gap-horizontal-sm">
           <TagLabel v-for="tag of article.tags" :key="tag">
             {{ $t(`tagList.${tag}`) }}
           </TagLabel>
@@ -162,20 +164,20 @@ export default defineComponent({
 });
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .post {
-  @apply flex flex-col items-center justify-start gap-3 mx-auto w-full;
+  @apply flex flex-col items-center justify-start mx-auto w-full;
 
-  &-header,
-  &-footer {
-    @apply relative flex flex-col gap-5 w-full mb-8;
+  header,
+  footer {
+    @apply relative flex flex-col w-full mb-8;
   }
 
-  &-header {
-    &-wrapper {
+  header {
+    .header-wrapper {
       @apply relative flex justify-center min-h-screen-1/4 bg-gray-50 dark:bg-gray-950;
 
-      .post-header-content {
+      .content {
         @apply absolute top-0 left-0
           flex flex-col items-start justify-end
           pb-8 w-full min-h-screen-1/4 h-full
@@ -184,116 +186,128 @@ export default defineComponent({
       }
     }
 
-    &-textgroup {
-      @apply px-6 sm:px-0;
+    .textgroup {
+      @apply max-w-screen-sm mx-auto px-6 sm:px-0;
     }
   }
 
-  &-body {
+  main {
     @apply mb-8 max-w-screen-sm;
+  }
 
-    .nuxt-content {
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        @apply relative mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
+  footer {
+    .textgroup {
+      @apply flex flex-col flex-wrap items-center text-center;
+    }
 
-        .icon.icon-link {
-          @apply block absolute top-0 -left-5 w-4 h-full
-            bg-no-repeat bg-center text-gray-500
-            opacity-0 invisible
-          ;
+    .taglist {
+      @apply flex flex-wrap justify-center gap-2 mt-2 mb-8;
+    }
+  }
+}
+</style>
 
-          background-image: url("~/assets/icons/link.svg");
+<style lang="postcss">
+.nuxt-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply relative mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
+
+    .icon.icon-link {
+      @apply block absolute top-0 -left-5 w-4 h-full
+        bg-no-repeat bg-center text-gray-500
+        opacity-0 invisible
+      ;
+
+      background-image: url("~/assets/icons/link.svg");
+    }
+
+    a:link,
+    a:hover,
+    a:focus {
+      @apply border-none text-gray-500;
+    }
+
+    &:hover,
+    &:focus {
+      .icon.icon-link {
+        @apply opacity-100 visible;
+      }
+    }
+  }
+
+  h2 {
+    @apply mb-4;
+  }
+
+  h3 {
+    @apply mb-3;
+  }
+
+  h4 {
+    @apply mb-3;
+  }
+
+  h4,
+  h5,
+  h6 {
+    @apply mb-2;
+  }
+
+  p {
+    @apply relative mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
+
+    &:first-child::first-letter {
+      @supports (initial-letter: 3) {
+        initial-letter: 3;
+      }
+    }
+  }
+
+  blockquote p {
+    @apply md:p-0;
+  }
+
+  p img {
+    @apply relative -left-6 sm:-left-8 rounded my-12 max-w-screen-lg;
+
+    width: calc(100% + 3rem);
+    max-width: 100vw;
+
+    @screen sm {
+      width: calc(100% + 4rem);
+    }
+  }
+
+  .nuxt-content-highlight {
+    @apply relative my-8 max-w-screen;
+
+    pre {
+      @apply bg-gray-100 dark:bg-gray-900;
+
+      max-width: 100vw;
+
+      code {
+        @apply text-gray-950 dark:text-gray-50;
+
+        text-shadow: none;
+
+        .token.operator {
+          @apply bg-transparent;
         }
-
-        a:link,
-        a:hover,
-        a:focus {
-          @apply border-none text-gray-500;
-        }
-
-        &:hover,
-        &:focus {
-          .icon.icon-link {
-            @apply opacity-100 visible;
-          }
-        }
       }
+    }
 
-      h2 {
-        @apply mb-4;
-      }
+    .filename {
+      @apply absolute right-0 z-10 mt-2 mr-3
+        font-light text-gray-600 dark:text-gray-400 text-sm tracking-widest;
 
-      h3 {
-        @apply mb-3;
-      }
-
-      h4 {
-        @apply mb-3;
-      }
-
-      h4,
-      h5,
-      h6 {
-        @apply mb-2;
-      }
-
-      p {
-        @apply relative mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
-
-        &:first-child::first-letter {
-          @supports (initial-letter: 3) {
-            initial-letter: 3;
-          }
-        }
-      }
-
-      blockquote p {
-        @apply md:p-0;
-      }
-
-      p img {
-        @apply relative -left-6 sm:-left-8 rounded my-12 max-w-screen-lg;
-
-        width: calc(100% + 3rem);
-        max-width: 100vw;
-
-        @screen sm {
-          width: calc(100% + 4rem);
-        }
-      }
-
-      .nuxt-content-highlight {
-        @apply relative my-8 max-w-screen;
-
-        pre {
-          @apply bg-gray-100 dark:bg-gray-900;
-
-          max-width: 100vw;
-
-          code {
-            @apply text-gray-950 dark:text-gray-50;
-
-            text-shadow: none;
-
-            .token.operator {
-              @apply bg-transparent;
-            }
-          }
-        }
-
-        .filename {
-          @apply absolute right-0 z-10 mt-2 mr-3
-            font-light text-gray-600 dark:text-gray-400 text-sm tracking-widest;
-
-          & ~ pre {
-            @apply pt-10;
-          }
-        }
+      & ~ pre {
+        @apply pt-10;
       }
     }
   }

@@ -243,6 +243,32 @@ button {
 }
 
 /* Fixes for Internet Explorer 11 */
+.ie-gap-vertical {
+  & > * {
+    margin-bottom: 0.75rem;
+  }
+
+  &-sm > * {
+    margin-bottom: 0.25rem;
+  }
+
+  &-xs > * {
+    margin-bottom: 0.125rem;
+  }
+
+  & > *,
+  &-sm > *,
+  &-xs > * {
+    @supports (gap: 1rem) {
+      margin-bottom: 0;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .ie-gap-horizontal {
   & > * {
     margin-right: 0.75rem;

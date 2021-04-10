@@ -1,5 +1,5 @@
 <template>
-  <div class="textgroup">
+  <div class="textgroup ie-gap-vertical">
     <slot />
   </div>
 </template>
