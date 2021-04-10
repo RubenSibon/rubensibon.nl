@@ -244,7 +244,9 @@ en:
         ({{ $t("but really, only if you want to") }})
       </p>
 
-      <p>Sorry, the contact form is a<br><i>Work in Progress</i><br>¯\_(ツ)_/¯</p>
+      <contact-form />
+
+      <p>¯\_(ツ)_/¯</p>
     </section>
   </div>
   <!-- </SlideScreen> -->
