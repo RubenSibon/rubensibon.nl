@@ -67,6 +67,13 @@ export default defineComponent({
     ;
   }
 
+  &.gitlab {
+    @apply text-[#e2432a]
+      hover:bg-[#e2432a]
+      focus-visible:bg-[#e2432a]
+    ;
+  }
+
   &.stack-overflow {
     @apply text-[#f58025]
       hover:bg-[#f58025]
