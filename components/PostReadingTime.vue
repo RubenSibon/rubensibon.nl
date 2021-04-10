@@ -13,7 +13,7 @@ nl:
 
 <template>
   <div
-    class="post-reading-time"
+    class="post-reading-time ie-gap-horizontal-xs"
     :title="`${$t('about')} ${readingStats.minutes} ${$tc('minutes', readingStats.minutes)} ${$t('reading_time')} (~${words} ${$t('words')})`"
   >
     <SvgIconClock v-if="showIcon" aria-hidden="true" />

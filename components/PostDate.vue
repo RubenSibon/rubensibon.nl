@@ -8,7 +8,10 @@ nl:
 </i18n>
 
 <template>
-  <div class="post-date" :title="`${label ? `${label}: ` : ''}${formattedDate}`">
+  <div
+    :title="`${label ? `${label}: ` : ''}${formattedDate}`"
+    class="post-date ie-gap-horizontal-xs"
+  >
     <SvgIconCalendar v-if="showIcon" aria-hidden="true" />
 
     <span :class="`${ !showLabel ? 'sr-only' : '' }`">

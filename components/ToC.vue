@@ -1,12 +1,15 @@
 <template>
   <nav class="toc">
     <ul class="toc-list">
-      <li v-for="link of items" :key="link.id">
+      <li v-for="item of items" :key="item.id">
         <NuxtLink
-          :to="`#${link.id}`"
-          :class="['toc-link', { 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }]"
+          :to="`#${item.id}`"
+          :class="[
+            'toc-link',
+            { 'py-2': item.depth === 2, 'ml-2 pb-2': item.depth === 3 }
+          ]"
         >
-          {{ link.text }}
+          {{ item.text }}
         </NuxtLink>
       </li>
     </ul>

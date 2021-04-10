@@ -38,7 +38,7 @@ import { defineComponent } from "@vue/composition-api";
 export default defineComponent({
   props: {
     error: {
-      type: Error,
+      type: Object,
       default: null,
     },
   },

@@ -41,6 +41,9 @@ export default {
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "apple-touch-icon-precomposed", href: "/little-penguin-152.png" },
     ],
+    script: [
+      { src: "/js/ie11-custom-props.js" },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -82,6 +85,11 @@ export default {
     "nuxt-i18n",
     // https://vue-scrollto.netlify.app/
     "vue-scrollto/nuxt",
+    // https://github.com/dword-design/nuxt-modernizr
+    ["nuxt-modernizr", {
+      "feature-detects": ["css/cssgrid", "elem/details"],
+      options: ["setClasses"],
+    }],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

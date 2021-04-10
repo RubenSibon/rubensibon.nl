@@ -5,12 +5,14 @@ nl:
   Get in touch: "Start een gesprek"
   if it pleases you: "als het je pleziert"
   but really, only if you want to: "maar echt, alleen als je dat wilt"
+  Even more: "Nog meer"
 en:
   Software Developer: "Software Developer"
   Follow me: "Follow me"
   Get in touch: "Get in touch"
   if it pleases you: "if it pleases you"
   but really, only if you want to: "but really, only if you want to"
+  Even more: "Even more"
 </i18n>
 
 <template>
@@ -22,7 +24,7 @@ en:
     }"
   > -->
   <div class="🏡">
-    <section id="screen1" class="screen">
+    <section id="screen1">
       <div class="me">
         <figure class="picture">
           <picture>
@@ -32,19 +34,22 @@ en:
           </picture>
         </figure>
 
-        <template v-if="content">
-          <h1 class="title">
-            {{ content.title }}
-          </h1>
+        <h1 class="title">
+          Ruben Sibon
+        </h1>
 
-          <h2 class="subtitle">
-            {{ $t(content.subTitle) }}
-          </h2>
+        <h2 class="subtitle">
+          {{ $t("Software Developer") }}
+        </h2>
 
-          <p class="description">
-            {{ content.description[locale || "en"] }}
-          </p>
-        </template>
+        <p v-if="locale === 'nl'" class="description">
+          👋 Hoi! Ik ben <span style="font-weight: bold;">Ruben</span>, een web- and appontwikkelaar uit <span style="font-weight: bold;">Amsterdam</span>.
+          Ik programmeer vooral met <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in de frameworks <span style="color: #41b883; font-weight: bold;">Vue.js</span> en <span style="color: #61dbfb; font-weight: bold;">React</span>.
+        </p>
+        <p v-else class="description">
+          👋 Hi! I'm <span style="font-weight: bold;">Ruben</span>, a web and app developer from <span style="font-weight: bold;">Amsterdam</span>, The Netherlands.
+          I mostly work with <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in the <span style="color: #41b883; font-weight: bold;">Vue.js</span> and <span style="color: #61dbfb; font-weight: bold;">React</span> frameworks.
+        </p>
       </div>
 
       <nav class="nav">
@@ -89,8 +94,8 @@ en:
       </nav>
     </section>
 
-    <section id="screen2" class="screen">
-      <div class="w-full mb-8">
+    <section id="screen2">
+      <div class="follow">
         <h2>
           {{ $t('Follow me') }}
         </h2>
@@ -99,13 +104,13 @@ en:
           ({{ $t("if it pleases you") }})
         </p>
 
-        <div class="buttons-social">
+        <div class="buttons-social ie-gap-vertical">
           <Button
             tag="a"
             href="https://github.com/RubenSibon"
             target="_blank"
             rel="noopener noreferrer"
-            class="github"
+            variant="github"
           >
             <template #before>
               <span>
@@ -115,6 +120,42 @@ en:
 
             <span>
               GitHub
+            </span>
+          </Button>
+
+          <Button
+            tag="a"
+            href="https://gitlab.com/RubenSibon"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="gitlab"
+          >
+            <template #before>
+              <span>
+                <SvgIconGitlab aria-hidden="true" />
+              </span>
+            </template>
+
+            <span>
+              GitLab
+            </span>
+          </Button>
+
+          <Button
+            tag="a"
+            href="https://codepen.io/RubenSibon"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="codepen"
+          >
+            <template #before>
+              <span>
+                <SvgIconCodePen aria-hidden="true" />
+              </span>
+            </template>
+
+            <span>
+              CodePen
             </span>
           </Button>
 
@@ -138,28 +179,10 @@ en:
 
           <Button
             tag="a"
-            href="https://codepen.io/RubenSibon"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="github"
-          >
-            <template #before>
-              <span>
-                <SvgIconCodePen aria-hidden="true" />
-              </span>
-            </template>
-
-            <span>
-              CodePen
-            </span>
-          </Button>
-
-          <Button
-            tag="a"
             href="https://www.linkedin.com/in/rubensibon"
             target="_blank"
             rel="noopener noreferrer"
-            class="linkedin"
+            variant="linkedin"
           >
             <template #before>
               <span>
@@ -177,7 +200,7 @@ en:
             href="https://twitter.com/RubenSibon"
             target="_blank"
             rel="noopener noreferrer"
-            class="twitter"
+            variant="twitter"
           >
             <template #before>
               <span>
@@ -192,17 +215,36 @@ en:
         </div>
       </div>
 
-      <div class="w-full mb-8">
-        <h2>
-          {{ $t('Get in touch') }}
-        </h2>
+      <nav class="nav">
+        <div class="vertical">
+          <a
+            v-scroll-to="'#screen3'"
+            tabindex="0"
+            :title="$t('Even more')"
+            class="link"
+          >
+            {{ $t("Even more") }}
 
-        <p class="mb-4">
-          ({{ $t("but really, only if you want to") }})
-        </p>
+            <span>
+              <SvgIconChevronDown aria-hidden="true" />
+            </span>
 
-        <p>Sorry, the contact form is a<br><i>Work in Progress</i><br>¯\_(ツ)_/¯</p>
-      </div>
+            <span class="sr-only">⬇</span>
+          </a>
+        </div>
+      </nav>
+    </section>
+
+    <section id="screen3">
+      <h2>
+        {{ $t('Get in touch') }}
+      </h2>
+
+      <p class="mb-4">
+        ({{ $t("but really, only if you want to") }})
+      </p>
+
+      <p>Sorry, the contact form is a<br><i>Work in Progress</i><br>¯\_(ツ)_/¯</p>
     </section>
   </div>
   <!-- </SlideScreen> -->
@@ -211,22 +253,10 @@ en:
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
-import CONTENT from "./index.json";
-
-interface Data {
-  content: {
-    title: string;
-    subTitle: string;
-    description: {
-      en: string;
-      nl: string;
-    };
-  };
-};
-
 export default defineComponent({
   components: {
     SvgIconGithub: () => import("~/assets/icons/github.svg?inline"),
+    SvgIconGitlab: () => import("~/assets/icons/gitlab.svg?inline"),
     SvgIconSO: () => import("~/assets/icons/stackoverflow.svg?inline"),
     SvgIconCodePen: () => import("~/assets/icons/codepen.svg?inline"),
     SvgIconLinkedIn: () => import("~/assets/icons/linkedin.svg?inline"),
@@ -243,40 +273,32 @@ export default defineComponent({
       locale,
     };
   },
-
-  data (): Data {
-    return {
-      content: CONTENT,
-    };
-  },
 });
 </script>
 
 <style lang="postcss" scoped>
 .🏡 {
-  @apply flex flex-col items-center justify-evenly mx-auto px-4 md:px-8  text-center;
+  @apply flex flex-col items-center mx-auto px-4 md:px-8 text-center;
 
-  .screen {
-    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen h-full;
+  section {
+    @apply flex flex-col items-center justify-center max-w-screen-2xl w-screen h-screen;
 
     min-height: var(--vp-height, 100vh);
   }
 
   .me {
-    @apply flex flex-col items-center justify-center mx-4 md:mx-8;
-
-    flex: 1 1 auto;
+    @apply flex flex-col items-center justify-center mx-4 md:mx-8 h-full;
 
     .picture {
-      @apply rounded-full mb-4 w-36 h-36 overflow-hidden;
+      @apply rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
     }
 
     .title {
-      @apply mb-4;
+      @apply mb-2;
     }
 
     .subtitle {
-      @apply mb-4 sm:mb-8 text-2xl font-semibold;
+      @apply mb-4 sm:mb-6 text-2xl font-semibold;
     }
 
     .description {
@@ -284,10 +306,8 @@ export default defineComponent({
     }
   }
 
-  .nav {
-    @apply flex flex-col justify-evenly pb-4 md:px-8 w-full h-full sm:text-3xl md:text-4xl;
-
-    flex: 0 1 auto;
+  nav {
+    @apply bottom-0 left-0 flex flex-col justify-evenly pb-4 md:px-8 w-full h-max sm:text-3xl md:text-4xl;
 
     .link {
       @apply flex items-center border-none;
@@ -307,7 +327,8 @@ export default defineComponent({
       @apply flex flex-wrap justify-between;
 
       /* Temporarily hide horizontal navs */
-      display: none;
+
+      /* display: none; */
 
       .link:first-child {
         @apply ml-4 md:ml-8 py-2;
@@ -327,14 +348,19 @@ export default defineComponent({
     }
   }
 
-  .buttons-social {
-    @apply grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3 px-4 w-full mx-auto sm:w-auto max-w-screen-md;
+  .follow {
+    @apply flex flex-col items-center justify-center mx-4 md:mx-8 h-full;
 
-    a {
-      @apply sm:col-span-2 md:col-span-6;
+    .buttons-social {
+      @apply grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3
+        mx-auto px-4 w-full sm:w-auto max-w-screen-md h-max;
 
-      &:last-child:not(:nth-child(even)) {
-        @apply sm:col-start-2 sm:col-end-4 md:col-start-4 md:col-end-10;
+      a {
+        @apply sm:col-span-2 md:col-span-6;
+
+        &:last-child:not(:nth-child(even)) {
+          @apply sm:col-start-2 sm:col-end-4 md:col-start-4 md:col-end-10;
+        }
       }
     }
   }
