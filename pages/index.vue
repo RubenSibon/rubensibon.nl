@@ -244,7 +244,9 @@ en:
         ({{ $t("but really, only if you want to") }})
       </p>
 
-      <p>Sorry, the contact form is a<br><i>Work in Progress</i><br>¯\_(ツ)_/¯</p>
+      <contact-form />
+
+      <p>¯\_(ツ)_/¯</p>
     </section>
   </div>
   <!-- </SlideScreen> -->
@@ -327,8 +329,7 @@ export default defineComponent({
       @apply flex flex-wrap justify-between;
 
       /* Temporarily hide horizontal navs */
-
-      /* display: none; */
+      display: none;
 
       .link:first-child {
         @apply ml-4 md:ml-8 py-2;
