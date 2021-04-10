@@ -43,10 +43,12 @@ en:
         </h2>
 
         <p v-if="locale === 'nl'" class="description">
-          👋 Hoi! Ik ben Ruben, een web- and appontwikkelaar uit Amsterdam. Ik programmeer vooral in JavaScript, met name de frameworks Vue.js en React.
+          👋 Hoi! Ik ben <span style="font-weight: bold;">Ruben</span>, een web- and appontwikkelaar uit <span style="font-weight: bold;">Amsterdam</span>.
+          Ik programmeer vooral met <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in de frameworks <span style="color: #41b883; font-weight: bold;">Vue.js</span> en <span style="color: #61dbfb; font-weight: bold;">React</span>.
         </p>
         <p v-else class="description">
-          👋 Hi! I'm Ruben, a web and app developer from Amsterdam, The Netherlands. I mostly work with JavaScript, particularly Vue.js and React.
+          👋 Hi! I'm <span style="font-weight: bold;">Ruben</span>, a web and app developer from <span style="font-weight: bold;">Amsterdam</span>, The Netherlands.
+          I mostly work with <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in the <span style="color: #41b883; font-weight: bold;">Vue.js</span> and <span style="color: #61dbfb; font-weight: bold;">React</span> frameworks.
         </p>
       </div>
 
