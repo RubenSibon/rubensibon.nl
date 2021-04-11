@@ -6,6 +6,6 @@
 
 <style lang="postcss" scoped>
 .textgroup {
-  @apply flex flex-col gap-3 mx-auto w-full max-w-screen-sm;
+  @apply flex flex-col gap-3 mx-auto w-full max-w-screen-md;
 }
 </style>
