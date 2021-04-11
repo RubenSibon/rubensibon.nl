@@ -20,75 +20,76 @@ en:
 </i18n>
 
 <template>
-  <SlideScreen
-    class="🏡"
-    :adjacent="{
-      left: '/projects',
-      right: '/articles',
-    }"
-  >
-    <section id="about-me">
-      <div class="me">
-        <figure class="picture">
-          <picture>
-            <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
+  <div class="🏡">
+    <SlideScreen
+      :adjacent="{
+        left: '/projects',
+        right: '/articles',
+      }"
+    >
+      <section id="about-me">
+        <div class="me">
+          <figure class="picture">
+            <picture>
+              <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
 
-            <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
-          </picture>
-        </figure>
+              <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
+            </picture>
+          </figure>
 
-        <h1 class="title">
-          Ruben Sibon
-        </h1>
+          <h1 class="title">
+            Ruben Sibon
+          </h1>
 
-        <h2 class="subtitle">
-          {{ $t("Software Developer") }}
-        </h2>
+          <h2 class="subtitle">
+            {{ $t("Software Developer") }}
+          </h2>
 
-        <p v-if="locale === 'nl'" class="description">
-          👋 Hoi! Ik ben <span style="font-weight: bold;">Ruben</span>, een web- and appontwikkelaar uit <span style="font-weight: bold;">Amsterdam</span>.
-          Ik programmeer vooral met <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in de frameworks <span style="color: #41b883; font-weight: bold;">Vue.js</span> en <span style="color: #61dbfb; font-weight: bold;">React</span>.
-        </p>
-        <p v-else class="description">
-          👋 Hi! I'm <span style="font-weight: bold;">Ruben</span>, a web and app developer from <span style="font-weight: bold;">Amsterdam</span>, The Netherlands.
-          I mostly work with <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in the <span style="color: #41b883; font-weight: bold;">Vue.js</span> and <span style="color: #61dbfb; font-weight: bold;">React</span> frameworks.
-        </p>
-      </div>
+          <p v-if="locale === 'nl'" class="description">
+            👋 Hoi! Ik ben <span style="font-weight: bold;">Ruben</span>, een web- and appontwikkelaar uit <span style="font-weight: bold;">Amsterdam</span>.
+            Ik programmeer vooral met <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in de frameworks <span style="color: #41b883; font-weight: bold;">Vue.js</span> en <span style="color: #61dbfb; font-weight: bold;">React</span>.
+          </p>
+          <p v-else class="description">
+            👋 Hi! I'm <span style="font-weight: bold;">Ruben</span>, a web and app developer from <span style="font-weight: bold;">Amsterdam</span>, The Netherlands.
+            I mostly work with <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in the <span style="color: #41b883; font-weight: bold;">Vue.js</span> and <span style="color: #61dbfb; font-weight: bold;">React</span> frameworks.
+          </p>
+        </div>
 
-      <Nav orientation="horizontal">
-        <nuxt-link :to="localePath('/projects')" class="link">
-          <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
+        <Nav orientation="horizontal">
+          <nuxt-link :to="localePath('/projects')" class="link">
+            <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
 
-          <span class="sr-only">⬅ Projects&nbsp;</span>
+            <span class="sr-only">⬅ Projects&nbsp;</span>
 
-          {{ $t("Projects") }}
-        </nuxt-link>
+            {{ $t("Projects") }}
+          </nuxt-link>
 
-        <nuxt-link :to="localePath('/articles')" class="link">
-          {{ $t("Articles") }}
+          <nuxt-link :to="localePath('/articles')" class="link">
+            {{ $t("Articles") }}
 
-          <Icon svg-icon="SvgIconChevronRight" :large="true" aria-hidden="true" />
+            <Icon svg-icon="SvgIconChevronRight" :large="true" aria-hidden="true" />
 
-          <span class="sr-only">&nbsp;Articles ➡</span>
-        </nuxt-link>
-      </Nav>
+            <span class="sr-only">&nbsp;Articles ➡</span>
+          </nuxt-link>
+        </Nav>
 
-      <Nav orientation="vertical">
-        <a
-          tabindex="0"
-          :title="$t('More')"
-          class="link"
-          @click="nextScreenHandler($event, '#follow-me')"
-          @keyup.enter="nextScreenHandler($event, '#follow-me')"
-        >
-          {{ $t("More") }}
+        <Nav orientation="vertical">
+          <a
+            tabindex="0"
+            :title="$t('More')"
+            class="link"
+            @click="nextScreenHandler($event, '#follow-me')"
+            @keyup.enter="nextScreenHandler($event, '#follow-me')"
+          >
+            {{ $t("More") }}
 
-          <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
+            <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
-          <span class="sr-only">⬇</span>
-        </a>
-      </Nav>
-    </section>
+            <span class="sr-only">⬇</span>
+          </a>
+        </Nav>
+      </section>
+    </SlideScreen>
 
     <section id="follow-me">
       <div>
@@ -325,7 +326,7 @@ en:
         </div>
       </div>
     </section>
-  </SlideScreen>
+  </div>
 </template>
 
 <script lang="ts">

@@ -19,7 +19,7 @@
       </Nav>
     </header>
 
-    <main>
+    <main class="mb-16">
       <a
         v-for="project of projects"
         :key="project.url"
