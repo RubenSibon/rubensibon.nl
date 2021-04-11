@@ -22,8 +22,8 @@
       >
     </picture>
 
-    <figcaption class="ie-gap-horizontal-sm">
-      <SvgIconPicture v-if="showIcon" aria-hidden="true" /> {{ alt }}
+    <figcaption class="ie-gap-horizontal-sm" style="display: none;">
+      <Icon v-if="showIcon" svg-icon="SvgIconPicture" aria-hidden="true" /> {{ alt }}
     </figcaption>
   </figure>
 </template>
@@ -32,10 +32,6 @@
 import { defineComponent, PropType } from "@vue/composition-api";
 
 export default defineComponent({
-  components: {
-    SvgIconPicture: () => import("~/assets/icons/picture.svg?inline"),
-  },
-
   props: {
     alt: {
       type: String,
@@ -79,14 +75,10 @@ export default defineComponent({
   figcaption {
     @apply flex items-center gap-2
       absolute top-0 right-0
-      rounded-full m-3 py-1 px-3 w-max max-w-none
+      rounded-full mt-5 mr-5 py-1 px-3 w-max max-w-none
       bg-black bg-opacity-50 text-gray-200 text-xs;
 
     font-size: 0.675rem;
-
-    svg {
-      @apply w-4 h-4 fill-current;
-    }
   }
 
   &.gradient {

@@ -1,6 +1,6 @@
 <template>
   <div :class="['label', { invert: invert }, 'ie-gap-horizontal-sm']">
-    <SvgIconTag v-if="showIcon" aria-hidden="true" /> <slot />
+    <Icon v-if="showIcon" svg-icon="SvgIconTag" aria-hidden="true" /> <slot />
   </div>
 </template>
 
@@ -8,10 +8,6 @@
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
-  components: {
-    SvgIconTag: () => import("~/assets/icons/tag.svg?inline"),
-  },
-
   props: {
     invert: {
       type: Boolean,
@@ -27,16 +23,13 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .label {
-  @apply flex items-center gap-1 rounded-full py-1 pr-3 pl-2 w-max h-max
-    font-semibold text-xs bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900 lowercase tracking-wide
+  @apply flex items-center gap-1
+    border-2 border-current rounded-full py-1 pr-3 pl-2 w-max h-max
+    font-semibold text-xs text-gray-900 dark:text-gray-100 lowercase tracking-wide
     select-none;
 
-  svg {
-    @apply w-4 h-4 fill-current;
-  }
-
   &.invert {
-    @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    @apply border-current text-gray-100 dark:text-gray-900;
   }
 }
 </style>

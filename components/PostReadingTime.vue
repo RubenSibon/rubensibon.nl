@@ -16,7 +16,7 @@ nl:
     class="post-reading-time ie-gap-horizontal-xs"
     :title="`${$t('about')} ${readingStats.minutes} ${$tc('minutes', readingStats.minutes)} ${$t('reading_time')} (~${words} ${$t('words')})`"
   >
-    <SvgIconClock v-if="showIcon" aria-hidden="true" />
+    <Icon v-if="showIcon" svg-icon="SvgIconClock" aria-hidden="true" />
     {{ readingStats.minutes }} {{ $tc("minutes", readingStats.minutes) }}
     <span :class="`${ !showLabel ? 'sr-only' : '' }`">{{ $t('reading_time') }}</span>
   </div>
@@ -35,7 +35,6 @@ interface ReadingStats {
 
 export default defineComponent({
   components: {
-    SvgIconClock: () => import("~/assets/icons/clock.svg?inline"),
   },
 
   props: {
@@ -80,10 +79,6 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .post-reading-time {
   @apply flex items-center gap-1;
-
-  svg {
-    @apply w-4 h-4 fill-current;
-  }
 
   &:hover {
     @apply cursor-help;

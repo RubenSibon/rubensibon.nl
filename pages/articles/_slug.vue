@@ -27,12 +27,9 @@ nl:
         />
 
         <div class="content">
-          <TextGroup>
+          <TextGroup style="filter: drop-shadow(0 0 0.125rem black);">
             <div class="flex">
-              <TagLabel
-                v-if="article.tags && article.tags[0]"
-                :invert="true"
-              >
+              <TagLabel v-if="article.tags && article.tags[0]">
                 {{ $t(`tagList.${article.tags[0]}`) }}
               </TagLabel>
             </div>
@@ -69,6 +66,18 @@ nl:
           />
         </PostDetails>
       </TextGroup>
+
+      <Nav on-side="left">
+        <nuxt-link :to="localePath('/articles')" class="link">
+          <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
+
+          <span>Back</span>
+
+          <span class="sr-only">⬅ Home&nbsp;</span>
+        </nuxt-link>
+
+        <h1>&nbsp;</h1>
+      </Nav>
     </header>
 
     <TextGroup v-if="article.showToc" class="px-6 mb-8">
@@ -188,6 +197,12 @@ export default defineComponent({
 
     .textgroup {
       @apply max-w-screen-sm mx-auto px-6 sm:px-0;
+    }
+
+    nav {
+      @apply absolute top-0 left-0 pt-5 pl-5;
+
+      filter: drop-shadow(0 0 0.125rem black);
     }
   }
 

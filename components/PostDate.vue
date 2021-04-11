@@ -12,7 +12,7 @@ nl:
     :title="`${label ? `${label}: ` : ''}${formattedDate}`"
     class="post-date ie-gap-horizontal-xs"
   >
-    <SvgIconCalendar v-if="showIcon" aria-hidden="true" />
+    <Icon v-if="showIcon" svg-icon="SvgIconCalendar" aria-hidden="true" />
 
     <span :class="`${ !showLabel ? 'sr-only' : '' }`">
       {{ label }}
@@ -29,10 +29,6 @@ import { defineComponent } from "@vue/composition-api";
 import { DateTime, Interval } from "luxon";
 
 export default defineComponent({
-  components: {
-    SvgIconCalendar: () => import("~/assets/icons/calendar.svg?inline"),
-  },
-
   props: {
     isoDate: {
       type: String,
@@ -94,9 +90,5 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .post-date {
   @apply flex items-center gap-1;
-
-  svg {
-    @apply w-4 h-4 fill-current;
-  }
 }
 </style>

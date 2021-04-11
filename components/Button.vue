@@ -38,10 +38,6 @@ export default defineComponent({
     focus-visible:shadow-sm focus-visible:border-solid focus-visible:border-purple-500 dark:focus-visible:border-current focus-visible:bg-purple-500 focus-visible:text-white
   ;
 
-  svg {
-    @apply fill-current;
-  }
-
   &a {
     @apply active:border-current active:bg-transparent active:text-purple-500;
     @apply visited:border-current visited:bg-transparent visited:text-purple-500;

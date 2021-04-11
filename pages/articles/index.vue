@@ -5,11 +5,23 @@
       left: '/',
     }"
   >
-    <h1 class="articles-header">
-      {{ $t("Articles") }}
-    </h1>
+    <header>
+      <Nav on-side="left">
+        <nuxt-link :to="localePath('/')" class="link">
+          <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
 
-    <template v-if="articles.length">
+          <Icon svg-icon="SvgIconHome" :large="true" aria-hidden="true" />
+
+          <span class="sr-only">⬅ Home&nbsp;</span>
+        </nuxt-link>
+      </Nav>
+
+      <h1>
+        {{ $t("Articles") }}
+      </h1>
+    </header>
+
+    <main v-if="articles.length">
       <nuxt-link
         v-for="article in articles"
         :key="article.slug"
@@ -39,10 +51,10 @@
           <span class="font-semibold">{{ $t("Tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
         </div>
       </nuxt-link>
-    </template>
-    <template v-else>
+    </main>
+    <main v-else>
       Loading articles...
-    </template>
+    </main>
   </SlideScreen>
 </template>
 
@@ -63,10 +75,8 @@ export default defineComponent({
     };
   },
 
-  // @ts-ignore
   async fetch () {
-    // @ts-ignore
-    this.articles = await this.$content("articles").fetch();
+    this.articles = (await this.$content("articles").fetch() as any);
   },
 
   head () {
@@ -78,11 +88,9 @@ export default defineComponent({
         ...i18nHead.htmlAttrs,
       },
       meta: [
-        // @ts-ignore
         ...i18nHead.meta,
       ],
       link: [
-        // @ts-ignore
         ...i18nHead.link,
       ],
     };
@@ -102,19 +110,23 @@ export default defineComponent({
 
   min-height: var(--vp-height, 100vh);
 
-  &-header {
-    @apply mb-5;
+  header {
+    @apply flex items-center justify-between mb-8 sm:mb-16;
   }
 
-  .📰 {
-    @apply flex flex-col gap-3;
+  main {
+    @apply flex flex-col;
 
-    &-title {
-      @apply text-2xl;
-    }
+    .📰 {
+      @apply flex flex-col gap-3;
 
-    &-list {
-      @apply flex items-center gap-3 text-sm;
+      &-title {
+        @apply text-2xl;
+      }
+
+      &-list {
+        @apply flex items-center gap-3 text-sm;
+      }
     }
   }
 }

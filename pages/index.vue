@@ -20,50 +20,46 @@ en:
 </i18n>
 
 <template>
-  <!-- <SlideScreen
-    class="🏡"
-    :adjacent="{
-      left: '/projects',
-      right: '/articles',
-    }"
-  > -->
   <div class="🏡">
-    <section id="about-me">
-      <div class="me">
-        <figure class="picture">
-          <picture>
-            <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
+    <SlideScreen
+      :adjacent="{
+        left: '/projects',
+        right: '/articles',
+      }"
+    >
+      <section id="about-me">
+        <div class="me">
+          <figure class="picture">
+            <picture>
+              <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
 
-            <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
-          </picture>
-        </figure>
+              <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
+            </picture>
+          </figure>
 
-        <h1 class="title">
-          Ruben Sibon
-        </h1>
+          <h1 class="title">
+            Ruben Sibon
+          </h1>
 
-        <h2 class="subtitle">
-          {{ $t("Software Developer") }}
-        </h2>
+          <h2 class="subtitle">
+            {{ $t("Software Developer") }}
+          </h2>
 
-        <p v-if="locale === 'nl'" class="description">
-          👋 Hoi! Ik ben <span style="font-weight: bold;">Ruben</span>, een web- and appontwikkelaar uit <span style="font-weight: bold;">Amsterdam</span>.
-          Ik programmeer vooral met <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in de frameworks <span style="color: #41b883; font-weight: bold;">Vue.js</span> en <span style="color: #61dbfb; font-weight: bold;">React</span>.
-        </p>
-        <p v-else class="description">
-          👋 Hi! I'm <span style="font-weight: bold;">Ruben</span>, a web and app developer from <span style="font-weight: bold;">Amsterdam</span>, The Netherlands.
-          I mostly work with <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in the <span style="color: #41b883; font-weight: bold;">Vue.js</span> and <span style="color: #61dbfb; font-weight: bold;">React</span> frameworks.
-        </p>
-      </div>
+          <p v-if="locale === 'nl'" class="description">
+            👋 Hoi! Ik ben <span style="font-weight: bold;">Ruben</span>, een web- and appontwikkelaar uit <span style="font-weight: bold;">Amsterdam</span>.
+            Ik programmeer vooral met <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in de frameworks <span style="color: #41b883; font-weight: bold;">Vue.js</span> en <span style="color: #61dbfb; font-weight: bold;">React</span>.
+          </p>
+          <p v-else class="description">
+            👋 Hi! I'm <span style="font-weight: bold;">Ruben</span>, a web and app developer from <span style="font-weight: bold;">Amsterdam</span>, The Netherlands.
+            I mostly work with <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in the <span style="color: #41b883; font-weight: bold;">Vue.js</span> and <span style="color: #61dbfb; font-weight: bold;">React</span> frameworks.
+          </p>
+        </div>
 
-      <nav class="nav">
-        <div class="horizontal">
+        <Nav orientation="horizontal">
           <nuxt-link :to="localePath('/projects')" class="link">
-            <span>
-              <SvgIconChevronLeft aria-hidden="true" />
-            </span>
+            <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
 
-            <span class="sr-only">⬅&nbsp;</span>
+            <span class="sr-only">⬅ Projects&nbsp;</span>
 
             {{ $t("Projects") }}
           </nuxt-link>
@@ -71,15 +67,13 @@ en:
           <nuxt-link :to="localePath('/articles')" class="link">
             {{ $t("Articles") }}
 
-            <span>
-              <SvgIconChevronRight aria-hidden="true" />
-            </span>
+            <Icon svg-icon="SvgIconChevronRight" :large="true" aria-hidden="true" />
 
-            <span class="sr-only">&nbsp;➡</span>
+            <span class="sr-only">&nbsp;Articles ➡</span>
           </nuxt-link>
-        </div>
+        </Nav>
 
-        <div class="vertical">
+        <Nav orientation="vertical">
           <a
             tabindex="0"
             :title="$t('More')"
@@ -89,18 +83,16 @@ en:
           >
             {{ $t("More") }}
 
-            <span>
-              <SvgIconChevronDown aria-hidden="true" />
-            </span>
+            <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
             <span class="sr-only">⬇</span>
           </a>
-        </div>
-      </nav>
-    </section>
+        </Nav>
+      </section>
+    </SlideScreen>
 
     <section id="follow-me">
-      <div class="follow">
+      <div>
         <h2>
           {{ $t('Follow me') }}
         </h2>
@@ -119,7 +111,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconGithub aria-hidden="true" />
+                <Icon svg-icon="SvgIconGitHub" aria-hidden="true" />
               </span>
             </template>
 
@@ -137,7 +129,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconGitlab aria-hidden="true" />
+                <Icon svg-icon="SvgIconGitLab" aria-hidden="true" />
               </span>
             </template>
 
@@ -155,7 +147,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconCodePen aria-hidden="true" />
+                <Icon svg-icon="SvgIconCodePen" aria-hidden="true" />
               </span>
             </template>
 
@@ -173,7 +165,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconSO aria-hidden="true" />
+                <Icon svg-icon="SvgIconSO" aria-hidden="true" />
               </span>
             </template>
 
@@ -191,7 +183,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconLinkedIn aria-hidden="true" />
+                <Icon svg-icon="SvgIconLinkedIn" aria-hidden="true" />
               </span>
             </template>
 
@@ -209,7 +201,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconTwitter aria-hidden="true" />
+                <Icon svg-icon="SvgIconTwitter" aria-hidden="true" />
               </span>
             </template>
 
@@ -220,29 +212,25 @@ en:
         </div>
       </div>
 
-      <nav class="nav">
-        <div class="vertical">
-          <a
-            tabindex="0"
-            :title="$t('Contact')"
-            class="link"
-            @click="nextScreenHandler($event, '#contact')"
-            @keyup.enter="nextScreenHandler($event, '#contact')"
-          >
-            {{ $t("Contact") }}
+      <Nav orientation="vertical">
+        <a
+          tabindex="0"
+          :title="$t('Contact')"
+          class="link"
+          @click="nextScreenHandler($event, '#contact')"
+          @keyup.enter="nextScreenHandler($event, '#contact')"
+        >
+          {{ $t("Contact") }}
 
-            <span>
-              <SvgIconChevronDown aria-hidden="true" />
-            </span>
+          <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
-            <span class="sr-only">⬇</span>
-          </a>
-        </div>
-      </nav>
+          <span class="sr-only">⬇</span>
+        </a>
+      </Nav>
     </section>
 
     <section id="contact">
-      <div class="contact">
+      <div>
         <h2>
           {{ $t('Get in touch') }}
         </h2>
@@ -254,25 +242,21 @@ en:
         <contact-form />
       </div>
 
-      <nav class="nav">
-        <div class="vertical">
-          <a
-            tabindex="0"
-            :title="$t('Contact')"
-            class="link"
-            @click="nextScreenHandler($event, '#about-this-site')"
-            @keyup.enter="nextScreenHandler($event, '#about-this-site')"
-          >
-            {{ $t('Small print') }}
+      <Nav orientation="vertical">
+        <a
+          tabindex="0"
+          :title="$t('Contact')"
+          class="link"
+          @click="nextScreenHandler($event, '#about-this-site')"
+          @keyup.enter="nextScreenHandler($event, '#about-this-site')"
+        >
+          {{ $t('Small print') }}
 
-            <span>
-              <SvgIconChevronDown aria-hidden="true" />
-            </span>
+          <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
-            <span class="sr-only">⬇</span>
-          </a>
-        </div>
-      </nav>
+          <span class="sr-only">⬇</span>
+        </a>
+      </Nav>
     </section>
 
     <section id="about-this-site">
@@ -343,7 +327,6 @@ en:
       </div>
     </section>
   </div>
-  <!-- </SlideScreen> -->
 </template>
 
 <script lang="ts">
@@ -360,18 +343,6 @@ const options = {
 };
 
 export default defineComponent({
-  components: {
-    SvgIconGithub: () => import("~/assets/icons/github.svg?inline"),
-    SvgIconGitlab: () => import("~/assets/icons/gitlab.svg?inline"),
-    SvgIconSO: () => import("~/assets/icons/stackoverflow.svg?inline"),
-    SvgIconCodePen: () => import("~/assets/icons/codepen.svg?inline"),
-    SvgIconLinkedIn: () => import("~/assets/icons/linkedin.svg?inline"),
-    SvgIconTwitter: () => import("~/assets/icons/twitter.svg?inline"),
-    SvgIconChevronRight: () => import("~/assets/icons/chevron-right.svg?inline"),
-    SvgIconChevronDown: () => import("~/assets/icons/chevron-down.svg?inline"),
-    SvgIconChevronLeft: () => import("~/assets/icons/chevron-left.svg?inline"),
-  },
-
   asyncData ({ i18n }) {
     const locale = i18n.locale;
 
@@ -422,13 +393,13 @@ html[is-ie] {
     min-height: var(--vp-height, 100vh);
 
     & > div {
-      @apply flex flex-col items-center justify-center px-4 md:px-8 w-full h-full;
+      @apply flex flex-1 flex-col items-center justify-center px-4 md:px-8 w-full h-full;
     }
   }
 
   .me {
     .picture {
-      @apply border-2 border-gray-950 dark:border-gray-50 rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
+      @apply border-4 border-gray-950 dark:border-gray-50 rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
     }
 
     .title {
@@ -444,64 +415,17 @@ html[is-ie] {
     }
   }
 
-  nav {
-    @apply bottom-0 left-0 flex flex-col justify-evenly pb-4 md:px-8 w-full h-max sm:text-3xl md:text-4xl;
+  .buttons-social {
+    @apply grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3
+      mx-auto px-4 w-full sm:w-auto max-w-screen-md h-max;
 
-    .link {
-      @apply flex items-center border-none;
+    a {
+      @apply sm:col-span-2 md:col-span-6;
 
-      svg {
-        @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
-      }
-
-      &:link,
-      &:visited,
-      &:active {
-        @apply border-none;
+      &:last-child:not(:nth-child(even)) {
+        @apply sm:col-start-2 sm:col-end-4 md:col-start-4 md:col-end-10;
       }
     }
-
-    .horizontal {
-      @apply flex flex-wrap justify-between;
-
-      /* Temporarily hide horizontal navs */
-      display: none;
-
-      .link:first-child {
-        @apply ml-4 md:ml-8 py-2;
-      }
-
-      .link:last-child {
-        @apply mr-4 md:mr-8 py-2;
-      }
-    }
-
-    .vertical {
-      @apply flex flex-col items-center my-4;
-
-      .link {
-        @apply flex-col cursor-pointer px-4;
-      }
-    }
-  }
-
-  .follow {
-    .buttons-social {
-      @apply grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3
-        mx-auto px-4 w-full sm:w-auto max-w-screen-md h-max;
-
-      a {
-        @apply sm:col-span-2 md:col-span-6;
-
-        &:last-child:not(:nth-child(even)) {
-          @apply sm:col-start-2 sm:col-end-4 md:col-start-4 md:col-end-10;
-        }
-      }
-    }
-  }
-
-  .contact {
-    @apply flex flex-col items-center justify-center px-4 md:px-8 w-full h-full;
   }
 }
 </style>
