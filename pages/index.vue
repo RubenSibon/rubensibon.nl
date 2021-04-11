@@ -91,7 +91,7 @@ en:
     </section>
 
     <section id="follow-me">
-      <div class="follow">
+      <div>
         <h2>
           {{ $t('Follow me') }}
         </h2>
@@ -229,7 +229,7 @@ en:
     </section>
 
     <section id="contact">
-      <div class="contact">
+      <div>
         <h2>
           {{ $t('Get in touch') }}
         </h2>
@@ -432,23 +432,17 @@ html[is-ie] {
     }
   }
 
-  .follow {
-    .buttons-social {
-      @apply grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3
-        mx-auto px-4 w-full sm:w-auto max-w-screen-md h-max;
+  .buttons-social {
+    @apply grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3
+      mx-auto px-4 w-full sm:w-auto max-w-screen-md h-max;
 
-      a {
-        @apply sm:col-span-2 md:col-span-6;
+    a {
+      @apply sm:col-span-2 md:col-span-6;
 
-        &:last-child:not(:nth-child(even)) {
-          @apply sm:col-start-2 sm:col-end-4 md:col-start-4 md:col-end-10;
-        }
+      &:last-child:not(:nth-child(even)) {
+        @apply sm:col-start-2 sm:col-end-4 md:col-start-4 md:col-end-10;
       }
     }
-  }
-
-  .contact {
-    @apply flex flex-col items-center justify-center px-4 md:px-8 w-full h-full;
   }
 }
 </style>
