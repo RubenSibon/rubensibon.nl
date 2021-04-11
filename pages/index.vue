@@ -417,7 +417,7 @@ html[is-ie] {
   @apply flex flex-col items-center mx-auto px-4 md:px-8 text-center;
 
   section {
-    @apply flex flex-col items-center justify-center max-w-screen-2xl w-screen min-h-screen;
+    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen min-h-screen;
 
     min-height: var(--vp-height, 100vh);
 
@@ -428,7 +428,7 @@ html[is-ie] {
 
   .me {
     .picture {
-      @apply rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
+      @apply border-2 border-gray-950 dark:border-gray-50 rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
     }
 
     .title {
