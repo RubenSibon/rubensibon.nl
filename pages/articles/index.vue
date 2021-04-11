@@ -29,26 +29,38 @@
         :title="article.title"
         class="📰"
       >
-        <h2 class="📰-title">
-          {{ article.title }}
-        </h2>
+        <HeaderImage
+          v-if="article.img && article.img.src"
+          :alt="article.img.alt"
+          :src-set="Object.entries(article.img.srcSet)"
+          :src="article.img.src"
+          :bg-color="article.image && article.image.bgColor ? article.image.bgColor : null"
+          :gradient="true"
+          class="📰-figure"
+        />
 
-        <div class="📰-list">
-          <div class="font-semibold">
-            {{ formatDate(article.createdAt) }}
+        <div class="📰-content">
+          <h2 class="title">
+            {{ article.title }}
+          </h2>
+
+          <div class="list">
+            <div>
+              {{ formatDate(article.createdAt) }}
+            </div>
+
+            <div v-if="article.tags">
+              {{ $t(`tagList.${article.tags[0]}`) }}
+            </div>
           </div>
 
-          <div v-if="article.tags" class="font-semibold">
-            {{ $t(`tagList.${article.tags[0]}`) }}
+          <div>
+            <p>{{ article.description }}</p>
           </div>
-        </div>
 
-        <div class="text-sm">
-          <p>{{ article.description }}</p>
-        </div>
-
-        <div v-if="article.tags" class="flex gap-1 text-xs">
-          <span class="font-semibold">{{ $t("Tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
+          <div v-if="article.tags" class="flex-wrap hidden gap-2 sm:flex">
+            <span>{{ $t("Tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
+          </div>
         </div>
       </nuxt-link>
     </main>
@@ -115,17 +127,27 @@ export default defineComponent({
   }
 
   main {
-    @apply flex flex-col;
+    @apply grid grid-cols-2 gap-8 mx-auto mb-12 max-w-screen-lg;
 
     .📰 {
-      @apply flex flex-col gap-3;
+      @apply relative aspect-w-1 aspect-h-1 sm:aspect-w-16 sm:aspect-h-9;
 
-      &-title {
-        @apply text-2xl;
+      &:first-child {
+        @apply col-span-2;
       }
 
-      &-list {
-        @apply flex items-center gap-3 text-sm;
+      &-figure {
+        @apply absolute top-0 left-0 w-full h-auto;
+      }
+
+      &-content {
+        @apply flex flex-col gap-3 justify-end
+          absolute left-0 bottom-0 p-4 sm:p-8
+          w-full h-full;
+
+        .list {
+          @apply flex flex-wrap items-center gap-3;
+        }
       }
     }
   }

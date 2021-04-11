@@ -68,19 +68,21 @@ nl:
       </TextGroup>
 
       <Nav on-side="left">
-        <nuxt-link :to="localePath('/articles')" class="link">
-          <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
+        <div>
+          <nuxt-link :to="localePath('/articles')" class="link">
+            <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
 
-          <span>Back</span>
+            <span>Back</span>
 
-          <span class="sr-only">⬅ Home&nbsp;</span>
-        </nuxt-link>
+            <span class="sr-only">⬅ Home&nbsp;</span>
+          </nuxt-link>
 
-        <h1>&nbsp;</h1>
+          <h1>&nbsp;</h1>
+        </div>
       </Nav>
     </header>
 
-    <TextGroup v-if="article.showToc" class="px-6 mb-8">
+    <TextGroup v-if="article.showToc" class="mb-8 prose">
       <ToC :items="article.toc" class="hidden" />
       <Collapsible>
         <template #summary>
@@ -196,18 +198,22 @@ export default defineComponent({
     }
 
     .textgroup {
-      @apply max-w-screen-sm mx-auto px-6 sm:px-0;
+      @apply px-6 sm:px-8 md:px-0;
     }
 
     nav {
-      @apply absolute top-0 left-0 pt-5 pl-5;
+      @apply absolute top-0 left-0 pt-5 pl-5 w-full;
 
-      filter: drop-shadow(0 0 0.125rem black);
+      & > div {
+        @apply mx-auto w-full max-w-screen-2xl;
+
+        filter: drop-shadow(0 0 0.125rem black);
+      }
     }
   }
 
   main {
-    @apply mb-8 max-w-screen-sm;
+    @apply mb-8;
   }
 
   footer {
@@ -230,7 +236,7 @@ export default defineComponent({
   h4,
   h5,
   h6 {
-    @apply relative mx-auto w-full max-w-screen-sm mt-8 px-6 md:px-8;
+    @apply relative mx-auto w-full mt-8 px-6 sm:px-8;
 
     .icon.icon-link {
       @apply block absolute top-0 -left-5 w-4 h-full
@@ -274,10 +280,10 @@ export default defineComponent({
   }
 
   p {
-    @apply relative mx-auto w-full max-w-screen-sm mb-2 justify-between px-6 md:px-8;
+    @apply prose relative mx-auto w-full mb-2 justify-between;
 
-    &:first-child::first-letter {
-      @supports (initial-letter: 3) {
+    @supports (initial-letter: 3) {
+      &:first-child::first-letter {
         initial-letter: 3;
       }
     }
@@ -288,7 +294,7 @@ export default defineComponent({
   }
 
   p img {
-    @apply relative -left-6 sm:-left-8 rounded my-12 max-w-screen-lg;
+    @apply relative -left-6 sm:-left-8 rounded my-12 max-w-screen;
 
     width: calc(100% + 3rem);
     max-width: 100vw;
