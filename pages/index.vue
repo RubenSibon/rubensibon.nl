@@ -398,7 +398,7 @@ html[is-ie] {
 
   .me {
     .picture {
-      @apply border-2 border-gray-950 dark:border-gray-50 rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
+      @apply border-4 border-gray-950 dark:border-gray-50 rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
     }
 
     .title {

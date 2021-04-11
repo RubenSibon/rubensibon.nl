@@ -25,6 +25,8 @@ export default async (_context, _locale) => {
       react_native: "React Native",
       python: "Python",
       c: "C",
+      nos: "NOS",
+      nosop3: "NOS op 3",
     },
   });
 };
