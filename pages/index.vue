@@ -403,12 +403,21 @@ export default defineComponent({
 });
 </script>
 
+<style lang="postcss">
+/* Fix for Internet Explorer 11 */
+html[is-ie] {
+  section {
+    @apply h-screen;
+  }
+}
+</style>
+
 <style lang="postcss" scoped>
 .🏡 {
   @apply flex flex-col items-center mx-auto px-4 md:px-8 text-center;
 
   section {
-    @apply flex flex-col items-center justify-center max-w-screen-2xl w-screen min-h-screen overflow-y-scroll;
+    @apply flex flex-col items-center justify-center max-w-screen-2xl w-screen min-h-screen;
 
     min-height: var(--vp-height, 100vh);
 
