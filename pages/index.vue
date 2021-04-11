@@ -5,14 +5,18 @@ nl:
   Get in touch: "Start een gesprek"
   if it pleases you: "als het je pleziert"
   but really, only if you want to: "maar echt, alleen als je dat wilt"
-  Even more: "Nog meer"
+  Contact: "Contact"
+  Small print: "De kleine letters"
+  About this website: "Over deze website"
 en:
   Software Developer: "Software Developer"
   Follow me: "Follow me"
   Get in touch: "Get in touch"
   if it pleases you: "if it pleases you"
   but really, only if you want to: "but really, only if you want to"
-  Even more: "Even more"
+  Contact: "Contact"
+  Small print: "Small print"
+  About this website: "About this website"
 </i18n>
 
 <template>
@@ -24,7 +28,7 @@ en:
     }"
   > -->
   <div class="🏡">
-    <section id="screen1">
+    <section id="about-me">
       <div class="me">
         <figure class="picture">
           <picture>
@@ -77,10 +81,11 @@ en:
 
         <div class="vertical">
           <a
-            v-scroll-to="'#screen2'"
             tabindex="0"
             :title="$t('More')"
             class="link"
+            @click="nextScreenHandler($event, '#follow-me')"
+            @keyup.enter="nextScreenHandler($event, '#follow-me')"
           >
             {{ $t("More") }}
 
@@ -94,7 +99,7 @@ en:
       </nav>
     </section>
 
-    <section id="screen2">
+    <section id="follow-me">
       <div class="follow">
         <h2>
           {{ $t('Follow me') }}
@@ -218,12 +223,13 @@ en:
       <nav class="nav">
         <div class="vertical">
           <a
-            v-scroll-to="'#screen3'"
             tabindex="0"
-            :title="$t('Even more')"
+            :title="$t('Contact')"
             class="link"
+            @click="nextScreenHandler($event, '#contact')"
+            @keyup.enter="nextScreenHandler($event, '#contact')"
           >
-            {{ $t("Even more") }}
+            {{ $t("Contact") }}
 
             <span>
               <SvgIconChevronDown aria-hidden="true" />
@@ -235,7 +241,7 @@ en:
       </nav>
     </section>
 
-    <section id="screen3">
+    <section id="contact">
       <div class="contact">
         <h2>
           {{ $t('Get in touch') }}
@@ -251,12 +257,13 @@ en:
       <nav class="nav">
         <div class="vertical">
           <a
-            v-scroll-to="'#screen4'"
             tabindex="0"
-            :title="$t('Even more')"
+            :title="$t('Contact')"
             class="link"
+            @click="nextScreenHandler($event, '#about-this-site')"
+            @keyup.enter="nextScreenHandler($event, '#about-this-site')"
           >
-            ¯\_(ツ)_/¯
+            {{ $t('Small print') }}
 
             <span>
               <SvgIconChevronDown aria-hidden="true" />
@@ -268,15 +275,71 @@ en:
       </nav>
     </section>
 
-    <section id="screen4">
-      <div>
-        <h2>
-          {{ $t('About this site') }}
+    <section id="about-this-site">
+      <div class="max-w-screen-md">
+        <h2 class="mb-4">
+          {{ $t('About this website') }}
         </h2>
 
-        <p>
-          {{ $t('Work in progress...') }}
-        </p>
+        <div v-if="locale === 'nl'" class="mb-6">
+          <p class="mb-2">
+            Deze website wordt gehost door GitHub. <a href="https://github.com/RubenSibon/rubensibon.nl" target="_blank" rel="noopener noreferrer">Bekijk de code</a>.
+          </p>
+
+          <h3 class="mt-4 mb-2 h4">
+            Privacy
+          </h3>
+
+          <p class="mb-2">
+            Geen persoonlijke informatie wordt verzameld anders dan wat is ingezonden met een webformulier.
+          </p>
+
+          <p class="mb-2">
+            Om je webbrowser's taal te onthouden wordt er een niet-volgende cookie geplaatst.
+          </p>
+
+          <h3 class="mt-4 mb-2 h4">
+            Auteursrecht
+          </h3>
+
+          <p class="mb-2">
+            Alle code en inhoud die niet van derde partijen komt valt onder het auteursrecht van Ruben Sibon
+          </p>
+
+          <p>
+            © Ruben Sibon {{ copyrightYears }}.
+          </p>
+        </div>
+
+        <div v-else class="mb-6">
+          <p class="mb-2">
+            This website is hosted by GitHub. <a href="https://github.com/RubenSibon/rubensibon.nl" target="_blank" rel="noopener noreferrer">Inspect the code</a>.
+          </p>
+
+          <h3 class="mt-4 mb-2 h4">
+            Privacy
+          </h3>
+
+          <p class="mb-2">
+            No personally identifiable information is collected other than what is provided via a web form.
+          </p>
+
+          <p class="mb-2">
+            To remember your browser's language a non-tracking cookie is set.
+          </p>
+
+          <h3 class="mt-4 mb-2 h4">
+            Copyrights
+          </h3>
+
+          <p class="mb-2">
+            All code and content not provided by third-parties is subject to the copyrights of Ruben Sibon.
+          </p>
+
+          <p>
+            © Ruben Sibon {{ copyrightYears }}.
+          </p>
+        </div>
       </div>
     </section>
   </div>
@@ -285,6 +348,16 @@ en:
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
+
+import VueScrollTo from "vue-scrollto";
+
+const options = {
+  container: "body",
+  easing: "ease-in",
+  offset: 0,
+  force: true,
+  cancelable: true,
+};
 
 export default defineComponent({
   components: {
@@ -306,15 +379,45 @@ export default defineComponent({
       locale,
     };
   },
+
+  computed: {
+    copyrightYears () {
+      const yearStart = 2021;
+      const yearCurrent = new Date().getFullYear();
+
+      return `${yearStart !== yearCurrent ? yearStart + " - " : ""}${yearCurrent}`;
+    },
+  },
+
+  methods: {
+    nextScreenHandler (event: Event, toScreen: string) {
+      event.preventDefault();
+
+      if (this.$router.currentRoute.fullPath !== `${this.localePath("/")}${toScreen}`) {
+        this.$router.replace(`${this.localePath("/")}${toScreen}`);
+      }
+
+      VueScrollTo.scrollTo(toScreen, 500, options);
+    },
+  },
 });
 </script>
+
+<style lang="postcss">
+/* Fix for Internet Explorer 11 */
+html[is-ie] {
+  section {
+    @apply h-screen;
+  }
+}
+</style>
 
 <style lang="postcss" scoped>
 .🏡 {
   @apply flex flex-col items-center mx-auto px-4 md:px-8 text-center;
 
   section {
-    @apply flex flex-col items-center justify-center max-w-screen-2xl w-screen h-screen overflow-hidden;
+    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen min-h-screen;
 
     min-height: var(--vp-height, 100vh);
 
@@ -325,7 +428,7 @@ export default defineComponent({
 
   .me {
     .picture {
-      @apply rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
+      @apply border-2 border-gray-950 dark:border-gray-50 rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
     }
 
     .title {

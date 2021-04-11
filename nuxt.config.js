@@ -42,7 +42,7 @@ export default {
       { rel: "apple-touch-icon-precomposed", href: "/little-penguin-152.png" },
     ],
     script: [
-      { src: "/js/ie11-custom-props.js" },
+      { src: "/js/ie11-support.js" },
     ],
   },
 
