@@ -295,7 +295,7 @@ en:
           </p>
 
           <p class="mb-2">
-            Op deze website word je op geen enkele manier gevolgd. Om je webbrowser's taal te onthouden wordt er een niet-volgende cookie geplaatst.
+            Om je webbrowser's taal te onthouden wordt er een niet-volgende cookie geplaatst.
           </p>
 
           <h3 class="mt-4 mb-2 h4">
@@ -325,7 +325,7 @@ en:
           </p>
 
           <p class="mb-2">
-            You are not tracked on this site in any way. To remember your browser's language a non-tracking cookie is set.
+            To remember your browser's language a non-tracking cookie is set.
           </p>
 
           <h3 class="mt-4 mb-2 h4">
