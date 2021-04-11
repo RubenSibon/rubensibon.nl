@@ -313,7 +313,7 @@ export default defineComponent({
 
     &:hover,
     &:focus {
-      @apply border-solid border-purple-700 text-gray-50 no-underline;
+      @apply border-solid border-purple-700 text-gray-950 dark:text-gray-50 no-underline;
 
       transform: scale(1.05);
     }
