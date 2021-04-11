@@ -236,17 +236,48 @@ en:
     </section>
 
     <section id="screen3">
-      <h2>
-        {{ $t('Get in touch') }}
-      </h2>
+      <div class="contact">
+        <h2>
+          {{ $t('Get in touch') }}
+        </h2>
 
-      <p class="mb-4">
-        ({{ $t("but really, only if you want to") }})
-      </p>
+        <p class="mb-4">
+          ({{ $t("but really, only if you want to") }})
+        </p>
 
-      <contact-form />
+        <contact-form />
+      </div>
 
-      <p>¯\_(ツ)_/¯</p>
+      <nav class="nav">
+        <div class="vertical">
+          <a
+            v-scroll-to="'#screen4'"
+            tabindex="0"
+            :title="$t('Even more')"
+            class="link"
+          >
+            ¯\_(ツ)_/¯
+
+            <span>
+              <SvgIconChevronDown aria-hidden="true" />
+            </span>
+
+            <span class="sr-only">⬇</span>
+          </a>
+        </div>
+      </nav>
+    </section>
+
+    <section id="screen4">
+      <div>
+        <h2>
+          {{ $t('About this site') }}
+        </h2>
+
+        <p>
+          {{ $t('Work in progress...') }}
+        </p>
+      </div>
     </section>
   </div>
   <!-- </SlideScreen> -->
@@ -283,14 +314,16 @@ export default defineComponent({
   @apply flex flex-col items-center mx-auto px-4 md:px-8 text-center;
 
   section {
-    @apply flex flex-col items-center justify-center max-w-screen-2xl w-screen h-screen;
+    @apply flex flex-col items-center justify-center max-w-screen-2xl w-screen h-screen overflow-hidden;
 
     min-height: var(--vp-height, 100vh);
+
+    & > div {
+      @apply flex flex-col items-center justify-center px-4 md:px-8 w-full h-full;
+    }
   }
 
   .me {
-    @apply flex flex-col items-center justify-center mx-4 md:mx-8 h-full;
-
     .picture {
       @apply rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
     }
@@ -350,8 +383,6 @@ export default defineComponent({
   }
 
   .follow {
-    @apply flex flex-col items-center justify-center mx-4 md:mx-8 h-full;
-
     .buttons-social {
       @apply grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3
         mx-auto px-4 w-full sm:w-auto max-w-screen-md h-max;
@@ -364,6 +395,10 @@ export default defineComponent({
         }
       }
     }
+  }
+
+  .contact {
+    @apply flex flex-col items-center justify-center px-4 md:px-8 w-full h-full;
   }
 }
 </style>
