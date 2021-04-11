@@ -10,9 +10,9 @@
 
       <Nav on-side="right">
         <nuxt-link :to="localePath('/')" class="link">
-          <SvgIconHome aria-hidden="true" />
+          <Icon svg-icon="SvgIconHome" :large="true" aria-hidden="true" />
 
-          <SvgIconChevronRight aria-hidden="true" />
+          <Icon svg-icon="SvgIconChevronRight" :large="true" aria-hidden="true" />
 
           <span class="sr-only">Home&nbsp;➡</span>
         </nuxt-link>
@@ -48,11 +48,6 @@ export default defineComponent({
       en: "/projects",
       nl: "/projecten",
     },
-  },
-
-  components: {
-    SvgIconHome: () => import("~/assets/icons/home.svg?inline"),
-    SvgIconChevronRight: () => import("~/assets/icons/chevron-right.svg?inline"),
   },
 
   head () {
@@ -96,10 +91,6 @@ export default defineComponent({
 
   header {
     @apply flex items-center justify-between mb-8 sm:mb-16;
-
-    svg {
-      @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
-    }
   }
 
   main {

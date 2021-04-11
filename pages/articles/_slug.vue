@@ -69,7 +69,7 @@ nl:
 
       <Nav on-side="left">
         <nuxt-link :to="localePath('/articles')" class="link">
-          <SvgIconChevronLeft aria-hidden="true" />
+          <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
 
           <span>Back</span>
 
@@ -146,10 +146,6 @@ export default defineComponent({
     },
   },
 
-  components: {
-    SvgIconChevronLeft: () => import("~/assets/icons/chevron-left.svg?inline"),
-  },
-
   async asyncData ({ $content, params }) {
     const article = await $content("articles", params.slug).fetch();
 
@@ -207,10 +203,6 @@ export default defineComponent({
       @apply absolute top-0 left-0 pt-5 pl-5;
 
       filter: drop-shadow(0 0 0.125rem black);
-
-      svg {
-        @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
-      }
     }
   }
 

@@ -57,7 +57,7 @@ en:
 
       <Nav orientation="horizontal">
         <nuxt-link :to="localePath('/projects')" class="link">
-          <SvgIconChevronLeft aria-hidden="true" />
+          <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
 
           <span class="sr-only">⬅ Projects&nbsp;</span>
 
@@ -67,7 +67,7 @@ en:
         <nuxt-link :to="localePath('/articles')" class="link">
           {{ $t("Articles") }}
 
-          <SvgIconChevronRight aria-hidden="true" />
+          <Icon svg-icon="SvgIconChevronRight" :large="true" aria-hidden="true" />
 
           <span class="sr-only">&nbsp;Articles ➡</span>
         </nuxt-link>
@@ -83,7 +83,7 @@ en:
         >
           {{ $t("More") }}
 
-          <SvgIconChevronDown aria-hidden="true" />
+          <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
           <span class="sr-only">⬇</span>
         </a>
@@ -110,7 +110,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconGithub aria-hidden="true" />
+                <Icon svg-icon="SvgIconGitHub" aria-hidden="true" />
               </span>
             </template>
 
@@ -128,7 +128,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconGitlab aria-hidden="true" />
+                <Icon svg-icon="SvgIconGitLab" aria-hidden="true" />
               </span>
             </template>
 
@@ -146,7 +146,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconCodePen aria-hidden="true" />
+                <Icon svg-icon="SvgIconCodePen" aria-hidden="true" />
               </span>
             </template>
 
@@ -164,7 +164,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconSO aria-hidden="true" />
+                <Icon svg-icon="SvgIconSO" aria-hidden="true" />
               </span>
             </template>
 
@@ -182,7 +182,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconLinkedIn aria-hidden="true" />
+                <Icon svg-icon="SvgIconLinkedIn" aria-hidden="true" />
               </span>
             </template>
 
@@ -200,7 +200,7 @@ en:
           >
             <template #before>
               <span>
-                <SvgIconTwitter aria-hidden="true" />
+                <Icon svg-icon="SvgIconTwitter" aria-hidden="true" />
               </span>
             </template>
 
@@ -221,7 +221,7 @@ en:
         >
           {{ $t("Contact") }}
 
-          <SvgIconChevronDown aria-hidden="true" />
+          <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
           <span class="sr-only">⬇</span>
         </a>
@@ -251,7 +251,7 @@ en:
         >
           {{ $t('Small print') }}
 
-          <SvgIconChevronDown aria-hidden="true" />
+          <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
           <span class="sr-only">⬇</span>
         </a>
@@ -342,18 +342,6 @@ const options = {
 };
 
 export default defineComponent({
-  components: {
-    SvgIconGithub: () => import("~/assets/icons/github.svg?inline"),
-    SvgIconGitlab: () => import("~/assets/icons/gitlab.svg?inline"),
-    SvgIconSO: () => import("~/assets/icons/stackoverflow.svg?inline"),
-    SvgIconCodePen: () => import("~/assets/icons/codepen.svg?inline"),
-    SvgIconLinkedIn: () => import("~/assets/icons/linkedin.svg?inline"),
-    SvgIconTwitter: () => import("~/assets/icons/twitter.svg?inline"),
-    SvgIconChevronRight: () => import("~/assets/icons/chevron-right.svg?inline"),
-    SvgIconChevronDown: () => import("~/assets/icons/chevron-down.svg?inline"),
-    SvgIconChevronLeft: () => import("~/assets/icons/chevron-left.svg?inline"),
-  },
-
   asyncData ({ i18n }) {
     const locale = i18n.locale;
 
@@ -405,12 +393,6 @@ html[is-ie] {
 
     & > div {
       @apply flex flex-1 flex-col items-center justify-center px-4 md:px-8 w-full h-full;
-    }
-
-    nav {
-      svg {
-        @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
-      }
     }
   }
 

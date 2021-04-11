@@ -8,9 +8,9 @@
     <header>
       <Nav on-side="left">
         <nuxt-link :to="localePath('/')" class="link">
-          <SvgIconChevronLeft aria-hidden="true" />
+          <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
 
-          <SvgIconHome aria-hidden="true" />
+          <Icon svg-icon="SvgIconHome" :large="true" aria-hidden="true" />
 
           <span class="sr-only">⬅ Home&nbsp;</span>
         </nuxt-link>
@@ -69,21 +69,14 @@ export default defineComponent({
     },
   },
 
-  components: {
-    SvgIconHome: () => import("~/assets/icons/home.svg?inline"),
-    SvgIconChevronLeft: () => import("~/assets/icons/chevron-left.svg?inline"),
-  },
-
   data () {
     return {
       articles: [],
     };
   },
 
-  // @ts-ignore
   async fetch () {
-    // @ts-ignore
-    this.articles = await this.$content("articles").fetch();
+    this.articles = (await this.$content("articles").fetch() as any);
   },
 
   head () {
@@ -95,11 +88,9 @@ export default defineComponent({
         ...i18nHead.htmlAttrs,
       },
       meta: [
-        // @ts-ignore
         ...i18nHead.meta,
       ],
       link: [
-        // @ts-ignore
         ...i18nHead.link,
       ],
     };
@@ -121,10 +112,6 @@ export default defineComponent({
 
   header {
     @apply flex items-center justify-between mb-8 sm:mb-16;
-
-    svg {
-      @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
-    }
   }
 
   main {
