@@ -53,7 +53,7 @@ Your name
 
 <style lang="postcss" scoped>
 .contact-form {
-  @apply flex flex-col px-4 w-full max-w-screen-sm;
+  @apply flex flex-col w-full max-w-screen-sm;
 
   label {
     @apply mb-2 text-right;
@@ -69,7 +69,7 @@ Your name
   }
 
   textarea {
-    @apply resize-none;
+    @apply resize-none mb-2;
   }
 
   button {
