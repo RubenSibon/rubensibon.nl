@@ -22,7 +22,7 @@
       >
     </picture>
 
-    <figcaption class="ie-gap-horizontal-sm">
+    <figcaption class="ie-gap-horizontal-sm" style="display: none;">
       <SvgIconPicture v-if="showIcon" aria-hidden="true" /> {{ alt }}
     </figcaption>
   </figure>
@@ -79,7 +79,7 @@ export default defineComponent({
   figcaption {
     @apply flex items-center gap-2
       absolute top-0 right-0
-      rounded-full m-3 py-1 px-3 w-max max-w-none
+      rounded-full mt-5 mr-5 py-1 px-3 w-max max-w-none
       bg-black bg-opacity-50 text-gray-200 text-xs;
 
     font-size: 0.675rem;

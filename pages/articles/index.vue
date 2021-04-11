@@ -5,11 +5,27 @@
       left: '/',
     }"
   >
-    <h1 class="articles-header">
-      {{ $t("Articles") }}
-    </h1>
+    <header>
+      <nav class="nav">
+        <nuxt-link :to="localePath('/')" class="link">
+          <span>
+            <SvgIconChevronLeft aria-hidden="true" />
+          </span>
 
-    <template v-if="articles.length">
+          <span>
+            <SvgIconHome aria-hidden="true" />
+          </span>
+
+          <span class="sr-only">⬅ Home&nbsp;</span>
+        </nuxt-link>
+      </nav>
+
+      <h1>
+        {{ $t("Articles") }}
+      </h1>
+    </header>
+
+    <main v-if="articles.length">
       <nuxt-link
         v-for="article in articles"
         :key="article.slug"
@@ -39,10 +55,10 @@
           <span class="font-semibold">{{ $t("Tags") }}:</span><span v-for="tag of article.tags" :key="tag">{{ $t(`tagList.${tag}`) }}</span>
         </div>
       </nuxt-link>
-    </template>
-    <template v-else>
+    </main>
+    <main v-else>
       Loading articles...
-    </template>
+    </main>
   </SlideScreen>
 </template>
 
@@ -55,6 +71,11 @@ export default defineComponent({
       en: "/articles",
       nl: "/artikelen",
     },
+  },
+
+  components: {
+    SvgIconHome: () => import("~/assets/icons/home.svg?inline"),
+    SvgIconChevronLeft: () => import("~/assets/icons/chevron-left.svg?inline"),
   },
 
   data () {
@@ -102,19 +123,45 @@ export default defineComponent({
 
   min-height: var(--vp-height, 100vh);
 
-  &-header {
-    @apply mb-5;
+  header {
+    @apply flex items-center justify-between mb-8 sm:mb-16;
+
+    nav {
+      @apply flex flex-col md:pr-8 h-max sm:text-3xl md:text-4xl;
+
+      .link {
+        @apply flex items-center border-none;
+
+        &:first-child {
+          @apply mr-4 md:mr-8;
+        }
+
+        svg {
+          @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
+        }
+
+        &:link,
+        &:visited,
+        &:active {
+          @apply border-none;
+        }
+      }
+    }
   }
 
-  .📰 {
-    @apply flex flex-col gap-3;
+  main {
+    @apply flex flex-col;
 
-    &-title {
-      @apply text-2xl;
-    }
+    .📰 {
+      @apply flex flex-col gap-3;
 
-    &-list {
-      @apply flex items-center gap-3 text-sm;
+      &-title {
+        @apply text-2xl;
+      }
+
+      &-list {
+        @apply flex items-center gap-3 text-sm;
+      }
     }
   }
 }

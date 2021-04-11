@@ -27,8 +27,9 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .label {
-  @apply flex items-center gap-1 rounded-full py-1 pr-3 pl-2 w-max h-max
-    font-semibold text-xs bg-gray-900 dark:bg-gray-100 text-gray-100 dark:text-gray-900 lowercase tracking-wide
+  @apply flex items-center gap-1
+    border-2 border-current rounded-full py-1 pr-3 pl-2 w-max h-max
+    font-semibold text-xs text-gray-900 dark:text-gray-100 lowercase tracking-wide
     select-none;
 
   svg {
@@ -36,7 +37,7 @@ export default defineComponent({
   }
 
   &.invert {
-    @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    @apply border-current text-gray-100 dark:text-gray-900;
   }
 }
 </style>

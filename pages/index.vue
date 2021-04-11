@@ -62,7 +62,7 @@ en:
               <SvgIconChevronLeft aria-hidden="true" />
             </span>
 
-            <span class="sr-only">⬅&nbsp;</span>
+            <span class="sr-only">⬅ Projects&nbsp;</span>
 
             {{ $t("Projects") }}
           </nuxt-link>
@@ -74,7 +74,7 @@ en:
               <SvgIconChevronRight aria-hidden="true" />
             </span>
 
-            <span class="sr-only">&nbsp;➡</span>
+            <span class="sr-only">&nbsp;Articles ➡</span>
           </nuxt-link>
         </div>
 

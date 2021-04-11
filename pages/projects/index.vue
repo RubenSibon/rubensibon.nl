@@ -5,11 +5,25 @@
       right: '/',
     }"
   >
-    <header class="projects-header">
+    <header>
       <h1>{{ $t("Projects") }}</h1>
+
+      <nav class="nav">
+        <nuxt-link :to="localePath('/')" class="link">
+          <span>
+            <SvgIconHome aria-hidden="true" />
+          </span>
+
+          <span>
+            <SvgIconChevronRight aria-hidden="true" />
+          </span>
+
+          <span class="sr-only">Home&nbsp;➡</span>
+        </nuxt-link>
+      </nav>
     </header>
 
-    <div class="projects-list">
+    <main>
       <figure
         v-for="n of 12"
         :key="n"
@@ -25,7 +39,7 @@
           <p>Korte beschrijving van het project.</p>
         </figcaption>
       </figure>
-    </div>
+    </main>
   </SlideScreen>
 </template>
 
@@ -38,6 +52,11 @@ export default defineComponent({
       en: "/projects",
       nl: "/projecten",
     },
+  },
+
+  components: {
+    SvgIconHome: () => import("~/assets/icons/home.svg?inline"),
+    SvgIconChevronRight: () => import("~/assets/icons/chevron-right.svg?inline"),
   },
 
   head () {
@@ -79,15 +98,47 @@ export default defineComponent({
 
   min-height: var(--vp-height, 100vh);
 
-  &-header {
-    @apply flex items-center justify-start mb-5;
+  header {
+    @apply flex items-center justify-between mb-8 sm:mb-16;
+
+    nav {
+      @apply flex flex-col md:pl-8 h-max sm:text-3xl md:text-4xl;
+
+      .link {
+        @apply flex items-center border-none;
+
+        &:first-child {
+          @apply ml-4 md:ml-8;
+        }
+
+        svg {
+          @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
+        }
+
+        &:link,
+        &:visited,
+        &:active {
+          @apply border-none;
+        }
+      }
+    }
   }
 
-  &-list {
-    @apply grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5;
+  main {
+    @apply grid sm:grid-cols-6 lg:grid-cols-12 gap-6 lg:gap-12;
   }
 
   .👷‍♂️ {
+    @apply col-span-1 sm:col-span-3 lg:col-span-4;
+
+    &:nth-child(4n+1) {
+      @apply lg:col-start-3;
+    }
+
+    &:nth-child(4n+3) {
+      @apply lg:col-start-4;
+    }
+
     figcaption {
       @apply py-5 w-full text-left;
     }
