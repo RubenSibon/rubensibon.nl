@@ -6,19 +6,15 @@
     }"
   >
     <header>
-      <nav class="nav">
+      <Nav on-side="left">
         <nuxt-link :to="localePath('/')" class="link">
-          <span>
-            <SvgIconChevronLeft aria-hidden="true" />
-          </span>
+          <SvgIconChevronLeft aria-hidden="true" />
 
-          <span>
-            <SvgIconHome aria-hidden="true" />
-          </span>
+          <SvgIconHome aria-hidden="true" />
 
           <span class="sr-only">⬅ Home&nbsp;</span>
         </nuxt-link>
-      </nav>
+      </Nav>
 
       <h1>
         {{ $t("Articles") }}
@@ -126,26 +122,8 @@ export default defineComponent({
   header {
     @apply flex items-center justify-between mb-8 sm:mb-16;
 
-    nav {
-      @apply flex flex-col md:pr-8 h-max sm:text-3xl md:text-4xl;
-
-      .link {
-        @apply flex items-center border-none;
-
-        &:first-child {
-          @apply mr-4 md:mr-8;
-        }
-
-        svg {
-          @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
-        }
-
-        &:link,
-        &:visited,
-        &:active {
-          @apply border-none;
-        }
-      }
+    svg {
+      @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
     }
   }
 

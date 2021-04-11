@@ -8,19 +8,15 @@
     <header>
       <h1>{{ $t("Projects") }}</h1>
 
-      <nav class="nav">
+      <Nav on-side="right">
         <nuxt-link :to="localePath('/')" class="link">
-          <span>
-            <SvgIconHome aria-hidden="true" />
-          </span>
+          <SvgIconHome aria-hidden="true" />
 
-          <span>
-            <SvgIconChevronRight aria-hidden="true" />
-          </span>
+          <SvgIconChevronRight aria-hidden="true" />
 
           <span class="sr-only">Home&nbsp;➡</span>
         </nuxt-link>
-      </nav>
+      </Nav>
     </header>
 
     <main>
@@ -101,26 +97,8 @@ export default defineComponent({
   header {
     @apply flex items-center justify-between mb-8 sm:mb-16;
 
-    nav {
-      @apply flex flex-col md:pl-8 h-max sm:text-3xl md:text-4xl;
-
-      .link {
-        @apply flex items-center border-none;
-
-        &:first-child {
-          @apply ml-4 md:ml-8;
-        }
-
-        svg {
-          @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
-        }
-
-        &:link,
-        &:visited,
-        &:active {
-          @apply border-none;
-        }
-      }
+    svg {
+      @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
     }
   }
 

@@ -55,47 +55,39 @@ en:
         </p>
       </div>
 
-      <nav class="nav">
-        <div class="horizontal">
-          <nuxt-link :to="localePath('/projects')" class="link">
-            <span>
-              <SvgIconChevronLeft aria-hidden="true" />
-            </span>
+      <Nav orientation="horizontal">
+        <nuxt-link :to="localePath('/projects')" class="link">
+          <SvgIconChevronLeft aria-hidden="true" />
 
-            <span class="sr-only">⬅ Projects&nbsp;</span>
+          <span class="sr-only">⬅ Projects&nbsp;</span>
 
-            {{ $t("Projects") }}
-          </nuxt-link>
+          {{ $t("Projects") }}
+        </nuxt-link>
 
-          <nuxt-link :to="localePath('/articles')" class="link">
-            {{ $t("Articles") }}
+        <nuxt-link :to="localePath('/articles')" class="link">
+          {{ $t("Articles") }}
 
-            <span>
-              <SvgIconChevronRight aria-hidden="true" />
-            </span>
+          <SvgIconChevronRight aria-hidden="true" />
 
-            <span class="sr-only">&nbsp;Articles ➡</span>
-          </nuxt-link>
-        </div>
+          <span class="sr-only">&nbsp;Articles ➡</span>
+        </nuxt-link>
+      </Nav>
 
-        <div class="vertical">
-          <a
-            tabindex="0"
-            :title="$t('More')"
-            class="link"
-            @click="nextScreenHandler($event, '#follow-me')"
-            @keyup.enter="nextScreenHandler($event, '#follow-me')"
-          >
-            {{ $t("More") }}
+      <Nav orientation="vertical">
+        <a
+          tabindex="0"
+          :title="$t('More')"
+          class="link"
+          @click="nextScreenHandler($event, '#follow-me')"
+          @keyup.enter="nextScreenHandler($event, '#follow-me')"
+        >
+          {{ $t("More") }}
 
-            <span>
-              <SvgIconChevronDown aria-hidden="true" />
-            </span>
+          <SvgIconChevronDown aria-hidden="true" />
 
-            <span class="sr-only">⬇</span>
-          </a>
-        </div>
-      </nav>
+          <span class="sr-only">⬇</span>
+        </a>
+      </Nav>
     </section>
 
     <section id="follow-me">
@@ -219,25 +211,21 @@ en:
         </div>
       </div>
 
-      <nav class="nav">
-        <div class="vertical">
-          <a
-            tabindex="0"
-            :title="$t('Contact')"
-            class="link"
-            @click="nextScreenHandler($event, '#contact')"
-            @keyup.enter="nextScreenHandler($event, '#contact')"
-          >
-            {{ $t("Contact") }}
+      <Nav orientation="vertical">
+        <a
+          tabindex="0"
+          :title="$t('Contact')"
+          class="link"
+          @click="nextScreenHandler($event, '#contact')"
+          @keyup.enter="nextScreenHandler($event, '#contact')"
+        >
+          {{ $t("Contact") }}
 
-            <span>
-              <SvgIconChevronDown aria-hidden="true" />
-            </span>
+          <SvgIconChevronDown aria-hidden="true" />
 
-            <span class="sr-only">⬇</span>
-          </a>
-        </div>
-      </nav>
+          <span class="sr-only">⬇</span>
+        </a>
+      </Nav>
     </section>
 
     <section id="contact">
@@ -253,25 +241,21 @@ en:
         <contact-form />
       </div>
 
-      <nav class="nav">
-        <div class="vertical">
-          <a
-            tabindex="0"
-            :title="$t('Contact')"
-            class="link"
-            @click="nextScreenHandler($event, '#about-this-site')"
-            @keyup.enter="nextScreenHandler($event, '#about-this-site')"
-          >
-            {{ $t('Small print') }}
+      <Nav orientation="vertical">
+        <a
+          tabindex="0"
+          :title="$t('Contact')"
+          class="link"
+          @click="nextScreenHandler($event, '#about-this-site')"
+          @keyup.enter="nextScreenHandler($event, '#about-this-site')"
+        >
+          {{ $t('Small print') }}
 
-            <span>
-              <SvgIconChevronDown aria-hidden="true" />
-            </span>
+          <SvgIconChevronDown aria-hidden="true" />
 
-            <span class="sr-only">⬇</span>
-          </a>
-        </div>
-      </nav>
+          <span class="sr-only">⬇</span>
+        </a>
+      </Nav>
     </section>
 
     <section id="about-this-site">
@@ -420,7 +404,13 @@ html[is-ie] {
     min-height: var(--vp-height, 100vh);
 
     & > div {
-      @apply flex flex-col items-center justify-center px-4 md:px-8 w-full h-full;
+      @apply flex flex-1 flex-col items-center justify-center px-4 md:px-8 w-full h-full;
+    }
+
+    nav {
+      svg {
+        @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
+      }
     }
   }
 
@@ -439,44 +429,6 @@ html[is-ie] {
 
     .description {
       @apply max-w-screen-sm md:max-w-screen-md;
-    }
-  }
-
-  nav {
-    @apply bottom-0 left-0 flex flex-col justify-evenly pb-4 md:px-8 w-full h-max sm:text-3xl md:text-4xl;
-
-    .link {
-      @apply flex items-center border-none;
-
-      svg {
-        @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
-      }
-
-      &:link,
-      &:visited,
-      &:active {
-        @apply border-none;
-      }
-    }
-
-    .horizontal {
-      @apply flex flex-wrap justify-between;
-
-      .link:first-child {
-        @apply ml-4 md:ml-8 py-2;
-      }
-
-      .link:last-child {
-        @apply mr-4 md:mr-8 py-2;
-      }
-    }
-
-    .vertical {
-      @apply flex flex-col items-center my-4;
-
-      .link {
-        @apply flex-col cursor-pointer px-4;
-      }
     }
   }
 

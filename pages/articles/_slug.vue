@@ -67,21 +67,17 @@ nl:
         </PostDetails>
       </TextGroup>
 
-      <nav class="nav">
+      <Nav on-side="left">
         <nuxt-link :to="localePath('/articles')" class="link">
-          <span>
-            <SvgIconChevronLeft aria-hidden="true" />
-          </span>
+          <SvgIconChevronLeft aria-hidden="true" />
 
-          <span>
-            Back
-          </span>
+          <span>Back</span>
 
           <span class="sr-only">⬅ Home&nbsp;</span>
         </nuxt-link>
 
         <h1>&nbsp;</h1>
-      </nav>
+      </Nav>
     </header>
 
     <TextGroup v-if="article.showToc" class="px-6 mb-8">
@@ -208,27 +204,12 @@ export default defineComponent({
     }
 
     nav {
-      @apply absolute top-0 left-0
-        flex pt-5 pl-5 md:pr-8 h-max sm:text-3xl md:text-4xl;
+      @apply absolute top-0 left-0 pt-5 pl-5;
 
       filter: drop-shadow(0 0 0.125rem black);
 
-      .link {
-        @apply flex items-center border-none;
-
-        &:first-child {
-          @apply mr-4 md:mr-8;
-        }
-
-        svg {
-          @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
-        }
-
-        &:link,
-        &:visited,
-        &:active {
-          @apply border-none;
-        }
+      svg {
+        @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current;
       }
     }
   }
