@@ -20,14 +20,13 @@ en:
 </i18n>
 
 <template>
-  <!-- <SlideScreen
+  <SlideScreen
     class="🏡"
     :adjacent="{
       left: '/projects',
       right: '/articles',
     }"
-  > -->
-  <div class="🏡">
+  >
     <section id="about-me">
       <div class="me">
         <figure class="picture">
@@ -342,8 +341,7 @@ en:
         </div>
       </div>
     </section>
-  </div>
-  <!-- </SlideScreen> -->
+  </SlideScreen>
 </template>
 
 <script lang="ts">
@@ -463,9 +461,6 @@ html[is-ie] {
 
     .horizontal {
       @apply flex flex-wrap justify-between;
-
-      /* Temporarily hide horizontal navs */
-      display: none;
 
       .link:first-child {
         @apply ml-4 md:ml-8 py-2;
