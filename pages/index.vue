@@ -283,7 +283,7 @@ export default defineComponent({
   @apply flex flex-col items-center mx-auto px-4 md:px-8 text-center;
 
   section {
-    @apply flex flex-col items-center justify-center max-w-screen-2xl w-screen h-screen;
+    @apply flex flex-col items-center justify-center max-w-screen-2xl w-screen h-screen overflow-hidden;
 
     min-height: var(--vp-height, 100vh);
   }
