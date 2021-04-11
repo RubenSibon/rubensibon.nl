@@ -6,6 +6,7 @@ en:
   Hi: "Hi"
   Im reaching out because: "I'm reaching out because"
   All the best: "All the best"
+  Your name: "Your name"
 nl:
   Your email: "Je emailadres"
   Your message: "Je bericht"
@@ -13,6 +14,7 @@ nl:
   Hi: "Hoi"
   Im reaching out because: "Ik benader je omdat"
   All the best: "Groeten"
+  Your name: "Je naam"
 </i18n>
 
 <template>
@@ -40,7 +42,7 @@ nl:
         :placeholder="`${$t('Hi')} Ruben,
 ${$t('Im reaching out because')} ...
 ${$t('All the best')},
-Your name
+${$t('Your name')}
 `"
       />
     </label>
