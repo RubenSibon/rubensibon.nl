@@ -24,9 +24,9 @@ en:
     <SlideScreen
       :adjacent="{
         left: '/projects',
-        right: '/articles',
       }"
     >
+      <!-- right: '/articles', -->
       <section id="about-me">
         <div class="me">
           <figure class="picture">
@@ -64,13 +64,15 @@ en:
             {{ $t("Projects") }}
           </nuxt-link>
 
-          <nuxt-link :to="localePath('/articles')" class="link">
+          <!-- <nuxt-link :to="localePath('/articles')" class="link"> -->
+          <s class="cursor-not-allowed link">
             {{ $t("Articles") }}
 
             <Icon svg-icon="SvgIconChevronRight" :large="true" aria-hidden="true" />
 
             <span class="sr-only">&nbsp;Articles ➡</span>
-          </nuxt-link>
+          </s>
+          <!-- </nuxt-link> -->
         </Nav>
 
         <Nav orientation="vertical">

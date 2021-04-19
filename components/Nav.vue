@@ -25,7 +25,7 @@ export default defineComponent({
 .nav {
   @apply flex h-max sm:text-3xl md:text-4xl;
 
-  a {
+  .link {
     @apply flex items-center border-none;
 
     &:link,
@@ -50,7 +50,7 @@ export default defineComponent({
   &.vertical {
     @apply flex flex-col items-center my-4;
 
-    a {
+    .link {
       @apply flex-col cursor-pointer px-4;
     }
   }

@@ -100,7 +100,7 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/weer/img/share.jpg",
           },
           url: "https://app.nos.nl/op3/weer/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
         {
           title: "Wie is wie rond Taghi?",
@@ -128,7 +128,7 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/energietransitie/img/share.jpg",
           },
           url: "https://app.nos.nl/op3/energietransitie/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
         {
           title: "Kijkje achter je scherm 📱♻",
@@ -142,7 +142,7 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/kijkjeachterjescherm/img/share.jpg",
           },
           url: "https://app.nos.nl/op3/kijkjeachterjescherm/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
         {
           title: "🍨 Algoritmes | NOS op 3",
@@ -156,7 +156,7 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/algoritmes/img/link.jpg",
           },
           url: "https://app.nos.nl/op3/algoritmes/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
         {
           title: "Adembenemend: Grevelingenmeer & Oosterschelde 🌊🐟",
@@ -170,7 +170,7 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/adembenemend/img/share.jpg",
           },
           url: "https://app.nos.nl/op3/adembenemend/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
         {
           title: "De Brexit uitgelegd",
@@ -184,7 +184,21 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/brexit/img/share.jpg",
           },
           url: "https://app.nos.nl/op3/brexit/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
+        },
+        {
+          title: "Monstercookies 🍪: de advertentiehandel achter jouw klik",
+          description: "Welke wereld treedt in werking als je akkoord gaat met cookies? We leggen het je uit.",
+          client: {
+            name: "NOS op 3",
+            url: "https://www.nosop3.nl/",
+            year: 2019,
+          },
+          img: {
+            src: "https://app.nos.nl/op3/cookies/img/share.jpg",
+          },
+          url: "https://app.nos.nl/op3/cookies/",
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
         {
           title: "Weekendje weg",
@@ -198,7 +212,7 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/weekendje-weg/img/link.jpg",
           },
           url: "https://app.nos.nl/op3/weekendje-weg/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
         {
           title: "🏎  Formule 1  🏁",
@@ -212,7 +226,7 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/formule1/img/link.jpg",
           },
           url: "https://app.nos.nl/op3/formule1/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
         {
           title: "Geldig",
@@ -226,7 +240,7 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/geldig/img/link.jpg",
           },
           url: "https://app.nos.nl/op3/geldig/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
         {
           title: "Schuldig",
@@ -240,7 +254,7 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/schuldbewust/img/share.jpg",
           },
           url: "https://app.nos.nl/op3/schuldbewust/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
         {
           title: "Echte Liefde",
@@ -254,7 +268,7 @@ export default defineComponent({
             src: "https://app.nos.nl/op3/echteliefde/img/link.jpg",
           },
           url: "https://app.nos.nl/op3/echteliefde/",
-          tags: ["vuejs", "nuxtjs", "nos", "nosop3"],
+          tags: ["vuejs", "nuxtjs", "nosop3"],
         },
       ],
     };
