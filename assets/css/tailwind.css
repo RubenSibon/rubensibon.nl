@@ -96,9 +96,7 @@
       url("~assets/fonts/FiraCode/static/FiraCode-Bold.ttf") format("truetype");
   }
 
-  @layer base {
-    .prose {
-      @apply px-6 sm:px-12 max-w-screen-sm sm:max-w-screen-md;
-    }
+  .prose {
+    @apply px-6 sm:px-12 max-w-screen-sm sm:max-w-screen-md;
   }
 }
