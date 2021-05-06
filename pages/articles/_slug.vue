@@ -280,7 +280,7 @@ export default defineComponent({
   }
 
   p {
-    @apply prose relative mx-auto w-full mb-2 justify-between;
+    @apply relative mx-auto w-full mb-2 justify-between px-6 sm:px-12 max-w-screen-sm sm:max-w-screen-md;
 
     @supports (initial-letter: 3) {
       &:first-child::first-letter {
