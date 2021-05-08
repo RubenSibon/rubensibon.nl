@@ -36,6 +36,8 @@ export default {
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@RubenSibon" },
       { name: "twitter:creator", content: "@RubenSibon" },
+
+      { name: "flattr:id", content: "qkv675" },
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
