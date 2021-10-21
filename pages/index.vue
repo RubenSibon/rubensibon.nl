@@ -55,26 +55,6 @@ en:
           </p>
         </div>
 
-        <Nav orientation="horizontal">
-          <nuxt-link :to="localePath('/projects')" class="link">
-            <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
-
-            <span class="sr-only">⬅ Projects&nbsp;</span>
-
-            {{ $t("Projects") }}
-          </nuxt-link>
-
-          <!-- <nuxt-link :to="localePath('/articles')" class="link"> -->
-          <s class="cursor-not-allowed link">
-            {{ $t("Articles") }}
-
-            <Icon svg-icon="SvgIconChevronRight" :large="true" aria-hidden="true" />
-
-            <span class="sr-only">&nbsp;Articles ➡</span>
-          </s>
-          <!-- </nuxt-link> -->
-        </Nav>
-
         <Nav orientation="vertical">
           <a
             tabindex="0"
