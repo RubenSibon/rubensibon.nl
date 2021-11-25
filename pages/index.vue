@@ -23,9 +23,9 @@ en:
   <div class="🏡">
     <SlideScreen
       :adjacent="{
-        left: '/projects',
       }"
     >
+      <!-- left: '/projects', -->
       <!-- right: '/articles', -->
       <section id="about-me">
         <div class="me">
@@ -45,11 +45,17 @@ en:
             {{ $t("Software Developer") }}
           </h2>
 
-          <p v-if="locale === 'nl'" class="description">
+          <p
+            v-if="locale === 'nl'"
+            class="description"
+          >
             👋 Hoi! Ik ben <span style="font-weight: bold;">Ruben</span>, een web- and appontwikkelaar uit <span style="font-weight: bold;">Amsterdam</span>.
             Ik programmeer vooral met <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in de frameworks <span style="color: #41b883; font-weight: bold;">Vue.js</span> en <span style="color: #61dbfb; font-weight: bold;">React</span>.
           </p>
-          <p v-else class="description">
+          <p
+            v-else
+            class="description"
+          >
             👋 Hi! I'm <span style="font-weight: bold;">Ruben</span>, a web and app developer from <span style="font-weight: bold;">Amsterdam</span>, The Netherlands.
             I mostly work with <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in the <span style="color: #41b883; font-weight: bold;">Vue.js</span> and <span style="color: #61dbfb; font-weight: bold;">React</span> frameworks.
           </p>
@@ -338,7 +344,7 @@ export default defineComponent({
       const yearStart = 2021;
       const yearCurrent = new Date().getFullYear();
 
-      return `${yearStart !== yearCurrent ? yearStart + " - " : ""}${yearCurrent}`;
+      return `${yearStart !== yearCurrent ? `${yearStart} - ` : ""}${yearCurrent}`;
     },
   },
 
