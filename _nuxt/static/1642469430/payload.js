@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/", {data:[{locale:"en"}],fetch:{},mutations:void 0});
