@@ -22,7 +22,7 @@ export default defineComponent({
   props: {
     orientation: {
       type: String as PropType<"horizontal" | "vertical">,
-      default: null,
+      default: "vertical",
     },
     onSide: {
       type: String as PropType<"left" | "right">,
@@ -31,9 +31,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="postcss" scoped>
-.vertical > a {
-  @apply flex-col cursor-pointer px-4;
-}
-</style>

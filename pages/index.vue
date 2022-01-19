@@ -1,6 +1,5 @@
 <i18n lang="yaml">
 nl:
-  Software Developer: "Softwareontwikkelaar"
   Connect with me: "Verbind met mij"
   Get in touch: "Start een gesprek"
   if it pleases you: "als het je pleziert"
@@ -9,7 +8,6 @@ nl:
   Small print: "De kleine letters"
   About this site: "Over deze website"
 en:
-  Software Developer: "Software Developer"
   Connect with me: "Connect with me"
   Get in touch: "Get in touch"
   if it pleases you: "if it pleases you"
@@ -40,20 +38,12 @@ en:
           </figcaption>
         </figure>
 
-        <h1 class="mb-2">
-          Ruben Sibon
-        </h1>
-
-        <h2 class="mb-4 text-2xl font-semibold sm:mb-6">
-          {{ $t("Software Developer") }}
-        </h2>
-
         <div class="max-w-screen-sm md:max-w-screen-md">
           <nuxt-content :document="aboutMe" />
         </div>
 
         <template #after>
-          <Nav orientation="vertical">
+          <Nav>
             <NavLink
               :target="'#connect'"
               :tabindex="0"
@@ -107,7 +97,7 @@ en:
       </div>
 
       <template #after>
-        <Nav orientation="vertical">
+        <Nav>
           <NavLink
             :target="'#contact'"
             :tabindex="0"
@@ -136,7 +126,7 @@ en:
       <ContactForm />
 
       <template #after>
-        <Nav orientation="vertical">
+        <Nav>
           <NavLink
             :target="'#about-this-site'"
             :tabindex="0"

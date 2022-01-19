@@ -3,7 +3,11 @@
     :href="target"
     :tabindex="tabindex"
     :title="title"
-    :class="['flex items-center border-none', classes]"
+    :class="[
+      'flex items-center border-none hover:border-none visited:border-none active:border-none',
+      orientation === 'horizontal' ? '' : 'flex-col cursor-pointer px-4',
+      classes,
+    ]"
     @click="linkHandler($event, target)"
     @keyup.enter="linkHandler($event, target)"
   >
@@ -32,6 +36,10 @@ export default defineComponent({
       type: String,
       default: "",
     },
+    orientation: {
+      type: String as PropType<"horizontal" | "vertical">,
+      default: "vertical",
+    },
     linkHandler: {
       type: Function as PropType<(event: Event, toScreen: string) => void>,
       default: null,
@@ -39,13 +47,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="postcss" scoped>
-a {
-  &:link,
-  &:visited,
-  &:active {
-    @apply border-none;
-  }
-}
-</style>
