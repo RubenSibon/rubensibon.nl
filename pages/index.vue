@@ -92,160 +92,76 @@ en:
           ({{ $t("if it pleases you") }})
         </p>
 
-        <div class="buttons-social ie-gap-vertical">
+        <div class="grid w-full max-w-screen-md grid-cols-1 gap-3 px-4 mx-auto sm:grid-cols-4 md:grid-cols-12 sm:w-auto h-max ie-gap-vertical">
           <Button
+            v-for="social in socials"
+            :key="social.id"
             tag="a"
-            href="https://github.com/RubenSibon"
+            :href="social.dest"
             target="_blank"
             rel="noopener noreferrer"
-            variant="github"
+            :variant="social.id"
+            :classes="'sm:col-span-2 md:col-span-6 last:odd:sm:col-start-2 sm:last:odd:col-end-4 md:last:odd:col-start-4 md:last:odd:col-end-10'"
           >
             <template #before>
               <span>
-                <Icon svg-icon="SvgIconGitHub" aria-hidden="true" />
+                <Icon
+                  :svg-icon="social.iconId"
+                  aria-hidden="true"
+                />
               </span>
             </template>
 
-            <span>
-              GitHub
-            </span>
-          </Button>
-
-          <Button
-            tag="a"
-            href="https://gitlab.com/RubenSibon"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="gitlab"
-          >
-            <template #before>
-              <span>
-                <Icon svg-icon="SvgIconGitLab" aria-hidden="true" />
-              </span>
-            </template>
-
-            <span>
-              GitLab
-            </span>
-          </Button>
-
-          <Button
-            tag="a"
-            href="https://codepen.io/RubenSibon"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="codepen"
-          >
-            <template #before>
-              <span>
-                <Icon svg-icon="SvgIconCodePen" aria-hidden="true" />
-              </span>
-            </template>
-
-            <span>
-              CodePen
-            </span>
-          </Button>
-
-          <Button
-            tag="a"
-            href="https://stackoverflow.com/story/rubensibon"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="stack-overflow"
-          >
-            <template #before>
-              <span>
-                <Icon svg-icon="SvgIconSO" aria-hidden="true" />
-              </span>
-            </template>
-
-            <span>
-              StackOverflow
-            </span>
-          </Button>
-
-          <Button
-            tag="a"
-            href="https://www.linkedin.com/in/rubensibon"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="linkedin"
-          >
-            <template #before>
-              <span>
-                <Icon svg-icon="SvgIconLinkedIn" aria-hidden="true" />
-              </span>
-            </template>
-
-            <span>
-              LinkedIn
-            </span>
-          </Button>
-
-          <Button
-            tag="a"
-            href="https://twitter.com/RubenSibon"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="twitter"
-          >
-            <template #before>
-              <span>
-                <Icon svg-icon="SvgIconTwitter" aria-hidden="true" />
-              </span>
-            </template>
-
-            <span>
-              Twitter
-            </span>
+            <span>{{ social.label }}</span>
           </Button>
         </div>
       </div>
 
-      <Nav orientation="vertical">
-        <NavLink
-          :target="'#contact'"
-          :tabindex="0"
-          :title="$t('Contact')"
-          :linkHandler="nextScreenHandler"
-        >
-          {{ $t("Contact") }}
+      <template #after>
+        <Nav orientation="vertical">
+          <NavLink
+            :target="'#contact'"
+            :tabindex="0"
+            :title="$t('Contact')"
+            :linkHandler="nextScreenHandler"
+          >
+            {{ $t("Contact") }}
 
-          <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
+            <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
-          <span class="sr-only">⬇</span>
-        </NavLink>
-      </Nav>
+            <span class="sr-only">⬇</span>
+          </NavLink>
+        </Nav>
+      </template>
     </FullScreenSection>
 
     <FullScreenSection id="contact">
-      <div>
-        <h2>
-          {{ $t('Get in touch') }}
-        </h2>
+      <h2>
+        {{ $t('Get in touch') }}
+      </h2>
 
-        <p class="mb-4">
-          ({{ $t("but really, only if you want to") }})
-        </p>
+      <p class="mb-4">
+        ({{ $t("but really, only if you want to") }})
+      </p>
 
-        <contact-form />
-      </div>
+      <ContactForm />
 
-      <Nav orientation="vertical">
-        <NavLink
-          :target="'#about-this-site'"
-          :tabindex="0"
-          :title="$t('About this site')"
-          :linkHandler="nextScreenHandler"
-        >
-          {{ $t('Small print') }}
+      <template #after>
+        <Nav orientation="vertical">
+          <NavLink
+            :target="'#about-this-site'"
+            :tabindex="0"
+            :title="$t('About this site')"
+            :linkHandler="nextScreenHandler"
+          >
+            {{ $t('Small print') }}
 
-          <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
+            <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
-          <span class="sr-only">⬇</span>
-        </NavLink>
-      </Nav>
+            <span class="sr-only">⬇</span>
+          </NavLink>
+        </Nav>
+      </template>
     </FullScreenSection>
 
     <FullScreenSection id="about-this-site">
@@ -276,7 +192,7 @@ en:
           </h3>
 
           <p class="mb-2">
-            Alle code en inhoud die niet van derde partijen komt valt onder het auteursrecht van Ruben Sibon
+            Alle code en inhoud die niet van derde partijen komt valt onder het auteursrecht
           </p>
 
           <p>
@@ -306,7 +222,7 @@ en:
           </h3>
 
           <p class="mb-2">
-            All code and content not provided by third-parties is subject to the copyrights of Ruben Sibon.
+            All code and content not provided by third-parties is subject to copyrights.
           </p>
 
           <p>
@@ -340,6 +256,55 @@ export default defineComponent({
     };
   },
 
+  data () {
+    return {
+      socials: [
+        {
+          id: "github",
+          dest: "https://github.com/RubenSibon",
+          iconId: "SvgIconGitHub",
+          label: "GitHub",
+        },
+        {
+          id: "gitlab",
+          dest: "https://gitlab.com/RubenSibon",
+          iconId: "SvgIconGitLab",
+          label: "GitLab",
+        },
+        {
+          id: "codepen",
+          dest: "https://codepen.io/RubenSibon",
+          iconId: "SvgIconCodePen",
+          label: "CodePen",
+        },
+        {
+          id: "dev-to",
+          dest: "https://dev.to/rubensibon",
+          iconId: "SvgIconDevTo",
+          label: "Dev.to",
+        },
+        {
+          id: "stack-overflow",
+          dest: "https://stackoverflow.com/story/rubensibon",
+          iconId: "SvgIconSO",
+          label: "StackOverflow",
+        },
+        {
+          id: "linkedin",
+          dest: "https://www.linkedin.com/in/rubensibon",
+          iconId: "SvgIconLinkedIn",
+          label: "LinkedIn",
+        },
+        {
+          id: "twitter",
+          dest: "https://twitter.com/RubenSibon",
+          iconId: "SvgIconTwitter",
+          label: "Twitter",
+        },
+      ],
+    };
+  },
+
   computed: {
     copyrightYears () {
       const yearStart = 2021;
@@ -362,20 +327,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="postcss" scoped>
-.🏡 {
-  .buttons-social {
-    @apply grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3
-      mx-auto px-4 w-full sm:w-auto max-w-screen-md h-max;
-
-    a {
-      @apply sm:col-span-2 md:col-span-6;
-
-      &:last-child:not(:nth-child(even)) {
-        @apply sm:col-start-2 sm:col-end-4 md:col-start-4 md:col-end-10;
-      }
-    }
-  }
-}
-</style>

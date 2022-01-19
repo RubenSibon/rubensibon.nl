@@ -36,6 +36,7 @@ export default defineComponent({
     SvgIconGitHub: () => import("~/assets/icons/github.svg?inline"),
     SvgIconGitLab: () => import("~/assets/icons/gitlab.svg?inline"),
     SvgIconCodePen: () => import("~/assets/icons/codepen.svg?inline"),
+    SvgIconDevTo: () => import("~/assets/icons/devto.svg?inline"),
     SvgIconSO: () => import("~/assets/icons/stackoverflow.svg?inline"),
     SvgIconLinkedIn: () => import("~/assets/icons/linkedin.svg?inline"),
     SvgIconTwitter: () => import("~/assets/icons/twitter.svg?inline"),
