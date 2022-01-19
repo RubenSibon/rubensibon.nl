@@ -7,7 +7,7 @@ nl:
   but really, only if you want to: "maar echt, alleen als je dat wilt"
   Contact: "Contact"
   Small print: "De kleine letters"
-  About this website: "Over deze website"
+  About this site: "Over deze website"
 en:
   Software Developer: "Software Developer"
   Connect with me: "Connect with me"
@@ -16,7 +16,7 @@ en:
   but really, only if you want to: "but really, only if you want to"
   Contact: "Contact"
   Small print: "Small print"
-  About this website: "About this website"
+  About this site: "About this website"
 </i18n>
 
 <template>
@@ -27,7 +27,7 @@ en:
     >
       <!-- left: '/projects', -->
       <!-- right: '/articles', -->
-      <FullScreenSection id="about-me">
+      <SectionFullScreen id="about-me">
         <figure class="mb-4 overflow-hidden border-4 rounded-full border-gray-950 dark:border-gray-50 sm:mb-6 w-36 h-36">
           <picture>
             <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
@@ -48,20 +48,9 @@ en:
           {{ $t("Software Developer") }}
         </h2>
 
-        <p
-          v-if="locale === 'nl'"
-          class="max-w-screen-sm md:max-w-screen-md"
-        >
-          👋 Hoi! Ik ben <span style="font-weight: bold;">Ruben</span>, een web- and appontwikkelaar uit <span style="font-weight: bold;">Amsterdam</span>.
-          Ik programmeer vooral met <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in de frameworks <span style="color: #41b883; font-weight: bold;">Vue.js</span> en <span style="color: #61dbfb; font-weight: bold;">React</span>.
-        </p>
-        <p
-          v-else
-          class="max-w-screen-sm md:max-w-screen-md"
-        >
-          👋 Hi! I'm <span style="font-weight: bold;">Ruben</span>, a web and app developer from <span style="font-weight: bold;">Amsterdam</span>, The Netherlands.
-          I mostly work with <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in the <span style="color: #41b883; font-weight: bold;">Vue.js</span> and <span style="color: #61dbfb; font-weight: bold;">React</span> frameworks.
-        </p>
+        <div class="max-w-screen-sm md:max-w-screen-md">
+          <nuxt-content :document="aboutMe" />
+        </div>
 
         <template #after>
           <Nav orientation="vertical">
@@ -79,10 +68,10 @@ en:
             </NavLink>
           </Nav>
         </template>
-      </FullScreenSection>
+      </SectionFullScreen>
     </SlideScreen>
 
-    <FullScreenSection id="connect">
+    <SectionFullScreen id="connect">
       <div>
         <h2>
           {{ $t('Connect with me') }}
@@ -133,9 +122,9 @@ en:
           </NavLink>
         </Nav>
       </template>
-    </FullScreenSection>
+    </SectionFullScreen>
 
-    <FullScreenSection id="contact">
+    <SectionFullScreen id="contact">
       <h2>
         {{ $t('Get in touch') }}
       </h2>
@@ -162,75 +151,17 @@ en:
           </NavLink>
         </Nav>
       </template>
-    </FullScreenSection>
+    </SectionFullScreen>
 
-    <FullScreenSection id="about-this-site">
+    <SectionFullScreen id="about-this-site">
       <div class="max-w-screen-md">
-        <h2 class="mb-4">
-          {{ $t('About this website') }}
-        </h2>
+        <nuxt-content :document="aboutThisSite" />
 
-        <div v-if="locale === 'nl'" class="mb-6">
-          <p class="mb-2">
-            Deze website wordt gehost door GitHub. <a href="https://github.com/RubenSibon/rubensibon.nl" target="_blank" rel="noopener noreferrer">Bekijk de code</a>.
-          </p>
-
-          <h3 class="mt-4 mb-2 h4">
-            Privacy
-          </h3>
-
-          <p class="mb-2">
-            Geen persoonlijke informatie wordt verzameld anders dan wat is ingezonden met een webformulier.
-          </p>
-
-          <p class="mb-2">
-            Om je webbrowser's taal te onthouden wordt er een niet-volgende cookie geplaatst.
-          </p>
-
-          <h3 class="mt-4 mb-2 h4">
-            Auteursrecht
-          </h3>
-
-          <p class="mb-2">
-            Alle code en inhoud die niet van derde partijen komt valt onder het auteursrecht
-          </p>
-
-          <p>
-            © Ruben Sibon {{ copyrightYears }}.
-          </p>
-        </div>
-
-        <div v-else class="mb-6">
-          <p class="mb-2">
-            This website is hosted by GitHub. <a href="https://github.com/RubenSibon/rubensibon.nl" target="_blank" rel="noopener noreferrer">Inspect the code</a>.
-          </p>
-
-          <h3 class="mt-4 mb-2 h4">
-            Privacy
-          </h3>
-
-          <p class="mb-2">
-            No personally identifiable information is collected other than what is provided via a web form.
-          </p>
-
-          <p class="mb-2">
-            To remember your browser's language a non-tracking cookie is set.
-          </p>
-
-          <h3 class="mt-4 mb-2 h4">
-            Copyrights
-          </h3>
-
-          <p class="mb-2">
-            All code and content not provided by third-parties is subject to copyrights.
-          </p>
-
-          <p>
-            © Ruben Sibon {{ copyrightYears }}.
-          </p>
-        </div>
+        <p>
+          © Ruben Sibon {{ copyrightYears }}.
+        </p>
       </div>
-    </FullScreenSection>
+    </SectionFullScreen>
   </div>
 </template>
 
@@ -248,11 +179,15 @@ const options = {
 };
 
 export default defineComponent({
-  asyncData ({ i18n }) {
+  async asyncData ({ $content, i18n }) {
     const locale = i18n.locale;
+    const aboutMe = await $content(`${locale}/about-me`).fetch();
+    const aboutThisSite = await $content(`${locale}/about-this-site`).fetch();
 
     return {
       locale,
+      aboutMe,
+      aboutThisSite,
     };
   },
 
