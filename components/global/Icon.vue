@@ -1,7 +1,10 @@
 <template>
   <component
     :is="svgIcon"
-    :class="['icon', { large: large }]"
+    :class="[
+      'w-4 h-4 fill-current',
+      { 'w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12': large },
+    ]"
   />
 </template>
 
@@ -54,13 +57,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="postcss" scoped>
-.icon {
-  @apply w-4 h-4 fill-current;
-
-  &.large {
-    @apply w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12;
-  }
-}
-</style>
