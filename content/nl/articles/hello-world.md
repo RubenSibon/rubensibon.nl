@@ -1,6 +1,6 @@
 ---
 title: ߵHello, worldߴ
-description: "This is my first article using Nuxt Content."
+description: "Dit is mijn eerste artikel in Nuxt Content."
 author: Ruben Sibon
 img:
   srcSet:

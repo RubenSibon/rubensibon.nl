@@ -21,17 +21,22 @@ nl:
   <form
     action="https://formspree.io/f/myylyopp"
     method="POST"
-    class="contact-form"
+    class="flex flex-col w-full max-w-screen-sm"
   >
-    <label>
-      <div>
+    <label class="mb-2 text-left">
+      <div class="pl-2 mb-1">
         {{ $t("Your email") }}:
       </div>
-      <input type="email" name="_replyto" placeholder="email@example.com">
+      <input
+        type="email"
+        name="_replyto"
+        placeholder="email@example.com"
+        class="w-full mb-2 resize-none rounded-xl text-gray-950"
+      >
     </label>
 
-    <label>
-      <div>
+    <label class="mb-2 text-left">
+      <div class="pl-2 mb-1">
         {{ $t("Your message") }}:
       </div>
       <textarea
@@ -44,38 +49,12 @@ ${$t('Im reaching out because')} ...
 ${$t('All the best')},
 ${$t('Your name')}
 `"
+        class="w-full rounded-xl text-gray-950"
       />
     </label>
 
-    <Button type="submit">
+    <Button type="submit" class="mb-2">
       {{ $t("Send") }}
     </Button>
   </form>
 </template>
-
-<style lang="postcss" scoped>
-.contact-form {
-  @apply flex flex-col w-full max-w-screen-sm;
-
-  label {
-    @apply mb-2 text-right;
-
-    div {
-      @apply mb-1;
-    }
-  }
-
-  input,
-  textarea {
-    @apply rounded-xl w-full text-gray-950;
-  }
-
-  textarea {
-    @apply resize-none mb-2;
-  }
-
-  button {
-    @apply mb-2;
-  }
-}
-</style>

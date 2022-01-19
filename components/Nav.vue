@@ -1,5 +1,16 @@
 <template>
-  <nav :class="['nav', orientation, onSide]">
+  <nav
+    :class="[
+      'flex h-max sm:text-3xl md:text-4xl',
+      orientation,
+      orientation === 'horizontal'
+        ? 'justify-between w-full first:ml-4 md:first:ml-8 first:py-2 last:mr-4 md:last:mr-8 last:py-2'
+        : 'flex-col items-center my-4',
+      onSide === 'left'
+        ? 'md:pr-8 first:mr-4 md:first:mr-8'
+        : 'md:pl-8 first:ml-4 md:first:ml-8',
+    ]"
+  >
     <slot />
   </nav>
 </template>
@@ -9,12 +20,12 @@ import { defineComponent, PropType } from "@vue/composition-api";
 
 export default defineComponent({
   props: {
-    onSide: {
-      type: String as PropType<"left" | "right">,
-      default: null,
-    },
     orientation: {
       type: String as PropType<"horizontal" | "vertical">,
+      default: null,
+    },
+    onSide: {
+      type: String as PropType<"left" | "right">,
       default: null,
     },
   },
@@ -22,53 +33,7 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.nav {
-  @apply flex h-max sm:text-3xl md:text-4xl;
-
-  .link {
-    @apply flex items-center border-none;
-
-    &:link,
-    &:visited,
-    &:active {
-      @apply border-none;
-    }
-  }
-
-  &.horizontal {
-    @apply flex justify-between w-full;
-
-    a:first-child {
-      @apply ml-4 md:ml-8 py-2;
-    }
-
-    a:last-child {
-      @apply mr-4 md:mr-8 py-2;
-    }
-  }
-
-  &.vertical {
-    @apply flex flex-col items-center my-4;
-
-    .link {
-      @apply flex-col cursor-pointer px-4;
-    }
-  }
-
-  &.left {
-    @apply md:pr-8;
-
-    a:first-child {
-      @apply mr-4 md:mr-8;
-    }
-  }
-
-  &.right {
-    @apply md:pl-8;
-
-    a:first-child {
-      @apply ml-4 md:ml-8;
-    }
-  }
+.vertical > a {
+  @apply flex-col cursor-pointer px-4;
 }
 </style>

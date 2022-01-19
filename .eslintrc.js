@@ -13,5 +13,6 @@ module.exports = {
     "comma-dangle": ["error", "always-multiline"],
     quotes: ["error", "double"],
     semi: ["error", "always"],
+    "vue/attribute-hyphenation": 0,
   },
 };

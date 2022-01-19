@@ -14,9 +14,9 @@ nl:
 </i18n>
 
 <template>
-  <article class="post">
-    <header>
-      <div class="header-wrapper">
+  <article class="flex flex-col items-center justify-start w-full mx-auto">
+    <SectionSemantic tag="header">
+      <div class="relative flex justify-center min-h-screen-1/4 bg-gray-50 dark:bg-gray-950">
         <HeaderImage
           v-if="article.img && article.img.src"
           :alt="article.img.alt"
@@ -26,8 +26,8 @@ nl:
           :gradient="true"
         />
 
-        <div class="content">
-          <TextGroup style="filter: drop-shadow(0 0 0.125rem black);">
+        <div class="absolute top-0 left-0 flex flex-col items-start justify-end w-full h-full pb-8 min-h-screen-1/4 text-gray-950 dark:text-gray-50">
+          <TextGroup class="px-6 header-textgroup sm:px-8 md:px-0">
             <div class="flex">
               <TagLabel v-if="article.tags && article.tags[0]">
                 {{ $t(`tagList.${article.tags[0]}`) }}
@@ -41,7 +41,7 @@ nl:
         </div>
       </div>
 
-      <TextGroup>
+      <TextGroup class="px-6 sm:px-8 md:px-0">
         <ArticleLead>
           {{ article.description }}
         </ArticleLead>
@@ -67,8 +67,8 @@ nl:
         </PostDetails>
       </TextGroup>
 
-      <Nav on-side="left">
-        <div>
+      <Nav on-side="left" class="absolute top-0 left-0 w-full pt-5 pl-5">
+        <div class="w-full mx-auto max-w-screen-2xl">
           <nuxt-link :to="localePath('/articles')" class="link">
             <Icon svg-icon="SvgIconChevronLeft" :large="true" aria-hidden="true" />
 
@@ -80,9 +80,9 @@ nl:
           <h1>&nbsp;</h1>
         </div>
       </Nav>
-    </header>
+    </SectionSemantic>
 
-    <TextGroup v-if="article.showToc" class="mb-8 prose">
+    <TextGroup v-if="article.showToc" class="px-6 mb-8 sm:px-8 md:px-0">
       <ToC :items="article.toc" class="hidden" />
       <Collapsible>
         <template #summary>
@@ -95,21 +95,24 @@ nl:
       </Collapsible>
     </TextGroup>
 
-    <main>
-      <nuxt-content :document="article" />
+    <main class="mb-8">
+      <nuxt-content
+        :document="article"
+        class="max-w-screen-sm px-6 sm:px-12 sm:max-w-screen-md"
+      />
     </main>
 
-    <footer>
-      <TextGroup>
+    <SectionSemantic tag="footer">
+      <TextGroup class="flex-wrap items-center px-6 text-center sm:px-8 md:px-0">
         <hr class="w-3/4 mx-auto mb-1">
 
-        <div class="taglist ie-gap-horizontal-sm">
+        <div class="flex flex-wrap justify-center gap-2 mt-2 mb-8 ie-gap-horizontal-sm">
           <TagLabel v-for="tag of article.tags" :key="tag">
             {{ $t(`tagList.${tag}`) }}
           </TagLabel>
         </div>
       </TextGroup>
-    </footer>
+    </SectionSemantic>
   </article>
 </template>
 
@@ -148,8 +151,8 @@ export default defineComponent({
     },
   },
 
-  async asyncData ({ $content, params }) {
-    const article = await $content("articles", params.slug).fetch();
+  async asyncData ({ $content, i18n, params }) {
+    const article = await $content(`${i18n.locale}/articles`, params.slug).fetch();
 
     return { article };
   },
@@ -176,161 +179,13 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.post {
-  @apply flex flex-col items-center justify-start mx-auto w-full;
-
-  header,
-  footer {
-    @apply relative flex flex-col w-full mb-8;
-  }
-
-  header {
-    .header-wrapper {
-      @apply relative flex justify-center min-h-screen-1/4 bg-gray-50 dark:bg-gray-950;
-
-      .content {
-        @apply absolute top-0 left-0
-          flex flex-col items-start justify-end
-          pb-8 w-full min-h-screen-1/4 h-full
-          text-gray-950 dark:text-gray-50
-        ;
-      }
-    }
-
-    .textgroup {
-      @apply px-6 sm:px-8 md:px-0;
-    }
-
-    nav {
-      @apply absolute top-0 left-0 pt-5 pl-5 w-full;
-
-      & > div {
-        @apply mx-auto w-full max-w-screen-2xl;
-
-        filter: drop-shadow(0 0 0.125rem black);
-      }
-    }
-  }
-
-  main {
-    @apply mb-8;
-  }
-
-  footer {
-    .textgroup {
-      @apply flex flex-col flex-wrap items-center text-center;
-    }
-
-    .taglist {
-      @apply flex flex-wrap justify-center gap-2 mt-2 mb-8;
-    }
-  }
+.header-textgroup {
+  filter: drop-shadow(0 0 0.125rem black);
 }
-</style>
 
-<style lang="postcss">
-.nuxt-content {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply relative mx-auto w-full mt-8 px-6 sm:px-8;
-
-    .icon.icon-link {
-      @apply block absolute top-0 -left-5 w-4 h-full
-        bg-no-repeat bg-center text-gray-500
-        opacity-0 invisible
-      ;
-
-      background-image: url("~/assets/icons/link.svg");
-    }
-
-    a:link,
-    a:hover,
-    a:focus {
-      @apply border-none text-gray-500;
-    }
-
-    &:hover,
-    &:focus {
-      .icon.icon-link {
-        @apply opacity-100 visible;
-      }
-    }
-  }
-
-  h2 {
-    @apply mb-4;
-  }
-
-  h3 {
-    @apply mb-3;
-  }
-
-  h4 {
-    @apply mb-3;
-  }
-
-  h4,
-  h5,
-  h6 {
-    @apply mb-2;
-  }
-
-  p {
-    @apply relative mx-auto w-full mb-2 justify-between px-6 sm:px-12 max-w-screen-sm sm:max-w-screen-md;
-
-    @supports (initial-letter: 3) {
-      &:first-child::first-letter {
-        initial-letter: 3;
-      }
-    }
-  }
-
-  blockquote p {
-    @apply md:p-0;
-  }
-
-  p img {
-    @apply relative -left-6 sm:-left-8 rounded my-12 max-w-screen;
-
-    width: calc(100% + 3rem);
-    max-width: 100vw;
-
-    @screen sm {
-      width: calc(100% + 4rem);
-    }
-  }
-
-  .nuxt-content-highlight {
-    @apply relative my-8 max-w-screen;
-
-    pre {
-      @apply bg-gray-100 dark:bg-gray-900;
-
-      max-width: 100vw;
-
-      code {
-        @apply text-gray-950 dark:text-gray-50;
-
-        text-shadow: none;
-
-        .token.operator {
-          @apply bg-transparent;
-        }
-      }
-    }
-
-    .filename {
-      @apply absolute right-0 z-10 mt-2 mr-3
-        font-light text-gray-600 dark:text-gray-400 text-sm tracking-widest;
-
-      & ~ pre {
-        @apply pt-10;
-      }
-    }
+nav {
+  & > div {
+    filter: drop-shadow(0 0 0.125rem black);
   }
 }
 </style>

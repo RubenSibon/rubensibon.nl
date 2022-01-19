@@ -1,11 +1,5 @@
 <template>
-  <div class="textgroup ie-gap-vertical">
+  <div class="flex flex-col w-full max-w-screen-md gap-3 mx-auto ie-gap-vertical">
     <slot />
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.textgroup {
-  @apply flex flex-col gap-3 mx-auto w-full max-w-screen-md;
-}
-</style>
