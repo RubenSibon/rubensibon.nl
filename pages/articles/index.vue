@@ -25,11 +25,11 @@
       <nuxt-link
         v-for="article in articles"
         :key="article.slug"
-        :to="localePath(`/articles/${article.slug}`)"
+        :to="article.lang === locale ? localePath(`/articles/${article.slug}`) : `/${defaultLocale}/articles/${article.slug}`"
         :title="article.title"
         class="📰"
       >
-        <HeaderImage
+        <!-- <HeaderImage
           v-if="article.img && article.img.src"
           :alt="article.img.alt"
           :src-set="Object.entries(article.img.srcSet)"
@@ -37,7 +37,7 @@
           :bg-color="article.image && article.image.bgColor ? article.image.bgColor : null"
           :gradient="true"
           class="📰-figure"
-        />
+        /> -->
 
         <div class="📰-content">
           <h2 class="title">
@@ -81,14 +81,43 @@ export default defineComponent({
     },
   },
 
+  asyncData ({ i18n }) {
+    const locale = i18n.locale;
+    const defaultLocale = i18n.defaultLocale;
+
+    return {
+      locale,
+      defaultLocale,
+    };
+  },
+
   data () {
     return {
-      articles: [],
+      articles: [] as string[],
     };
   },
 
   async fetch () {
-    this.articles = (await this.$content("articles").fetch() as any);
+    const addLangProp = (lang: string) => (article: any) => {
+      article.lang = lang;
+      return article;
+    };
+
+    const localeArticles = (await this.$content(`${this.$i18n.locale}/articles`).fetch() as any[])
+      .map(addLangProp(this.$i18n.locale))
+    ;
+
+    let defaultLocaleArticles = [];
+
+    if (this.$i18n.defaultLocale !== this.$i18n.locale) {
+      const defaultArticles = (await this.$content(`${this.$i18n.defaultLocale}/articles`).fetch() as any[]);
+
+      defaultLocaleArticles = defaultArticles
+        .filter(dA => dA.slug !== localeArticles.find(locA => locA.slug === dA.slug)?.slug)
+        .map(addLangProp(this.$i18n.defaultLocale));
+    }
+
+    this.articles = [...localeArticles, ...defaultLocaleArticles];
   },
 
   head () {

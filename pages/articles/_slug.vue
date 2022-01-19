@@ -148,8 +148,8 @@ export default defineComponent({
     },
   },
 
-  async asyncData ({ $content, params }) {
-    const article = await $content("articles", params.slug).fetch();
+  async asyncData ({ $content, i18n, params }) {
+    const article = await $content(`${i18n.locale}/articles`, params.slug).fetch();
 
     return { article };
   },
