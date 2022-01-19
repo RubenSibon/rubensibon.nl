@@ -1,7 +1,7 @@
 <i18n lang="yaml">
 nl:
   Software Developer: "Softwareontwikkelaar"
-  Follow me: "Volg mij"
+  Connect with me: "Verbind met mij"
   Get in touch: "Start een gesprek"
   if it pleases you: "als het je pleziert"
   but really, only if you want to: "maar echt, alleen als je dat wilt"
@@ -10,7 +10,7 @@ nl:
   About this website: "Over deze website"
 en:
   Software Developer: "Software Developer"
-  Follow me: "Follow me"
+  Connect with me: "Connect with me"
   Get in touch: "Get in touch"
   if it pleases you: "if it pleases you"
   but really, only if you want to: "but really, only if you want to"
@@ -20,67 +20,72 @@ en:
 </i18n>
 
 <template>
-  <div class="🏡">
+  <div class="🏡 flex flex-col items-center px-4 mx-auto text-center md:px-8">
     <SlideScreen
       :adjacent="{
       }"
     >
       <!-- left: '/projects', -->
       <!-- right: '/articles', -->
-      <section id="about-me">
-        <div class="me">
-          <picture class="picture">
+      <FullScreenSection id="about-me">
+        <figure class="mb-4 overflow-hidden border-4 rounded-full border-gray-950 dark:border-gray-50 sm:mb-6 w-36 h-36">
+          <picture>
             <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
 
             <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
           </picture>
 
-          <h1 class="title">
-            Ruben Sibon
-          </h1>
+          <figcaption class="sr-only">
+            A photo of this website's author.
+          </figcaption>
+        </figure>
 
-          <h2 class="subtitle">
-            {{ $t("Software Developer") }}
-          </h2>
+        <h1 class="mb-2">
+          Ruben Sibon
+        </h1>
 
-          <p
-            v-if="locale === 'nl'"
-            class="description"
-          >
-            👋 Hoi! Ik ben <span style="font-weight: bold;">Ruben</span>, een web- and appontwikkelaar uit <span style="font-weight: bold;">Amsterdam</span>.
-            Ik programmeer vooral met <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in de frameworks <span style="color: #41b883; font-weight: bold;">Vue.js</span> en <span style="color: #61dbfb; font-weight: bold;">React</span>.
-          </p>
-          <p
-            v-else
-            class="description"
-          >
-            👋 Hi! I'm <span style="font-weight: bold;">Ruben</span>, a web and app developer from <span style="font-weight: bold;">Amsterdam</span>, The Netherlands.
-            I mostly work with <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in the <span style="color: #41b883; font-weight: bold;">Vue.js</span> and <span style="color: #61dbfb; font-weight: bold;">React</span> frameworks.
-          </p>
-        </div>
+        <h2 class="mb-4 text-2xl font-semibold sm:mb-6">
+          {{ $t("Software Developer") }}
+        </h2>
 
-        <Nav orientation="vertical">
-          <a
-            tabindex="0"
-            :title="$t('More')"
-            class="link"
-            @click="nextScreenHandler($event, '#follow-me')"
-            @keyup.enter="nextScreenHandler($event, '#follow-me')"
-          >
-            {{ $t("More") }}
+        <p
+          v-if="locale === 'nl'"
+          class="max-w-screen-sm md:max-w-screen-md"
+        >
+          👋 Hoi! Ik ben <span style="font-weight: bold;">Ruben</span>, een web- and appontwikkelaar uit <span style="font-weight: bold;">Amsterdam</span>.
+          Ik programmeer vooral met <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in de frameworks <span style="color: #41b883; font-weight: bold;">Vue.js</span> en <span style="color: #61dbfb; font-weight: bold;">React</span>.
+        </p>
+        <p
+          v-else
+          class="max-w-screen-sm md:max-w-screen-md"
+        >
+          👋 Hi! I'm <span style="font-weight: bold;">Ruben</span>, a web and app developer from <span style="font-weight: bold;">Amsterdam</span>, The Netherlands.
+          I mostly work with <span style="color: #f7df1e; font-weight: bold;">JavaScript</span> &amp; <span style="color: #007acc; font-weight: bold;">TypeScript</span> in the <span style="color: #41b883; font-weight: bold;">Vue.js</span> and <span style="color: #61dbfb; font-weight: bold;">React</span> frameworks.
+        </p>
 
-            <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
+        <template #after>
+          <Nav orientation="vertical">
+            <NavLink
+              :target="'#connect'"
+              :tabindex="0"
+              :title="$t('More')"
+              :linkHandler="nextScreenHandler"
+            >
+              {{ $t("More") }}
 
-            <span class="sr-only">⬇</span>
-          </a>
-        </Nav>
-      </section>
+              <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
+
+              <span class="sr-only">⬇</span>
+            </NavLink>
+          </Nav>
+        </template>
+      </FullScreenSection>
     </SlideScreen>
 
-    <section id="follow-me">
+    <FullScreenSection id="connect">
       <div>
         <h2>
-          {{ $t('Follow me') }}
+          {{ $t('Connect with me') }}
         </h2>
 
         <p class="mb-4">
@@ -199,23 +204,22 @@ en:
       </div>
 
       <Nav orientation="vertical">
-        <a
-          tabindex="0"
+        <NavLink
+          :target="'#contact'"
+          :tabindex="0"
           :title="$t('Contact')"
-          class="link"
-          @click="nextScreenHandler($event, '#contact')"
-          @keyup.enter="nextScreenHandler($event, '#contact')"
+          :linkHandler="nextScreenHandler"
         >
           {{ $t("Contact") }}
 
           <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
           <span class="sr-only">⬇</span>
-        </a>
+        </NavLink>
       </Nav>
-    </section>
+    </FullScreenSection>
 
-    <section id="contact">
+    <FullScreenSection id="contact">
       <div>
         <h2>
           {{ $t('Get in touch') }}
@@ -229,23 +233,22 @@ en:
       </div>
 
       <Nav orientation="vertical">
-        <a
-          tabindex="0"
-          :title="$t('Contact')"
-          class="link"
-          @click="nextScreenHandler($event, '#about-this-site')"
-          @keyup.enter="nextScreenHandler($event, '#about-this-site')"
+        <NavLink
+          :target="'#about-this-site'"
+          :tabindex="0"
+          :title="$t('About this site')"
+          :linkHandler="nextScreenHandler"
         >
           {{ $t('Small print') }}
 
           <Icon svg-icon="SvgIconChevronDown" :large="true" aria-hidden="true" />
 
           <span class="sr-only">⬇</span>
-        </a>
+        </NavLink>
       </Nav>
-    </section>
+    </FullScreenSection>
 
-    <section id="about-this-site">
+    <FullScreenSection id="about-this-site">
       <div class="max-w-screen-md">
         <h2 class="mb-4">
           {{ $t('About this website') }}
@@ -311,7 +314,7 @@ en:
           </p>
         </div>
       </div>
-    </section>
+    </FullScreenSection>
   </div>
 </template>
 
@@ -360,47 +363,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="postcss">
-/* Fix for Internet Explorer 11 */
-html[is-ie] {
-  section {
-    @apply h-screen;
-  }
-}
-</style>
-
 <style lang="postcss" scoped>
 .🏡 {
-  @apply flex flex-col items-center mx-auto px-4 md:px-8 text-center;
-
-  section {
-    @apply flex flex-col items-center justify-evenly max-w-screen-2xl w-screen min-h-screen;
-
-    min-height: var(--vp-height, 100vh);
-
-    & > div {
-      @apply flex flex-1 flex-col items-center justify-center px-4 md:px-8 w-full h-full;
-    }
-  }
-
-  .me {
-    .picture {
-      @apply border-4 border-gray-950 dark:border-gray-50 rounded-full mb-4 sm:mb-6 w-36 h-36 overflow-hidden;
-    }
-
-    .title {
-      @apply mb-2;
-    }
-
-    .subtitle {
-      @apply mb-4 sm:mb-6 text-2xl font-semibold;
-    }
-
-    .description {
-      @apply max-w-screen-sm md:max-w-screen-md;
-    }
-  }
-
   .buttons-social {
     @apply grid grid-cols-1 sm:grid-cols-4 md:grid-cols-12 gap-3
       mx-auto px-4 w-full sm:w-auto max-w-screen-md h-max;
