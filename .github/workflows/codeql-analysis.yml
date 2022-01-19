@@ -13,7 +13,7 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ main, *, chore/*, content/*, docs/*, feat/*, fix/*, gh-pages ]
+    branches: [ main, chore/*, content/*, docs/*, feat/*, fix/*, gh-pages ]
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ main ]
