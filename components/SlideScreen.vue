@@ -33,11 +33,13 @@ export default defineComponent({
     },
     adjacent: {
       type: Object as PropType<Adjacent>,
-      default: {
-        top: null,
-        right: null,
-        bottom: null,
-        left: null,
+      default: () => {
+        return {
+          top: null,
+          right: null,
+          bottom: null,
+          left: null,
+        };
       },
     },
     dragFactor: {
