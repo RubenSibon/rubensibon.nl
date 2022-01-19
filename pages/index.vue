@@ -29,13 +29,11 @@ en:
       <!-- right: '/articles', -->
       <section id="about-me">
         <div class="me">
-          <figure class="picture">
-            <picture>
-              <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
+          <picture class="picture">
+            <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
 
-              <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
-            </picture>
-          </figure>
+            <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
+          </picture>
 
           <h1 class="title">
             Ruben Sibon
