@@ -1,17 +1,22 @@
 <template>
-  <nav class="toc">
-    <ul class="toc-list">
-      <li v-for="item of items" :key="item.id">
-        <NuxtLink
-          :to="`#${item.id}`"
+  <nav>
+    <ul class="ml-6">
+      <NuxtLink
+        v-for="item of items"
+        :key="item.id"
+        :to="`#${item.id}`"
+        class="text-gray-700 group dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 focus-within:text-gray-900 dark:focus-within:text-gray-100"
+      >
+        <li
+          tabindex="0"
           :class="[
-            'toc-link',
-            { 'py-2': item.depth === 2, 'ml-2 pb-2': item.depth === 3 }
+            'px-3 rounded-xl focus:outline-none hover:bg-gray-300 dark:hover:bg-gray-700 focus:bg-gray-300 dark:focus:bg-gray-700',
+            { 'mt-2': item.depth === 2, 'ml-2': item.depth === 3 }
           ]"
         >
           {{ item.text }}
-        </NuxtLink>
-      </li>
+        </li>
+      </NuxtLink>
     </ul>
   </nav>
 </template>
@@ -34,17 +39,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="postcss" scoped>
-.toc {
-  &-list {
-    @apply ml-6;
-  }
-
-  &-link:link,
-  &-link:hover,
-  &-link:focus {
-    @apply border-none text-gray-700 dark:text-gray-300;
-  }
-}
-</style>

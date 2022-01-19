@@ -96,7 +96,15 @@
       url("~assets/fonts/FiraCode/static/FiraCode-Bold.ttf") format("truetype");
   }
 
-  .prose {
-    @apply px-6 sm:px-12 max-w-screen-sm sm:max-w-screen-md;
+  .nuxt-content {
+    h1,
+    h2,
+    h3 {
+      margin-block: 1em;
+    }
+
+    p {
+      margin-block-end: 1em;
+    }
   }
 }
