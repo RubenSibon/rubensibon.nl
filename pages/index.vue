@@ -30,11 +30,11 @@ en:
           <picture>
             <source srcset="~/assets/img/homepage/ruben_sibon.jpg" type="image/webp">
 
-            <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A photo of this website's author.">
+            <img src="~/assets/img/homepage/ruben_sibon.jpg" alt="A portrait photo of this website's author.">
           </picture>
 
           <figcaption class="sr-only">
-            A photo of this website's author.
+            A portrait photo of this website's author.
           </figcaption>
         </figure>
 
@@ -66,10 +66,6 @@ en:
         <h2>
           {{ $t('Connect with me') }}
         </h2>
-
-        <p class="mb-4">
-          ({{ $t("if it pleases you") }})
-        </p>
 
         <div class="grid w-full max-w-screen-md grid-cols-1 gap-3 px-4 mx-auto sm:grid-cols-4 md:grid-cols-12 sm:w-auto h-max ie-gap-vertical">
           <Button
@@ -118,10 +114,6 @@ en:
       <h2>
         {{ $t('Get in touch') }}
       </h2>
-
-      <p class="mb-4">
-        ({{ $t("but really, only if you want to") }})
-      </p>
 
       <ContactForm />
 
@@ -219,12 +211,6 @@ export default defineComponent({
           dest: "https://www.linkedin.com/in/rubensibon",
           iconId: "SvgIconLinkedIn",
           label: "LinkedIn",
-        },
-        {
-          id: "twitter",
-          dest: "https://twitter.com/RubenSibon",
-          iconId: "SvgIconTwitter",
-          label: "Twitter",
         },
       ],
     };
