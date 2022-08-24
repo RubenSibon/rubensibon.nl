@@ -63,7 +63,7 @@ en:
 
     <SectionFullScreen id="connect">
       <div>
-        <h2>
+        <h2 class="mb-8">
           {{ $t('Connect with me') }}
         </h2>
 
@@ -111,7 +111,7 @@ en:
     </SectionFullScreen>
 
     <SectionFullScreen id="contact">
-      <h2>
+      <h2 class="mb-8">
         {{ $t('Get in touch') }}
       </h2>
 
