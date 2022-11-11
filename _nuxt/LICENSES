@@ -19,24 +19,21 @@
 
 
 /*!
- * CSSPlugin 3.9.1
- * https://greensock.com
+ * The buffer module from node.js, for the browser.
  *
- * Copyright 2008-2021, GreenSock. All rights reserved.
- * Subject to the terms at https://greensock.com/standard-license or for
- * Club GreenSock members, the agreement issued with that membership.
- * @author: Jack Doyle, jack@greensock.com
-*/
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
 
 /*!
- * GSAP 3.9.1
- * https://greensock.com
- *
- * @license Copyright 2008-2021, GreenSock. All rights reserved.
- * Subject to the terms at https://greensock.com/standard-license or for
- * Club GreenSock members, the agreement issued with that membership.
- * @author: Jack Doyle, jack@greensock.com
-*/
+ * reading-time
+ * Copyright (c) Nicolas Gryman <ngryman@gmail.com>
+ * MIT Licensed
+ */
+
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 
 /*!
@@ -111,18 +108,21 @@ PERFORMANCE OF THIS SOFTWARE.
 
 
 /*!
- * The buffer module from node.js, for the browser.
+ * CSSPlugin 3.9.1
+ * https://greensock.com
  *
- * @author   Feross Aboukhadijeh <http://feross.org>
- * @license  MIT
- */
+ * Copyright 2008-2021, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for
+ * Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+*/
 
 /*!
- * reading-time
- * Copyright (c) Nicolas Gryman <ngryman@gmail.com>
- * MIT Licensed
- */
-
-/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
-
-/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
+ * GSAP 3.9.1
+ * https://greensock.com
+ *
+ * @license Copyright 2008-2021, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for
+ * Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+*/
