@@ -201,12 +201,6 @@ export default defineComponent({
           label: "Dev.to",
         },
         {
-          id: "stack-overflow",
-          dest: "https://stackoverflow.com/story/rubensibon",
-          iconId: "SvgIconSO",
-          label: "StackOverflow",
-        },
-        {
           id: "linkedin",
           dest: "https://www.linkedin.com/in/rubensibon",
           iconId: "SvgIconLinkedIn",
