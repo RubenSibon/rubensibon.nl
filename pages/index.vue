@@ -76,7 +76,8 @@ en:
             target="_blank"
             rel="noopener noreferrer"
             :variant="social.id"
-            :classes="'sm:col-span-2 md:col-span-6 last:odd:sm:col-start-2 sm:last:odd:col-end-4 md:last:odd:col-start-4 md:last:odd:col-end-10'"
+            :classes="'sm:col-span-2 md:col-span-6 last:odd:sm:col-start-2 sm:last:odd:col-end-4 md:last:odd:col-start-4 md:last:odd:col-end-10 disabled:grayscale disabled:opacity-50 disabled:cursor-not-allowed'"
+            :disabled="social.disabled"
           >
             <template #before>
               <span>
@@ -205,6 +206,7 @@ export default defineComponent({
           dest: "https://www.linkedin.com/in/rubensibon",
           iconId: "SvgIconLinkedIn",
           label: "LinkedIn",
+          disabled: true,
         },
       ],
     };
