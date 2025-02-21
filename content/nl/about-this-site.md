@@ -1,14 +1,13 @@
+## Over deze website
 
-## About this website
-
-This website is hosted by GitHub. <a href="https://github.com/RubenSibon/rubensibon.nl" target="_blank" rel="noopener noreferrer">Inspect the code</a>.
+Deze website wordt gehost door GitHub. <a href="https://github.com/RubenSibon/rubensibon.nl" target="_blank" rel="noopener noreferrer">Bekijk de code</a>.
 
 ### Privacy
 
-No personally identifiable information is collected other than what is provided via a web form.
+Geen persoonlijke informatie wordt verzameld anders dan wat is ingezonden met een webformulier.
 
-To remember your browser's language a non-tracking cookie is set.
+Om je webbrowser's taal te onthouden wordt er een niet-volgende cookie geplaatst.
 
-### Copyrights
+### Auteursrecht
 
-All code and content not provided by third-parties is subject to copyrights.
+Alle code en inhoud die niet van derde partijen komt valt onder het auteursrecht
