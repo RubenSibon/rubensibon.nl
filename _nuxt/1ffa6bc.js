@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[18],{540:function(l,t,e){"use strict";e.r(t);var n=e(68),component=Object(n.a)({},(function(){return(0,this._self._c)("div",{staticClass:"flex flex-col w-full max-w-screen-md gap-3 mx-auto ie-gap-vertical"},[this._t("default")],2)}),[],!1,null,null,null);t.default=component.exports}}]);
